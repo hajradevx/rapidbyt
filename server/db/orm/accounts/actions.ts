@@ -1,126 +1,150 @@
 export const create = async (account: typeof schema.accounts.$inferInsert) => {
   try {
-    const createdAccount = await db.insert(schema.accounts)
-      .values(account).onConflictDoNothing().returning().get()
+    const createdAccount = await db
+      .insert(schema.accounts)
+      .values(account)
+      .onConflictDoNothing()
+      .returning()
+      .get();
 
     if (!createdAccount)
-      throw createError({ status: 409, statusText: 'An account with this username already exists.' })
+      throw createError({
+        status: 409,
+        statusText: "An account with this username already exists.",
+      });
 
-    return createdAccount
-  }
-  catch (err: unknown) {
-    const error = err as Error
-    if (error.message?.includes('unique constraint'))
-      throw createError({ status: 409, statusText: 'An account with this username or email already exists.' })
+    return createdAccount;
+  } catch (err: unknown) {
+    const error = err as Error;
+    if (error.message?.includes("unique constraint"))
+      throw createError({
+        status: 409,
+        statusText: "An account with this username or email already exists.",
+      });
 
-    throw createError({ status: 500, statusText: 'Failed to create account', message: error.message })
+    throw createError({
+      status: 500,
+      statusText: "Failed to create account",
+      message: error.message,
+    });
   }
-}
+};
 
 /**
  * Update account by ID
  */
 export const update = async (id: string, data: Partial<typeof schema.accounts.$inferInsert>) => {
   try {
-    const updatedAccount = await db.update(schema.accounts)
-      .set(data).where(eq(schema.accounts.id, id)).returning().get()
+    const updatedAccount = await db
+      .update(schema.accounts)
+      .set(data)
+      .where(eq(schema.accounts.id, id))
+      .returning()
+      .get();
 
-    if (!updatedAccount)
-      throw createError({ status: 404, statusText: 'Account not found' })
+    if (!updatedAccount) throw createError({ status: 404, statusText: "Account not found" });
 
-    return updatedAccount
+    return updatedAccount;
+  } catch {
+    throw createError({ status: 500, statusText: "Failed to update account" });
   }
-  catch {
-    throw createError({ status: 500, statusText: 'Failed to update account' })
-  }
-}
+};
 
 /**
  * Delete account by ID
  */
 export const delById = async (id: string) => {
   try {
-    const deletedAccount = await db.delete(schema.accounts)
-      .where(eq(schema.accounts.id, id)).returning().get()
+    const deletedAccount = await db
+      .delete(schema.accounts)
+      .where(eq(schema.accounts.id, id))
+      .returning()
+      .get();
 
-    if (!deletedAccount)
-      throw createError({ status: 404, statusText: 'Account not found' })
+    if (!deletedAccount) throw createError({ status: 404, statusText: "Account not found" });
 
-    return deletedAccount
+    return deletedAccount;
+  } catch {
+    throw createError({ status: 500, statusText: "Failed to delete account" });
   }
-  catch {
-    throw createError({ status: 500, statusText: 'Failed to delete account' })
-  }
-}
+};
 
 /**
  * Verify account email
  */
 export const verifyEmail = async (id: string) => {
   try {
-    return await db.update(schema.accounts).set({ emailVerified: true })
-      .where(eq(schema.accounts.id, id)).returning().get()
+    return await db
+      .update(schema.accounts)
+      .set({ emailVerified: true })
+      .where(eq(schema.accounts.id, id))
+      .returning()
+      .get();
+  } catch {
+    throw createError({ status: 500, statusText: "Failed to verify email" });
   }
-  catch {
-    throw createError({ status: 500, statusText: 'Failed to verify email' })
-  }
-}
+};
 
 /**
  * Update account profile information with validation
  */
-export const updateProfile = async (id: string, data: Partial<typeof schema.accounts.$inferSelect>) => {
-  const { username, name, email, phone } = data
+export const updateProfile = async (
+  id: string,
+  data: Partial<typeof schema.accounts.$inferSelect>,
+) => {
+  const { username, name, email, phone } = data;
 
   // Get current account data
   const currentAccount = await db.query.accounts.findFirst({
-    where: eq(schema.accounts.id, id) })
+    where: eq(schema.accounts.id, id),
+  });
 
   if (!currentAccount) {
-    throw createError({ status: 404, statusText: 'Account not found' })
+    throw createError({ status: 404, statusText: "Account not found" });
   }
 
   // Validation checks
   if (username && username !== currentAccount.username) {
     const existingUsername = await db.query.accounts.findFirst({
-      where: and(eq(schema.accounts.username, username.trim()),
-        ne(schema.accounts.id, id)) })
+      where: and(eq(schema.accounts.username, username.trim()), ne(schema.accounts.id, id)),
+    });
 
     if (existingUsername)
       return {
         success: false,
         available: false,
-        message: 'Username already in use',
-        field: 'username' }
+        message: "Username already in use",
+        field: "username",
+      };
   }
 
   if (email && email !== currentAccount.email) {
-    const normalizedEmail = email.toLowerCase().trim()
+    const normalizedEmail = email.toLowerCase().trim();
     const existingEmail = await db.query.accounts.findFirst({
-      where: and(eq(schema.accounts.email, normalizedEmail),
-        ne(schema.accounts.id, id)) })
+      where: and(eq(schema.accounts.email, normalizedEmail), ne(schema.accounts.id, id)),
+    });
 
     if (existingEmail)
       return {
         success: false,
         available: false,
-        message: 'Email already in use',
-        field: 'email'
-      }
+        message: "Email already in use",
+        field: "email",
+      };
   }
 
   if (phone && phone !== currentAccount.phone) {
     const existingPhone = await db.query.accounts.findFirst({
-      where: and(eq(schema.accounts.phone, phone),
-        ne(schema.accounts.id, id)) })
+      where: and(eq(schema.accounts.phone, phone), ne(schema.accounts.id, id)),
+    });
 
     if (existingPhone)
       return {
         success: false,
         available: false,
-        message: 'Phone number already in use',
-        field: 'phone'
-      }
+        message: "Phone number already in use",
+        field: "phone",
+      };
   }
 
   // Proceed with update
@@ -128,23 +152,26 @@ export const updateProfile = async (id: string, data: Partial<typeof schema.acco
     .update(schema.accounts)
     .set({
       username: username ? username.trim() : currentAccount.username,
-      name, phone,
+      name,
+      phone,
       email: email ? email.toLowerCase().trim() : currentAccount.email,
-    }).where(eq(schema.accounts.id, id)).returning()
+    })
+    .where(eq(schema.accounts.id, id))
+    .returning();
 
-  return { success: true, data: result }
-}
+  return { success: true, data: result };
+};
 
 /**
  * Update account avatar
  */
 export const updateAvatar = async (id: string, _file: File) => {
   const existingAccount = await db.query.accounts.findFirst({
-    where: eq(schema.accounts.id, id)
-  })
+    where: eq(schema.accounts.id, id),
+  });
 
   if (!existingAccount) {
-    throw createError({ status: 404, statusText: 'Account not found' })
+    throw createError({ status: 404, statusText: "Account not found" });
   }
 
   //   let avatarPath = existingAccount.avatar
@@ -164,18 +191,19 @@ export const updateAvatar = async (id: string, _file: File) => {
   //     .where(eq(schema.accounts.id, id))
   //     .returning().get()
 
-//   return updatedAccount
-}
+  //   return updatedAccount
+};
 
 /**
  * Delete account avatar
  */
 export const deleteAvatar = async (id: string) => {
   const account = await db.query.accounts.findFirst({
-    where: eq(schema.accounts.id, id) })
+    where: eq(schema.accounts.id, id),
+  });
 
   if (!account) {
-    throw createError({ status: 404, statusText: 'Account not found' })
+    throw createError({ status: 404, statusText: "Account not found" });
   }
 
   // const avatarPath = account.avatar
@@ -195,70 +223,70 @@ export const deleteAvatar = async (id: string) => {
   // }
 
   // return result
-}
+};
 
 /**
  * Set password reset token for account
  */
 export const setResetToken = async (id: string, token: string, expiresAt: Date) => {
   try {
-    const updatedAccount = await db.update(schema.accounts)
+    const updatedAccount = await db
+      .update(schema.accounts)
       .set({
         resetToken: token,
-        resetTokenExpiresAt: expiresAt
+        resetTokenExpiresAt: expiresAt,
       })
       .where(eq(schema.accounts.id, id))
       .returning()
-      .get()
+      .get();
 
     if (!updatedAccount) {
-      throw createError({ status: 404, statusText: 'Account not found' })
+      throw createError({ status: 404, statusText: "Account not found" });
     }
 
-    return updatedAccount
+    return updatedAccount;
+  } catch {
+    throw createError({ status: 500, statusText: "Failed to set reset token" });
   }
-  catch {
-    throw createError({ status: 500, statusText: 'Failed to set reset token' })
-  }
-}
+};
 
 /**
  * Clear password reset token
  */
 export const clearResetToken = async (id: string) => {
   try {
-    return await db.update(schema.accounts)
+    return await db
+      .update(schema.accounts)
       .set({
         resetToken: null,
-        resetTokenExpiresAt: null
+        resetTokenExpiresAt: null,
       })
       .where(eq(schema.accounts.id, id))
       .returning()
-      .get()
+      .get();
+  } catch {
+    throw createError({ status: 500, statusText: "Failed to clear reset token" });
   }
-  catch {
-    throw createError({ status: 500, statusText: 'Failed to clear reset token' })
-  }
-}
+};
 
 /**
  * Update account password
  */
 export const updatePassword = async (id: string, hashedPassword: string) => {
   try {
-    const updatedAccount = await db.update(schema.accounts)
+    const updatedAccount = await db
+      .update(schema.accounts)
       .set({ password: hashedPassword })
       .where(eq(schema.accounts.id, id))
       .returning()
-      .get()
+      .get();
 
     if (!updatedAccount) {
-      throw createError({ status: 404, statusText: 'Account not found' })
+      throw createError({ status: 404, statusText: "Account not found" });
     }
 
-    return updatedAccount
+    return updatedAccount;
+  } catch {
+    throw createError({ status: 500, statusText: "Failed to update password" });
   }
-  catch {
-    throw createError({ status: 500, statusText: 'Failed to update password' })
-  }
-}
+};

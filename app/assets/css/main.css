@@ -18,7 +18,9 @@ html {
 
 /* Respect user's motion preference */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -37,7 +39,9 @@ html {
 /* ── Card hover lift — only on devices with hover ─── */
 @media (hover: hover) {
   .card-hover {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
     will-change: transform;
   }
   .card-hover:hover {
@@ -61,7 +65,9 @@ html {
 .fade-up {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
   /* Hint browser to composite on GPU */
   will-change: opacity, transform;
 }
@@ -95,7 +101,7 @@ html {
   border-radius: 1rem;
 }
 .gradient-border::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: -1px;
   border-radius: inherit;
@@ -119,8 +125,12 @@ html {
 
 /* ── Marquee (kept but only loaded when used) ──────────── */
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 .animate-marquee {
   animation: marquee 22s linear infinite;

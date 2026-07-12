@@ -1,30 +1,32 @@
 <script setup lang="ts">
-definePageMeta({ layout: 'default' })
+definePageMeta({ layout: "default" });
 useSeoMeta({
-  title: 'RapidByt – Web Performance & Software Solutions',
-  description: 'Is your website costing you customers? RapidByt diagnoses and fixes slow sites, broken code, and weak SEO — turning digital problems into measurable growth.',
-  ogTitle: 'RapidByt – Web Performance & Software Solutions',
-  ogDescription: 'We diagnose slow sites, broken code, and weak SEO — then engineer the fixes that turn digital problems into revenue growth.',
-  ogImage: '/og-image.png',
-  twitterCard: 'summary_large_image',
-})
+  title: "RapidByt – Web Performance & Software Solutions",
+  description:
+    "Is your website costing you customers? RapidByt diagnoses and fixes slow sites, broken code, and weak SEO — turning digital problems into measurable growth.",
+  ogTitle: "RapidByt – Web Performance & Software Solutions",
+  ogDescription:
+    "We diagnose slow sites, broken code, and weak SEO — then engineer the fixes that turn digital problems into revenue growth.",
+  ogImage: "/og-image.png",
+  twitterCard: "summary_large_image",
+});
 
 // Use a single shared observer for all fade-up elements
 // rootMargin starts animation slightly before element enters viewport
 onMounted(() => {
   const io = new IntersectionObserver(
-    entries => {
-      entries.forEach(e => {
+    (entries) => {
+      entries.forEach((e) => {
         if (e.isIntersecting) {
-          e.target.classList.add('visible')
-          io.unobserve(e.target)
+          e.target.classList.add("visible");
+          io.unobserve(e.target);
         }
-      })
+      });
     },
-    { threshold: 0.08, rootMargin: '0px 0px -40px 0px' },
-  )
-  document.querySelectorAll('.fade-up').forEach(el => io.observe(el))
-})
+    { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
+  );
+  document.querySelectorAll(".fade-up").forEach((el) => io.observe(el));
+});
 </script>
 
 <template>

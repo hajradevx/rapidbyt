@@ -2,10 +2,10 @@
 // Prefetch the most-visited pages when idle
 useHead({
   link: [
-    { rel: 'prefetch', href: '/services' },
-    { rel: 'prefetch', href: '/contact' },
+    { rel: "prefetch", href: "/services" },
+    { rel: "prefetch", href: "/contact" },
   ],
-})
+});
 </script>
 
 <template>
