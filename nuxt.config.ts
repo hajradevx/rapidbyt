@@ -89,13 +89,6 @@ export default defineNuxtConfig({
   vite: {
     build: {
       chunkSizeWarningLimit: 1000,
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            "vue-vendor": ["vue", "vue-router"],
-          },
-        },
-      },
       minify: "esbuild",
       cssMinify: true,
       target: "esnext",
