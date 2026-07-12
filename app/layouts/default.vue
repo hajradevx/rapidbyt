@@ -1,31 +1,18 @@
-<script lang="ts" setup>
-const route = useRoute()
-const heroBackgroundClass = computed(() => route.meta?.heroBackground || '')
-
-const { isLoading } = useLoadingIndicator()
-
-const appear = ref(false)
-const appeared = ref(false)
-onMounted(() => {
-  setTimeout(() => {
-    appear.value = true
-    setTimeout(() => {
-      appeared.value = true
-    }, 1000)
-  }, 0)
+<script setup lang="ts">
+// Prefetch the most-visited pages when idle
+useHead({
+  link: [
+    { rel: 'prefetch', href: '/services' },
+    { rel: 'prefetch', href: '/contact' },
+  ],
 })
 </script>
 
 <template>
   <AppHeader />
-  <UMain class="relative">
-    <HeroBackground
-      class="absolute w-full transition-all text-primary shrink-0 -z-10"
-      :class="[
-        isLoading ? 'animate-pulse' : (appear ? heroBackgroundClass : 'opacity-0'),
-        appeared ? 'duration-400' : 'duration-1000',
-      ]" />
+  <UMain>
     <NuxtPage />
   </UMain>
-  <AppFooter />
+  <!-- Footer is below fold — lazy render -->
+  <LazyAppFooter />
 </template>

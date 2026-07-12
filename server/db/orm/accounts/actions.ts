@@ -138,7 +138,7 @@ export const updateProfile = async (id: string, data: Partial<typeof schema.acco
 /**
  * Update account avatar
  */
-export const updateAvatar = async (id: string, file: File) => {
+export const updateAvatar = async (id: string, _file: File) => {
   const existingAccount = await db.query.accounts.findFirst({
     where: eq(schema.accounts.id, id)
   })

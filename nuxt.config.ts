@@ -5,26 +5,115 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxthub/core',
     '@nuxt/image',
-    // '@nuxt/hints',
     'nuxt-auth-utils',
   ],
   devtools: { enabled: true },
+
+  // ── App head — preconnect critical origins ──────────────
+  app: {
+    head: {
+      htmlAttrs: { lang: 'en' },
+      link: [
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'dns-prefetch', href: 'https://fonts.gstatic.com' },
+        { rel: 'dns-prefetch', href: 'https://api.dicebear.com' },
+      ],
+      meta: [
+        { name: 'theme-color', content: '#0ea5e9' },
+      ],
+    },
+    // Lightweight page fade transition
+    pageTransition: { name: 'page', mode: 'out-in' },
+  },
+
   css: ['~/assets/css/main.css'],
+
+  // ── Router ──────────────────────────────────────────────
+  router: {
+    options: {
+      scrollBehaviorType: 'smooth',
+    },
+  },
+
+  // ── Nuxt UI ─────────────────────────────────────────────
   ui: {
     content: true,
-    experimental: { componentDetection: true }
+    experimental: { componentDetection: true },
   },
-  // future: { compatibilityVersion: 5 },
+
+  // ── Runtime config ──────────────────────────────────────
+  runtimeConfig: {
+    resendApiKey: process.env.NUXT_RESEND_API_KEY || '',
+    pagespeedApiKey: process.env.NUXT_PAGESPEED_API_KEY || '',
+  },
+
+  // ── Experimental perf flags ─────────────────────────────
   experimental: {
-    typedPages: true, writeEarlyHints: true,
-    defaults: { nuxtLink: { trailingSlash: 'remove' } },
-    viteEnvironmentApi: true, typescriptPlugin: true, extractAsyncDataHandlers: true
+    typedPages: true,
+    writeEarlyHints: true,
+    defaults: {
+      nuxtLink: {
+        trailingSlash: 'remove',
+        prefetch: true,
+        prefetchOn: { visibility: true },
+      },
+    },
+    viteEnvironmentApi: true,
+    typescriptPlugin: true,
+    extractAsyncDataHandlers: true,
+    granularCachedData: true,
   },
+
+  // ── Nitro / Cloudflare ──────────────────────────────────
   compatibilityDate: '2026-02-25',
   nitro: {
     preset: 'cloudflare_module',
-    cloudflare: { deployConfig: true, nodeCompat: true }
+    cloudflare: { deployConfig: true, nodeCompat: true },
+    // Compress all text assets with gzip + brotli
+    compressPublicAssets: { gzip: true, brotli: true },
+    minify: true,
+    // Cache headers per route
+    routeRules: {
+      '/_nuxt/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+      '/fonts/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+      '/': { headers: { 'cache-control': 'public, s-maxage=60, stale-while-revalidate=3600' } },
+      '/services': { headers: { 'cache-control': 'public, s-maxage=300, stale-while-revalidate=3600' } },
+      '/contact': { headers: { 'cache-control': 'public, s-maxage=60, stale-while-revalidate=600' } },
+      '/diagnose': { headers: { 'cache-control': 'public, s-maxage=60, stale-while-revalidate=600' } },
+      '/api/**': { headers: { 'cache-control': 'no-store' } },
+    },
   },
+
+  // ── NuxtHub ─────────────────────────────────────────────
   hub: { db: 'sqlite' },
+
+  // ── Vite build optimizations ────────────────────────────
+  vite: {
+    build: {
+      chunkSizeWarningLimit: 1000,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'vue-vendor': ['vue', 'vue-router'],
+          },
+        },
+      },
+      minify: 'esbuild',
+      cssMinify: true,
+      target: 'esnext',
+    },
+    optimizeDeps: {
+      include: ['vue', 'vue-router'],
+    },
+  },
+
+  // ── ESLint ──────────────────────────────────────────────
   eslint: { config: { stylistic: true } },
+
+  // ── Image optimisation ──────────────────────────────────
+  image: {
+    format: ['webp', 'avif'],
+    quality: 80,
+    screens: { xs: 320, sm: 640, md: 768, lg: 1024, xl: 1280, xxl: 1536 },
+  },
 })

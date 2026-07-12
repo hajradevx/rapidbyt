@@ -51,11 +51,12 @@ export default defineEventHandler(async event => {
       message: 'Password reset successfully.',
     }
   }
-  catch (error: any) {
+  catch (error: unknown) {
     console.error('Password reset error:', error)
+    const err = error as { statusCode?: number, message?: string }
     throw createError({
-      statusCode: error.statusCode || 500,
-      message: error.message || 'Internal Server Error',
+      statusCode: err?.statusCode ?? 500,
+      message: err?.message ?? 'Internal Server Error',
     })
   }
 })

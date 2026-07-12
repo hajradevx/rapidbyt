@@ -1,2 +1,127 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+
+/* ── RapidByt brand tokens ───────────────────────────── */
+:root {
+  --rb-gradient: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+  --rb-gradient-dark: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
+}
+
+/* ── Performance: smooth scroll with reduced motion support ── */
+html {
+  scroll-behavior: smooth;
+  /* Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+}
+
+/* Respect user's motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Gradient text ──────────────────────────────────── */
+.gradient-text {
+  background: var(--rb-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Card hover lift — only on devices with hover ─── */
+@media (hover: hover) {
+  .card-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    will-change: transform;
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -12px rgba(14, 165, 233, 0.2);
+  }
+}
+
+/* ── Glow button ─────────────────────────────────────── */
+.glow-btn {
+  box-shadow: 0 0 16px rgba(14, 165, 233, 0.35);
+  transition: box-shadow 0.25s ease;
+}
+@media (hover: hover) {
+  .glow-btn:hover {
+    box-shadow: 0 0 28px rgba(14, 165, 233, 0.65);
+  }
+}
+
+/* ── Fade-up scroll animation ───────────────────────── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  /* Hint browser to composite on GPU */
+  will-change: opacity, transform;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+  /* Release will-change after animation completes */
+  will-change: auto;
+}
+
+/* ── Nuxt page transition ────────────────────────────── */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.2s ease;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
+
+/* ── Force Nuxt UI form elements full width ──────────── */
+[data-ui="input"],
+[data-ui="select"],
+[data-ui="textarea"] {
+  width: 100%;
+}
+
+/* ── Gradient border card ─────────────────────────────── */
+.gradient-border {
+  position: relative;
+  border-radius: 1rem;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: var(--rb-gradient);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+@media (hover: hover) {
+  .gradient-border:hover::before {
+    opacity: 1;
+  }
+}
+
+/* ── Content visibility for offscreen sections ────────── */
+/* Tells browser to skip rendering offscreen sections until needed */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 400px;
+}
+
+/* ── Marquee (kept but only loaded when used) ──────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 22s linear infinite;
+}
