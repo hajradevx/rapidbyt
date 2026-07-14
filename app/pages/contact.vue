@@ -7,6 +7,7 @@ useSeoMeta({
 });
 
 const route = useRoute();
+const { loggedIn, user } = useUserSession();
 const serviceParam = route.query.service as string | undefined;
 
 const serviceOptions = [
@@ -25,6 +26,14 @@ const form = reactive({
   website: "",
   service: serviceParam || "",
   message: "",
+});
+
+// Pre-fill from session when logged in
+watchEffect(() => {
+  if (loggedIn.value && user.value) {
+    if (user.value.name && !form.name) form.name = user.value.name;
+    if (user.value.email && !form.email) form.email = user.value.email;
+  }
 });
 
 const submitting = ref(false);
@@ -165,7 +174,7 @@ const auditIncludes = [
             <!-- Form -->
             <form
               v-else
-              class="space-y-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-8 sm:p-10"
+              class="space-y-6 rounded-3xl border border-muted bg-muted p-8 sm:p-10"
               @submit.prevent="handleSubmit"
             >
               <div class="grid sm:grid-cols-2 gap-6">
@@ -182,7 +191,7 @@ const auditIncludes = [
                   />
                 </div>
                 <div class="w-full">
-                  <label class="block text-sm font-semibold text-zinc-700 dark:text-zinc-300 mb-2">
+                  <label class="block text-sm font-semibold text-muted mb-2">
                     Email address <span class="text-red-500">*</span>
                   </label>
                   <UInput
@@ -191,8 +200,25 @@ const auditIncludes = [
                     placeholder="jane@company.com"
                     size="lg"
                     class="w-full"
-                    :ui="{ base: 'w-full rounded-xl' }"
-                  />
+                    :readonly="loggedIn && !!user?.email"
+                    :ui="{
+                      base: 'w-full rounded-xl',
+                      trailing: loggedIn && user?.email ? 'pe-2' : '',
+                    }"
+                  >
+                    <template v-if="loggedIn && user?.email" #trailing>
+                      <UTooltip text="Email from your account">
+                        <UIcon name="i-heroicons-check-circle" class="w-4 h-4 text-emerald-500" />
+                      </UTooltip>
+                    </template>
+                  </UInput>
+                  <p
+                    v-if="loggedIn && user?.email"
+                    class="mt-1 text-xs text-zinc-400 dark:text-zinc-500 flex items-center gap-1"
+                  >
+                    <UIcon name="i-lucide-lock" class="w-3 h-3" />
+                    Auto-filled from your account
+                  </p>
                 </div>
               </div>
 
