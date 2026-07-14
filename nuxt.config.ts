@@ -87,6 +87,16 @@ export default defineNuxtConfig({
   vite: {
     build: {
       cssMinify: true,
+      // Rolldown (Vite+) requires manualChunks as a function, not an object
+      rollupOptions: {
+        output: {
+          manualChunks: (id: string) => {
+            if (id.includes("node_modules/vue") || id.includes("node_modules/vue-router")) {
+              return "vue-vendor";
+            }
+          },
+        },
+      },
     },
     optimizeDeps: {
       include: ["vue", "vue-router"],
