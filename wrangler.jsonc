@@ -24,7 +24,7 @@
     {
       "binding": "DB",
       "database_name": "rapidbyt",
-      "database_id": "ed77c9c6-add3-477d-ba76-38f3ea26be1c",
+      "database_id": "71e239a4-53eb-457d-8f1d-a56196e6cd61",
       "migrations_table": "_hub_migrations",
       "migrations_dir": "server/db/migrations/sqlite/",
     },
