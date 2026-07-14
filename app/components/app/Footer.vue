@@ -20,7 +20,6 @@ const columns: FooterColumn[] = [
       { label: "Pricing", to: "/#pricing" },
       { label: "Free Diagnosis", to: "/diagnose" },
       { label: "Contact Us", to: "/contact" },
-      { label: "Login", to: "/login" },
     ],
   },
   {

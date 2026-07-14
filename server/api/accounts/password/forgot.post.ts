@@ -1,7 +1,14 @@
 import { Resend } from "resend";
-import { randomBytes } from "node:crypto";
 
 const FROM_ADDRESS = "RapidByt <noreply@rapidbyt.com>";
+
+/** Generate a cryptographically secure hex token using Web Crypto API
+ *  (works in both Node.js and Cloudflare Workers) */
+function generateToken(bytes = 32): string {
+  const arr = new Uint8Array(bytes);
+  crypto.getRandomValues(arr);
+  return Array.from(arr, (b) => b.toString(16).padStart(2, "0")).join("");
+}
 
 export default eventHandler(async (event) => {
   const body = await readBody(event);
@@ -20,8 +27,8 @@ export default eventHandler(async (event) => {
     });
   }
 
-  // Generate a secure random token (64 hex chars)
-  const token = randomBytes(32).toString("hex");
+  // Generate a secure random token (64 hex chars) using Web Crypto
+  const token = generateToken(32);
   const expiresAt = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
 
   await orm.accounts.setResetToken(account.id, token, expiresAt);

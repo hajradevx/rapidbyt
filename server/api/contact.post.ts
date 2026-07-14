@@ -31,12 +31,8 @@ export default defineEventHandler(async (event) => {
 
   const config = useRuntimeConfig();
   const resendApiKey = config.resendApiKey;
+  const emailEnabled = !!resendApiKey;
 
-  if (!resendApiKey) {
-    throw createError({ statusCode: 500, message: "Email service is not configured." });
-  }
-
-  const resend = new Resend(resendApiKey);
   const serviceLabel = serviceLabels[service] || service || "Not specified";
   const submittedAt = new Date().toLocaleString("en-PK", {
     timeZone: "Asia/Karachi",
@@ -136,35 +132,54 @@ export default defineEventHandler(async (event) => {
     </div>
   `;
 
-  // ── Send both emails in parallel ─────────────────────────
-  const [notifyResult, autoReplyResult] = await Promise.allSettled([
-    resend.emails.send({
-      from: FROM_ADDRESS,
-      to: [NOTIFY_EMAIL],
-      subject: `🚀 New Audit Request from ${name} — ${website}`,
-      html: notifyHtml,
-      replyTo: email,
-    }),
-    resend.emails.send({
-      from: FROM_ADDRESS,
-      to: [email],
-      subject: `We've received your audit request — RapidByt`,
-      html: autoReplyHtml,
-    }),
-  ]);
+  // ── Send emails (skipped locally when NUXT_RESEND_API_KEY is not set) ──
+  let autoReplySent = false;
 
-  // If notification email failed (critical), return error
-  if (notifyResult.status === "rejected") {
-    console.error("Notification email failed:", notifyResult.reason);
-    throw createError({
-      statusCode: 500,
-      message: "Failed to send notification. Please try again or contact us directly.",
+  if (!emailEnabled) {
+    // Local dev — log the lead to console so nothing is silently lost
+    console.warn("[contact] Email service not configured (NUXT_RESEND_API_KEY missing).");
+    console.info("[contact] Lead received:", {
+      name,
+      email,
+      website,
+      service: serviceLabel,
+      message,
     });
+  } else {
+    const resend = new Resend(resendApiKey);
+
+    const [notifyResult, autoReplyResult] = await Promise.allSettled([
+      resend.emails.send({
+        from: FROM_ADDRESS,
+        to: [NOTIFY_EMAIL],
+        subject: `🚀 New Audit Request from ${name} — ${website}`,
+        html: notifyHtml,
+        replyTo: email,
+      }),
+      resend.emails.send({
+        from: FROM_ADDRESS,
+        to: [email],
+        subject: `We've received your audit request — RapidByt`,
+        html: autoReplyHtml,
+      }),
+    ]);
+
+    // Notification email is critical in production
+    if (notifyResult.status === "rejected") {
+      console.error("Notification email failed:", notifyResult.reason);
+      throw createError({
+        statusCode: 500,
+        message: "Failed to send notification. Please try again or contact us directly.",
+      });
+    }
+
+    autoReplySent = autoReplyResult.status === "fulfilled";
   }
 
   return {
     success: true,
     whatsappUrl,
-    autoReplySent: autoReplyResult.status === "fulfilled",
+    autoReplySent,
+    emailEnabled,
   };
 });

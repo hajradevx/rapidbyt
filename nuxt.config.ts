@@ -64,7 +64,9 @@ export default defineNuxtConfig({
   // ── Nitro / Cloudflare ──────────────────────────────────
   compatibilityDate: "2026-02-25",
   nitro: {
-    preset: "cloudflare_module",
+    // cloudflare_module preset only for production build — dev uses default
+    // node preset so Node.js APIs (crypto, etc.) work without polyfills.
+    preset: process.env.NODE_ENV === "production" ? "cloudflare_module" : undefined,
     cloudflare: { deployConfig: true, nodeCompat: true },
     compressPublicAssets: { gzip: true, brotli: true },
     minify: true,
