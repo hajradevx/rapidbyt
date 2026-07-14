@@ -44,10 +44,11 @@
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "10",
+      "version": "10.12.4",
       "onFail": "download"
     }
   },
+  "packageManager": "pnpm@10.12.4",
   "pnpm": {
     "overrides": {
       "vite": "npm:@voidzero-dev/vite-plus-core@0.2.3"
