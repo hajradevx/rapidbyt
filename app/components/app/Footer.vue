@@ -58,11 +58,11 @@ const bottomLinks: NavigationMenuItem[] = [
             <div class="space-y-4">
               <!-- Logo -->
               <NuxtLink to="/" class="flex items-center gap-2">
-                <div
-                  class="w-8 h-8 rounded-lg bg-gradient-to-br from-sky-500 to-indigo-600 flex items-center justify-center"
-                >
-                  <span class="text-white font-black text-sm">R</span>
-                </div>
+                <img
+                  src="/img/logo.png"
+                  alt="RapidByt"
+                  class="size-12 object-contain group-hover:scale-105 transition-transform duration-300"
+                />
                 <span class="font-black text-xl tracking-tight">
                   <span class="gradient-text">Rapid</span
                   ><span class="text-zinc-900 dark:text-white">Byt</span>
