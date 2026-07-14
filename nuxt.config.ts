@@ -50,7 +50,7 @@ export default defineNuxtConfig({
         prefetchOn: { visibility: true },
       },
     },
-    viteEnvironmentApi: true,
+    // viteEnvironmentApi removed — incompatible with Rolldown + NuxtHub cloudflare build
     typescriptPlugin: true,
     extractAsyncDataHandlers: true,
     granularCachedData: true,
@@ -88,10 +88,7 @@ export default defineNuxtConfig({
   // ── Vite build optimizations ────────────────────────────
   vite: {
     build: {
-      chunkSizeWarningLimit: 1000,
-      minify: "esbuild",
       cssMinify: true,
-      target: "esnext",
     },
     optimizeDeps: {
       include: ["vue", "vue-router"],

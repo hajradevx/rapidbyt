@@ -37,7 +37,6 @@ const progressSteps = [
   "Checking Core Web Vitals…",
   "Scanning SEO signals…",
   "Auditing accessibility…",
-  "Checking security headers…",
   "Generating your report…",
 ];
 
@@ -78,7 +77,7 @@ async function runDiagnosis() {
   result.value = null;
   progress.value = 0;
 
-  // Animate progress while waiting (~20s average for PSI)
+  // Animate progress while waiting (~12s average with API key)
   let step = 0;
   progressMsg.value = progressSteps[0];
   if (progressInterval) clearInterval(progressInterval);
@@ -86,9 +85,9 @@ async function runDiagnosis() {
     step++;
     if (step < progressSteps.length) {
       progressMsg.value = progressSteps[step];
-      progress.value = Math.min(82, Math.round((step / progressSteps.length) * 88));
+      progress.value = Math.min(85, Math.round((step / progressSteps.length) * 90));
     }
-  }, 3000);
+  }, 2000);
 
   try {
     const data = await $fetch<DiagnoseResult>("/api/diagnose", {
@@ -258,7 +257,7 @@ function severityIcon(level: string) {
           />
 
           <p class="text-xs text-zinc-400 text-center">
-            Free · No credit card · Report emailed instantly · Takes ~15 seconds
+            Free · No credit card · Report emailed instantly · Takes ~10 seconds
           </p>
         </form>
       </div>
