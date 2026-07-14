@@ -28,5 +28,10 @@
       "migrations_table": "_hub_migrations",
       "migrations_dir": "server/db/migrations/sqlite/",
     },
+    {
+      "binding": "rapidbyt",
+      "database_name": "rapidbyt",
+      "database_id": "71e239a4-53eb-457d-8f1d-a56196e6cd61",
+    },
   ],
 }
