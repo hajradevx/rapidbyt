@@ -78,7 +78,7 @@ const profileItems = ref<DropdownMenuItem[][]>([
     <Transition name="announcement">
       <div
         v-if="announcementVisible"
-        class="relative bg-gradient-to-r from-sky-600 to-indigo-600 text-white text-center text-xs font-medium py-2 px-10 hidden sm:block"
+        class="relative bg-linear-to-r from-sky-600 to-indigo-600 text-white text-center text-xs font-medium py-2 px-10 hidden sm:block"
       >
         <NuxtLink
           to="/diagnose"
@@ -107,16 +107,11 @@ const profileItems = ref<DropdownMenuItem[][]>([
       <!-- ── Logo ── -->
       <template #title>
         <NuxtLink to="/" class="flex items-center gap-2.5 group">
-          <div
-            class="relative w-9 h-9 rounded-xl bg-gradient-to-br from-sky-500 to-indigo-600 flex items-center justify-center shadow-md shadow-sky-500/25 group-hover:shadow-sky-500/45 transition-all duration-300 group-hover:scale-105"
-          >
-            <span class="text-white font-black text-base leading-none tracking-tighter select-none"
-              >R</span
-            >
-            <div
-              class="absolute inset-0 rounded-xl bg-gradient-to-t from-transparent to-white/20"
-            />
-          </div>
+          <img
+            src="/img/logo.png"
+            alt="RapidByt"
+            class="h-9 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+          />
           <div class="flex flex-col leading-tight">
             <span class="font-black text-xl tracking-tight select-none leading-none">
               <span class="gradient-text">Rapid</span

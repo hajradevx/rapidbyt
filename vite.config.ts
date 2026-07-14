@@ -1,6 +1,13 @@
 import { defineConfig } from "vite-plus";
 
 export default defineConfig({
+  // ── Server / HMR intentionally omitted ──────────────────
+  // This project uses Nuxt, which manages its own Vite dev server via
+  // nuxt.config.ts › vite.server.hmr. Defining server options here causes
+  // Nuxt to register a second WebSocket upgrade handler on the same socket,
+  // producing the "handleUpgrade() called more than once" crash.
+  // All Vite server/HMR settings live in nuxt.config.ts only.
+
   staged: {
     "*": "vp check --fix",
   },

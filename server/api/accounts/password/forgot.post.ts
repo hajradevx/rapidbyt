@@ -1,45 +1,73 @@
+import { Resend } from "resend";
+import { randomBytes } from "node:crypto";
+
+const FROM_ADDRESS = "RapidByt <noreply@rapidbyt.com>";
+
 export default eventHandler(async (event) => {
   const body = await readBody(event);
 
   if (!body.username)
     throw createError({ statusCode: 400, statusMessage: "Username or email is required" });
 
-  if (!body.newPassword)
-    throw createError({ statusCode: 400, statusMessage: "New password is required" });
-
-  if (body.newPassword.length < 8)
-    throw createError({ statusCode: 400, statusMessage: "Password must be at least 8 characters" });
-
-  // Try to find account by username first, then by email
+  // Try username first, then email — always return success to prevent enumeration
   let account = await orm.accounts.getByUsername(body.username);
+  if (!account) account = await orm.accounts.getByEmail(body.username);
 
-  if (!account) {
-    // If not found by username, try email
-    account = await orm.accounts.getByEmail(body.username);
+  // Always return success — never reveal whether the account exists
+  if (!account || !account.email) {
+    return sendSuccess(null, {
+      message: "If an account with that username or email exists, we've sent a reset link.",
+    });
   }
 
-  if (!account) {
-    return sendSuccess(null, { message: "If you have an account, your password has been reset." });
-  }
+  // Generate a secure random token (64 hex chars)
+  const token = randomBytes(32).toString("hex");
+  const expiresAt = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
 
-  // Check if new password is same as old password
-  if (account.password) {
-    const isSamePassword = await verifyPassword(account.password, body.newPassword);
+  await orm.accounts.setResetToken(account.id, token, expiresAt);
 
-    if (isSamePassword) {
-      throw createError({
-        statusCode: 400,
-        statusMessage:
-          "New password cannot be the same as your current password. Please try a different password.",
+  // Send reset email
+  const config = useRuntimeConfig();
+  const resendApiKey = config.resendApiKey;
+
+  if (resendApiKey) {
+    const resend = new Resend(resendApiKey);
+    const resetUrl = `${getRequestURL(event).origin}/reset-password?token=${token}`;
+
+    await resend.emails
+      .send({
+        from: FROM_ADDRESS,
+        to: [account.email],
+        subject: "Reset your RapidByt password",
+        html: `
+        <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;padding:32px;background:#f8fafc;border-radius:16px">
+          <div style="text-align:center;margin-bottom:24px">
+            <div style="display:inline-flex;width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#0ea5e9,#6366f1);align-items:center;justify-content:center;margin-bottom:12px">
+              <span style="color:#fff;font-weight:900;font-size:20px">R</span>
+            </div>
+            <h1 style="margin:0;font-size:22px;font-weight:900;color:#0f172a">Reset your password</h1>
+          </div>
+          <p style="color:#64748b;font-size:15px;line-height:1.6">Hi ${account.name || account.username},</p>
+          <p style="color:#64748b;font-size:15px;line-height:1.6">
+            We received a request to reset your RapidByt password. Click the button below — this link expires in <strong>1 hour</strong>.
+          </p>
+          <div style="text-align:center;margin:32px 0">
+            <a href="${resetUrl}" style="display:inline-block;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:700;font-size:15px">
+              Reset Password
+            </a>
+          </div>
+          <p style="color:#94a3b8;font-size:12px;text-align:center">
+            If you didn't request this, you can safely ignore this email.
+          </p>
+        </div>
+      `,
+      })
+      .catch(() => {
+        // Don't fail the request if email fails — token is still saved
       });
-    }
   }
 
-  // Hash the new password
-  const hashedPassword = await hashPassword(body.newPassword);
-
-  // Update the password
-  await orm.accounts.updatePassword(account.id, hashedPassword);
-
-  return sendSuccess(null, { message: "Password reset successfully!" });
+  return sendSuccess(null, {
+    message: "If an account with that username or email exists, we've sent a reset link.",
+  });
 });

@@ -12,6 +12,9 @@ export default defineNuxtConfig({
     head: {
       htmlAttrs: { lang: "en" },
       link: [
+        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+        { rel: "shortcut icon", href: "/favicon.ico" },
+        { rel: "apple-touch-icon", href: "/img/logo.png" },
         { rel: "preconnect", href: "https://fonts.googleapis.com" },
         { rel: "dns-prefetch", href: "https://fonts.gstatic.com" },
         { rel: "dns-prefetch", href: "https://api.dicebear.com" },
@@ -94,6 +97,8 @@ export default defineNuxtConfig({
   hub: { db: "sqlite" },
 
   // ── Vite — separate HMR port to avoid WebSocket upgrade conflict ──────
+  // Nuxt loads vite.config.ts automatically; setting a dedicated HMR port
+  // ensures Vite+ and Nuxt do not share the same WebSocket upgrade handler.
   vite: {
     build: {
       cssMinify: true,

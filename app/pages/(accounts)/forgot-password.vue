@@ -1,47 +1,44 @@
 <script setup lang="ts">
-import type * as z from "zod";
-import type { FormSubmitEvent, AuthFormField } from "@nuxt/ui";
-
-const router = useRouter();
+import type { AuthFormField, FormSubmitEvent } from "@nuxt/ui";
+import * as z from "zod";
 
 definePageMeta({ layout: false });
+
 const toast = useToast();
+const router = useRouter();
 const loading = ref(false);
+const submitted = ref(false);
 
-const fields = ref<AuthFormField[]>([
+// Only ask for username/email — the server sends a reset link to the
+// registered email. The old flow (username + new password directly) let
+// anyone reset anyone else's password without proof of identity.
+const schema = z.object({
+  username: z.string().min(1, "Username or email is required"),
+});
+
+const fields: AuthFormField[] = [
   { name: "username", type: "text", label: "Username or Email", required: true },
-  { name: "password", type: "password", label: "New Password", required: true },
-  { name: "confirmPassword", type: "password", label: "Confirm Password", required: true },
-]);
+];
 
-type Schema = z.output<typeof schemas.accounts.forgotPassword>;
+type Schema = z.output<typeof schema>;
 
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
   loading.value = true;
   try {
-    const response = await $fetch("/api/accounts/password/forgot", {
+    await $fetch("/api/accounts/password/forgot", {
       method: "POST",
-      body: {
-        username: payload.data.username,
-        newPassword: payload.data.password,
-      },
+      body: { username: payload.data.username },
     });
 
-    toast.add({
-      title: "Success",
-      description: response.message || "Password reset successfully!",
-      color: "success",
-      icon: "i-lucide-check-circle",
-    });
-
-    router.push("/login");
+    submitted.value = true;
   } catch (err: unknown) {
-    const error = err as { data?: { statusText?: string }; message?: string };
-    const errorMessage = error?.data?.statusText || error?.message || "Failed to reset password";
+    const error = err as { data?: { statusText?: string; message?: string }; message?: string };
+    const message =
+      error?.data?.statusText || error?.data?.message || error?.message || "Something went wrong";
 
     toast.add({
       title: "Error",
-      description: errorMessage,
+      description: message,
       color: "error",
       icon: "i-lucide-x-circle",
     });
@@ -54,14 +51,31 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
 <template>
   <UMain class="flex flex-col items-center justify-center">
     <UPageCard class="max-w-md w-full">
+      <!-- Success state -->
+      <div v-if="submitted" class="text-center space-y-4 py-4">
+        <div
+          class="w-14 h-14 rounded-2xl bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center mx-auto"
+        >
+          <UIcon name="i-lucide-mail-check" class="w-7 h-7 text-emerald-600" />
+        </div>
+        <h2 class="text-xl font-black text-zinc-900 dark:text-white">Check your email</h2>
+        <p class="text-sm text-zinc-500 dark:text-zinc-400">
+          If an account with that username or email exists, we've sent a password reset link. Check
+          your inbox.
+        </p>
+        <UButton label="Back to Login" to="/login" variant="solid" color="primary" class="w-full" />
+      </div>
+
+      <!-- Form -->
       <UAuthForm
-        :schema="schemas.accounts.forgotPassword"
-        title="Reset Password"
-        description="Enter your username or email and new password."
+        v-else
+        :schema="schema"
+        title="Forgot Password"
+        description="Enter your username or email and we'll send you a reset link."
         icon="i-lucide-key"
         :loading
         :fields="fields"
-        :submit="{ label: 'Reset Password', color: 'primary', variant: 'subtle' }"
+        :submit="{ label: 'Send Reset Link', color: 'primary', variant: 'subtle' }"
         class="max-w-md"
         @submit="onSubmit"
       >

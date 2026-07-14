@@ -20,19 +20,20 @@ const serviceOptions = [
   { label: "Not sure – help me figure it out", value: "unsure" },
 ];
 
+const BUSINESS_EMAIL = "info.rapidbyt@gmail.com";
+
 const form = reactive({
   name: "",
-  email: "",
+  email: BUSINESS_EMAIL,
   website: "",
   service: serviceParam || "",
   message: "",
 });
 
-// Pre-fill from session when logged in
+// Pre-fill name from session when logged in (email stays fixed)
 watchEffect(() => {
   if (loggedIn.value && user.value) {
     if (user.value.name && !form.name) form.name = user.value.name;
-    if (user.value.email && !form.email) form.email = user.value.email;
   }
 });
 
@@ -197,27 +198,23 @@ const auditIncludes = [
                   <UInput
                     v-model="form.email"
                     type="email"
-                    placeholder="jane@company.com"
                     size="lg"
                     class="w-full"
-                    :readonly="loggedIn && !!user?.email"
+                    readonly
                     :ui="{
-                      base: 'w-full rounded-xl',
-                      trailing: loggedIn && user?.email ? 'pe-2' : '',
+                      base: 'w-full rounded-xl cursor-default',
+                      trailing: 'pe-2',
                     }"
                   >
-                    <template v-if="loggedIn && user?.email" #trailing>
-                      <UTooltip text="Email from your account">
+                    <template #trailing>
+                      <UTooltip text="Audit reports go to this address">
                         <UIcon name="i-heroicons-check-circle" class="w-4 h-4 text-emerald-500" />
                       </UTooltip>
                     </template>
                   </UInput>
-                  <p
-                    v-if="loggedIn && user?.email"
-                    class="mt-1 text-xs text-zinc-400 dark:text-zinc-500 flex items-center gap-1"
-                  >
+                  <p class="mt-1 text-xs text-zinc-400 dark:text-zinc-500 flex items-center gap-1">
                     <UIcon name="i-lucide-lock" class="w-3 h-3" />
-                    Auto-filled from your account
+                    Audit reports are sent to our team at this address
                   </p>
                 </div>
               </div>

@@ -16,11 +16,18 @@ export default eventHandler(async (event) => {
   if (!isMatch)
     throw createError({ statusCode: 401, statusMessage: "Invalid username or password" });
 
-  // Remove password before sending to client / session
-  const secureAccount = { ...account, password: undefined };
+  // Only expose safe fields in the session — never include password hash
+  const sessionUser = {
+    id: account.id,
+    username: account.username,
+    email: account.email ?? undefined,
+    name: account.name ?? undefined,
+    avatar: account.avatar ?? undefined,
+    role: account.role,
+  };
 
   // Start the session
-  await setUserSession(event, { user: secureAccount, loggedInAt: new Date() });
+  await setUserSession(event, { user: sessionUser, loggedInAt: new Date() });
 
-  return sendSuccess(secureAccount, { message: "Logged in successfully" });
+  return sendSuccess(sessionUser, { message: "Logged in successfully" });
 });

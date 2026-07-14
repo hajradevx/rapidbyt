@@ -10,11 +10,15 @@ export const create = async (account: typeof schema.accounts.$inferInsert) => {
     if (!createdAccount)
       throw createError({
         status: 409,
-        statusText: "An account with this username already exists.",
+        statusText: "An account with this username or email already exists.",
       });
 
     return createdAccount;
   } catch (err: unknown) {
+    // Re-throw H3 createError instances (409, 404, etc.) as-is so they
+    // propagate with the correct status code instead of being wrapped in 500.
+    if ((err as { statusCode?: number }).statusCode) throw err;
+
     const error = err as Error;
     if (error.message?.includes("unique constraint"))
       throw createError({
