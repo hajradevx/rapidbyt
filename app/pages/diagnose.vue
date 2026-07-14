@@ -265,18 +265,19 @@ function severityIcon(level: string) {
       <!-- ── Results ── -->
       <div v-if="result" class="space-y-6">
         <!-- Back button -->
-        <button
-          class="flex items-center gap-2 text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors"
+        <UButton
+          label="Analyse another site"
+          variant="ghost"
+          color="neutral"
+          leading-icon="i-lucide-arrow-left"
+          class="text-sm"
           @click="
             result = null;
             form.url = '';
             form.email = '';
             form.name = '';
           "
-        >
-          <UIcon name="i-lucide-arrow-left" class="w-4 h-4" />
-          Analyse another site
-        </button>
+        />
 
         <!-- Severity banner -->
         <div

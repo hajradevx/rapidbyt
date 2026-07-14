@@ -121,13 +121,15 @@ function isActive(to: string) {
           <AppAuthSection :profile-items="profileItems" />
 
           <!-- Mobile hamburger -->
-          <button
-            class="lg:hidden flex items-center justify-center w-9 h-9 rounded-lg text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+          <UButton
+            :icon="mobileOpen ? 'i-lucide-x' : 'i-lucide-menu'"
             :aria-label="mobileOpen ? 'Close menu' : 'Open menu'"
+            variant="ghost"
+            color="neutral"
+            size="sm"
+            class="lg:hidden"
             @click="mobileOpen = !mobileOpen"
-          >
-            <UIcon :name="mobileOpen ? 'i-lucide-x' : 'i-lucide-menu'" class="w-5 h-5" />
-          </button>
+          />
         </div>
       </div>
     </div>

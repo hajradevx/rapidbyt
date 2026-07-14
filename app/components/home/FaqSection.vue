@@ -19,8 +19,10 @@
           class="fade-up rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 overflow-hidden"
           :style="`transition-delay:${i * 50}ms`"
         >
-          <button
+          <UButton
             class="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
+            variant="ghost"
+            color="neutral"
             @click="toggle(i)"
           >
             <span class="font-semibold text-zinc-900 dark:text-white text-sm sm:text-base">{{
@@ -33,7 +35,7 @@
                 openIdx === i ? 'rotate-180' : '',
               ]"
             />
-          </button>
+          </UButton>
           <div
             class="overflow-hidden transition-all duration-300"
             :style="openIdx === i ? 'max-height:400px;opacity:1' : 'max-height:0;opacity:0'"
