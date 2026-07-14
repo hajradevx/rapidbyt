@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { fileURLToPath } from "node:url";
+
 export default defineNuxtConfig({
   modules: ["@nuxt/eslint", "@nuxt/ui", "@nuxthub/core", "@nuxt/image", "nuxt-auth-utils"],
 
@@ -67,7 +69,9 @@ export default defineNuxtConfig({
     // package — Cloudflare Workers cannot bundle it. Alias it to a stub so
     // the build succeeds; we only use plain HTML strings, not React Email.
     alias: {
-      "@react-email/render": "~/server/stubs/react-email-render.ts",
+      "@react-email/render": fileURLToPath(
+        new URL("./server/stubs/react-email-render.ts", import.meta.url),
+      ),
     },
     routeRules: {
       "/_nuxt/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
