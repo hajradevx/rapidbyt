@@ -1,7 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: ["@nuxt/eslint", "@nuxt/ui", "@nuxthub/core", "@nuxt/image", "nuxt-auth-utils"],
-  devtools: { enabled: true },
+
+  // ── Devtools — disabled to prevent HMR WebSocket conflict with Vite+ ──
+  devtools: { enabled: false },
 
   // ── App head — preconnect critical origins ──────────────
   app: {
@@ -14,7 +16,6 @@ export default defineNuxtConfig({
       ],
       meta: [{ name: "theme-color", content: "#0ea5e9" }],
     },
-    // Lightweight page fade transition
     pageTransition: { name: "page", mode: "out-in" },
   },
 
@@ -50,7 +51,6 @@ export default defineNuxtConfig({
         prefetchOn: { visibility: true },
       },
     },
-    // viteEnvironmentApi removed — incompatible with Rolldown + NuxtHub cloudflare build
     typescriptPlugin: true,
     extractAsyncDataHandlers: true,
     granularCachedData: true,
@@ -61,10 +61,8 @@ export default defineNuxtConfig({
   nitro: {
     preset: "cloudflare_module",
     cloudflare: { deployConfig: true, nodeCompat: true },
-    // Compress all text assets with gzip + brotli
     compressPublicAssets: { gzip: true, brotli: true },
     minify: true,
-    // Cache headers per route
     routeRules: {
       "/_nuxt/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
       "/fonts/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
@@ -85,13 +83,18 @@ export default defineNuxtConfig({
   // ── NuxtHub ─────────────────────────────────────────────
   hub: { db: "sqlite" },
 
-  // ── Vite build optimizations ────────────────────────────
+  // ── Vite — separate HMR port to avoid WebSocket upgrade conflict ──────
   vite: {
     build: {
       cssMinify: true,
     },
     optimizeDeps: {
       include: ["vue", "vue-router"],
+    },
+    server: {
+      hmr: {
+        port: 24678,
+      },
     },
   },
 
