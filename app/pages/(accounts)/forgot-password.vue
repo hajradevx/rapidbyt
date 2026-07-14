@@ -19,7 +19,7 @@ type Schema = z.output<typeof schemas.accounts.forgotPassword>;
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
   loading.value = true;
   try {
-    const response = await $fetch("/api/accounts/forgot-password", {
+    const response = await $fetch("/api/accounts/password/forgot", {
       method: "POST",
       body: {
         username: payload.data.username,

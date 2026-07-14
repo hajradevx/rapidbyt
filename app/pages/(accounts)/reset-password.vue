@@ -32,7 +32,7 @@ type Schema = z.output<typeof schemas.accounts.resetPassword>;
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
   loading.value = true;
   try {
-    const response = await $fetch("/api/accounts/reset-password", {
+    const response = await $fetch("/api/accounts/password/reset", {
       method: "POST",
       body: {
         token,
