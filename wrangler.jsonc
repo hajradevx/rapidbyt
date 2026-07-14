@@ -1,8 +1,18 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "starter",
+  "name": "rapidbyt",
   "main": "./.output/server/index.mjs",
   "compatibility_date": "2026-07-12",
+  "routes": [
+    {
+      "pattern": "rapidbyt.com/*",
+      "zone_name": "rapidbyt.com",
+    },
+    {
+      "pattern": "www.rapidbyt.com/*",
+      "zone_name": "rapidbyt.com",
+    },
+  ],
   "assets": {
     "directory": "./.output/public/",
     "binding": "ASSETS",
@@ -10,7 +20,6 @@
   "observability": {
     "enabled": true,
   },
-  // if hub.db is enabled
   "d1_databases": [
     {
       "binding": "DB",
