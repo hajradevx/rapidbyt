@@ -20,30 +20,36 @@
             faster, smarter, and more profitable.
           </p>
           <div class="flex items-center gap-3 pt-2">
-            <a
-              href="https://twitter.com/rapidbyt"
+            <UButton
+              to="https://twitter.com/rapidbyt"
               target="_blank"
               rel="noopener noreferrer"
-              class="w-9 h-9 rounded-lg bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-500 hover:text-sky-500 hover:bg-sky-50 dark:hover:bg-sky-900/30 transition-colors"
-            >
-              <UIcon name="i-lucide-twitter" class="w-4 h-4" />
-            </a>
-            <a
-              href="https://linkedin.com/company/rapidbyt"
+              icon="i-lucide-twitter"
+              variant="ghost"
+              color="neutral"
+              size="sm"
+              class="w-9 h-9 rounded-lg"
+            />
+            <UButton
+              to="https://linkedin.com/company/rapidbyt"
               target="_blank"
               rel="noopener noreferrer"
-              class="w-9 h-9 rounded-lg bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-500 hover:text-sky-500 hover:bg-sky-50 dark:hover:bg-sky-900/30 transition-colors"
-            >
-              <UIcon name="i-lucide-linkedin" class="w-4 h-4" />
-            </a>
-            <a
-              href="https://github.com/rapidbyt"
+              icon="i-lucide-linkedin"
+              variant="ghost"
+              color="neutral"
+              size="sm"
+              class="w-9 h-9 rounded-lg"
+            />
+            <UButton
+              to="https://github.com/rapidbyt"
               target="_blank"
               rel="noopener noreferrer"
-              class="w-9 h-9 rounded-lg bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-500 hover:text-sky-500 hover:bg-sky-50 dark:hover:bg-sky-900/30 transition-colors"
-            >
-              <UIcon name="i-lucide-github" class="w-4 h-4" />
-            </a>
+              icon="i-lucide-github"
+              variant="ghost"
+              color="neutral"
+              size="sm"
+              class="w-9 h-9 rounded-lg"
+            />
           </div>
         </div>
 
@@ -97,21 +103,27 @@
           <ul class="space-y-3">
             <li class="flex items-start gap-2 text-sm text-zinc-500 dark:text-zinc-400">
               <UIcon name="i-lucide-mail" class="w-4 h-4 mt-0.5 text-sky-500 shrink-0" />
-              <a
-                href="mailto:info.rapidbyt@gmail.com"
-                class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
-                >info.rapidbyt@gmail.com</a
-              >
+              <UButton
+                to="mailto:info.rapidbyt@gmail.com"
+                label="info.rapidbyt@gmail.com"
+                variant="link"
+                color="neutral"
+                size="sm"
+                class="p-0 h-auto"
+              />
             </li>
             <li class="flex items-start gap-2 text-sm text-zinc-500 dark:text-zinc-400">
               <UIcon name="i-lucide-message-circle" class="w-4 h-4 mt-0.5 text-sky-500 shrink-0" />
-              <a
-                href="https://wa.me/923168636339"
+              <UButton
+                to="https://wa.me/923168636339"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
-                >+92 316 863 6339</a
-              >
+                label="+92 316 863 6339"
+                variant="link"
+                color="neutral"
+                size="sm"
+                class="p-0 h-auto"
+              />
             </li>
             <li class="flex items-start gap-2 text-sm text-zinc-500 dark:text-zinc-400">
               <UIcon name="i-lucide-clock" class="w-4 h-4 mt-0.5 text-sky-500 shrink-0" />
@@ -146,12 +158,22 @@
           © {{ new Date().getFullYear() }} RapidByt Solutions. All rights reserved.
         </p>
         <div class="flex items-center gap-6">
-          <NuxtLink to="/privacy" class="text-xs text-zinc-400 hover:text-sky-500 transition-colors"
-            >Privacy Policy</NuxtLink
-          >
-          <NuxtLink to="/terms" class="text-xs text-zinc-400 hover:text-sky-500 transition-colors"
-            >Terms of Service</NuxtLink
-          >
+          <UButton
+            label="Privacy Policy"
+            to="/privacy"
+            variant="link"
+            color="neutral"
+            size="xs"
+            class="text-zinc-400 hover:text-sky-500 p-0"
+          />
+          <UButton
+            label="Terms of Service"
+            to="/terms"
+            variant="link"
+            color="neutral"
+            size="xs"
+            class="text-zinc-400 hover:text-sky-500 p-0"
+          />
         </div>
       </div>
     </div>

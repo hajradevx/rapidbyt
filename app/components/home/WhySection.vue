@@ -60,13 +60,16 @@
                 <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
                   {{ step.desc }}
                 </p>
-                <NuxtLink
+                <UButton
                   v-if="step.to"
                   :to="step.to"
-                  class="mt-2 inline-flex items-center gap-1 text-xs font-bold text-sky-600 dark:text-sky-400 hover:gap-2 transition-all"
-                >
-                  Try it now <UIcon name="i-lucide-arrow-right" class="w-3 h-3" />
-                </NuxtLink>
+                  label="Try it now"
+                  variant="link"
+                  color="primary"
+                  size="xs"
+                  trailing-icon="i-lucide-arrow-right"
+                  class="mt-2 px-0"
+                />
               </div>
             </div>
           </div>

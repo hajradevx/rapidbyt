@@ -30,30 +30,32 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- Above the fold — rendered immediately -->
-  <HomeHeroSection />
-  <HomeStatsBar />
+  <UPage>
+    <!-- Above the fold — rendered immediately -->
+    <HomeHeroSection />
+    <HomeStatsBar />
 
-  <!-- Below the fold — browser can skip until scrolled to -->
-  <div class="cv-auto">
-    <HomeProblemsSection />
-  </div>
-  <div class="cv-auto">
-    <HomeServicesSection />
-  </div>
-  <div class="cv-auto">
-    <HomeWhySection />
-  </div>
-  <div class="cv-auto">
-    <HomeTestimonialsSection />
-  </div>
-  <div class="cv-auto">
-    <HomePricingSection />
-  </div>
-  <div class="cv-auto">
-    <HomeFaqSection />
-  </div>
-  <div class="cv-auto">
-    <HomeCtaSection />
-  </div>
+    <!-- Below the fold — browser can skip until scrolled to -->
+    <div class="cv-auto">
+      <HomeProblemsSection />
+    </div>
+    <div class="cv-auto">
+      <HomeServicesSection />
+    </div>
+    <div class="cv-auto">
+      <HomeWhySection />
+    </div>
+    <div class="cv-auto">
+      <HomeTestimonialsSection />
+    </div>
+    <div class="cv-auto">
+      <HomePricingSection />
+    </div>
+    <div class="cv-auto">
+      <HomeFaqSection />
+    </div>
+    <div class="cv-auto">
+      <HomeCtaSection />
+    </div>
+  </UPage>
 </template>

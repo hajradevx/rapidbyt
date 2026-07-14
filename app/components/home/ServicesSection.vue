@@ -41,12 +41,15 @@
           <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
             {{ s.desc }}
           </p>
-          <NuxtLink
+          <UButton
             to="/services"
-            class="mt-4 flex items-center gap-1 text-sm font-semibold text-sky-600 dark:text-sky-400 hover:gap-2 transition-all"
-          >
-            Learn more <UIcon name="i-lucide-arrow-right" class="w-4 h-4" />
-          </NuxtLink>
+            label="Learn more"
+            variant="link"
+            color="primary"
+            size="sm"
+            trailing-icon="i-lucide-arrow-right"
+            class="mt-4 px-0"
+          />
         </div>
       </div>
     </div>
