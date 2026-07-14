@@ -101,7 +101,7 @@ const profileItems = ref<DropdownMenuItem[][]>([
     <!-- ── Main Header ── -->
     <UHeader
       :ui="{
-        root: 'bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-200/70 dark:border-zinc-800/60 h-16',
+        root: 'bg-muted backdrop-blur-xl border-b border-muted h-16',
       }"
     >
       <!-- ── Logo ── -->
@@ -110,7 +110,7 @@ const profileItems = ref<DropdownMenuItem[][]>([
           <img
             src="/img/logo.png"
             alt="RapidByt"
-            class="h-9 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+            class="size-12 object-contain group-hover:scale-105 transition-transform duration-300"
           />
           <div class="flex flex-col leading-tight">
             <span class="font-black text-xl tracking-tight select-none leading-none">
