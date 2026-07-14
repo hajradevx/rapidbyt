@@ -20,11 +20,9 @@ const serviceOptions = [
   { label: "Not sure – help me figure it out", value: "unsure" },
 ];
 
-const BUSINESS_EMAIL = "info.rapidbyt@gmail.com";
-
 const form = reactive({
   name: "",
-  email: BUSINESS_EMAIL,
+  email: "",
   website: "",
   service: serviceParam || "",
   message: "",
@@ -34,6 +32,7 @@ const form = reactive({
 watchEffect(() => {
   if (loggedIn.value && user.value) {
     if (user.value.name && !form.name) form.name = user.value.name;
+    if (user.value.email && !form.email) form.email = user.value.email;
   }
 });
 
@@ -173,7 +172,7 @@ const auditIncludes = [
             </div>
 
             <!-- Form -->
-            <form
+            <UForm
               v-else
               class="space-y-6 rounded-3xl border border-muted bg-muted p-8 sm:p-10"
               @submit.prevent="handleSubmit"
@@ -200,21 +199,21 @@ const auditIncludes = [
                     type="email"
                     size="lg"
                     class="w-full"
-                    readonly
+                    :readonly="loggedIn && !!user?.email"
                     :ui="{
                       base: 'w-full rounded-xl cursor-default',
-                      trailing: 'pe-2',
+                      trailing: loggedIn && user?.email ? 'pe-2' : '',
                     }"
                   >
-                    <template #trailing>
-                      <UTooltip text="Audit reports go to this address">
+                    <template v-if="loggedIn && user?.email">
+                      <UTooltip text="Email from your account">
                         <UIcon name="i-heroicons-check-circle" class="w-4 h-4 text-emerald-500" />
                       </UTooltip>
                     </template>
                   </UInput>
                   <p class="mt-1 text-xs text-zinc-400 dark:text-zinc-500 flex items-center gap-1">
                     <UIcon name="i-lucide-lock" class="w-3 h-3" />
-                    Audit reports are sent to our team at this address
+                    Auto-filled from your account
                   </p>
                 </div>
               </div>
@@ -283,7 +282,7 @@ const auditIncludes = [
               <p class="text-xs text-zinc-400 text-center">
                 No spam. No sales pressure. Just your audit report — delivered within 24 hours.
               </p>
-            </form>
+            </UForm>
           </div>
 
           <!-- Sidebar -->
