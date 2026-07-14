@@ -1,68 +1,67 @@
 <script setup lang="ts">
-import type * as z from 'zod'
-import type { FormSubmitEvent, AuthFormField } from '@nuxt/ui'
+import type * as z from "zod";
+import type { FormSubmitEvent, AuthFormField } from "@nuxt/ui";
 
-const toast = useToast()
-const router = useRouter()
-const route = useRoute()
+const toast = useToast();
+const router = useRouter();
+const route = useRoute();
 
-definePageMeta({ layout: false })
+definePageMeta({ layout: false });
 
-const loading = ref(false)
-const token = route.query.token as string
+const loading = ref(false);
+const token = route.query.token as string;
 
 if (!token) {
   toast.add({
-    title: 'Invalid Token',
-    description: 'The reset token is invalid or missing.',
-    color: 'error',
-    icon: 'i-lucide-x-circle'
-  })
-  router.push('/forgot-password')
+    title: "Invalid Token",
+    description: "The reset token is invalid or missing.",
+    color: "error",
+    icon: "i-lucide-x-circle",
+  });
+  router.push("/forgot-password");
 }
 
 const fields = ref<AuthFormField[]>([
-  { name: 'email', type: 'email', label: 'Email', required: true },
-  { name: 'password', type: 'password', label: 'New Password', required: true },
-  { name: 'confirmPassword', type: 'password', label: 'Confirm Password', required: true }
-])
+  { name: "email", type: "email", label: "Email", required: true },
+  { name: "password", type: "password", label: "New Password", required: true },
+  { name: "confirmPassword", type: "password", label: "Confirm Password", required: true },
+]);
 
-type Schema = z.output<typeof schemas.accounts.resetPassword>
+type Schema = z.output<typeof schemas.accounts.resetPassword>;
 
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
-  loading.value = true
+  loading.value = true;
   try {
-    const response = await $fetch('/api/accounts/reset-password', {
-      method: 'POST',
+    const response = await $fetch("/api/accounts/reset-password", {
+      method: "POST",
       body: {
         token,
         email: payload.data.email,
         newPassword: payload.data.password,
       },
-    })
+    });
 
     toast.add({
-      title: 'Success',
-      description: response.message || 'Password reset successfully!',
-      color: 'success',
-      icon: 'i-lucide-check-circle'
-    })
+      title: "Success",
+      description: response.message || "Password reset successfully!",
+      color: "success",
+      icon: "i-lucide-check-circle",
+    });
 
-    router.push('/login')
-  }
-  catch (error: unknown) {
-    const err = error as { data?: { statusText?: string, message?: string }, message?: string }
-    const errorMessage = err?.data?.statusText || err?.data?.message || err?.message || 'Failed to reset password'
+    router.push("/login");
+  } catch (error: unknown) {
+    const err = error as { data?: { statusText?: string; message?: string }; message?: string };
+    const errorMessage =
+      err?.data?.statusText || err?.data?.message || err?.message || "Failed to reset password";
 
     toast.add({
-      title: 'Error',
+      title: "Error",
       description: errorMessage,
-      color: 'error',
-      icon: 'i-lucide-x-circle'
-    })
-  }
-  finally {
-    loading.value = false
+      color: "error",
+      icon: "i-lucide-x-circle",
+    });
+  } finally {
+    loading.value = false;
   }
 }
 </script>
@@ -79,9 +78,11 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
         :fields="fields"
         :submit="{ label: 'Reset Password', color: 'primary', variant: 'subtle' }"
         class="max-w-md"
-        @submit="onSubmit">
+        @submit="onSubmit"
+      >
         <template #description>
-          Remember your password? <ULink to="/login" class="text-primary font-medium">Log in</ULink>.
+          Remember your password?
+          <ULink to="/login" class="text-primary font-medium">Log in</ULink>.
         </template>
       </UAuthForm>
     </UPageCard>

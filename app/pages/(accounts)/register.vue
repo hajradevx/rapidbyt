@@ -1,56 +1,52 @@
 <script setup lang="ts">
-import type * as z from 'zod'
-import type { FormSubmitEvent, AuthFormField } from '@nuxt/ui'
-import { schemas } from '#shared/utils/schemas'
+import type * as z from "zod";
+import type { FormSubmitEvent, AuthFormField } from "@nuxt/ui";
+import { schemas } from "#shared/utils/schemas";
 
 definePageMeta({
   layout: false,
-})
-const toast = useToast()
-const loading = ref(false)
+});
+const toast = useToast();
+const loading = ref(false);
 
 const fields = ref<AuthFormField[]>([
-  { name: 'username', type: 'text', label: 'Username', required: true },
-  { name: 'email', type: 'email', label: 'Email', required: true },
-  { name: 'password', type: 'password', label: 'Password', required: true }
-])
+  { name: "username", type: "text", label: "Username", required: true },
+  { name: "email", type: "email", label: "Email", required: true },
+  { name: "password", type: "password", label: "Password", required: true },
+]);
 
-type Schema = z.output<typeof schemas.accounts.register>
+type Schema = z.output<typeof schemas.accounts.register>;
 
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
-  console.log('Submitted..................', payload)
+  console.log("Submitted..................", payload);
 
-  loading.value = true
+  loading.value = true;
   try {
-    await $fetch('/api/accounts/register', {
-      method: 'POST',
+    await $fetch("/api/accounts/register", {
+      method: "POST",
       body: payload.data,
-    })
+    });
 
     toast.add({
-      title: 'Account created successfully!',
-      icon: 'i-lucide-check-circle',
-      color: 'primary',
-    })
+      title: "Account created successfully!",
+      icon: "i-lucide-check-circle",
+      color: "primary",
+    });
 
-    navigateTo('/login')
-  }
-  catch (error: unknown) {
-    const err = error as { data?: { statusText?: string }, message?: string }
-    const message
-      = err?.data?.statusText
-        || err?.message
-        || 'An unexpected error occurred. Please try again.'
+    navigateTo("/login");
+  } catch (error: unknown) {
+    const err = error as { data?: { statusText?: string }; message?: string };
+    const message =
+      err?.data?.statusText || err?.message || "An unexpected error occurred. Please try again.";
 
     toast.add({
-      title: 'Registration failed',
+      title: "Registration failed",
       description: message,
-      icon: 'i-lucide-x-circle',
-      color: 'error',
-    })
-  }
-  finally {
-    loading.value = false
+      icon: "i-lucide-x-circle",
+      color: "error",
+    });
+  } finally {
+    loading.value = false;
   }
 }
 </script>
@@ -67,7 +63,8 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
         :fields="fields"
         :submit="{ label: 'Submit', color: 'primary', variant: 'subtle' }"
         class="max-w-md"
-        @submit="onSubmit">
+        @submit="onSubmit"
+      >
         <template #description>
           Already have an account?
           <ULink to="/login" class="text-primary font-medium">Log in</ULink>.

@@ -1,5 +1,5 @@
-import accounts from './accounts'
+import accounts from "./accounts";
 
 export const schemas = {
-  accounts
-}
+  accounts,
+};

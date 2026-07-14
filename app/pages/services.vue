@@ -1,22 +1,41 @@
 <script setup lang="ts">
+interface Service {
+  id: string;
+  icon: string;
+  color: string;
+  bg: string;
+  title: string;
+  badge: string | null;
+  tagline: string;
+  desc: string;
+  features: string[];
+  outcome: string;
+}
+
 definePageMeta({ layout: "default" });
+
 useSeoMeta({
   title: "Services – RapidByt Web Performance Solutions",
   description:
     "Explore RapidByt's full suite of services: speed optimisation, SEO, web development, cloud infrastructure, security monitoring, and CRO.",
 });
+
 onMounted(() => {
   const io = new IntersectionObserver(
-    (es) =>
-      es.forEach((e) => {
-        if (e.isIntersecting) e.target.classList.add("visible");
-      }),
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("visible");
+          io.unobserve(e.target);
+        }
+      });
+    },
     { threshold: 0.1 },
   );
   document.querySelectorAll(".fade-up").forEach((el) => io.observe(el));
 });
 
-const services = [
+const services: Service[] = [
   {
     id: "speed",
     icon: "i-lucide-zap",
@@ -148,13 +167,14 @@ const services = [
 
 <template>
   <UPage>
-    <!-- Page Hero -->
+    <!-- Hero -->
     <section class="relative overflow-hidden pt-24 pb-16 sm:pt-32 sm:pb-20">
       <div class="absolute inset-0 -z-10 pointer-events-none">
         <div
           class="absolute top-0 right-1/3 w-80 h-80 bg-sky-400/10 dark:bg-sky-500/10 rounded-full blur-3xl"
         />
       </div>
+
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div
           class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-50 dark:bg-sky-900/30 border border-sky-200 dark:border-sky-800 text-sky-700 dark:text-sky-400 text-sm font-medium mb-6"
@@ -162,16 +182,20 @@ const services = [
           <UIcon name="i-lucide-settings-2" class="w-4 h-4" />
           What We Do
         </div>
+
         <h1
           class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-5 text-zinc-900 dark:text-white"
         >
-          Every service is built around<br class="hidden sm:block" />
+          Every service is built around
+          <br class="hidden sm:block" />
           <span class="gradient-text">your bottom line</span>
         </h1>
+
         <p class="max-w-2xl mx-auto text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed mb-8">
           We don't offer services for the sake of it. Each one is tied to a measurable outcome —
           faster load times, higher rankings, more conversions, lower infrastructure costs.
         </p>
+
         <UButton
           label="Start With a Free Audit"
           to="/contact"
@@ -182,38 +206,44 @@ const services = [
       </div>
     </section>
 
-    <!-- Services List -->
+    <!-- Service cards -->
     <section class="py-16">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div
-          v-for="(s, i) in services"
-          :id="s.id"
-          :key="s.id"
+          v-for="(service, i) in services"
+          :id="service.id"
+          :key="service.id"
           class="fade-up grid lg:grid-cols-2 gap-10 items-start rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-8 sm:p-10"
-          :style="`transition-delay:${i * 50}ms`"
+          :style="`transition-delay: ${i * 50}ms`"
         >
-          <!-- Left -->
+          <!-- Left: info -->
           <div>
             <div class="flex items-center gap-3 mb-4">
-              <div :class="['w-12 h-12 rounded-xl flex items-center justify-center', s.bg]">
-                <UIcon :name="s.icon" :class="['w-6 h-6', s.color]" />
+              <div
+                class="w-12 h-12 rounded-xl flex items-center justify-center bg-zinc-100 dark:bg-zinc-800"
+              >
+                <UIcon :name="service.icon" :class="['w-6 h-6', service.color]" />
               </div>
               <span
-                v-if="s.badge"
+                v-if="service.badge"
                 class="text-xs font-bold px-2.5 py-1 rounded-full bg-sky-100 dark:bg-sky-900/40 text-sky-700 dark:text-sky-400"
               >
-                {{ s.badge }}
+                {{ service.badge }}
               </span>
             </div>
+
             <h2 class="text-2xl sm:text-3xl font-black text-zinc-900 dark:text-white mb-2">
-              {{ s.title }}
+              {{ service.title }}
             </h2>
+
             <p class="font-semibold text-sky-600 dark:text-sky-400 mb-4 italic">
-              {{ s.tagline }}
+              {{ service.tagline }}
             </p>
+
             <p class="text-zinc-500 dark:text-zinc-400 leading-relaxed mb-6">
-              {{ s.desc }}
+              {{ service.desc }}
             </p>
+
             <div
               class="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800"
             >
@@ -221,28 +251,31 @@ const services = [
                 class="text-sm font-semibold text-emerald-700 dark:text-emerald-400 flex items-start gap-2"
               >
                 <UIcon name="i-lucide-trending-up" class="w-4 h-4 mt-0.5 shrink-0" />
-                {{ s.outcome }}
+                {{ service.outcome }}
               </p>
             </div>
           </div>
-          <!-- Right: Feature list -->
+
+          <!-- Right: features -->
           <div>
             <h4 class="text-sm font-bold uppercase tracking-wider text-zinc-400 mb-4">
               What's included
             </h4>
+
             <ul class="space-y-3">
               <li
-                v-for="f in s.features"
-                :key="f"
+                v-for="feature in service.features"
+                :key="feature"
                 class="flex items-start gap-3 text-sm text-zinc-600 dark:text-zinc-400"
               >
                 <UIcon name="i-lucide-check-circle" class="w-4 h-4 text-sky-500 mt-0.5 shrink-0" />
-                {{ f }}
+                {{ feature }}
               </li>
             </ul>
+
             <UButton
               label="Get Started"
-              :to="`/contact?service=${s.id}`"
+              :to="`/contact?service=${service.id}`"
               size="sm"
               variant="outline"
               color="primary"

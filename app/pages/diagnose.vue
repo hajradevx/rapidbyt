@@ -341,7 +341,7 @@ function severityIcon(level: string) {
                 :style="`width:${s ?? 0}%`"
               />
             </div>
-            <p class="text-xs font-semibold text-zinc-500 dark:text-zinc-400">
+            <p class="text-xs font-semibold text-muted">
               {{ label }}
             </p>
           </div>
@@ -360,7 +360,7 @@ function severityIcon(level: string) {
               <p class="text-xl font-black text-zinc-900 dark:text-white">
                 {{ val }}
               </p>
-              <p class="text-xs text-zinc-400 uppercase tracking-wider mt-0.5">
+              <p class="text-xs text-muted uppercase tracking-wider mt-0.5">
                 {{ key.toUpperCase() }}
               </p>
             </div>
@@ -370,7 +370,7 @@ function severityIcon(level: string) {
         <!-- Problems -->
         <div
           v-if="result.problems.length > 0"
-          class="rounded-2xl border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-900/10 p-6"
+          class="rounded-md border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-900/10 p-6"
         >
           <h3 class="font-black text-zinc-900 dark:text-white mb-4 flex items-center gap-2">
             <UIcon name="i-lucide-x-circle" class="w-5 h-5 text-red-500" />
@@ -391,9 +391,9 @@ function severityIcon(level: string) {
         <!-- Solutions -->
         <div
           v-if="result.solutions.length > 0"
-          class="rounded-2xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-900/10 p-6"
+          class="rounded-md border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-900/10 p-6"
         >
-          <h3 class="font-black text-zinc-900 dark:text-white mb-4 flex items-center gap-2">
+          <h3 class="font-black text-muted mb-4 flex items-center gap-2">
             <UIcon name="i-lucide-check-circle" class="w-5 h-5 text-emerald-500" />
             Recommended Fixes
           </h3>
@@ -401,7 +401,7 @@ function severityIcon(level: string) {
             <li
               v-for="s in result.solutions"
               :key="s"
-              class="flex items-start gap-3 text-sm text-zinc-600 dark:text-zinc-400"
+              class="flex items-start gap-3 text-sm text-muted"
             >
               <UIcon name="i-lucide-check" class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" />
               <!-- eslint-disable-next-line vue/no-v-html -->
@@ -411,7 +411,7 @@ function severityIcon(level: string) {
         </div>
 
         <!-- CTA -->
-        <div class="rounded-2xl bg-gradient-to-br from-sky-600 to-indigo-700 p-8 text-center">
+        <div class="rounded-2xl bg-linear-to-br from-sky-600 to-indigo-700 p-8 text-center">
           <h3 class="text-white font-black text-xl mb-2">Want us to fix all of this for you?</h3>
           <p class="text-sky-100 text-sm mb-6">
             Our engineers implement every fix. Most sites are fully optimised within 7 days.
@@ -431,7 +431,7 @@ function severityIcon(level: string) {
               label="View Pricing"
               to="/#pricing"
               variant="ghost"
-              class="text-sky-100 hover:text-white hover:bg-white/10 w-full sm:w-auto"
+              class="text-muted hover:bg-white/10 w-full sm:w-auto"
             />
           </div>
         </div>

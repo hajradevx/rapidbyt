@@ -114,16 +114,12 @@
       "indexes": {
         "accounts_username_unique": {
           "name": "accounts_username_unique",
-          "columns": [
-            "username"
-          ],
+          "columns": ["username"],
           "isUnique": true
         },
         "accounts_email_unique": {
           "name": "accounts_email_unique",
-          "columns": [
-            "email"
-          ],
+          "columns": ["email"],
           "isUnique": true
         }
       },
@@ -197,9 +193,7 @@
       "indexes": {
         "seo_route_unique": {
           "name": "seo_route_unique",
-          "columns": [
-            "route"
-          ],
+          "columns": ["route"],
           "isUnique": true
         }
       },
