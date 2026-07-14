@@ -63,6 +63,12 @@ export default defineNuxtConfig({
     cloudflare: { deployConfig: true, nodeCompat: true },
     compressPublicAssets: { gzip: true, brotli: true },
     minify: true,
+    // resend@6 optionally imports @react-email/render which is a Node-only
+    // package — Cloudflare Workers cannot bundle it. Alias it to a stub so
+    // the build succeeds; we only use plain HTML strings, not React Email.
+    alias: {
+      "@react-email/render": "~/server/stubs/react-email-render.ts",
+    },
     routeRules: {
       "/_nuxt/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
       "/fonts/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
