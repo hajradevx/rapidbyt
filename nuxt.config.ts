@@ -56,6 +56,7 @@ export default defineNuxtConfig({
         prefetchOn: { visibility: true },
       },
     },
+    viteEnvironmentApi: true,
     typescriptPlugin: true,
     extractAsyncDataHandlers: true,
     granularCachedData: true,
@@ -98,9 +99,7 @@ export default defineNuxtConfig({
   // ── NuxtHub ─────────────────────────────────────────────
   hub: { db: "sqlite" },
 
-  // ── Vite — separate HMR port to avoid WebSocket upgrade conflict ──────
-  // Nuxt loads vite.config.ts automatically; setting a dedicated HMR port
-  // ensures Vite+ and Nuxt do not share the same WebSocket upgrade handler.
+  // ── Vite ────────────────────────────────────────────────
   vite: {
     build: {
       cssMinify: true,
@@ -119,11 +118,8 @@ export default defineNuxtConfig({
       include: ["vue", "vue-router"],
     },
     server: {
-      hmr: {
-        port: 24678,
-        host: "localhost",
-        protocol: "ws",
-      },
+      ws: false,
+      hmr: false,
     },
   },
 

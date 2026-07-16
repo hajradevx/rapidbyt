@@ -311,17 +311,10 @@ export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
   const psiKey = config.pagespeedApiKey;
   const resendApiKey = config.resendApiKey;
-
-  if (!resendApiKey) {
-    throw createError({ statusCode: 500, message: "Email service not configured." });
-  }
+  const emailEnabled = !!resendApiKey;
 
   // ── Run PageSpeed Insights ───────────────────────────────
   const apiBase = "https://www.googleapis.com/pagespeedonline/v5/runPagespeed";
-
-  // Only request the fields we actually use — reduces response size ~90%
-  const PSI_FIELDS =
-    "lighthouseResult(categories,audits(score,displayValue,title),runtimeError),error";
 
   // 20s timeout — PSI with a valid API key responds well within this window
   const fetchPsi = async (
@@ -331,7 +324,7 @@ export default defineEventHandler(async (event) => {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 20000);
     const keySuffix = useKey && psiKey ? `&key=${psiKey}` : "";
-    const psiUrl = `${apiBase}?url=${encodeURIComponent(targetUrl)}&strategy=${strategy}${keySuffix}&category=performance&category=seo&category=accessibility&category=best-practices&fields=${encodeURIComponent(PSI_FIELDS)}`;
+    const psiUrl = `${apiBase}?url=${encodeURIComponent(targetUrl)}&strategy=${strategy}${keySuffix}&category=performance&category=seo&category=accessibility&category=best-practices`;
 
     try {
       const response = await fetch(psiUrl, { signal: controller.signal });
@@ -384,11 +377,14 @@ export default defineEventHandler(async (event) => {
     const errors = [mobileRes.error, desktopRes.error].filter(Boolean);
     const combined = errors.join(" · ");
 
-    if (/api key not valid/i.test(combined)) {
+    // Log the real PSI errors so they're visible in server logs
+    console.error("[diagnose] Both PSI calls failed:", combined);
+
+    if (/api key not valid|api_key_invalid/i.test(combined)) {
       throw createError({
         statusCode: 503,
         message:
-          "Diagnostic service is temporarily unavailable. Please try again later or contact us directly.",
+          "Diagnostic service is temporarily unavailable (API key issue). Please try again later or contact us directly.",
       });
     }
 
@@ -613,37 +609,46 @@ export default defineEventHandler(async (event) => {
     </a>
   </div>`;
 
-  const resend = new Resend(resendApiKey);
+  const resend = emailEnabled ? new Resend(resendApiKey) : null;
 
   // ── Fire emails in the background — do NOT await before responding ──
-  // This shaves ~1-2s off the user-perceived response time.
-  Promise.allSettled([
-    resend.emails.send({
-      from: FROM_ADDRESS,
-      to: [trimmedEmail],
-      subject: `Your Website Diagnostic Report — ${domain} (${problems.length} issues found)`,
-      html: customerHtml,
-    }),
-    resend.emails.send({
-      from: FROM_ADDRESS,
-      to: [NOTIFY_EMAIL],
-      subject: `🔍 New diagnosis: ${domain} — ${problems.length} issues · Score ${mPerf !== null ? Math.round(mPerf * 100) : "?"}/100`,
-      html: internalHtml,
-      replyTo: trimmedEmail,
-    }),
-  ]).then(([customerEmail, internalEmail]) => {
-    if (customerEmail.status === "rejected") {
-      console.error("Customer diagnostic email failed:", customerEmail.reason);
-    }
-    if (internalEmail.status === "rejected") {
-      console.error("Internal diagnostic email failed:", internalEmail.reason);
-    }
-  });
+  // Skipped locally when NUXT_RESEND_API_KEY is not set.
+  if (resend) {
+    Promise.allSettled([
+      resend.emails.send({
+        from: FROM_ADDRESS,
+        to: [trimmedEmail],
+        subject: `Your Website Diagnostic Report — ${domain} (${problems.length} issues found)`,
+        html: customerHtml,
+      }),
+      resend.emails.send({
+        from: FROM_ADDRESS,
+        to: [NOTIFY_EMAIL],
+        subject: `🔍 New diagnosis: ${domain} — ${problems.length} issues · Score ${mPerf !== null ? Math.round(mPerf * 100) : "?"}/100`,
+        html: internalHtml,
+        replyTo: trimmedEmail,
+      }),
+    ]).then(([customerEmail, internalEmail]) => {
+      if (customerEmail.status === "rejected") {
+        console.error("Customer diagnostic email failed:", customerEmail.reason);
+      }
+      if (internalEmail.status === "rejected") {
+        console.error("Internal diagnostic email failed:", internalEmail.reason);
+      }
+    });
+  } else {
+    console.warn("[diagnose] Email service not configured (NUXT_RESEND_API_KEY missing).");
+    console.info("[diagnose] Diagnosis completed for:", {
+      name: name?.trim(),
+      email: trimmedEmail,
+      domain,
+    });
+  }
 
   return {
     success: true,
     domain: new URL(targetUrl).hostname,
-    emailSent: true, // optimistically true — fired in background
+    emailSent: emailEnabled, // true only when Resend key is configured
     scores: {
       performance: mPerf !== null ? Math.round(mPerf * 100) : null,
       seo: mSeo !== null ? Math.round(mSeo * 100) : null,
