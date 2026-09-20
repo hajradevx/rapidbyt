@@ -12,21 +12,7 @@ useSeoMeta({
 });
 
 // Use a single shared observer for all fade-up elements
-// rootMargin starts animation slightly before element enters viewport
-onMounted(() => {
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add("visible");
-          io.unobserve(e.target);
-        }
-      });
-    },
-    { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
-  );
-  document.querySelectorAll(".fade-up").forEach((el) => io.observe(el));
-});
+useFadeUp();
 </script>
 
 <template>
@@ -37,14 +23,19 @@ onMounted(() => {
 
     <!-- Below the fold — browser can skip until scrolled to -->
     <div class="cv-auto">
+      <HomeProjectsSection />
+    </div>
+    <div class="cv-auto">
       <HomeProblemsSection />
     </div>
+
     <div class="cv-auto">
       <HomeServicesSection />
     </div>
     <div class="cv-auto">
       <HomeWhySection />
     </div>
+
     <div class="cv-auto">
       <HomeTestimonialsSection />
     </div>

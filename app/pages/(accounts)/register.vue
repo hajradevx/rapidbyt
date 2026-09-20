@@ -18,8 +18,6 @@ const fields = ref<AuthFormField[]>([
 type Schema = z.output<typeof schemas.accounts.register>;
 
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
-  console.log("Submitted..................", payload);
-
   loading.value = true;
   try {
     await $fetch("/api/accounts/register", {

@@ -4,10 +4,10 @@ import { fileURLToPath } from "node:url";
 export default defineNuxtConfig({
   modules: ["@nuxt/eslint", "@nuxt/ui", "@nuxthub/core", "@nuxt/image", "nuxt-auth-utils"],
 
-  // ── Devtools — disabled to prevent HMR WebSocket conflict with Vite+ ──
-  devtools: { enabled: false },
+  // ── Devtools — off in production, on in dev only ──────────
+  devtools: { enabled: process.env.NODE_ENV !== "production" },
 
-  // ── App head — preconnect critical origins ──────────────
+  // ── App head ─────────────────────────────────────────────
   app: {
     head: {
       htmlAttrs: { lang: "en" },
@@ -15,8 +15,6 @@ export default defineNuxtConfig({
         { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
         { rel: "shortcut icon", href: "/favicon.ico" },
         { rel: "apple-touch-icon", href: "/img/logo.png" },
-        { rel: "preconnect", href: "https://fonts.googleapis.com" },
-        { rel: "dns-prefetch", href: "https://fonts.gstatic.com" },
         { rel: "dns-prefetch", href: "https://api.dicebear.com" },
       ],
       meta: [{ name: "theme-color", content: "#0ea5e9" }],

@@ -16,6 +16,7 @@ const columns: FooterColumn[] = [
     label: "Company",
     children: [
       { label: "Why RapidByt", to: "/#why" },
+      { label: "Our Projects", to: "/#projects" },
       { label: "Case Studies", to: "/#results" },
       { label: "Pricing", to: "/#pricing" },
       { label: "Free Diagnosis", to: "/diagnose" },

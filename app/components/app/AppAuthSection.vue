@@ -19,7 +19,6 @@ onMounted(async () => {
 });
 </script>
 
-<!-- re_dMxxoa7Z_HUQMAsjU8o4GqgDk1zYNRAQQ -->
 <template>
   <div class="flex items-center min-w-25 justify-end">
     <!-- On SWR/Server, just render a skeleton for the auth area -->
@@ -30,9 +29,7 @@ onMounted(async () => {
     <!-- Once resolved on client, show correct auth state -->
     <AuthState v-else>
       <template #default="{ loggedIn: authLoggedIn, user: authUser }">
-        <div v-if="!authLoggedIn" class="flex items-center gap-2">
-          <!-- <UButton label="Login" to="/login" variant="solid" color="primary" size="sm" /> -->
-        </div>
+        <div v-if="!authLoggedIn" class="flex items-center gap-2" />
 
         <UDropdownMenu v-else :items="profileItems">
           <UButton
@@ -55,7 +52,6 @@ onMounted(async () => {
       </template>
 
       <template #placeholder>
-        <!-- This handles the microscopic gap during AuthState initialization -->
         <div class="h-9 w-24 sm:w-32 rounded-xl bg-neutral-200 dark:bg-neutral-800 animate-pulse" />
       </template>
     </AuthState>

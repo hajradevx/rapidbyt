@@ -44,6 +44,11 @@ const navItems = computed<NavigationMenuItem[]>(() => [
     ],
   },
   {
+    label: "Projects",
+    to: "/#projects",
+    active: false,
+  },
+  {
     label: "Why RapidByt",
     to: "/#why",
     active: false,

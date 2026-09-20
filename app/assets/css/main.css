@@ -122,16 +122,3 @@ html {
   content-visibility: auto;
   contain-intrinsic-size: 0 400px;
 }
-
-/* ── Marquee (kept but only loaded when used) ──────────── */
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-.animate-marquee {
-  animation: marquee 22s linear infinite;
-}

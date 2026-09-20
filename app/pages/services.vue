@@ -20,20 +20,8 @@ useSeoMeta({
     "Explore RapidByt's full suite of services: speed optimisation, SEO, web development, cloud infrastructure, security monitoring, and CRO.",
 });
 
-onMounted(() => {
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add("visible");
-          io.unobserve(e.target);
-        }
-      });
-    },
-    { threshold: 0.1 },
-  );
-  document.querySelectorAll(".fade-up").forEach((el) => io.observe(el));
-});
+// Use a single shared observer for all fade-up elements
+useFadeUp();
 
 const services: Service[] = [
   {
