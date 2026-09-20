@@ -1,9 +1,15 @@
 <script setup lang="ts">
+import storeImg from "~/assets/imgs/store.webp";
+import ecomImg from "~/assets/imgs/ecom.webp";
+import bookImg from "~/assets/imgs/book.webp";
+import sImg from "~/assets/imgs/s1.webp";
+
 const projects = [
   {
     title: "SnowsBrain — Multi-Niche AI Content Platform",
     desc: "A modern multi-niche content platform built to publish, organize, and manage diverse, AI-enhanced content across multiple topics through a scalable and user-friendly web experience.",
     icon: "i-lucide-brain",
+    image: ecomImg,
     bg: "bg-gradient-to-br from-sky-400/20 to-indigo-500/20 dark:from-sky-900/30 dark:to-indigo-900/30",
     iconBg: "bg-sky-50 dark:bg-sky-900/40",
     iconColor: "text-sky-500",
@@ -22,6 +28,7 @@ const projects = [
     title: "ShopSwift — E-Commerce Platform",
     desc: "A full-featured online store with product management, cart, checkout, Stripe payments, and order tracking.",
     icon: "i-lucide-shopping-bag",
+    image: storeImg,
     bg: "bg-gradient-to-br from-amber-400/20 to-orange-500/20 dark:from-amber-900/30 dark:to-orange-900/30",
     iconBg: "bg-amber-50 dark:bg-amber-900/40",
     iconColor: "text-amber-500",
@@ -44,6 +51,7 @@ const projects = [
     title: "PageTurner — Book Library",
     desc: "A digital library app to catalogue, track reading progress, write reviews, and discover new books via an open API.",
     icon: "i-lucide-book-open",
+    image: bookImg,
     bg: "bg-gradient-to-br from-emerald-400/20 to-teal-500/20 dark:from-emerald-900/30 dark:to-teal-900/30",
     iconBg: "bg-emerald-50 dark:bg-emerald-900/40",
     iconColor: "text-emerald-500",
@@ -62,6 +70,7 @@ const projects = [
     title: "Nexus — Social Media Platform",
     desc: "A LinkedIn-style social platform with user profiles, connections, news feed, messaging, and job listings.",
     icon: "i-lucide-users",
+    image: sImg,
     bg: "bg-gradient-to-br from-indigo-400/20 to-purple-500/20 dark:from-indigo-900/30 dark:to-purple-900/30",
     iconBg: "bg-indigo-50 dark:bg-indigo-900/40",
     iconColor: "text-indigo-500",
@@ -110,23 +119,41 @@ const projects = [
           :style="`transition-delay:${i * 60}ms`"
         >
           <!-- Color band / mock thumbnail -->
-          <div :class="['h-44 w-full flex items-center justify-center relative', project.bg]">
+          <div
+            :class="[
+              'aspect-square w-full flex items-center justify-center relative overflow-hidden',
+              project.bg,
+            ]"
+          >
             <!-- Status badge -->
             <span
               v-if="project.status"
               :class="[
-                'absolute top-3 right-3 text-xs font-bold px-2 py-0.5 rounded-full',
+                'absolute top-3 right-3 z-10 text-xs font-bold px-2 py-0.5 rounded-full',
                 project.statusClass,
               ]"
             >
               {{ project.status }}
             </span>
 
-            <!-- Icon -->
+            <!-- Project screenshot (if provided) -->
+
+            <img
+              v-if="project.image"
+              :src="project.image"
+              :alt="project.title"
+              class="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+              width="400"
+              height="176"
+            />
+
+            <!-- Overlay + icon (always shown, dimmed when image exists) -->
             <div
               :class="[
-                'w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg',
+                'relative z-10 w-16 h-16 rounded-md flex items-center justify-center shadow-lg transition-opacity duration-300',
                 project.iconBg,
+                project.image ? 'opacity-0 group-hover:opacity-100' : '',
               ]"
             >
               <UIcon :name="project.icon" :class="['w-8 h-8', project.iconColor]" />
