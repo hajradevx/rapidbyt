@@ -11,14 +11,23 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: "en" },
+
       link: [
         { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
         { rel: "shortcut icon", href: "/favicon.ico" },
         { rel: "apple-touch-icon", href: "/img/logo.png" },
         { rel: "dns-prefetch", href: "https://api.dicebear.com" },
       ],
-      meta: [{ name: "theme-color", content: "#0ea5e9" }],
+
+      meta: [
+        { name: "theme-color", content: "#0ea5e9" },
+        {
+          name: "google-site-verification",
+          content: "CitYK6ba8DPFHnzomMsJTibY_n1fw-teUUu20Cdrf-k",
+        },
+      ],
     },
+
     pageTransition: { name: "page", mode: "out-in" },
   },
 
