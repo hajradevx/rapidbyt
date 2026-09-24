@@ -3,13 +3,14 @@ import storeImg from "~/assets/imgs/store.webp";
 import ecomImg from "~/assets/imgs/ecom.webp";
 import bookImg from "~/assets/imgs/book.webp";
 import sImg from "~/assets/imgs/s1.webp";
+import snowsImg from "~/assets/imgs/snows.png";
 
 const projects = [
   {
     title: "SnowsBrain — Multi-Niche AI Content Platform",
     desc: "A modern multi-niche content platform built to publish, organize, and manage diverse, AI-enhanced content across multiple topics through a scalable and user-friendly web experience.",
     icon: "i-lucide-brain",
-    image: ecomImg,
+    image: snowsImg,
     bg: "bg-gradient-to-br from-sky-400/20 to-indigo-500/20 dark:from-sky-900/30 dark:to-indigo-900/30",
     iconBg: "bg-sky-50 dark:bg-sky-900/40",
     iconColor: "text-sky-500",
