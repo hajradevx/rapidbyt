@@ -31,6 +31,45 @@ const error = ref("");
 const progress = ref(0);
 const progressMsg = ref("");
 
+// Lead capture after results
+const leadBudget = ref("");
+const leadSubmitting = ref(false);
+const leadSubmitted = ref(false);
+const leadError = ref("");
+
+const budgetOptions = [
+  { label: "Under $100", value: "under_100" },
+  { label: "$100 – $300", value: "100_300" },
+  { label: "$300 – $700", value: "300_700" },
+  { label: "$700 – $1500", value: "700_1500" },
+  { label: "$1500+", value: "1500_plus" },
+];
+
+// Countdown timer — 24h urgency
+const timeLeft = ref("");
+function startTimer() {
+  const deadline = Date.now() + 24 * 60 * 60 * 1000;
+  const tick = () => {
+    const diff = deadline - Date.now();
+    if (diff <= 0) {
+      timeLeft.value = "00:00:00";
+      return;
+    }
+    const h = Math.floor(diff / 3600000)
+      .toString()
+      .padStart(2, "0");
+    const m = Math.floor((diff % 3600000) / 60000)
+      .toString()
+      .padStart(2, "0");
+    const s = Math.floor((diff % 60000) / 1000)
+      .toString()
+      .padStart(2, "0");
+    timeLeft.value = `${h}:${m}:${s}`;
+    setTimeout(tick, 1000);
+  };
+  tick();
+}
+
 const progressSteps = [
   "Connecting to your website…",
   "Running PageSpeed analysis…",
@@ -77,7 +116,6 @@ async function runDiagnosis() {
   result.value = null;
   progress.value = 0;
 
-  // Animate progress while waiting (~12s average with API key)
   let step = 0;
   progressMsg.value = progressSteps[0];
   if (progressInterval) clearInterval(progressInterval);
@@ -100,6 +138,7 @@ async function runDiagnosis() {
     progressMsg.value = "Report ready!";
     await new Promise((r) => setTimeout(r, 600));
     result.value = data;
+    startTimer();
   } catch (err: unknown) {
     if (progressInterval) clearInterval(progressInterval);
     progressInterval = null;
@@ -110,6 +149,65 @@ async function runDiagnosis() {
     loading.value = false;
   }
 }
+
+async function submitLead() {
+  if (!leadBudget.value) {
+    leadError.value = "Please select your budget range.";
+    return;
+  }
+  leadError.value = "";
+  leadSubmitting.value = true;
+  try {
+    await $fetch("/api/contact", {
+      method: "POST",
+      body: {
+        name: form.name.trim() || "Diagnose visitor",
+        email: form.email.trim(),
+        website: form.url.trim(),
+        service: "diagnose_followup",
+        message: `Budget: ${leadBudget.value} | Severity: ${result.value?.severity} | Domain: ${result.value?.domain}`,
+      },
+    });
+    leadSubmitted.value = true;
+  } catch {
+    leadError.value = "Something went wrong. Please try WhatsApp instead.";
+  } finally {
+    leadSubmitting.value = false;
+  }
+}
+
+// Score-based urgency copy
+const urgencyData = computed(() => {
+  const perf = result.value?.scores.performance ?? 100;
+  if (perf < 50) {
+    return {
+      emoji: "🔴",
+      headline: "Critical — your site is losing customers right now",
+      sub: `A score of ${perf} means visitors are leaving before your page even loads. Every day you wait costs you real revenue.`,
+      badge: "CRITICAL",
+      badgeClass: "bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-400",
+      gradient: "from-red-600 to-rose-700",
+    };
+  }
+  if (perf < 90) {
+    return {
+      emoji: "🟡",
+      headline: "Your site needs attention before it hurts your rankings",
+      sub: `A score of ${perf} puts you behind competitors. Google actively demotes slow sites in search results.`,
+      badge: "NEEDS FIXING",
+      badgeClass: "bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400",
+      gradient: "from-amber-500 to-orange-600",
+    };
+  }
+  return {
+    emoji: "🟢",
+    headline: "Good score — let's keep it that way",
+    sub: "Your performance is solid. We can help maintain it and push SEO & conversions even further.",
+    badge: "GOOD",
+    badgeClass: "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400",
+    gradient: "from-sky-600 to-indigo-700",
+  };
+});
 
 function scoreColor(score: number | null) {
   if (score === null) return "text-zinc-400";
@@ -276,6 +374,8 @@ function severityIcon(level: string) {
             form.url = '';
             form.email = '';
             form.name = '';
+            leadSubmitted = false;
+            leadBudget = '';
           "
         />
 
@@ -325,9 +425,7 @@ function severityIcon(level: string) {
               {{ s ?? "?" }}
             </div>
             <div
-              :class="[
-                'w-full h-1.5 rounded-full bg-zinc-200 dark:bg-zinc-700 overflow-hidden mb-2',
-              ]"
+              class="w-full h-1.5 rounded-full bg-zinc-200 dark:bg-zinc-700 overflow-hidden mb-2"
             >
               <div
                 :class="[
@@ -410,28 +508,144 @@ function severityIcon(level: string) {
           </ul>
         </div>
 
-        <!-- CTA -->
-        <div class="rounded-2xl bg-linear-to-br from-sky-600 to-indigo-700 p-8 text-center">
-          <h3 class="text-white font-black text-xl mb-2">Want us to fix all of this for you?</h3>
-          <p class="text-sky-100 text-sm mb-6">
-            Our engineers implement every fix. Most sites are fully optimised within 7 days.
-          </p>
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <UButton
-              :to="result.whatsappUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-              label="Chat on WhatsApp"
-              leading-icon="i-lucide-message-circle"
-              color="success"
-              size="lg"
-              class="w-full sm:w-auto font-bold"
-            />
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- LEAD CONVERSION CTA — score-based urgency                  -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <div :class="['rounded-2xl bg-gradient-to-br p-px', urgencyData.gradient]">
+          <div class="rounded-2xl bg-zinc-900 p-8">
+            <!-- Top row: badge + timer -->
+            <div class="flex items-center justify-between flex-wrap gap-3 mb-5">
+              <span
+                :class="[
+                  'text-xs font-black px-3 py-1 rounded-full tracking-widest',
+                  urgencyData.badgeClass,
+                ]"
+              >
+                {{ urgencyData.badge }}
+              </span>
+              <div v-if="timeLeft" class="flex items-center gap-2 text-xs text-zinc-400">
+                <UIcon name="i-lucide-clock" class="w-3.5 h-3.5 text-amber-400" />
+                Free fix consultation expires in
+                <span class="font-black text-amber-400 tabular-nums">{{ timeLeft }}</span>
+              </div>
+            </div>
+
+            <!-- Headline -->
+            <p class="text-2xl font-black text-white mb-2">
+              {{ urgencyData.emoji }} {{ urgencyData.headline }}
+            </p>
+            <p class="text-zinc-400 text-sm mb-6">
+              {{ urgencyData.sub }}
+            </p>
+
+            <!-- Social proof strip -->
+            <div class="flex items-center gap-4 mb-7 flex-wrap">
+              <div class="flex -space-x-2">
+                <div
+                  v-for="n in 4"
+                  :key="n"
+                  class="w-8 h-8 rounded-full bg-gradient-to-br from-sky-400 to-indigo-600 border-2 border-zinc-900 flex items-center justify-center text-xs text-white font-bold"
+                >
+                  {{ ["A", "M", "S", "R"][n - 1] }}
+                </div>
+              </div>
+              <p class="text-xs text-zinc-400">
+                <span class="text-white font-bold">47 sites fixed</span> this month · avg
+                <span class="text-emerald-400 font-bold">+62% performance boost</span>
+              </p>
+            </div>
+
+            <!-- Inline lead form OR success state -->
+            <div v-if="!leadSubmitted" class="space-y-4">
+              <p class="text-sm font-semibold text-zinc-300">
+                What's your budget for fixing these issues?
+              </p>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                <button
+                  v-for="opt in budgetOptions"
+                  :key="opt.value"
+                  type="button"
+                  :class="[
+                    'px-3 py-2 rounded-xl text-sm font-semibold border transition-all',
+                    leadBudget === opt.value
+                      ? 'bg-sky-500 border-sky-400 text-white'
+                      : 'bg-zinc-800 border-zinc-700 text-zinc-300 hover:border-sky-500 hover:text-white',
+                  ]"
+                  @click="leadBudget = opt.value"
+                >
+                  {{ opt.label }}
+                </button>
+              </div>
+
+              <p v-if="leadError" class="text-xs text-red-400">
+                {{ leadError }}
+              </p>
+
+              <div class="flex flex-col sm:flex-row gap-3 pt-1">
+                <UButton
+                  :loading="leadSubmitting"
+                  label="Get My Free Fix Plan"
+                  size="lg"
+                  color="primary"
+                  class="w-full sm:w-auto font-black"
+                  trailing-icon="i-lucide-arrow-right"
+                  @click="submitLead"
+                />
+                <UButton
+                  :to="result.whatsappUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  label="Chat on WhatsApp"
+                  leading-icon="i-lucide-message-circle"
+                  color="success"
+                  size="lg"
+                  class="w-full sm:w-auto font-bold"
+                />
+              </div>
+              <p class="text-xs text-zinc-500">
+                No spam. No pressure. We'll send a tailored fix plan within 4 hours.
+              </p>
+            </div>
+
+            <!-- Success state -->
+            <div v-else class="rounded-xl bg-zinc-800 border border-emerald-700 p-6 text-center">
+              <UIcon name="i-lucide-check-circle" class="w-10 h-10 text-emerald-400 mx-auto mb-3" />
+              <p class="text-white font-black text-lg mb-1">You're on the list!</p>
+              <p class="text-zinc-400 text-sm mb-4">
+                We'll send a personalised fix plan to
+                <span class="text-white">{{ form.email }}</span> within 4 hours.
+              </p>
+              <UButton
+                :to="result.whatsappUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                label="Want it faster? Chat now"
+                leading-icon="i-lucide-message-circle"
+                color="success"
+                size="sm"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Secondary CTA: pricing -->
+        <div class="text-center pt-2">
+          <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-3">Already know what you need?</p>
+          <div class="flex items-center justify-center gap-3 flex-wrap">
             <UButton
               label="View Pricing"
               to="/#pricing"
+              variant="outline"
+              color="neutral"
+              size="sm"
+              trailing-icon="i-lucide-arrow-right"
+            />
+            <UButton
+              label="See Our Services"
+              to="/services"
               variant="ghost"
-              class="text-muted hover:bg-white/10 w-full sm:w-auto"
+              color="neutral"
+              size="sm"
             />
           </div>
         </div>
