@@ -2,7 +2,14 @@
 import { fileURLToPath } from "node:url";
 
 export default defineNuxtConfig({
-  modules: ["@nuxt/eslint", "@nuxt/ui", "@nuxthub/core", "@nuxt/image", "nuxt-auth-utils"],
+  modules: [
+    "@nuxt/eslint",
+    "@nuxt/ui",
+    "@nuxthub/core",
+    "@nuxt/image",
+    "nuxt-auth-utils",
+    "@nuxtjs/sitemap",
+  ],
 
   // ── Devtools — off in production, on in dev only ──────────
   devtools: { enabled: process.env.NODE_ENV !== "production" },
@@ -38,6 +45,12 @@ export default defineNuxtConfig({
     options: {
       scrollBehaviorType: "smooth",
     },
+  },
+
+  // ── Site URL (used by @nuxtjs/sitemap & other SEO modules) ──
+  site: {
+    url: "https://rapidbyt.com",
+    name: "RapidByt",
   },
 
   // ── Nuxt UI ─────────────────────────────────────────────
