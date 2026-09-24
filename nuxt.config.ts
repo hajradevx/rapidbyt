@@ -24,6 +24,8 @@ export default defineNuxtConfig({
         { rel: "shortcut icon", href: "/favicon.ico" },
         { rel: "apple-touch-icon", href: "/img/logo.png" },
         { rel: "dns-prefetch", href: "https://api.dicebear.com" },
+        // Canonical — tells Google the authoritative non-www URL
+        { rel: "canonical", href: "https://rapidbyt.com" },
       ],
 
       meta: [

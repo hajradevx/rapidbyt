@@ -10,6 +10,9 @@ useSeoMeta({
   ogImage: "/og-image.png",
   twitterCard: "summary_large_image",
 });
+useHead({
+  link: [{ rel: "canonical", href: "https://rapidbyt.com/" }],
+});
 
 // Use a single shared observer for all fade-up elements
 useFadeUp();
