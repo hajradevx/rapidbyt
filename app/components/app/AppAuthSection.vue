@@ -29,7 +29,25 @@ onMounted(async () => {
     <!-- Once resolved on client, show correct auth state -->
     <AuthState v-else>
       <template #default="{ loggedIn: authLoggedIn, user: authUser }">
-        <div v-if="!authLoggedIn" class="flex items-center gap-2" />
+        <div v-if="!authLoggedIn" class="flex items-center gap-2">
+          <UButton
+            label="Login"
+            to="/login"
+            size="sm"
+            variant="ghost"
+            color="neutral"
+            class="font-semibold"
+            leading-icon="i-lucide-log-in"
+          />
+          <UButton
+            label="Register"
+            to="/register"
+            size="sm"
+            variant="outline"
+            color="primary"
+            class="font-semibold hidden sm:flex"
+          />
+        </div>
 
         <UDropdownMenu v-else :items="profileItems">
           <UButton
