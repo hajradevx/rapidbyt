@@ -1,9 +1,17 @@
 <script setup lang="ts">
 definePageMeta({ layout: "default" });
 useSeoMeta({
-  title: "Contact – RapidByt | Get Your Free Site Audit",
+  title: "Free Website Audit — Contact RapidByt | Speed & SEO Experts",
   description:
-    "Get your free website performance audit from RapidByt. We'll identify what's slowing you down and send a prioritised fix report within 24 hours.",
+    "Get a free website performance audit. We analyse speed, SEO, Core Web Vitals & security — and send a prioritised fix report within 24 hours. No cost, no obligation.",
+  ogTitle: "Free Website Audit — Get Your Performance Report in 24 Hours",
+  ogDescription:
+    "Free website speed & SEO audit. Submit your URL and get a full report with prioritised fixes within 24 hours.",
+  keywords:
+    "free website audit, website performance review, free SEO audit, Core Web Vitals check, website speed report, contact RapidByt",
+});
+useHead({
+  link: [{ rel: "canonical", href: "https://rapidbyt.com/contact" }],
 });
 
 const route = useRoute();

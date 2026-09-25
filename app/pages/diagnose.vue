@@ -1,9 +1,41 @@
 <script setup lang="ts">
 definePageMeta({ layout: "default" });
 useSeoMeta({
-  title: "Free Website Diagnostic — RapidByt",
+  title: "Free Website Speed Test & Performance Audit — RapidByt",
   description:
-    "Enter your website URL and get an instant automated performance, SEO, and security report delivered to your inbox in seconds.",
+    "Free instant website speed test. Check your PageSpeed score, Core Web Vitals, SEO health & get a full report in 10 seconds. No signup required.",
+  ogTitle: "Free Website Speed Test — Check Your PageSpeed Score Instantly",
+  ogDescription:
+    "Scan your website for speed, SEO, and performance issues in 10 seconds. Free report with actionable fixes delivered to your inbox.",
+  ogImage: "/og-image.png",
+  twitterCard: "summary_large_image",
+  keywords:
+    "free website speed test, PageSpeed score checker, Core Web Vitals test, website performance audit, SEO checker free, slow website diagnosis",
+});
+useHead({
+  link: [{ rel: "canonical", href: "https://rapidbyt.com/diagnose" }],
+  script: [
+    {
+      type: "application/ld+json",
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        name: "RapidByt Free Website Diagnostic",
+        url: "https://rapidbyt.com/diagnose",
+        description: "Free instant website speed test and performance audit tool.",
+        applicationCategory: "WebApplication",
+        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+        featureList: [
+          "PageSpeed Insights score",
+          "Core Web Vitals (LCP, FCP, CLS, TBT)",
+          "SEO health check",
+          "Accessibility audit",
+          "Performance issue detection",
+          "Free email report",
+        ],
+      }),
+    },
+  ],
 });
 
 interface DiagnoseResult {

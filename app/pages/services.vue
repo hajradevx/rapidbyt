@@ -13,11 +13,53 @@ interface Service {
 }
 
 definePageMeta({ layout: "default" });
-
 useSeoMeta({
-  title: "Services – RapidByt Web Performance Solutions",
+  title: "Web Performance & Speed Optimization Services — RapidByt",
   description:
-    "Explore RapidByt's full suite of services: speed optimisation, SEO, web development, cloud infrastructure, security monitoring, and CRO.",
+    "Website speed optimization, SEO & Core Web Vitals fixes, web app development, cloud infrastructure & security monitoring. Measurable results in 7 days.",
+  ogTitle: "Web Performance Services — Speed, SEO, Dev & Cloud | RapidByt",
+  ogDescription:
+    "Speed optimization, SEO fixes, web development & cloud hosting. Average 58-point PageSpeed improvement. Free audit included.",
+  keywords:
+    "website speed optimization service, Core Web Vitals fix, SEO optimization service, web app development, Cloudflare hosting, website performance agency",
+});
+useHead({
+  link: [{ rel: "canonical", href: "https://rapidbyt.com/services" }],
+  script: [
+    {
+      type: "application/ld+json",
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        provider: { "@type": "Organization", name: "RapidByt", url: "https://rapidbyt.com" },
+        serviceType: "Web Performance Optimization",
+        areaServed: "Worldwide",
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "RapidByt Services",
+          itemListElement: [
+            {
+              "@type": "Offer",
+              itemOffered: { "@type": "Service", name: "Website Speed Optimization" },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: { "@type": "Service", name: "SEO & Core Web Vitals" },
+            },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Web App Development" } },
+            {
+              "@type": "Offer",
+              itemOffered: { "@type": "Service", name: "Cloud & Infrastructure" },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: { "@type": "Service", name: "Security & Monitoring" },
+            },
+          ],
+        },
+      }),
+    },
+  ],
 });
 
 // Use a single shared observer for all fade-up elements
