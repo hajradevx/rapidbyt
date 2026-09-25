@@ -107,6 +107,7 @@ const profileItems = ref<DropdownMenuItem[][]>([
     <UHeader
       :ui="{
         root: 'bg-muted backdrop-blur-xl border-b border-muted h-16',
+        container: 'max-w-none px-4 sm:px-6',
       }"
     >
       <!-- ── Logo ── -->
