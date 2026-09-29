@@ -1,58 +1,71 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { fileURLToPath } from "node:url";
+import { fileURLToPath } from 'node:url'
 
 export default defineNuxtConfig({
   modules: [
-    "@nuxt/eslint",
-    "@nuxt/ui",
-    "@nuxthub/core",
-    "@nuxt/image",
-    "nuxt-auth-utils",
-    "@nuxtjs/sitemap",
+    '@nuxt/eslint',
+    '@nuxt/ui',
+    '@nuxthub/core',
+    '@nuxt/image',
+    'nuxt-auth-utils',
+    '@nuxtjs/sitemap',
+    '@nuxt/content',
   ],
 
   // ── Devtools — off in production, on in dev only ──────────
-  devtools: { enabled: process.env.NODE_ENV !== "production" },
+  devtools: { enabled: process.env.NODE_ENV !== 'production' },
 
   // ── App head ─────────────────────────────────────────────
   app: {
     head: {
-      htmlAttrs: { lang: "en" },
+      htmlAttrs: { lang: 'en' },
 
       link: [
-        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-        { rel: "shortcut icon", href: "/favicon.ico" },
-        { rel: "apple-touch-icon", href: "/img/logo.png" },
-        { rel: "dns-prefetch", href: "https://api.dicebear.com" },
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'shortcut icon', href: '/favicon.ico' },
+        { rel: 'apple-touch-icon', href: '/img/logo.png' },
+        { rel: 'dns-prefetch', href: 'https://api.dicebear.com' },
         // Canonical — tells Google the authoritative non-www URL
-        { rel: "canonical", href: "https://rapidbyt.com" },
+        { rel: 'canonical', href: 'https://rapidbyt.com' },
       ],
 
       meta: [
-        { name: "theme-color", content: "#0ea5e9" },
+        { name: 'theme-color', content: '#0ea5e9' },
         {
-          name: "google-site-verification",
-          content: "CitYK6ba8DPFHnzomMsJTibY_n1fw-teUUu20Cdrf-k",
+          name: 'google-site-verification',
+          content: 'CitYK6ba8DPFHnzomMsJTibY_n1fw-teUUu20Cdrf-k',
         },
       ],
     },
 
-    pageTransition: { name: "page", mode: "out-in" },
+    pageTransition: { name: 'page', mode: 'out-in' },
   },
 
-  css: ["~/assets/css/main.css"],
+  css: ['~/assets/css/main.css'],
 
   // ── Router ──────────────────────────────────────────────
   router: {
     options: {
-      scrollBehaviorType: "smooth",
+      scrollBehaviorType: 'smooth',
     },
   },
 
   // ── Site URL (used by @nuxtjs/sitemap & other SEO modules) ──
   site: {
-    url: "https://rapidbyt.com",
-    name: "RapidByt",
+    url: 'https://rapidbyt.com',
+    name: 'RapidByt',
+  },
+
+  // ── Content (blog) ──────────────────────────────────────
+  content: {
+    build: {
+      markdown: {
+        highlight: {
+          theme: { default: 'github-light', dark: 'github-dark' },
+          langs: ['js', 'ts', 'vue', 'html', 'css', 'bash', 'json'],
+        },
+      },
+    },
   },
 
   // ── Nuxt UI ─────────────────────────────────────────────
@@ -63,8 +76,8 @@ export default defineNuxtConfig({
 
   // ── Runtime config ──────────────────────────────────────
   runtimeConfig: {
-    resendApiKey: process.env.NUXT_RESEND_API_KEY || "",
-    pagespeedApiKey: process.env.NUXT_PAGESPEED_API_KEY || "",
+    resendApiKey: process.env.NUXT_RESEND_API_KEY || '',
+    pagespeedApiKey: process.env.NUXT_PAGESPEED_API_KEY || '',
   },
 
   // ── Experimental perf flags ─────────────────────────────
@@ -73,7 +86,7 @@ export default defineNuxtConfig({
     writeEarlyHints: true,
     defaults: {
       nuxtLink: {
-        trailingSlash: "remove",
+        trailingSlash: 'remove',
         prefetch: true,
         prefetchOn: { visibility: true },
       },
@@ -85,11 +98,11 @@ export default defineNuxtConfig({
   },
 
   // ── Nitro / Cloudflare ──────────────────────────────────
-  compatibilityDate: "2026-02-25",
+  compatibilityDate: '2026-02-25',
   nitro: {
     // cloudflare_module preset only for production build — dev uses default
     // node preset so Node.js APIs (crypto, etc.) work without polyfills.
-    preset: process.env.NODE_ENV === "production" ? "cloudflare_module" : undefined,
+    preset: process.env.NODE_ENV === 'production' ? 'cloudflare_module' : undefined,
     cloudflare: { deployConfig: true, nodeCompat: true },
     compressPublicAssets: { gzip: true, brotli: true },
     minify: true,
@@ -97,29 +110,29 @@ export default defineNuxtConfig({
     // package — Cloudflare Workers cannot bundle it. Alias it to a stub so
     // the build succeeds; we only use plain HTML strings, not React Email.
     alias: {
-      "@react-email/render": fileURLToPath(
-        new URL("./server/stubs/react-email-render.ts", import.meta.url),
+      '@react-email/render': fileURLToPath(
+        new URL('./server/stubs/react-email-render.ts', import.meta.url),
       ),
     },
     routeRules: {
-      "/_nuxt/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
-      "/fonts/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
-      "/": { headers: { "cache-control": "public, s-maxage=60, stale-while-revalidate=3600" } },
-      "/services": {
-        headers: { "cache-control": "public, s-maxage=300, stale-while-revalidate=3600" },
+      '/_nuxt/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+      '/fonts/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+      '/': { headers: { 'cache-control': 'public, s-maxage=60, stale-while-revalidate=3600' } },
+      '/services': {
+        headers: { 'cache-control': 'public, s-maxage=300, stale-while-revalidate=3600' },
       },
-      "/contact": {
-        headers: { "cache-control": "public, s-maxage=60, stale-while-revalidate=600" },
+      '/contact': {
+        headers: { 'cache-control': 'public, s-maxage=60, stale-while-revalidate=600' },
       },
-      "/diagnose": {
-        headers: { "cache-control": "public, s-maxage=60, stale-while-revalidate=600" },
+      '/diagnose': {
+        headers: { 'cache-control': 'public, s-maxage=60, stale-while-revalidate=600' },
       },
-      "/api/**": { headers: { "cache-control": "no-store" } },
+      '/api/**': { headers: { 'cache-control': 'no-store' } },
     },
   },
 
   // ── NuxtHub ─────────────────────────────────────────────
-  hub: { db: "sqlite" },
+  hub: { db: 'sqlite' },
 
   // ── Vite ────────────────────────────────────────────────
   vite: {
@@ -129,15 +142,15 @@ export default defineNuxtConfig({
       rollupOptions: {
         output: {
           manualChunks: (id: string) => {
-            if (id.includes("node_modules/vue") || id.includes("node_modules/vue-router")) {
-              return "vue-vendor";
+            if (id.includes('node_modules/vue') || id.includes('node_modules/vue-router')) {
+              return 'vue-vendor'
             }
           },
         },
       },
     },
     optimizeDeps: {
-      include: ["vue", "vue-router"],
+      include: ['vue', 'vue-router'],
     },
     server: {
       ws: false,
@@ -150,8 +163,8 @@ export default defineNuxtConfig({
 
   // ── Image optimisation ──────────────────────────────────
   image: {
-    format: ["webp", "avif"],
+    format: ['webp', 'avif'],
     quality: 80,
     screens: { xs: 320, sm: 640, md: 768, lg: 1024, xl: 1280, xxl: 1536 },
   },
-});
+})
