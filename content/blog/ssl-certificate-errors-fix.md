@@ -5,7 +5,15 @@ date: 2026-10-28
 readTime: 8
 category: "Security"
 author: "RapidByt Team"
-tags: ["SSL certificate", "HTTPS", "connection not private", "mixed content", "certificate expired", "security"]
+tags:
+  [
+    "SSL certificate",
+    "HTTPS",
+    "connection not private",
+    "mixed content",
+    "certificate expired",
+    "security",
+  ]
 image: "/blog/ssl-certificate-errors.jpg"
 ---
 
@@ -23,6 +31,7 @@ Here's every type of SSL error, why it happens, and how to fix it.
 ## Understanding SSL/TLS Certificates
 
 An SSL certificate does two things:
+
 1. **Encrypts** the connection between the visitor's browser and your server
 2. **Verifies** that your website is actually who it claims to be
 
@@ -33,6 +42,7 @@ Without a valid certificate, browsers show security warnings. With one, your URL
 ## Error Type 1: Expired Certificate
 
 **What the visitor sees:**
+
 > NET::ERR_CERT_DATE_INVALID
 > Your connection is not private
 
@@ -63,6 +73,7 @@ sudo crontab -l | grep certbot
 ```
 
 If the cron job is missing, add it:
+
 ```bash
 # Add to crontab — runs renewal check twice daily
 sudo crontab -e
@@ -72,6 +83,7 @@ sudo crontab -e
 **Fix for Cloudflare users:**
 
 Cloudflare manages SSL certificates automatically. If you're seeing a certificate error while using Cloudflare, check that:
+
 1. Your SSL/TLS mode is set to "Full (Strict)" — not "Flexible"
 2. The origin certificate on your server is also valid
 3. Cloudflare → SSL/TLS → Overview shows "Active Certificate"
@@ -85,6 +97,7 @@ cPanel → SSL/TLS → Manage SSL sites → check expiry dates → use "AutoSSL"
 ## Error Type 2: Self-Signed Certificate
 
 **What the visitor sees:**
+
 > NET::ERR_CERT_AUTHORITY_INVALID
 
 **Why it happens:** You (or your hosting setup) generated a certificate yourself instead of getting one from a trusted Certificate Authority. Self-signed certs are fine for development but not for production.
@@ -111,10 +124,12 @@ If you're on shared hosting without server access, use your hosting control pane
 ## Error Type 3: Wrong Domain on Certificate
 
 **What the visitor sees:**
+
 > NET::ERR_CERT_COMMON_NAME_INVALID
 > The certificate is only valid for other-domain.com
 
 **Why it happens:** The SSL certificate was issued for a different domain than the one the visitor is accessing. Common causes:
+
 - Certificate was issued for `www.yoursite.com` but visitor goes to `yoursite.com` (or vice versa)
 - You moved to a new domain but the old certificate is still being served
 - The certificate doesn't include all the subdomains you're using
@@ -128,6 +143,7 @@ sudo certbot --nginx -d yoursite.com -d www.yoursite.com
 ```
 
 For multiple subdomains, use a wildcard:
+
 ```bash
 sudo certbot --nginx -d yoursite.com -d "*.yoursite.com"
 # Note: wildcard requires DNS challenge, not HTTP challenge
@@ -167,11 +183,11 @@ In your HTML and CSS, change every `http://` reference to `https://`:
 **Database search and replace for WordPress:**
 
 ```sql
-UPDATE wp_posts SET post_content = 
+UPDATE wp_posts SET post_content =
   REPLACE(post_content, 'http://yoursite.com', 'https://yoursite.com');
 
-UPDATE wp_options SET option_value = 
-  REPLACE(option_value, 'http://yoursite.com', 'https://yoursite.com') 
+UPDATE wp_options SET option_value =
+  REPLACE(option_value, 'http://yoursite.com', 'https://yoursite.com')
   WHERE option_name IN ('siteurl', 'home');
 ```
 
@@ -188,6 +204,7 @@ This tells browsers to automatically upgrade HTTP sub-requests to HTTPS where po
 ## Error Type 5: Certificate Chain Incomplete
 
 **What the visitor sees:**
+
 > ERR_SSL_VERSION_OR_CIPHER_MISMATCH
 > or various "certificate chain" errors in some browsers
 

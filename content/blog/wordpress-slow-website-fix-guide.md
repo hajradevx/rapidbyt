@@ -22,6 +22,7 @@ The good news: most WordPress speed problems are fixable in a single afternoon, 
 Don't guess. Measure first.
 
 Run your site through [our free diagnosis tool](/diagnose) or [PageSpeed Insights](https://pagespeed.web.dev). Write down:
+
 - Your current PageSpeed score (mobile and desktop)
 - Your LCP (Largest Contentful Paint)
 - Your total page size
@@ -56,6 +57,7 @@ Images are almost always the #1 contributor to slow WordPress sites. A homepage 
 These plugins automatically compress images you upload AND bulk-optimize your existing media library.
 
 Settings to use:
+
 - Format: WebP (automatically served to modern browsers)
 - Quality: 80% (visually identical to 100%, 40–60% smaller file)
 - "Compress existing images" → run once on your library
@@ -86,6 +88,7 @@ Every active plugin runs code on every page load — even if that plugin has not
 4. Delete deactivated plugins (they still take up space)
 
 **Common unnecessary plugins to look for:**
+
 - Hello Dolly (default, zero functionality)
 - Akismet (only needed if you have a comment form)
 - Multiple SEO plugins (you only need one — use Yoast or RankMath, not both)
@@ -94,6 +97,7 @@ Every active plugin runs code on every page load — even if that plugin has not
 - Anything that adds a "floating" element to the frontend
 
 **Tools to identify slow plugins:**
+
 - [Query Monitor](https://wordpress.org/plugins/query-monitor/) — free, shows which plugin is causing database queries
 - [Plugin Performance Monitor](https://wordpress.org/plugins/plugin-performance-monitor/) — measures load time impact per plugin
 
@@ -165,6 +169,7 @@ In Chrome DevTools → Coverage tab → reload the page → look at the % of CSS
 CSS and JavaScript that load in the `<head>` block your page from displaying until they fully download. This is a common source of poor LCP scores.
 
 **Automatic fix (WP Rocket users):**
+
 - File Optimization → Load JS Deferred → Enable
 - File Optimization → Optimize CSS Delivery → Enable
 
@@ -176,12 +181,12 @@ For Google Fonts specifically — they're often render-blocking:
 
 ```html
 <!-- Slow: blocks rendering -->
-<link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet" />
 
 <!-- Fast: loads without blocking -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
 ```
 
 Or better: self-host your fonts using the [Google Fonts Helper](https://gwfh.mranftl.com/fonts).
@@ -198,12 +203,12 @@ If you've done everything above and your site is still slow, your hosting is the
 
 **Hosting recommendations by budget:**
 
-| Budget | Provider | Notes |
-|--------|----------|-------|
-| Free | Cloudflare Pages | Static/SSG sites only |
-| $5/mo | Hetzner VPS | Self-managed, fastest for the price |
-| $15/mo | DigitalOcean + ServerPilot | Managed VPS |
-| $30/mo | Kinsta or WP Engine | Managed WordPress, easiest |
+| Budget | Provider                   | Notes                               |
+| ------ | -------------------------- | ----------------------------------- |
+| Free   | Cloudflare Pages           | Static/SSG sites only               |
+| $5/mo  | Hetzner VPS                | Self-managed, fastest for the price |
+| $15/mo | DigitalOcean + ServerPilot | Managed VPS                         |
+| $30/mo | Kinsta or WP Engine        | Managed WordPress, easiest          |
 
 For most Pakistani business websites, a **$5/month Hetzner VPS** with Cloudflare in front of it will outperform a $50/month shared WordPress hosting plan from any local provider.
 
@@ -231,6 +236,7 @@ Work through these in order:
 ## When to Call in a Professional
 
 Some speed issues require code-level fixes:
+
 - Custom theme generating excessive database queries
 - WooCommerce with 10,000+ products and no query optimization
 - Third-party integrations creating blocking API calls

@@ -27,19 +27,23 @@ The math is brutal. If your site makes $10,000/month and loads in 5 seconds, get
 Google's Core Web Vitals are the three signals that directly affect your search ranking:
 
 ### LCP — Largest Contentful Paint
+
 How long until the main content is visible. **Target: under 2.5 seconds.**
 
 Slow LCP is almost always caused by:
+
 - Unoptimized images (the #1 culprit)
 - Slow server response times
 - Render-blocking JavaScript or CSS
 
 ### CLS — Cumulative Layout Shift
+
 How much the page "jumps" while loading. **Target: under 0.1.**
 
 Layout shifts destroy user trust. Nothing is more annoying than tapping a button that moves right as you click it.
 
 ### INP — Interaction to Next Paint
+
 How quickly the page responds to user clicks. **Target: under 200ms.**
 
 This replaced FID as a Core Web Vital in March 2024. Heavy JavaScript is the main cause of poor INP scores.

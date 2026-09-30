@@ -26,6 +26,7 @@ You know your business is legitimate. Your visitors don't. They've been burned b
 **The trust gap on most websites:**
 
 Most business websites say things like:
+
 - "We are committed to quality"
 - "Customer satisfaction is our priority"
 - "We have years of experience"
@@ -67,6 +68,7 @@ That's not pricing — but it's a clear next step with no financial commitment. 
 ## Reason 3: Too Much Friction Between Intent and Action
 
 A visitor wants to get in touch. They have to:
+
 1. Find the contact page (it's not obvious)
 2. Fill in 8 form fields
 3. Solve a CAPTCHA
@@ -96,6 +98,7 @@ Every potential customer has reasons NOT to buy. If your page doesn't address th
 Ask 5–10 existing clients: "What almost stopped you from reaching out?" Their answers are your objection list.
 
 Common objections for service businesses:
+
 - "I can't afford it" → Show ROI, payment plans, or free first step
 - "I've been burned before" → Case studies with specific results, satisfaction guarantee
 - "I don't know if this will work for my specific situation" → Show diverse case studies, FAQ addressing edge cases
@@ -111,6 +114,7 @@ Common objections for service businesses:
 "Buy Now" or "Hire Us" as a first-touch CTA asks for a lot of commitment from a cold visitor who found you 60 seconds ago.
 
 People need to progress through stages of commitment before buying:
+
 1. **Aware** — just discovered you
 2. **Interested** — exploring your content
 3. **Considering** — comparing you with alternatives
@@ -118,12 +122,12 @@ People need to progress through stages of commitment before buying:
 
 A "Buy Now" CTA only works at stage 4. For stages 1–3, you need lower-commitment CTAs:
 
-| Stage | Appropriate CTA |
-|-------|-----------------|
-| Aware | "Read the guide" / "Watch the demo" |
-| Interested | "Get the free checklist" / "Try the free tool" |
-| Considering | "See pricing" / "Read case studies" |
-| Ready | "Book a call" / "Get a quote" |
+| Stage       | Appropriate CTA                                |
+| ----------- | ---------------------------------------------- |
+| Aware       | "Read the guide" / "Watch the demo"            |
+| Interested  | "Get the free checklist" / "Try the free tool" |
+| Considering | "See pricing" / "Read case studies"            |
+| Ready       | "Book a call" / "Get a quote"                  |
 
 The [free diagnosis tool](/diagnose) on this site works because it asks for nothing — you enter a URL and get immediate value. The conversion happens naturally in the results, not at the entry point.
 
@@ -143,8 +147,8 @@ Most websites put testimonials at the bottom of the page — after the visitor h
 **The most persuasive testimonial format:**
 
 ```
-"Before working with RapidByt, our PageSpeed score was 23 and checkout 
-took 9 seconds to load. After the optimization sprint, we're at 91 and 
+"Before working with RapidByt, our PageSpeed score was 23 and checkout
+took 9 seconds to load. After the optimization sprint, we're at 91 and
 checkout is under 2 seconds. Sales are up 34% in the first month."
 
 — Aisha Rahman, Founder of [Company Name]
@@ -163,18 +167,19 @@ Verified client, October 2026
 Read your homepage out loud. Count how many times you say "we," "our," and "I" versus "you" and "your."
 
 Most homepages sound like:
+
 > "We are a leading web agency. We have 10 years of experience. We offer a range of services. Our team is dedicated..."
 
 Nobody cares about you. They care about their problem.
 
 Reframe everything from the visitor's perspective:
 
-| Company-focused | Visitor-focused |
-|-----------------|-----------------|
-| "We offer speed optimization" | "Your site loads in 8 seconds. We fix that." |
+| Company-focused               | Visitor-focused                                                  |
+| ----------------------------- | ---------------------------------------------------------------- |
+| "We offer speed optimization" | "Your site loads in 8 seconds. We fix that."                     |
 | "We have 10 years experience" | "You get 10 years of performance expertise working on your site" |
-| "Our services include SEO" | "You'll rank higher on Google within 90 days" |
-| "We are committed to quality" | "You get your money back if results don't meet expectations" |
+| "Our services include SEO"    | "You'll rank higher on Google within 90 days"                    |
+| "We are committed to quality" | "You get your money back if results don't meet expectations"     |
 
 The message is the same. The orientation is completely different. The second version speaks to what the visitor wants.
 
@@ -194,6 +199,7 @@ You think conversions are low. But maybe they're not — and you're just not tra
 - Time on page / scroll depth (are people actually reading?)
 
 Set these up in Google Analytics 4:
+
 - Admin → Events → Create event → form_submit / whatsapp_click / phone_call_click
 
 Once you know your actual conversion rate from each traffic source, you can make informed decisions — not assumptions.

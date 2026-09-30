@@ -5,7 +5,8 @@ date: 2026-11-03
 readTime: 8
 category: "Business"
 author: "RapidByt Team"
-tags: ["Google Analytics", "GA4", "analytics not working", "tracking", "conversions", "data accuracy"]
+tags:
+  ["Google Analytics", "GA4", "analytics not working", "tracking", "conversions", "data accuracy"]
 image: "/blog/google-analytics-not-working.jpg"
 ---
 
@@ -45,6 +46,7 @@ Open Chrome DevTools → Network tab → type `collect` in the filter box → re
 If GA4 fires on some pages but not others, your data is incomplete. Check that the tag (or GTM snippet) is in the `<head>` of every page template — not just the homepage.
 
 In Nuxt:
+
 ```typescript
 // nuxt.config.ts — add GA4 to every page's head
 app: {
@@ -77,7 +79,7 @@ If your site has a CSP header, it might block Google Analytics requests.
 
 ```
 # Add Google Analytics domains to your CSP
-Content-Security-Policy: 
+Content-Security-Policy:
   script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com;
   img-src 'self' https://www.google-analytics.com;
   connect-src 'self' https://www.google-analytics.com;
@@ -94,8 +96,9 @@ Your Analytics shows 10,000 sessions but you can see from your hosting that only
 **Fix: Enable IP filtering and bot filtering**
 
 In GA4:
+
 1. Admin → Data Streams → your stream → Configure tag settings
-2. Enable "Enable Google signals" 
+2. Enable "Enable Google signals"
 3. Admin → Data Settings → Data Filters → create a filter for internal traffic (your own IP)
 
 **Filter your own visits:**
@@ -105,12 +108,13 @@ In GA4:
 // (Use a custom dimension or internal traffic filter in GA4 Admin instead)
 
 // Or use a cookie approach for development
-if (document.cookie.includes('ga_exclude=1')) {
-  window['ga-disable-G-XXXXXXXXXX'] = true;
+if (document.cookie.includes("ga_exclude=1")) {
+  window["ga-disable-G-XXXXXXXXXX"] = true;
 }
 ```
 
 Better approach in GA4 Admin:
+
 - Admin → Data Streams → your stream → Configure tag settings → Show more → Provide your own user ID
 - Admin → Data Filters → create "Internal Traffic" filter → define your IP → activate
 
@@ -138,18 +142,18 @@ With Tag Assistant active, complete the conversion action (form submission, butt
 
 ```javascript
 // Wrong — event name has a typo
-gtag('event', 'form_submitt');
+gtag("event", "form_submitt");
 
 // Wrong — firing on page load instead of form submit
-document.addEventListener('DOMContentLoaded', () => {
-  gtag('event', 'form_submit'); // Fires on every page load, not on submit
+document.addEventListener("DOMContentLoaded", () => {
+  gtag("event", "form_submit"); // Fires on every page load, not on submit
 });
 
 // Right — fire only when form is actually submitted
-document.querySelector('#contact-form').addEventListener('submit', () => {
-  gtag('event', 'form_submit', {
-    event_category: 'contact',
-    event_label: 'contact_page_form',
+document.querySelector("#contact-form").addEventListener("submit", () => {
+  gtag("event", "form_submit", {
+    event_category: "contact",
+    event_label: "contact_page_form",
   });
 });
 ```
@@ -165,6 +169,7 @@ GA4 conversion data can take **24–48 hours** to appear in standard reports. Us
 You know traffic came from your Instagram post or email campaign, but Analytics shows it as Direct.
 
 **Why this happens:**
+
 - Links shared on WhatsApp and most messaging apps strip UTM parameters
 - Redirects lose UTM parameters if not configured correctly
 - HTTPS → HTTP redirect drops the referrer
@@ -177,6 +182,7 @@ https://yoursite.com/blog/post?utm_source=whatsapp&utm_medium=social&utm_campaig
 ```
 
 UTM parameter guide:
+
 - `utm_source` — where traffic comes from (whatsapp, instagram, newsletter)
 - `utm_medium` — type of channel (social, email, cpc, sms)
 - `utm_campaign` — which specific campaign (october-newsletter, black-friday)
@@ -220,14 +226,14 @@ Or configure it manually with a router hook:
 ```typescript
 // plugins/analytics.client.ts
 export default defineNuxtPlugin(() => {
-  const router = useRouter()
+  const router = useRouter();
   router.afterEach((to) => {
-    gtag('event', 'page_view', {
+    gtag("event", "page_view", {
       page_path: to.fullPath,
       page_title: document.title,
-    })
-  })
-})
+    });
+  });
+});
 ```
 
 ---
@@ -243,6 +249,7 @@ Your own site is showing as a referrer to itself, or a payment processor (Stripe
 GA4 Admin → Data Streams → your stream → Configure tag settings → List unwanted referrals
 
 Add all external services that redirect back to your site:
+
 - `stripe.com`
 - `paypal.com`
 - `checkout.stripe.com`
@@ -271,6 +278,7 @@ If you're overwhelmed by GA4's complexity, start with one report:
 **Reports → Acquisition → Traffic acquisition**
 
 This tells you:
+
 - How many users came from each channel (organic, direct, social, email)
 - Which channels convert best
 - Whether your SEO and content work is growing organic traffic month over month

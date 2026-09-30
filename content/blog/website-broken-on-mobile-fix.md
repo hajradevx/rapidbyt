@@ -32,6 +32,7 @@ This guide covers every common mobile breakage pattern and how to fix each one.
 ### Option B: Real Device Testing
 
 Send yourself a link and open it on your actual phone. Check:
+
 - Does the page fit the screen without horizontal scrolling?
 - Can you read all text without zooming?
 - Can you tap all buttons without hitting the wrong one?
@@ -87,7 +88,7 @@ Or in Chrome DevTools console:
 
 ```javascript
 // Logs every element that's wider than the viewport
-document.querySelectorAll('*').forEach(el => {
+document.querySelectorAll("*").forEach((el) => {
   if (el.offsetWidth > document.documentElement.offsetWidth) {
     console.log(el);
   }
@@ -100,7 +101,8 @@ document.querySelectorAll('*').forEach(el => {
 /* Fixed-width elements — set a max-width instead */
 .container {
   width: 1200px; /* BAD */
-  max-width: 1200px; width: 100%; /* GOOD */
+  max-width: 1200px;
+  width: 100%; /* GOOD */
 }
 
 /* Images wider than their container */
@@ -110,7 +112,8 @@ img {
 }
 
 /* Pre/code blocks that don't wrap */
-pre, code {
+pre,
+code {
   overflow-x: auto;
   white-space: pre-wrap;
 }
@@ -127,7 +130,8 @@ table {
 **Global fix to add to your CSS:**
 
 ```css
-html, body {
+html,
+body {
   overflow-x: hidden;
   max-width: 100%;
 }
@@ -140,6 +144,7 @@ html, body {
 If users have to pinch-and-zoom to read your content, they won't. Google also penalises pages with text under 12px.
 
 **Minimum sizes:**
+
 - Body text: **16px minimum** (14px is too small on mobile)
 - Small/caption text: **12px minimum**
 - Button text: **14px minimum**
@@ -150,10 +155,18 @@ body {
   font-size: 16px;
 }
 
-h1 { font-size: clamp(1.75rem, 5vw, 3rem); }
-h2 { font-size: clamp(1.5rem, 4vw, 2.25rem); }
-h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
-p  { font-size: clamp(1rem, 2.5vw, 1.125rem); }
+h1 {
+  font-size: clamp(1.75rem, 5vw, 3rem);
+}
+h2 {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+}
+h3 {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+}
+p {
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+}
 ```
 
 `clamp()` gives you a minimum size, a fluid size, and a maximum size — text scales between screen sizes without breakpoints.
@@ -249,7 +262,7 @@ img {
 
 ```css
 .hero-bg {
-  background-image: url('/hero.webp');
+  background-image: url("/hero.webp");
   background-size: cover;
   background-position: center center;
   /* For mobile, use a portrait-cropped version */
@@ -257,7 +270,7 @@ img {
 
 @media (max-width: 768px) {
   .hero-bg {
-    background-image: url('/hero-mobile.webp'); /* Portrait crop */
+    background-image: url("/hero-mobile.webp"); /* Portrait crop */
     background-position: top center;
   }
 }
@@ -270,7 +283,9 @@ img {
 **Problem: Input fields too small to type in**
 
 ```css
-input, textarea, select {
+input,
+textarea,
+select {
   font-size: 16px; /* CRITICAL: below 16px triggers iOS auto-zoom */
   padding: 12px 16px;
   width: 100%;
@@ -367,8 +382,7 @@ Embedded YouTube or Vimeo iframes have a fixed `width` and `height` in their def
 ```html
 <!-- Wrap every iframe in this div -->
 <div class="video-wrapper">
-  <iframe src="https://www.youtube.com/embed/xxxxx" 
-    frameborder="0" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/xxxxx" frameborder="0" allowfullscreen></iframe>
 </div>
 ```
 
@@ -379,6 +393,7 @@ Embedded YouTube or Vimeo iframes have a fixed `width` and `height` in their def
 Google penalises "intrusive interstitials" — popups that cover the main content on mobile. This hurts your ranking AND causes immediate bounces.
 
 **Rules:**
+
 - Popups must have an easy-to-tap close button (minimum 44×44px, clearly visible)
 - The close button must not be in a corner where it's easy to miss
 - Cookie/GDPR banners should not take up more than 20–25% of the screen

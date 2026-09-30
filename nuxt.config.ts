@@ -28,7 +28,7 @@ export default defineNuxtConfig({
         { rel: "manifest", href: "/site.webmanifest" },
         { rel: "dns-prefetch", href: "https://api.dicebear.com" },
         // Canonical — tells Google the authoritative non-www URL
-        { rel: "canonical", href: "https://rapidbyt.com" },
+        { rel: "canonical", href: "https://rapidbyt.com/" },
       ],
 
       meta: [

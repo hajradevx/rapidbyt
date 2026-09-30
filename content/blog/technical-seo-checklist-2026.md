@@ -88,9 +88,9 @@ Every page should have exactly one `<h1>` containing the primary keyword. Use H2
 
 ```html
 <h1>Main Topic</h1>
-  <h2>Subtopic A</h2>
-    <h3>Sub-subtopic</h3>
-  <h2>Subtopic B</h2>
+<h2>Subtopic A</h2>
+<h3>Sub-subtopic</h3>
+<h2>Subtopic B</h2>
 ```
 
 ### 10. Alt text on all images
@@ -130,14 +130,16 @@ FAQs can appear directly in search results, taking up significant SERP real esta
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": [{
-    "@type": "Question",
-    "name": "How long does SEO take to work?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Technical SEO fixes show results within 4-12 weeks..."
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long does SEO take to work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Technical SEO fixes show results within 4-12 weeks..."
+      }
     }
-  }]
+  ]
 }
 ```
 
@@ -227,7 +229,7 @@ Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 ### 29. Set `lang` attribute on `<html>`
 
 ```html
-<html lang="en">
+<html lang="en"></html>
 ```
 
 ### 30. Add hreflang for multilingual sites

@@ -32,13 +32,13 @@ This is the most common — and most confusing — problem when deploying Nuxt t
 
 These two environments are fundamentally different runtimes:
 
-| | `nuxt dev` (Local) | `wrangler deploy` (Production) |
-|--|--|--|
-| Runtime | **Node.js** | **V8 Isolate** (Cloudflare) |
-| Database | Local SQLite file (`.data/db/sqlite.db`) | **D1 binding** (remote) |
-| Env vars | `.env` file | Wrangler secrets / `vars` |
-| Node APIs | All available | Restricted — no `fs`, `net`, `path` |
-| Cold start | N/A | 0–5ms but strict CPU limits |
+|            | `nuxt dev` (Local)                       | `wrangler deploy` (Production)      |
+| ---------- | ---------------------------------------- | ----------------------------------- |
+| Runtime    | **Node.js**                              | **V8 Isolate** (Cloudflare)         |
+| Database   | Local SQLite file (`.data/db/sqlite.db`) | **D1 binding** (remote)             |
+| Env vars   | `.env` file                              | Wrangler secrets / `vars`           |
+| Node APIs  | All available                            | Restricted — no `fs`, `net`, `path` |
+| Cold start | N/A                                      | 0–5ms but strict CPU limits         |
 
 Your code runs on Node.js locally and on V8 Workers in production. The gap between them is the source of almost every "works locally, breaks in prod" issue.
 
@@ -68,9 +68,9 @@ Locally, `@nuxthub/core` uses a local SQLite file at `.data/db/sqlite.db`. In pr
       "database_name": "rapidbyt",
       "database_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
       "migrations_table": "_hub_migrations",
-      "migrations_dir": "server/db/migrations/sqlite/"
-    }
-  ]
+      "migrations_dir": "server/db/migrations/sqlite/",
+    },
+  ],
 }
 ```
 
@@ -101,22 +101,20 @@ wrangler d1 migrations apply DB --remote
 
 ```typescript
 export default defineNuxtConfig({
-  modules: ['@nuxthub/core'],
-  hub: { db: 'sqlite' }, // NuxtHub handles the DB binding automatically
+  modules: ["@nuxthub/core"],
+  hub: { db: "sqlite" }, // NuxtHub handles the DB binding automatically
 
   nitro: {
     // Use cloudflare_module only for production builds
     // Dev uses undefined (Node.js) so local SQLite works without polyfills
-    preset: process.env.NODE_ENV === 'production'
-      ? 'cloudflare_module'
-      : undefined,
+    preset: process.env.NODE_ENV === "production" ? "cloudflare_module" : undefined,
 
     cloudflare: {
       deployConfig: true,
       nodeCompat: true,
     },
   },
-})
+});
 ```
 
 The conditional preset is important. If you hardcode `cloudflare_module` for both dev and prod, local development breaks because the Workers runtime doesn't have access to your local SQLite file.
@@ -155,8 +153,8 @@ For non-sensitive public vars, add them directly to `wrangler.jsonc`:
 ```jsonc
 {
   "vars": {
-    "NUXT_PUBLIC_SITE_URL": "https://rapidbyt.com"
-  }
+    "NUXT_PUBLIC_SITE_URL": "https://rapidbyt.com",
+  },
 }
 ```
 
@@ -203,7 +201,7 @@ In `wrangler.jsonc`:
 ```jsonc
 {
   "compatibility_flags": ["nodejs_compat"],
-  "compatibility_date": "2026-07-12"
+  "compatibility_date": "2026-07-12",
 }
 ```
 
@@ -226,8 +224,8 @@ The `resend` v6+ package optionally imports `@react-email/render`, which is Node
 
 ```typescript
 // server/stubs/react-email-render.ts
-export const render = () => ''
-export default { render }
+export const render = () => "";
+export default { render };
 ```
 
 ```typescript
@@ -265,12 +263,12 @@ This runs your built Worker in a local V8 isolate with a local D1 emulator — m
 
 ### Key differences
 
-| | `nuxt dev` | `wrangler dev --local` |
-|--|--|--|
-| Runtime | Node.js | V8 isolate (Workers) |
-| Database | Local SQLite file | Local D1 emulator |
-| Env vars | `.env` file | `wrangler.jsonc` vars |
-| Hot reload | Yes | No — rebuild required |
+|             | `nuxt dev`          | `wrangler dev --local`  |
+| ----------- | ------------------- | ----------------------- |
+| Runtime     | Node.js             | V8 isolate (Workers)    |
+| Database    | Local SQLite file   | Local D1 emulator       |
+| Env vars    | `.env` file         | `wrangler.jsonc` vars   |
+| Hot reload  | Yes                 | No — rebuild required   |
 | When to use | Feature development | Pre-deploy verification |
 
 The tradeoff: `wrangler dev` has no hot reload, so it's slow to iterate on. Use `nuxt dev` for development and `wrangler dev` only for final verification before deploying.
@@ -343,7 +341,7 @@ Some npm packages are written as CommonJS (`require()`) and don't bundle cleanly
 // nuxt.config.ts
 nitro: {
   externals: {
-    inline: ['problematic-package-name']
+    inline: ["problematic-package-name"];
   }
 }
 ```
@@ -421,16 +419,16 @@ wrangler tail --search "/api/diagnose"
 This is the exact configuration used on this site (rapidbyt.com) that works correctly across both local dev and production:
 
 ```typescript
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath } from "node:url";
 
 export default defineNuxtConfig({
-  modules: ['@nuxthub/core', '@nuxt/ui', '@nuxtjs/sitemap'],
+  modules: ["@nuxthub/core", "@nuxt/ui", "@nuxtjs/sitemap"],
 
-  hub: { db: 'sqlite' },
+  hub: { db: "sqlite" },
 
   nitro: {
     // cloudflare_module for production, Node.js for local dev
-    preset: process.env.NODE_ENV === 'production' ? 'cloudflare_module' : undefined,
+    preset: process.env.NODE_ENV === "production" ? "cloudflare_module" : undefined,
 
     cloudflare: {
       deployConfig: true,
@@ -439,30 +437,30 @@ export default defineNuxtConfig({
 
     // Stub Node.js-only optional deps in packages
     alias: {
-      '@react-email/render': fileURLToPath(
-        new URL('./server/stubs/react-email-render.ts', import.meta.url)
-      )
+      "@react-email/render": fileURLToPath(
+        new URL("./server/stubs/react-email-render.ts", import.meta.url),
+      ),
     },
 
     compressPublicAssets: { gzip: true, brotli: true },
     minify: true,
   },
-})
+});
 ```
 
 ---
 
 ## Quick Reference: Error → Cause → Fix
 
-| Error | Most Likely Cause | Fix |
-|-------|-------------------|-----|
-| `db is undefined` | D1 binding not configured | Add binding to `wrangler.jsonc`, verify in Dashboard |
-| `no such table` | Remote migrations not applied | `wrangler d1 migrations apply DB --remote` |
-| `API key undefined` | Secrets not set | `wrangler secret put KEY_NAME` |
-| `fs is not a function` | Node.js API in Workers | `nodeCompat: true` + avoid `fs` |
-| `Dynamic require not supported` | CJS package | Add to `externals.inline` or stub |
-| Blank 500, no error | Build error or crash | `wrangler tail` to see the real error |
-| Works in `wrangler dev`, fails deployed | Secrets not set | Set via `wrangler secret put` |
+| Error                                   | Most Likely Cause             | Fix                                                  |
+| --------------------------------------- | ----------------------------- | ---------------------------------------------------- |
+| `db is undefined`                       | D1 binding not configured     | Add binding to `wrangler.jsonc`, verify in Dashboard |
+| `no such table`                         | Remote migrations not applied | `wrangler d1 migrations apply DB --remote`           |
+| `API key undefined`                     | Secrets not set               | `wrangler secret put KEY_NAME`                       |
+| `fs is not a function`                  | Node.js API in Workers        | `nodeCompat: true` + avoid `fs`                      |
+| `Dynamic require not supported`         | CJS package                   | Add to `externals.inline` or stub                    |
+| Blank 500, no error                     | Build error or crash          | `wrangler tail` to see the real error                |
+| Works in `wrangler dev`, fails deployed | Secrets not set               | Set via `wrangler secret put`                        |
 
 ---
 

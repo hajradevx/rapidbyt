@@ -22,6 +22,7 @@ Here is how to diagnose and fix every common cause.
 Before debugging, verify the form is actually failing versus you're just missing emails.
 
 **Test it yourself:**
+
 1. Go to your own contact form
 2. Fill it out with a test message — use a subject like "TEST - please ignore"
 3. Use an email address you can verify (Gmail works well)
@@ -29,6 +30,7 @@ Before debugging, verify the form is actually failing versus you're just missing
 5. Wait 5 minutes
 
 If you don't receive the notification:
+
 - Check your spam/junk folder first
 - Check your promotions folder (Gmail)
 - Check any email filters you have set up
@@ -42,6 +44,7 @@ If you receive it but the client didn't receive their auto-reply — that's a se
 This is the most common cause. Your form is working — the emails are being sent and received, but your email client is filtering them to spam before you see them.
 
 **Why it happens:**
+
 - Your hosting server's IP is on a spam blacklist (very common with shared hosting)
 - The email has no proper "From" domain — it's sent from a generic server address
 - Missing SPF, DKIM, and DMARC DNS records
@@ -71,6 +74,7 @@ From: RapidByt Contact Form <noreply@rapidbyt.com>
 ```
 
 Not:
+
 ```
 From: nobody@shared-server-123.hostingcompany.com
 ```
@@ -87,12 +91,12 @@ The default `mail()` function in PHP sends emails directly from your server. Mos
 
 These services are built for reliable email delivery. They handle authentication, reputation, and deliverability for you:
 
-| Service | Free Tier | Cost |
-|---------|-----------|------|
-| **Resend** | 3,000 emails/month | $0 |
-| **SendGrid** | 100 emails/day | $0 |
-| **Postmark** | 100 emails/month | $0 |
-| **Mailgun** | 5,000 emails/month (trial) | ~$15/mo |
+| Service      | Free Tier                  | Cost    |
+| ------------ | -------------------------- | ------- |
+| **Resend**   | 3,000 emails/month         | $0      |
+| **SendGrid** | 100 emails/day             | $0      |
+| **Postmark** | 100 emails/month           | $0      |
+| **Mailgun**  | 5,000 emails/month (trial) | ~$15/mo |
 
 **Setting up Resend (simplest):**
 
@@ -101,18 +105,18 @@ npm install resend
 ```
 
 ```typescript
-import { Resend } from 'resend'
+import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 await resend.emails.send({
-  from: 'Contact Form <noreply@yourdomain.com>',
-  to: 'you@yourdomain.com',
+  from: "Contact Form <noreply@yourdomain.com>",
+  to: "you@yourdomain.com",
   subject: `New contact form submission from ${name}`,
   html: `<p><strong>Name:</strong> ${name}</p>
          <p><strong>Email:</strong> ${email}</p>
-         <p><strong>Message:</strong> ${message}</p>`
-})
+         <p><strong>Message:</strong> ${message}</p>`,
+});
 ```
 
 ---
@@ -157,6 +161,7 @@ The form appears to submit (the page reloads or a success message shows) but not
 **How to check:**
 
 Open Chrome DevTools → Network tab → submit the form → look at the request to your form handler. Check:
+
 - Does it return a 200 status? Or 422/500?
 - What does the response body say?
 
@@ -165,12 +170,12 @@ Open Chrome DevTools → Network tab → submit the form → look at the request
 // and log errors server-side
 
 try {
-  await sendEmail(formData)
-  return { success: true }
+  await sendEmail(formData);
+  return { success: true };
 } catch (error) {
-  console.error('Form submission failed:', error)
+  console.error("Form submission failed:", error);
   // Return an error the frontend can display
-  return { success: false, error: error.message }
+  return { success: false, error: error.message };
 }
 ```
 
@@ -206,15 +211,16 @@ await db.insert(contactSubmissions).values({
   message: body.message,
   submittedAt: new Date().toISOString(),
   emailSent: false,
-})
+});
 
 try {
-  await sendEmail(body)
-  await db.update(contactSubmissions)
+  await sendEmail(body);
+  await db
+    .update(contactSubmissions)
     .set({ emailSent: true })
-    .where(eq(contactSubmissions.email, body.email))
+    .where(eq(contactSubmissions.email, body.email));
 } catch (err) {
-  console.error('Email failed but submission saved:', err)
+  console.error("Email failed but submission saved:", err);
 }
 ```
 

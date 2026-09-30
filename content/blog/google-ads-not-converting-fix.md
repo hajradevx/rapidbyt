@@ -38,6 +38,7 @@ Your homepage is designed for many types of visitors — returning customers, pe
 Someone searches "emergency website speed fix" and clicks your ad. They land on your homepage with six service options, a video, testimonials, a pricing section, and a nav menu with ten links. They have no idea what to do. They leave.
 
 **Fix:** Every ad group needs its own dedicated landing page that:
+
 - Repeats the exact keyword from the ad in the headline
 - Has one single call to action
 - Removes the navigation menu entirely
@@ -56,6 +57,7 @@ You're paying for those clicks either way.
 **How to check:** Run your landing page URL through [our free diagnostic tool](/diagnose). If your mobile PageSpeed score is below 70, slow load speed is costing you conversions.
 
 **Fix:** See our [complete page speed guide](/blog/why-page-speed-matters-for-revenue). The fastest wins for ad landing pages:
+
 - Compress your hero image to under 100KB in WebP format
 - Remove any video autoplay above the fold
 - Eliminate third-party scripts (chat widgets, analytics) from the landing page — they're irrelevant to conversion and add 1–3 seconds of load time
@@ -67,6 +69,7 @@ You're paying for those clicks either way.
 Broad match keywords in Google Ads means your ad shows for searches that are loosely related to your keyword — often with completely different intent.
 
 If you bid on `website design` with broad match, your ad might show for:
+
 - "free website design templates" (not buying)
 - "website design course" (learning, not hiring)
 - "website design software" (DIY, not hiring you)
@@ -82,6 +85,7 @@ website speed optimization      ← Broad match — avoid until you have data
 ```
 
 Also add Negative Keywords aggressively:
+
 ```
 -free
 -DIY
@@ -97,6 +101,7 @@ Also add Negative Keywords aggressively:
 ## Reason 4: Your Offer Isn't Clear Enough
 
 A visitor lands on your page and within 5 seconds they should be able to answer:
+
 1. What exactly do I get?
 2. How much does it cost (or is it free)?
 3. What happens when I click the button?
@@ -105,9 +110,11 @@ A visitor lands on your page and within 5 seconds they should be able to answer:
 If any of those questions aren't answered immediately, they leave.
 
 **Weak offer:**
+
 > "Contact us for web services"
 
 **Strong offer:**
+
 > "Free Website Performance Audit — We analyze your speed, SEO, and Core Web Vitals and send a detailed report within 24 hours. No cost, no obligation."
 
 The second offer is specific enough to say yes or no to. The first is an invitation to a sales call nobody asked for.
@@ -119,6 +126,7 @@ The second offer is specific enough to say yes or no to. The first is an invitat
 People who click ads are skeptical by default — they know it's a paid placement. They need more social proof than organic visitors, not less.
 
 **Trust signals that matter for ad landing pages:**
+
 - Customer count or case study numbers ("73 sites optimised this year")
 - A specific testimonial with a real name and company
 - Any recognizable logos of clients or partners
@@ -133,12 +141,14 @@ People who click ads are skeptical by default — they know it's a paid placemen
 "Submit" and "Click Here" are invisible to the human eye. People scan pages in an F-pattern — they're not reading carefully. Your CTA needs to stand out visually and tell them exactly what happens next.
 
 **Button text that converts:**
+
 - "Get My Free Audit"
 - "Start My Free Trial"
 - "Book a 15-Minute Call"
 - "Download the Free Guide"
 
 **Button placement rules:**
+
 - Visible above the fold without scrolling on mobile
 - High contrast color — not the same as your background or body text
 - Repeated at the bottom of the page for anyone who scrolls
@@ -153,6 +163,7 @@ Bidding on competitor names can work — but it requires a specific page that di
 If someone searches "RapidByt alternative" and lands on your generic homepage, they bounce. They were looking for a comparison, not a general sales pitch.
 
 **Fix:** If you bid on competitor terms, create a dedicated comparison page:
+
 - List the key differences honestly
 - Lead with your strongest advantages
 - Address the competitor's known weaknesses (carefully — don't make false claims)
@@ -165,11 +176,13 @@ If someone searches "RapidByt alternative" and lands on your generic homepage, t
 You might be converting and not know it. If your Google Ads conversion tracking isn't set up correctly, you're making optimization decisions based on bad data.
 
 **How to verify:** Google Ads → Tools → Conversions. Check that:
+
 - At least one conversion action is active
 - The "Tracking status" shows "Recording conversions" (not "Unverified" or "No recent conversions")
 - The conversion event fires when you test it yourself
 
 Common setup mistakes:
+
 - Tracking a page view as a conversion instead of a form submission
 - The thank-you page URL changed but the conversion tag wasn't updated
 - The tag fires on every page instead of only on the thank-you page
@@ -181,6 +194,7 @@ Common setup mistakes:
 If you sell B2B services, running ads at 2am on Saturday wastes budget. If you sell products to consumers, evenings and weekends are peak time.
 
 **Fix:**
+
 1. Google Ads → Audiences → check which times and days get your conversions
 2. Schedule ads to run only during high-conversion windows
 3. Set bid adjustments — bid higher during peak hours, lower during off-hours
@@ -193,12 +207,12 @@ Also check device bid adjustments. If mobile has a much lower conversion rate th
 
 Here's what "good" looks like for Google Ads by industry:
 
-| Industry | Average CVR | Good CVR |
-|----------|-------------|----------|
-| E-commerce | 2.8% | > 4% |
-| B2B Services | 2.2% | > 3.5% |
-| Professional Services | 5.0% | > 7% |
-| Tech/Software | 2.9% | > 5% |
+| Industry              | Average CVR | Good CVR |
+| --------------------- | ----------- | -------- |
+| E-commerce            | 2.8%        | > 4%     |
+| B2B Services          | 2.2%        | > 3.5%   |
+| Professional Services | 5.0%        | > 7%     |
+| Tech/Software         | 2.9%        | > 5%     |
 
 If you're significantly below these, work through the 9 reasons above before increasing your ad budget. More spend into a broken funnel just means more waste faster.
 

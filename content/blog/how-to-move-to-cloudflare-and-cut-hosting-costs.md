@@ -24,6 +24,7 @@ Cloudflare operates one of the largest networks in the world — 300+ data cente
 A user in Karachi gets your site from a nearby node. A user in London gets it from a London node. Nobody waits for your origin server in the US.
 
 **What you get for free:**
+
 - Global CDN (content delivery network)
 - Automatic HTTPS and SSL certificate
 - DDoS protection
@@ -49,6 +50,7 @@ Enter your domain name. Cloudflare will scan your existing DNS records.
 **Step 3: Update your nameservers**
 
 Cloudflare will give you two nameserver addresses like:
+
 ```
 ns1.cloudflare.com
 ns2.cloudflare.com
@@ -77,6 +79,7 @@ Once active, go to your Cloudflare dashboard:
 If your site is static (HTML/CSS/JS) or built with a framework like Nuxt, Next.js, Astro, or SvelteKit, you can host it completely free on Cloudflare Pages.
 
 ### What You'll Need
+
 - Your site's source code in a GitHub or GitLab repository
 - A Cloudflare account (free)
 - 30–45 minutes
@@ -104,6 +107,7 @@ git push -u origin main
 For common frameworks:
 
 **Nuxt 4 (SSG/Static):**
+
 ```
 Build command: nuxt generate
 Output directory: .output/public
@@ -111,18 +115,21 @@ Node.js version: 22
 ```
 
 **Next.js:**
+
 ```
 Build command: next build
 Output directory: .next
 ```
 
 **Astro:**
+
 ```
 Build command: astro build
 Output directory: dist
 ```
 
 **Plain HTML:**
+
 ```
 Build command: (leave empty)
 Output directory: / (or wherever your index.html is)
@@ -136,6 +143,7 @@ Settings → Environment variables → Add them here. They're encrypted and neve
 ### Step 5: Deploy
 
 Click "Save and Deploy." Cloudflare will:
+
 1. Clone your repository
 2. Run your build command
 3. Deploy the output to their global network
@@ -157,6 +165,7 @@ If your app has a backend (database queries, user auth, APIs), Cloudflare Worker
 This is what this very site (RapidByt) runs on.
 
 **The free tier includes:**
+
 - 100,000 requests per day
 - 10ms CPU time per request
 - D1 Database (SQLite at the edge) — 500MB free
@@ -185,10 +194,10 @@ wrangler deploy
 // nuxt.config.ts
 export default defineNuxtConfig({
   nitro: {
-    preset: 'cloudflare_module',
+    preset: "cloudflare_module",
     cloudflare: { deployConfig: true, nodeCompat: true },
   },
-})
+});
 ```
 
 ```bash
@@ -205,15 +214,15 @@ Your entire full-stack Nuxt app — server-side rendering, API routes, database 
 
 Here's what we typically see after migrating clients:
 
-| Metric | Shared Hosting | Cloudflare Pages/Workers |
-|--------|---------------|-------------------------|
-| TTFB (global avg) | 800–2000ms | 50–150ms |
-| PageSpeed Score | 40–65 | 85–98 |
-| Uptime | 99.5% | 99.99% |
-| Monthly cost | $10–100 | $0–5 |
-| DDoS protection | None/basic | Enterprise-grade |
-| SSL certificate | Manual/paid | Automatic, free |
-| Auto-scaling | No | Yes (infinite) |
+| Metric            | Shared Hosting | Cloudflare Pages/Workers |
+| ----------------- | -------------- | ------------------------ |
+| TTFB (global avg) | 800–2000ms     | 50–150ms                 |
+| PageSpeed Score   | 40–65          | 85–98                    |
+| Uptime            | 99.5%          | 99.99%                   |
+| Monthly cost      | $10–100        | $0–5                     |
+| DDoS protection   | None/basic     | Enterprise-grade         |
+| SSL certificate   | Manual/paid    | Automatic, free          |
+| Auto-scaling      | No             | Yes (infinite)           |
 
 The numbers aren't close. Cloudflare's edge network is simply faster than any shared hosting provider.
 
@@ -224,6 +233,7 @@ The numbers aren't close. Cloudflare's edge network is simply faster than any sh
 ### "My contact form stopped working"
 
 Static sites can't process forms without a backend. Solutions:
+
 - Use Cloudflare Pages Functions (serverless, included free)
 - Use [Formspree](https://formspree.io) or [Web3Forms](https://web3forms.com) (free tiers available)
 - Use Cloudflare Workers for your form API endpoint
@@ -245,12 +255,14 @@ Cloudflare Workers runs V8 isolates, not Node.js. Some Node.js-specific APIs nee
 ## Is Cloudflare Right for You?
 
 **Great fit for:**
+
 - Portfolio/brochure sites
 - Blogs (Nuxt Content, Astro, Next.js)
 - Marketing landing pages
 - API-first applications with a modern framework
 
 **Might need additional setup:**
+
 - Sites heavily dependent on server-side sessions
 - Legacy PHP applications (these need Cloudflare as a CDN, not full migration)
 - Sites with large file uploads (use R2 + Workers for this)

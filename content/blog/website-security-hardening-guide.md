@@ -27,13 +27,13 @@ If your site is actively serving malware or spam, your visitors and SEO are both
 <!-- Temporary maintenance page -->
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Maintenance</title>
-  <meta name="robots" content="noindex" />
-</head>
-<body>
-  <h1>We're performing urgent maintenance. Back shortly.</h1>
-</body>
+  <head>
+    <title>Maintenance</title>
+    <meta name="robots" content="noindex" />
+  </head>
+  <body>
+    <h1>We're performing urgent maintenance. Back shortly.</h1>
+  </body>
 </html>
 ```
 
@@ -51,11 +51,13 @@ Use a password manager and generate 20+ character random passwords for each.
 ### Step 3: Scan for Malware
 
 **Free tools:**
+
 - [Sucuri SiteCheck](https://sitecheck.sucuri.net) — paste your URL, get instant malware scan
 - [VirusTotal](https://virustotal.com) — checks your URL against 70+ antivirus engines
 - Google Search Console → Security Issues tab
 
 **If you have server access:**
+
 ```bash
 # Find recently modified PHP files (common attack vector)
 find /var/www/html -name "*.php" -newer /var/www/html/index.php -ls
@@ -70,7 +72,8 @@ This is why backups exist. Restore to a version from before the hack. If you don
 
 ### Step 5: Identify the Entry Point
 
-Before you restore, understand *how* they got in. Common entry points:
+Before you restore, understand _how_ they got in. Common entry points:
+
 - Outdated plugins/themes (WordPress: check installed plugin versions)
 - Weak or reused admin passwords
 - Old PHP version
@@ -103,6 +106,7 @@ Never reuse a password. Use a password manager (Bitwarden is free). Enable two-f
 A WAF filters malicious traffic before it reaches your server. **Cloudflare's free plan** includes a basic WAF and blocks common attack patterns (SQL injection, XSS, etc.).
 
 Setup takes 15 minutes:
+
 1. Sign up at cloudflare.com
 2. Add your domain → update nameservers at your registrar
 3. Enable "Under Attack Mode" if you're actively being attacked
@@ -162,6 +166,7 @@ add_filter( 'xmlrpc_enabled', '__return_false' );
 ```
 
 Or block it at the server level:
+
 ```apache
 # .htaccess
 <Files xmlrpc.php>
@@ -177,11 +182,12 @@ After 5 failed logins, lock the account for 15 minutes. This stops brute-force a
 WordPress: Install the "Limit Login Attempts Reloaded" plugin.
 
 Custom apps:
+
 ```js
 // Simple rate limiting with Redis
 const attempts = await redis.incr(`login:${ip}`);
 if (attempts === 1) await redis.expire(`login:${ip}`, 900); // 15 min window
-if (attempts > 5) throw new Error('Too many attempts. Try again in 15 minutes.');
+if (attempts > 5) throw new Error("Too many attempts. Try again in 15 minutes.");
 ```
 
 ### 9. Change the Default Admin URL (WordPress)
@@ -195,6 +201,7 @@ Install the "WPS Hide Login" plugin and change it to something unpredictable lik
 Backups are not optional. Without them, a hack means starting your website from scratch.
 
 **Minimum backup strategy:**
+
 - Daily automated backups
 - Store off-site (not on the same server)
 - Keep at least 30 days of backups
@@ -207,6 +214,7 @@ Free options: BackupBuddy (WordPress), UpdraftPlus, or your hosting provider's b
 Get notified the moment something changes on your site.
 
 **Free monitoring tools:**
+
 - [UptimeRobot](https://uptimerobot.com) — monitors uptime, alerts on downtime
 - [Google Search Console](https://search.google.com/search-console) — alerts for security issues
 - Wordfence (WordPress) — real-time file change monitoring

@@ -21,20 +21,23 @@ Here are 10 specific, fixable reasons your traffic isn't converting — and exac
 
 ## Fix 1: Your Value Proposition is Unclear
 
-A visitor lands on your page and within 5 seconds asks: *"What is this? What does it do for me? Why should I care?"*
+A visitor lands on your page and within 5 seconds asks: _"What is this? What does it do for me? Why should I care?"_
 
 If your headline doesn't answer all three questions immediately, they leave.
 
 **Bad headline:**
+
 > Welcome to Ahmed's Digital Solutions
 
 **Good headline:**
+
 > We Fix Slow Pakistani Business Websites — Most Sites See 3× More Leads in 30 Days
 
 The difference: specificity, a clear benefit, and a concrete outcome.
 
 **How to fix:**
 Every page needs a headline that answers:
+
 1. What you do (specific)
 2. Who you do it for
 3. What result they get
@@ -51,6 +54,7 @@ This is especially critical for Pakistani audiences — a significant portion of
 **How to check:** Send your URL to yourself on WhatsApp, open it on mobile data (not WiFi). Time how long it takes.
 
 **How to fix:**
+
 - Compress all images (WhatsApp images sent as documents are often 3–5MB each)
 - Move to fast hosting (Cloudflare Pages, Vercel, or at minimum a local Pakistan CDN)
 - Remove heavy sliders, animations, and video backgrounds from mobile
@@ -74,6 +78,7 @@ People don't buy from strangers. If someone finds you through a WhatsApp forward
 - **WhatsApp chat button** — nothing builds trust faster than a real person responding
 
 **What kills trust:**
+
 - Stock photos of Western business people
 - Generic "we are a leading company" copy
 - No contact information visible
@@ -104,6 +109,7 @@ The call-to-action is the single most important element on any conversion page. 
 ```
 
 **Rules:**
+
 - One primary CTA per page (maximum two)
 - Visible without scrolling on mobile
 - Tell them exactly what happens after they click
@@ -118,13 +124,15 @@ Every potential customer has one or more reasons NOT to buy. If your page doesn'
 **Most common objections by type:**
 
 For service businesses:
-- *"Is it worth the price?"* → Show ROI, case studies, money-back guarantee
-- *"Will they actually deliver?"* → Testimonials, portfolio, process description
-- *"What if it doesn't work?"* → Risk reversal, refund policy, free trial
+
+- _"Is it worth the price?"_ → Show ROI, case studies, money-back guarantee
+- _"Will they actually deliver?"_ → Testimonials, portfolio, process description
+- _"What if it doesn't work?"_ → Risk reversal, refund policy, free trial
 
 For products:
-- *"Is this real?"* → Reviews, unboxing videos, authentic photos
-- *"Will it work for me?"* → Specific use cases, FAQ, comparison
+
+- _"Is this real?"_ → Reviews, unboxing videos, authentic photos
+- _"Will it work for me?"_ → Specific use cases, FAQ, comparison
 
 **How to find your real objections:** Ask 5 existing customers: "What almost stopped you from buying?" Their answers are your objection list. Address each one on your page.
 
@@ -137,6 +145,7 @@ Navigation menus, social media links, related products, pop-ups, live chat, news
 **The test:** Look at your page and count the number of things a visitor can click. If it's more than 3–4, you have too many distractions.
 
 **Fix:** For dedicated landing pages (especially for paid ads):
+
 - Remove the navigation menu entirely
 - Remove footer links
 - Remove all sidebar content
@@ -151,6 +160,7 @@ A page with one option converts better than a page with ten options. This is cal
 Every field you add to a form reduces completion rate by approximately 10%. A 10-field contact form is silently killing your leads.
 
 **Minimum viable form:**
+
 - Name
 - WhatsApp number OR email (not both — let them choose)
 - One qualifying question maximum
@@ -169,6 +179,7 @@ Studies consistently show that responding to a lead within **5 minutes** is 100�
 By the time you respond, they've already contacted three competitors.
 
 **Fix:**
+
 - Set up WhatsApp Business auto-reply: "Thanks for reaching out! A team member will respond within 2 hours."
 - Check your inquiry form email notifications — are they going to spam?
 - Set a rule: any new lead gets a WhatsApp message within 15 minutes during business hours
@@ -180,6 +191,7 @@ By the time you respond, they've already contacted three competitors.
 "Quality services at competitive prices" is not an offer. It says nothing. Every competitor says the same thing.
 
 **A real offer has:**
+
 - A specific deliverable ("Full website speed audit + written report")
 - A specific timeframe ("Delivered in 24 hours")
 - A specific price or price range ("Starting from $100")
@@ -198,6 +210,7 @@ Notice the difference? The second offer is something people can say yes or no to
 Without a reason to act now, visitors think "I'll come back to this later." They never do.
 
 **Real urgency (not fake countdown timers):**
+
 - Limited availability: "Only taking 3 new clients this month"
 - Seasonal pricing: "Current rates valid until October 31"
 - Problem cost: "Every day your site loads slowly costs you X customers"
@@ -207,13 +220,13 @@ Without a reason to act now, visitors think "I'll come back to this later." They
 
 ## Conversion Rate Benchmark: Are You in the Ballpark?
 
-| Traffic Source | Average Conversion Rate | Good |
-|----------------|------------------------|------|
-| Direct (typed URL) | 3.2% | > 5% |
-| Organic SEO | 2.4% | > 3.5% |
-| Paid ads | 2.3% | > 4% |
-| Social media | 0.7% | > 1.5% |
-| Email | 2.6% | > 4% |
+| Traffic Source     | Average Conversion Rate | Good   |
+| ------------------ | ----------------------- | ------ |
+| Direct (typed URL) | 3.2%                    | > 5%   |
+| Organic SEO        | 2.4%                    | > 3.5% |
+| Paid ads           | 2.3%                    | > 4%   |
+| Social media       | 0.7%                    | > 1.5% |
+| Email              | 2.6%                    | > 4%   |
 
 If you're below these averages, work through this checklist systematically. Most pages have at least 3–4 of these problems simultaneously.
 

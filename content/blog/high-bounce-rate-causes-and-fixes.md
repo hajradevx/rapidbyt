@@ -19,13 +19,13 @@ Let's go through the real causes in order of impact.
 
 It depends entirely on your page type:
 
-| Page Type | Good Bounce Rate | Concerning |
-|-----------|-----------------|------------|
-| Landing pages | 60–90% | > 90% |
-| Blog posts | 65–90% | > 90% |
-| Product pages | 20–45% | > 60% |
-| Contact pages | 10–30% | > 50% |
-| Homepage | 25–55% | > 70% |
+| Page Type     | Good Bounce Rate | Concerning |
+| ------------- | ---------------- | ---------- |
+| Landing pages | 60–90%           | > 90%      |
+| Blog posts    | 65–90%           | > 90%      |
+| Product pages | 20–45%           | > 60%      |
+| Contact pages | 10–30%           | > 50%      |
+| Homepage      | 25–55%           | > 70%      |
 
 A blog with 80% bounce rate is fine — people read and leave. A product page with 80% is a revenue emergency.
 
@@ -72,10 +72,13 @@ More than 60% of web traffic is mobile. If your page requires pinching and zoomi
 
 ```css
 /* Minimum readable font size on mobile */
-body { font-size: 16px; }
+body {
+  font-size: 16px;
+}
 
 /* Touch targets must be at least 48×48px */
-button, a {
+button,
+a {
   min-height: 48px;
   min-width: 48px;
   padding: 12px 16px;
@@ -94,6 +97,7 @@ A visitor lands on your page, reads it, and thinks "OK... now what?" If you don'
 **The fix:**
 
 Every page needs exactly **one primary CTA** that is:
+
 - Visible without scrolling (above the fold)
 - Written in action-oriented language ("Get My Free Audit" not "Learn More")
 - Visually distinct (not the same color as everything else)
@@ -120,6 +124,7 @@ Specificity increases click-through rate. Always say what happens after the clic
 If a popup blocks the entire screen within 2 seconds of landing, Google calls this a "intrusive interstitial" and penalizes your ranking. Users just close the tab.
 
 **The fix:**
+
 - Delay popups to at least 30 seconds or trigger them on exit-intent (when the cursor moves to the browser bar)
 - Never block the main content on mobile
 - Make the dismiss button obvious and easy to click
@@ -149,6 +154,7 @@ If you rank for "free SEO tools" but sell premium SEO services at $500/month, yo
 **How to diagnose:** In Google Analytics, check which pages have the worst bounce rate, then check which keywords/sources send traffic to those pages. Look for intent mismatches.
 
 **Fix:** Either:
+
 1. Create free content that serves those visitors (a free tool or guide) and use it to nurture them toward your paid offer
 2. Adjust your SEO targeting to attract visitors with buying intent
 

@@ -127,6 +127,7 @@ Google's Googlebot has a "crawl budget" — a limit on how many pages it will cr
 **Check it:** Use our [free diagnosis tool](/diagnose) — if your PageSpeed score is below 30, this may be affecting your crawl budget.
 
 **Fix:**
+
 - Enable server-side caching so pages load instantly for bots
 - Compress images (see our [page speed guide](/blog/why-page-speed-matters-for-revenue))
 - Remove unnecessary redirects
@@ -138,11 +139,13 @@ Google's Googlebot has a "crawl budget" — a limit on how many pages it will cr
 404 errors, redirect loops, or a broken SSL certificate can all prevent Google from properly indexing your site.
 
 **Check it in Google Search Console:**
+
 1. Go to **Coverage** report → look for errors
 2. Check **Core Web Vitals** report for critical issues
 3. Use **URL Inspection** on specific pages to see what Google sees
 
 **Common fixes:**
+
 - Fix all 404 pages by redirecting to relevant live pages
 - Ensure SSL certificate is valid (your site loads on `https://`)
 - Break any redirect chains (A → B → C → D should be A → D)

@@ -15,11 +15,11 @@ This guide covers all three vitals with concrete fixes, not vague advice.
 
 ## The Three Core Web Vitals
 
-| Metric | What it measures | Good | Poor |
-|--------|-----------------|------|------|
-| **LCP** | Loading performance | ≤ 2.5s | > 4s |
-| **CLS** | Visual stability | ≤ 0.1 | > 0.25 |
-| **INP** | Interactivity | ≤ 200ms | > 500ms |
+| Metric  | What it measures    | Good    | Poor    |
+| ------- | ------------------- | ------- | ------- |
+| **LCP** | Loading performance | ≤ 2.5s  | > 4s    |
+| **CLS** | Visual stability    | ≤ 0.1   | > 0.25  |
+| **INP** | Interactivity       | ≤ 200ms | > 500ms |
 
 All three are measured from real user data (Chrome User Experience Report) and lab data (Lighthouse). Google weights real-world data more heavily.
 
@@ -30,6 +30,7 @@ All three are measured from real user data (Chrome User Experience Report) and l
 LCP measures the time from page navigation to when the largest visible content element (image, video, or text block) finishes rendering.
 
 ### Common LCP Elements
+
 - Hero images
 - Large text headings (above the fold)
 - Video poster frames
@@ -70,6 +71,7 @@ If your TTFB is over 800ms, no amount of frontend optimization will get you a go
 CLS measures unexpected layout shifts — elements that move after the page has loaded. Even a single jumping element causes a bad score.
 
 ### The Root Causes
+
 1. Images without dimensions
 2. Ads, embeds, iframes without reserved space
 3. Dynamically injected content above existing content
@@ -107,8 +109,8 @@ img {
 
 ```css
 @font-face {
-  font-family: 'MyFont';
-  src: url('/fonts/myfont.woff2') format('woff2');
+  font-family: "MyFont";
+  src: url("/fonts/myfont.woff2") format("woff2");
   font-display: optional; /* or 'swap' — avoid 'auto' */
 }
 ```
@@ -147,7 +149,7 @@ async function processItems(items) {
 
 ```js
 // main.js
-const worker = new Worker('/workers/heavy-compute.js');
+const worker = new Worker("/workers/heavy-compute.js");
 worker.postMessage({ data: largeArray });
 worker.onmessage = (e) => updateUI(e.data);
 
@@ -167,12 +169,14 @@ Each analytics tag, chat widget, and ad script adds to your JavaScript weight. A
 ## Measure Your Vitals
 
 ### Lab Testing (Instant)
+
 Use [PageSpeed Insights](https://pagespeed.web.dev) or our [free diagnosis tool](/diagnose) for a quick Lighthouse-based score.
 
 ### Real User Monitoring (Accurate)
+
 ```js
 // Using the web-vitals library
-import { onLCP, onCLS, onINP } from 'web-vitals';
+import { onLCP, onCLS, onINP } from "web-vitals";
 
 onLCP(console.log);
 onCLS(console.log);

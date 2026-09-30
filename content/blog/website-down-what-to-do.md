@@ -27,14 +27,14 @@ First, make sure it's not just your browser or your network.
 
 **Check the exact error message:**
 
-| Error | What It Means |
-|-------|---------------|
-| `502 Bad Gateway` | Your web server is up but the app behind it crashed |
-| `503 Service Unavailable` | Server is overloaded or in maintenance mode |
-| `504 Gateway Timeout` | App is too slow to respond — possible traffic spike |
-| `ERR_CONNECTION_REFUSED` | Server is completely unreachable — hosting problem |
-| `ERR_NAME_NOT_RESOLVED` | DNS is failing — domain or DNS issue |
-| Blank white page | PHP/app crash — check error logs immediately |
+| Error                     | What It Means                                       |
+| ------------------------- | --------------------------------------------------- |
+| `502 Bad Gateway`         | Your web server is up but the app behind it crashed |
+| `503 Service Unavailable` | Server is overloaded or in maintenance mode         |
+| `504 Gateway Timeout`     | App is too slow to respond — possible traffic spike |
+| `ERR_CONNECTION_REFUSED`  | Server is completely unreachable — hosting problem  |
+| `ERR_NAME_NOT_RESOLVED`   | DNS is failing — domain or DNS issue                |
+| Blank white page          | PHP/app crash — check error logs immediately        |
 
 Write down the exact error. It tells you where to look.
 
@@ -45,6 +45,7 @@ Write down the exact error. It tells you where to look.
 **Go to your hosting provider's status page:**
 
 Most hosting providers publish real-time status. Google your provider + "status page":
+
 - Cloudflare: [cloudflarestatus.com](https://cloudflarestatus.com)
 - DigitalOcean: [status.digitalocean.com](https://status.digitalocean.com)
 - Hostinger, Namecheap, etc. — check their website or Twitter
@@ -70,6 +71,7 @@ dig yoursite.com
 ```
 
 Common DNS causes:
+
 - Domain expired (check your domain registrar)
 - DNS records accidentally changed or deleted
 - Nameservers changed (e.g., you moved hosts but old DNS is still propagating)
@@ -109,6 +111,7 @@ wrangler tail
 ```
 
 **What to look for:**
+
 - Out of memory errors
 - Permission denied errors
 - Database connection failures
@@ -241,6 +244,7 @@ Once you're back online, spend 20 minutes on a post-mortem:
 If a client told you your site was down before you knew about it, you have no monitoring. Fix this today — it's free.
 
 **UptimeRobot (free for up to 50 monitors):**
+
 1. Sign up at [uptimerobot.com](https://uptimerobot.com)
 2. Add your site URL as an HTTP monitor
 3. Set check interval to 5 minutes
@@ -249,6 +253,7 @@ If a client told you your site was down before you knew about it, you have no mo
 When your site goes down, you get a notification within 5 minutes. When it comes back up, you get another notification.
 
 **Also monitor:**
+
 - SSL certificate expiry (UptimeRobot does this too)
 - Domain expiry (set a reminder 60 days before expiry)
 - Key API endpoints (not just the homepage)

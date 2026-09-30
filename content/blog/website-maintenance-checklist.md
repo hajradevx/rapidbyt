@@ -5,7 +5,15 @@ date: 2026-11-12
 readTime: 8
 category: "Security"
 author: "RapidByt Team"
-tags: ["website maintenance", "security updates", "uptime monitoring", "backups", "SSL", "WordPress maintenance"]
+tags:
+  [
+    "website maintenance",
+    "security updates",
+    "uptime monitoring",
+    "backups",
+    "SSL",
+    "WordPress maintenance",
+  ]
 image: "/blog/website-maintenance-checklist.jpg"
 ---
 
@@ -34,6 +42,7 @@ A website going down for 4 hours, or getting hacked, or losing its Google rankin
 If you have UptimeRobot or similar set up, verify there were no downtime incidents this week. If there were, investigate why.
 
 If you don't have uptime monitoring set up yet — do this today before anything else:
+
 1. Sign up at [uptimerobot.com](https://uptimerobot.com) (free)
 2. Add your site as an HTTP monitor (5-minute interval)
 3. Add your email as an alert contact
@@ -43,6 +52,7 @@ You'll get an email the moment your site goes down. Without this, clients tell y
 ### Scan Your Site Manually
 
 Open your homepage on your phone (mobile data, not WiFi). Click through to 3–4 pages. Check:
+
 - Does everything load?
 - Do images display correctly?
 - Does the contact form work? (Submit a test form)
@@ -59,6 +69,7 @@ This takes 3 minutes and catches client-facing issues before they become problem
 Run your homepage through [PageSpeed Insights](https://pagespeed.web.dev) or our [free tool](/diagnose). Compare to last month. If it dropped more than 5–10 points, something changed — investigate.
 
 Common causes of score drops:
+
 - A new plugin or script was added that loads heavy JS
 - Images were uploaded without compression
 - A third-party embed (chat widget, video) started loading earlier
@@ -69,6 +80,7 @@ Common causes of score drops:
 Dashboard → Updates → update WordPress core, all plugins, all themes.
 
 **Order matters:**
+
 1. Back up first (see backup task below)
 2. Update WordPress core
 3. Update plugins (one by one if you're cautious)
@@ -92,6 +104,7 @@ npm audit fix
 ### 3. Review Security Scan
 
 Run a free malware scan monthly:
+
 - [Sucuri SiteCheck](https://sitecheck.sucuri.net) — paste your URL
 - [VirusTotal](https://virustotal.com) — check your domain
 
@@ -100,6 +113,7 @@ If anything is flagged: follow the steps in our [website security guide](/blog/w
 ### 4. Check All Forms
 
 Fill in every form on your site:
+
 - Contact form
 - Newsletter signup
 - Any other forms
@@ -109,6 +123,7 @@ Verify you receive the submission. This is how you catch broken forms before cli
 ### 5. Test Core User Journeys
 
 Go through your site as if you're a new visitor:
+
 - Can you find the contact page easily?
 - Does the main CTA work?
 - If you have a checkout: complete a test order (use a test payment mode)
@@ -117,6 +132,7 @@ Go through your site as if you're a new visitor:
 ### 6. Check Analytics for Anomalies
 
 Open Google Analytics → look at this month vs last month:
+
 - Sessions up or down significantly?
 - Bounce rate change?
 - Any pages with sudden traffic drops? (Could signal a Google penalty or technical issue)
@@ -125,6 +141,7 @@ Open Google Analytics → look at this month vs last month:
 ### 7. Verify Backup Ran Successfully
 
 Check that your automated backup ran and is accessible. Once a month, do a spot-check:
+
 - Is the backup file recent?
 - Can you download it?
 - Is it stored somewhere other than your live server?
@@ -155,6 +172,7 @@ sudo certbot renew --dry-run
 Check every link on your site for 404 errors using [Screaming Frog](https://www.screamingfrog.co.uk/seo-spider) (free up to 500 URLs) or [Dead Link Checker](https://www.deadlinkchecker.com).
 
 For every broken link found:
+
 - Update it to the correct URL
 - Or redirect the old URL to a relevant page
 - Or remove the link if the resource no longer exists
@@ -162,6 +180,7 @@ For every broken link found:
 ### 2. Google Search Console Review
 
 Search Console → Coverage report → check for:
+
 - Pages excluded from indexing that shouldn't be
 - Crawl errors
 - Mobile usability issues
@@ -173,6 +192,7 @@ Search Console → Performance → which queries are losing impressions? Which p
 ### 3. Content Audit
 
 Review your top 10 landing pages:
+
 - Is the information still accurate?
 - Are the statistics and dates current?
 - Have any linked resources gone offline?
@@ -183,6 +203,7 @@ Updating existing content with fresh information is one of the most reliable way
 ### 4. Speed and Performance Audit
 
 Run a full performance audit:
+
 - [PageSpeed Insights](https://pagespeed.web.dev) — mobile and desktop
 - [GTmetrix](https://gtmetrix.com) — waterfall chart shows exactly what's loading slowly
 - [WebPageTest](https://webpagetest.org) — real device testing from multiple locations
@@ -192,6 +213,7 @@ Note anything that's gotten slower since last quarter and investigate.
 ### 5. Review Hosting Resources
 
 Log into your hosting control panel and check:
+
 - Disk usage — if over 80%, clean up or upgrade
 - Bandwidth usage — look for unexpected spikes
 - Database size — old WordPress installs accumulate thousands of revisions
@@ -221,6 +243,7 @@ Set a calendar reminder 60 days before expiry.
 ### 2. Review and Update All Passwords
 
 Change:
+
 - Hosting control panel
 - FTP/SFTP
 - WordPress admin
@@ -232,6 +255,7 @@ Use a password manager. Never reuse passwords.
 ### 3. Full Site Backup and Archive
 
 Do a full, verified backup of:
+
 - All site files
 - Database
 - Configuration files
@@ -242,6 +266,7 @@ Store a copy in cold storage (external drive or archive cloud storage) separatel
 ### 4. Review and Remove Inactive Users
 
 For WordPress, custom CMS, or any system with user accounts:
+
 - Remove anyone who no longer needs access
 - Downgrade anyone who has more access than they need
 - Change passwords for any shared accounts
@@ -269,24 +294,24 @@ Laws change. Your business may have changed. Review both documents annually and 
 
 ## The Maintenance Schedule in Summary
 
-| Task | Frequency |
-|------|-----------|
-| Check uptime monitor | Weekly |
-| Test site manually on mobile | Weekly |
-| Update all software | Monthly |
-| Run security scan | Monthly |
-| Test all forms | Monthly |
-| Check PageSpeed score | Monthly |
-| Verify backup | Monthly |
-| Check SSL expiry | Monthly |
-| Full link audit | Quarterly |
+| Task                         | Frequency |
+| ---------------------------- | --------- |
+| Check uptime monitor         | Weekly    |
+| Test site manually on mobile | Weekly    |
+| Update all software          | Monthly   |
+| Run security scan            | Monthly   |
+| Test all forms               | Monthly   |
+| Check PageSpeed score        | Monthly   |
+| Verify backup                | Monthly   |
+| Check SSL expiry             | Monthly   |
+| Full link audit              | Quarterly |
 | Google Search Console review | Quarterly |
-| Content audit | Quarterly |
-| Security headers check | Quarterly |
-| Domain renewal check | Annually |
-| Password rotation | Annually |
-| Full archive backup | Annually |
-| Dependency audit | Annually |
+| Content audit                | Quarterly |
+| Security headers check       | Quarterly |
+| Domain renewal check         | Annually  |
+| Password rotation            | Annually  |
+| Full archive backup          | Annually  |
+| Dependency audit             | Annually  |
 
 ---
 

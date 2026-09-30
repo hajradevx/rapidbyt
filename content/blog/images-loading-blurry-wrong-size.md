@@ -5,7 +5,8 @@ date: 2026-11-06
 readTime: 7
 category: "Performance"
 author: "RapidByt Team"
-tags: ["images", "blurry images", "responsive images", "WebP", "srcset", "image optimization", "retina"]
+tags:
+  ["images", "blurry images", "responsive images", "WebP", "srcset", "image optimization", "retina"]
 image: "/blog/images-blurry-fix.jpg"
 ---
 
@@ -53,12 +54,7 @@ The better solution is to serve different image sizes for different screens — 
 ```html
 <img
   src="photo-800w.jpg"
-  srcset="
-    photo-400w.jpg  400w,
-    photo-800w.jpg  800w,
-    photo-1200w.jpg 1200w,
-    photo-1600w.jpg 1600w
-  "
+  srcset="photo-400w.jpg 400w, photo-800w.jpg 800w, photo-1200w.jpg 1200w, photo-1600w.jpg 1600w"
   sizes="
     (max-width: 640px)  100vw,
     (max-width: 1024px) 50vw,
@@ -71,6 +67,7 @@ The better solution is to serve different image sizes for different screens — 
 ```
 
 How this works:
+
 - `srcset` lists available image files and their widths
 - `sizes` tells the browser how wide the image will be at different viewport sizes
 - The browser picks the most appropriate file — a phone downloads the small version, a 4K monitor downloads the large one
@@ -78,6 +75,7 @@ How this works:
 **Generate multiple sizes automatically:**
 
 In Nuxt (with `@nuxt/image`):
+
 ```html
 <NuxtImg
   src="/images/hero.jpg"
@@ -90,8 +88,9 @@ In Nuxt (with `@nuxt/image`):
 ```
 
 In Next.js:
+
 ```jsx
-import Image from 'next/image'
+import Image from "next/image";
 
 <Image
   src="/images/hero.jpg"
@@ -100,7 +99,7 @@ import Image from 'next/image'
   sizes="(max-width: 768px) 100vw, 800px"
   quality={80}
   alt="Description"
-/>
+/>;
 ```
 
 These frameworks generate the `srcset` automatically and serve WebP where supported.
@@ -171,7 +170,7 @@ Background images set in CSS often look fine on desktop but wrong on mobile — 
 ```css
 /* Generic fix for background images */
 .hero {
-  background-image: url('/hero.webp');
+  background-image: url("/hero.webp");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -185,14 +184,14 @@ A landscape hero photo doesn't work as a portrait mobile background. Design or c
 ```css
 /* Mobile: portrait crop */
 .hero {
-  background-image: url('/hero-mobile.webp');
+  background-image: url("/hero-mobile.webp");
   background-position: top center;
 }
 
 /* Desktop: landscape version */
 @media (min-width: 768px) {
   .hero {
-    background-image: url('/hero-desktop.webp');
+    background-image: url("/hero-desktop.webp");
     background-position: center center;
   }
 }
@@ -238,12 +237,12 @@ If images load with a low-res blur then sharpen after a moment, they're loading 
 
 **File size targets:**
 
-| Image type | Target size |
-|-----------|-------------|
-| Hero / banner | Under 150KB |
-| Blog thumbnail | Under 50KB |
-| Product photo | Under 80KB |
-| Logo / icon | Under 15KB |
+| Image type            | Target size |
+| --------------------- | ----------- |
+| Hero / banner         | Under 150KB |
+| Blog thumbnail        | Under 50KB  |
+| Product photo         | Under 80KB  |
+| Logo / icon           | Under 15KB  |
 | Full-width background | Under 200KB |
 
 **Check your current image sizes:**
@@ -269,14 +268,7 @@ If your hero image is also your Largest Contentful Paint element (the main visib
 <link rel="preload" as="image" href="/hero.webp" fetchpriority="high" />
 
 <!-- On the img element itself -->
-<img
-  src="/hero.webp"
-  fetchpriority="high"
-  decoding="async"
-  width="1440"
-  height="600"
-  alt="Hero"
-/>
+<img src="/hero.webp" fetchpriority="high" decoding="async" width="1440" height="600" alt="Hero" />
 ```
 
 And critically — do NOT put `loading="lazy"` on the hero image. Lazy loading delays it, which is the opposite of what you want for above-the-fold content:
