@@ -2,6 +2,9 @@
 useSeoMeta({
   title: "Privacy Policy — RapidByt",
   description: "Learn how RapidByt collects, uses, and protects your personal information.",
+  ogTitle: "Privacy Policy — RapidByt",
+  ogDescription: "Learn how RapidByt collects, uses, and protects your personal information.",
+  ogImage: "https://rapidbyt.com/og-image.png",
 });
 useHead({
   link: [{ rel: "canonical", href: "https://rapidbyt.com/privacy" }],

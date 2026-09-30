@@ -10,10 +10,12 @@ const staticPages = [
   { loc: "/services", priority: "0.9", changefreq: "monthly" },
   { loc: "/blog", priority: "0.8", changefreq: "weekly" },
   { loc: "/diagnose", priority: "0.8", changefreq: "monthly" },
+  { loc: "/about", priority: "0.7", changefreq: "monthly" },
   { loc: "/contact", priority: "0.7", changefreq: "monthly" },
   { loc: "/products", priority: "0.7", changefreq: "weekly" },
   { loc: "/privacy", priority: "0.3", changefreq: "yearly" },
   { loc: "/terms", priority: "0.3", changefreq: "yearly" },
+  { loc: "/disclaimer", priority: "0.3", changefreq: "yearly" },
 ];
 
 // All 21 blog slugs — update this list when new posts are added

@@ -3,6 +3,10 @@ useSeoMeta({
   title: "Disclaimer — RapidByt",
   description:
     "Read the disclaimer for RapidByt covering results, third-party content, and professional advice.",
+  ogTitle: "Disclaimer — RapidByt",
+  ogDescription:
+    "Results disclaimer, advertising disclosure, and professional advice notice for RapidByt.",
+  ogImage: "https://rapidbyt.com/og-image.png",
 });
 useHead({
   link: [{ rel: "canonical", href: "https://rapidbyt.com/disclaimer" }],

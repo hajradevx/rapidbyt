@@ -4,9 +4,10 @@ useSeoMeta({
   title: "About RapidByt — Web Performance & SEO Agency",
   description:
     "RapidByt is a web performance and SEO agency helping businesses build faster, higher-ranking, and more profitable websites.",
-  ogTitle: "About RapidByt",
+  ogTitle: "About RapidByt — Web Performance & SEO Agency",
   ogDescription:
     "We diagnose digital bottlenecks and engineer solutions that make your business faster, smarter, and more profitable.",
+  ogImage: "https://rapidbyt.com/og-image.png",
 });
 useHead({
   link: [{ rel: "canonical", href: "https://rapidbyt.com/about" }],

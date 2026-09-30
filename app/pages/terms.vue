@@ -2,6 +2,9 @@
 useSeoMeta({
   title: "Terms of Service — RapidByt",
   description: "Read the terms and conditions governing the use of RapidByt services.",
+  ogTitle: "Terms of Service — RapidByt",
+  ogDescription: "Read the terms and conditions governing the use of RapidByt services.",
+  ogImage: "https://rapidbyt.com/og-image.png",
 });
 useHead({
   link: [{ rel: "canonical", href: "https://rapidbyt.com/terms" }],

@@ -3,6 +3,10 @@ definePageMeta({ layout: "default" });
 useSeoMeta({
   title: "Products — RapidByt",
   description: "Free and premium tools from RapidByt to diagnose, optimize, and grow your website.",
+  ogTitle: "Products & Tools — RapidByt",
+  ogDescription:
+    "Free website diagnosis tool, performance audits, SEO checklists, and speed optimization services from RapidByt.",
+  ogImage: "https://rapidbyt.com/og-image.png",
 });
 useHead({
   link: [{ rel: "canonical", href: "https://rapidbyt.com/products" }],
