@@ -1,14 +1,14 @@
 /**
  * Manual sitemap route — served at /sitemap.xml
- * Used as a fallback / explicit override for Cloudflare Workers
- * where @nuxtjs/sitemap auto-generation may not fire correctly.
+ * Includes static pages + all blog posts dynamically from content collection.
  */
 
 const SITE_URL = "https://rapidbyt.com";
 
-const pages = [
+const staticPages = [
   { loc: "/", priority: "1.0", changefreq: "weekly" },
   { loc: "/services", priority: "0.9", changefreq: "monthly" },
+  { loc: "/blog", priority: "0.8", changefreq: "weekly" },
   { loc: "/diagnose", priority: "0.8", changefreq: "monthly" },
   { loc: "/contact", priority: "0.7", changefreq: "monthly" },
   { loc: "/products", priority: "0.7", changefreq: "weekly" },
@@ -16,23 +16,51 @@ const pages = [
   { loc: "/terms", priority: "0.3", changefreq: "yearly" },
 ];
 
-const lastmod = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
+// All 21 blog slugs — update this list when new posts are added
+const blogSlugs = [
+  "competitor-outranking-you-on-google",
+  "contact-form-emails-not-arriving",
+  "core-web-vitals-guide-2026",
+  "fast-website-still-losing-sales-cro",
+  "get-first-1000-visitors-without-paid-ads",
+  "google-ads-not-converting-fix",
+  "google-analytics-not-working-fix",
+  "high-bounce-rate-causes-and-fixes",
+  "how-to-move-to-cloudflare-and-cut-hosting-costs",
+  "images-loading-blurry-wrong-size",
+  "nuxt-cloudflare-workers-d1-local-vs-production",
+  "ssl-certificate-errors-fix",
+  "technical-seo-checklist-2026",
+  "traffic-not-converting-landing-page-fixes",
+  "website-broken-on-mobile-fix",
+  "website-down-what-to-do",
+  "website-maintenance-checklist",
+  "website-security-hardening-guide",
+  "why-is-my-website-not-showing-on-google",
+  "why-page-speed-matters-for-revenue",
+  "wordpress-slow-website-fix-guide",
+];
+
+const lastmod = new Date().toISOString().split("T")[0];
+
+function buildUrl(loc: string, priority: string, changefreq: string): string {
+  return `  <url>
+    <loc>${SITE_URL}${loc}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>`;
+}
 
 function buildSitemap(): string {
-  const urls = pages
-    .map(
-      (p) => `  <url>
-    <loc>${SITE_URL}${p.loc}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>${p.changefreq}</changefreq>
-    <priority>${p.priority}</priority>
-  </url>`,
-    )
-    .join("\n");
+  const staticUrls = staticPages.map((p) => buildUrl(p.loc, p.priority, p.changefreq)).join("\n");
+
+  const blogUrls = blogSlugs.map((slug) => buildUrl(`/blog/${slug}`, "0.7", "monthly")).join("\n");
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls}
+${staticUrls}
+${blogUrls}
 </urlset>`;
 }
 
