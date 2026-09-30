@@ -1,11 +1,19 @@
 <script setup lang="ts">
 /**
  * Cookie Consent Banner
- * - Shows on first visit (no cookie stored yet)
- * - "Accept All" → sets consent cookie + loads personalised ads
- * - "Reject Non-Essential" → sets consent cookie, no personalised ads
+ * - Shows on first visit (no stored choice yet)
+ * - "Accept All" → grants all consent signals via Google Consent Mode v2
+ * - "Reject Non-Essential" → denies ad/analytics signals
  * - Persists choice in localStorage for 365 days
  */
+
+// Extend Window so TypeScript knows gtag exists (set by nuxt.config inline script)
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
+  }
+}
 
 const STORAGE_KEY = "rb_cookie_consent";
 const EXPIRY_DAYS = 365;
@@ -18,12 +26,12 @@ function getStored(): ConsentChoice | null {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return null;
-    const { value, expires } = JSON.parse(raw);
+    const { value, expires } = JSON.parse(raw) as { value: ConsentChoice; expires: number };
     if (Date.now() > expires) {
       localStorage.removeItem(STORAGE_KEY);
       return null;
     }
-    return value as ConsentChoice;
+    return value;
   } catch {
     return null;
   }
@@ -35,17 +43,14 @@ function storeChoice(choice: ConsentChoice) {
 }
 
 function applyConsent(choice: ConsentChoice) {
-  if (typeof window === "undefined") return;
-  // Signal to AdSense / Google tags whether personalised ads are allowed
-  // gtag consent update (works if gtag is loaded via AdSense auto-ads)
-  if (typeof window.gtag === "function") {
-    window.gtag("consent", "update", {
-      ad_storage: choice === "accepted" ? "granted" : "denied",
-      ad_user_data: choice === "accepted" ? "granted" : "denied",
-      ad_personalization: choice === "accepted" ? "granted" : "denied",
-      analytics_storage: choice === "accepted" ? "granted" : "denied",
-    });
-  }
+  const granted = choice === "accepted" ? "granted" : "denied";
+  // Update Google Consent Mode v2 signals
+  window.gtag?.("consent", "update", {
+    ad_storage: granted,
+    ad_user_data: granted,
+    ad_personalization: granted,
+    analytics_storage: granted,
+  });
 }
 
 function accept() {
@@ -63,11 +68,12 @@ function reject() {
 onMounted(() => {
   const stored = getStored();
   if (!stored) {
-    // Small delay so it doesn't flash on first paint
+    // Small delay so the banner doesn't flash on first paint
     setTimeout(() => {
       visible.value = true;
     }, 800);
   } else {
+    // Re-apply stored consent on every page load so Google always knows the state
     applyConsent(stored);
   }
 });

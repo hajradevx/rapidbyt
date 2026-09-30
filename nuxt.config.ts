@@ -22,8 +22,10 @@ export default defineNuxtConfig({
 
       link: [
         { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-        { rel: "shortcut icon", href: "/favicon.ico" },
-        { rel: "apple-touch-icon", href: "/img/logo.png" },
+        { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16x16.png" },
+        { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32x32.png" },
+        { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+        { rel: "manifest", href: "/site.webmanifest" },
         { rel: "dns-prefetch", href: "https://api.dicebear.com" },
         // Canonical — tells Google the authoritative non-www URL
         { rel: "canonical", href: "https://rapidbyt.com" },
@@ -43,8 +45,8 @@ export default defineNuxtConfig({
         {
           innerHTML: `
 window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('consent', 'default', {
+window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
+window.gtag('consent', 'default', {
   ad_storage: 'denied',
   ad_user_data: 'denied',
   ad_personalization: 'denied',
