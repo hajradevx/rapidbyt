@@ -44,6 +44,11 @@ const navItems = computed<NavigationMenuItem[]>(() => [
     ],
   },
   {
+    label: "Blogs",
+    to: "/#blogs",
+    active: false,
+  },
+  {
     label: "Projects",
     to: "/#projects",
     active: false,
