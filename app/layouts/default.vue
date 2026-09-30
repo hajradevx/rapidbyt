@@ -15,4 +15,6 @@ useHead({
   </UMain>
   <!-- Footer is below fold — lazy render -->
   <LazyAppFooter />
+  <!-- Cookie consent banner — shown on first visit -->
+  <LazyAppCookieConsent />
 </template>

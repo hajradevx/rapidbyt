@@ -16,6 +16,8 @@ const columns: FooterColumn[] = [
     label: "Company",
     children: [
       { label: "Why RapidByt", to: "/#why" },
+      { label: "About Us", to: "/about" },
+      { label: "Products & Tools", to: "/products" },
       { label: "Our Projects", to: "/#projects" },
       { label: "Case Studies", to: "/#results" },
       { label: "Pricing", to: "/#pricing" },
@@ -45,6 +47,7 @@ const columns: FooterColumn[] = [
 const bottomLinks: NavigationMenuItem[] = [
   { label: "Privacy Policy", to: "/privacy" },
   { label: "Terms of Service", to: "/terms" },
+  { label: "Disclaimer", to: "/disclaimer" },
 ];
 </script>
 

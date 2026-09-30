@@ -38,6 +38,20 @@ export default defineNuxtConfig({
       ],
 
       script: [
+        // Google consent mode v2 — set defaults BEFORE AdSense loads
+        // so ad_storage starts as "denied" until the user accepts cookies
+        {
+          innerHTML: `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  analytics_storage: 'denied',
+  wait_for_update: 500
+});`,
+        },
         {
           async: true,
           src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4495410434290445",
