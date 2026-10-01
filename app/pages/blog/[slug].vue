@@ -42,6 +42,21 @@ useHead({
         Back to Blog
       </NuxtLink>
 
+      <!-- Hero image -->
+      <div
+        v-if="post.image"
+        class="mb-10 rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800"
+      >
+        <NuxtImg
+          :src="post.image"
+          :alt="post.title"
+          width="800"
+          height="420"
+          class="w-full object-cover"
+          loading="eager"
+        />
+      </div>
+
       <!-- Header -->
       <div class="mb-10">
         <div class="flex flex-wrap items-center gap-3 mb-4 text-xs text-zinc-400">
