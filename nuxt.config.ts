@@ -143,9 +143,7 @@ window.gtag('consent', 'default', {
 
     // ── Explicitly tell Nitro to crawl + generate these at build time ──────
     prerender: {
-      crawlLinks: true,
-      // ignore lets the build succeed even if a route 404s or session errors occur
-      ignore: ["/blog/website-bounce-rate-kam-kaise-karein"],
+      crawlLinks: false,
       routes: [
         "/",
         "/about",
