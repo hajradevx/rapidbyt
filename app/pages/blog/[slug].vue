@@ -32,7 +32,7 @@ useHead({
 
 <template>
   <UPage v-if="post">
-    <UContainer class="py-12 max-w-3">
+    <UContainer class="py-12">
       <!-- Back link -->
       <NuxtLink
         to="/blog"
