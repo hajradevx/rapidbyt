@@ -142,7 +142,8 @@ window.gtag('consent', 'default', {
       "/_nuxt/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
       "/fonts/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
       "/img/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
-      // Static marketing pages — prerender at build time, zero CPU usage
+
+      // ── Fully prerendered at build time — Worker NEVER runs for these ──────
       "/": { prerender: true },
       "/about": { prerender: true },
       "/services": { prerender: true },
@@ -150,25 +151,46 @@ window.gtag('consent', 'default', {
       "/privacy": { prerender: true },
       "/terms": { prerender: true },
       "/disclaimer": { prerender: true },
-      // Blog listing — cache at edge
-      "/blog": {
-        headers: { "cache-control": "public, s-maxage=300, stale-while-revalidate=3600" },
-      },
-      // Individual blog posts — cache at edge for 1 hour
-      "/blog/**": {
-        headers: { "cache-control": "public, s-maxage=3600, stale-while-revalidate=86400" },
-      },
-      "/contact": {
-        headers: { "cache-control": "public, s-maxage=300, stale-while-revalidate=3600" },
-      },
-      "/diagnose": {
-        headers: { "cache-control": "public, s-maxage=60, stale-while-revalidate=600" },
-      },
-      // API routes — never cache
+      "/contact": { prerender: true },
+      "/diagnose": { prerender: true },
+      "/blog": { prerender: true },
+
+      // All 29 blog posts — prerendered at build time
+      "/blog/best-web-hosting-pakistan-2026": { prerender: true },
+      "/blog/chatgpt-website-content-seo-safe": { prerender: true },
+      "/blog/competitor-outranking-you-on-google": { prerender: true },
+      "/blog/contact-form-emails-not-arriving": { prerender: true },
+      "/blog/core-web-vitals-guide-2026": { prerender: true },
+      "/blog/fast-website-still-losing-sales-cro": { prerender: true },
+      "/blog/free-website-speed-check-tools": { prerender: true },
+      "/blog/get-first-1000-visitors-without-paid-ads": { prerender: true },
+      "/blog/google-ads-not-converting-fix": { prerender: true },
+      "/blog/google-ads-vs-facebook-ads-2026": { prerender: true },
+      "/blog/google-analytics-not-working-fix": { prerender: true },
+      "/blog/google-search-console-setup-beginners": { prerender: true },
+      "/blog/high-bounce-rate-causes-and-fixes": { prerender: true },
+      "/blog/how-to-move-to-cloudflare-and-cut-hosting-costs": { prerender: true },
+      "/blog/images-loading-blurry-wrong-size": { prerender: true },
+      "/blog/nuxt-cloudflare-workers-d1-local-vs-production": { prerender: true },
+      "/blog/shopify-vs-woocommerce-2026": { prerender: true },
+      "/blog/ssl-certificate-errors-fix": { prerender: true },
+      "/blog/technical-seo-checklist-2026": { prerender: true },
+      "/blog/traffic-not-converting-landing-page-fixes": { prerender: true },
+      "/blog/website-bounce-rate-kam-kaise-karein": { prerender: true },
+      "/blog/website-broken-on-mobile-fix": { prerender: true },
+      "/blog/website-down-what-to-do": { prerender: true },
+      "/blog/website-maintenance-checklist": { prerender: true },
+      "/blog/website-security-hardening-guide": { prerender: true },
+      "/blog/why-is-my-website-not-showing-on-google": { prerender: true },
+      "/blog/why-page-speed-matters-for-revenue": { prerender: true },
+      "/blog/wordpress-slow-website-fix-guide": { prerender: true },
+      "/blog/wordpress-vs-webflow-2026": { prerender: true },
+
+      // Sitemap — static, prerender it too
+      "/sitemap.xml": { prerender: true },
+
+      // ── Only these truly need the Worker (dynamic/API) ───────────────────
       "/api/**": { headers: { "cache-control": "no-store" } },
-      "/sitemap.xml": {
-        headers: { "cache-control": "public, max-age=3600, s-maxage=3600" },
-      },
     },
   },
 
