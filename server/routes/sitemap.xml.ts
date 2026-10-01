@@ -27,7 +27,7 @@ const blogSlugs = [
   "free-website-speed-check-tools",
   "wordpress-vs-webflow-2026",
   "google-search-console-setup-beginners",
-  "website-bounce-rate-kam-kaise-karein",
+  "web-bounce-rate",
   "competitor-outranking-you-on-google",
   "contact-form-emails-not-arriving",
   "core-web-vitals-guide-2026",
