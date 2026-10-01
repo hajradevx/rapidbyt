@@ -15,7 +15,6 @@ tags:
     "CRO",
   ]
 image: "/blog/bounce-rate-fix.jpg"
-redirect: "/blog/website-bounce-rate-fixes-2026"
 ---
 
-This page has moved. Please visit the updated guide at [/blog/website-bounce-rate-fixes-2026](/blog/website-bounce-rate-fixes-2026).
+This article has moved to an updated URL. Please visit the full guide here: [How to Reduce Your Website Bounce Rate](/blog/website-bounce-rate-fixes-2026).
