@@ -41,6 +41,7 @@ const blogSlugs = [
   "technical-seo-checklist-2026",
   "traffic-not-converting-landing-page-fixes",
   "website-bounce-rate-fixes-2026",
+  "website-bounce-rate-kam-kaise-karein",
   "website-broken-on-mobile-fix",
   "website-down-what-to-do",
   "website-maintenance-checklist",

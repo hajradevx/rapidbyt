@@ -104,6 +104,10 @@ window.gtag('consent', 'default', {
   runtimeConfig: {
     resendApiKey: process.env.NUXT_RESEND_API_KEY || "",
     pagespeedApiKey: process.env.NUXT_PAGESPEED_API_KEY || "",
+    // Fallback password for prerender — only real password used at runtime
+    session: {
+      password: process.env.NUXT_SESSION_PASSWORD || "prerender-build-time-placeholder-32chars!!",
+    },
   },
 
   // ── Experimental perf flags ─────────────────────────────
@@ -142,6 +146,7 @@ window.gtag('consent', 'default', {
     },
 
     // ── Explicitly tell Nitro to crawl + generate these at build time ──────
+    // crawlLinks: false — all routes explicitly listed, no auto-discovery needed
     prerender: {
       crawlLinks: false,
       routes: [
@@ -176,6 +181,7 @@ window.gtag('consent', 'default', {
         "/blog/technical-seo-checklist-2026",
         "/blog/traffic-not-converting-landing-page-fixes",
         "/blog/website-bounce-rate-fixes-2026",
+        "/blog/website-bounce-rate-kam-kaise-karein",
         "/blog/website-broken-on-mobile-fix",
         "/blog/website-down-what-to-do",
         "/blog/website-maintenance-checklist",
@@ -225,6 +231,7 @@ window.gtag('consent', 'default', {
       "/blog/technical-seo-checklist-2026": { prerender: true },
       "/blog/traffic-not-converting-landing-page-fixes": { prerender: true },
       "/blog/website-bounce-rate-fixes-2026": { prerender: true },
+      "/blog/website-bounce-rate-kam-kaise-karein": { prerender: true },
       "/blog/website-broken-on-mobile-fix": { prerender: true },
       "/blog/website-down-what-to-do": { prerender: true },
       "/blog/website-maintenance-checklist": { prerender: true },
