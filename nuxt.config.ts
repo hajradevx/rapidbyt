@@ -144,9 +144,8 @@ window.gtag('consent', 'default', {
     // ── Explicitly tell Nitro to crawl + generate these at build time ──────
     prerender: {
       crawlLinks: true,
-      // Ignore auth session errors during prerender — session password
-      // is only needed at runtime, not during static HTML generation
-      failOnError: false,
+      // ignore lets the build succeed even if a route 404s or session errors occur
+      ignore: ["/blog/website-bounce-rate-kam-kaise-karein"],
       routes: [
         "/",
         "/about",
