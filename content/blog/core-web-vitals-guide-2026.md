@@ -6,7 +6,7 @@ readTime: 10
 category: "SEO"
 author: "RapidByt Team"
 tags: ["Core Web Vitals", "LCP", "CLS", "INP", "SEO", "Google ranking"]
-image: "/blog/core-web-vitals-2026.jpg"
+image: "/blog/core-web-vitals-guide-2026.jpg"
 ---
 
 Google's Core Web Vitals have been a ranking factor since 2021. In 2024, INP replaced FID as the third metric. In 2026, the bar keeps rising as more sites optimize — meaning if you haven't fixed yours, you're falling further behind.

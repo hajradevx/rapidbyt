@@ -6,7 +6,7 @@ readTime: 6
 category: "Performance"
 author: "RapidByt Team"
 tags: ["page speed", "conversion rate", "Core Web Vitals", "revenue"]
-image: "/blog/page-speed-revenue.jpg"
+image: "/blog/why-page-speed-matters-for-revenue.jpg"
 ---
 
 If your website takes more than 3 seconds to load, you've already lost **53% of mobile visitors** before they even see your homepage. That's not an opinion — it's a Google statistic from over 11 million mobile landing pages.

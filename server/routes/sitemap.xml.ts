@@ -18,8 +18,16 @@ const staticPages = [
   { loc: "/disclaimer", priority: "0.3", changefreq: "yearly" },
 ];
 
-// All 21 blog slugs — update this list when new posts are added
+// All 29 blog slugs — update this list when new posts are added
 const blogSlugs = [
+  "best-web-hosting-pakistan-2026",
+  "shopify-vs-woocommerce-2026",
+  "google-ads-vs-facebook-ads-2026",
+  "chatgpt-website-content-seo-safe",
+  "free-website-speed-check-tools",
+  "wordpress-vs-webflow-2026",
+  "google-search-console-setup-beginners",
+  "website-bounce-rate-kam-kaise-karein",
   "competitor-outranking-you-on-google",
   "contact-form-emails-not-arriving",
   "core-web-vitals-guide-2026",
