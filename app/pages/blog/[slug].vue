@@ -3,7 +3,7 @@ const route = useRoute();
 const slug = route.params.slug as string;
 
 const { data: post } = await useAsyncData(`blog-${slug}`, () =>
-  queryCollection("blog").path(`/blog/${slug}`).first(),
+  queryCollection("blog").where("stem", "=", `blog/${slug}`).first(),
 );
 
 if (!post.value) {
@@ -32,7 +32,7 @@ useHead({
 
 <template>
   <UPage v-if="post">
-    <UContainer class="py-12 max-w-3xl">
+    <UContainer class="py-12">
       <!-- Back link -->
       <NuxtLink
         to="/blog"
