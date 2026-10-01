@@ -141,17 +141,28 @@ window.gtag('consent', 'default', {
     routeRules: {
       "/_nuxt/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
       "/fonts/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
-      "/": { headers: { "cache-control": "public, s-maxage=60, stale-while-revalidate=3600" } },
-      "/services": {
+      "/img/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
+      // Static marketing pages — prerender at build time, serve as static HTML
+      "/": { prerender: true },
+      "/about": { prerender: true },
+      "/services": { prerender: true },
+      "/products": { prerender: true },
+      "/privacy": { prerender: true },
+      "/terms": { prerender: true },
+      "/disclaimer": { prerender: true },
+      // Frequently visited pages — cache at edge for 5 minutes
+      "/blog": { isr: 300 },
+      "/contact": {
         headers: { "cache-control": "public, s-maxage=300, stale-while-revalidate=3600" },
       },
-      "/contact": {
-        headers: { "cache-control": "public, s-maxage=60, stale-while-revalidate=600" },
-      },
       "/diagnose": {
-        headers: { "cache-control": "public, s-maxage=60, stale-while-revalidate=600" },
+        headers: { "cache-control": "public, s-maxage=60,  stale-while-revalidate=600" },
       },
+      // Blog posts — cache at edge for 1 hour
+      "/blog/**": { isr: 3600 },
+      // API routes — never cache
       "/api/**": { headers: { "cache-control": "no-store" } },
+      "/sitemap.xml": { headers: { "cache-control": "public, max-age=3600, s-maxage=3600" } },
     },
   },
 
