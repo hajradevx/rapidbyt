@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 import { fileURLToPath } from "node:url";
 
 export default defineNuxtConfig({
@@ -75,13 +74,6 @@ window.gtag('consent', 'default', {
       scrollBehaviorType: "smooth",
     },
   },
-
-  // ── Site URL (used by @nuxtjs/sitemap & other SEO modules) ──
-  site: {
-    url: "https://rapidbyt.com",
-    name: "RapidByt",
-  },
-
   // ── Content (blog) ──────────────────────────────────────
   content: {
     build: {
@@ -107,6 +99,10 @@ window.gtag('consent', 'default', {
     // Fallback password for prerender — only real password used at runtime
     session: {
       password: process.env.NUXT_SESSION_PASSWORD || "prerender-build-time-placeholder-32chars!!",
+    },
+    public: {
+      siteUrl: "https://rapidbyt.com",
+      siteName: "RapidByt",
     },
   },
 
@@ -181,7 +177,6 @@ window.gtag('consent', 'default', {
         "/blog/technical-seo-checklist-2026",
         "/blog/traffic-not-converting-landing-page-fixes",
         "/blog/website-bounce-rate-fixes-2026",
-        "/blog/website-bounce-rate-kam-kaise-karein",
         "/blog/website-broken-on-mobile-fix",
         "/blog/website-down-what-to-do",
         "/blog/website-maintenance-checklist",
@@ -231,7 +226,6 @@ window.gtag('consent', 'default', {
       "/blog/technical-seo-checklist-2026": { prerender: true },
       "/blog/traffic-not-converting-landing-page-fixes": { prerender: true },
       "/blog/website-bounce-rate-fixes-2026": { prerender: true },
-      "/blog/website-bounce-rate-kam-kaise-karein": { prerender: true },
       "/blog/website-broken-on-mobile-fix": { prerender: true },
       "/blog/website-down-what-to-do": { prerender: true },
       "/blog/website-maintenance-checklist": { prerender: true },
