@@ -8,7 +8,9 @@ export default defineNuxtConfig({
     "@nuxthub/core",
     "@nuxt/image",
     "nuxt-auth-utils",
-    "@nuxtjs/sitemap",
+    // @nuxtjs/sitemap removed — manual server/routes/sitemap.xml.ts handles all 39 URLs.
+    // The module was conflicting with the manual route and crawling @nuxt/content at
+    // runtime on every sitemap request, causing CPU spikes on Cloudflare Workers.
     "@nuxt/content",
   ],
 
@@ -137,6 +139,52 @@ window.gtag('consent', 'default', {
       "@react-email/render": fileURLToPath(
         new URL("./server/stubs/react-email-render.ts", import.meta.url),
       ),
+    },
+
+    // ── Explicitly tell Nitro to crawl + generate these at build time ──────
+    prerender: {
+      crawlLinks: true,
+      routes: [
+        "/",
+        "/about",
+        "/services",
+        "/products",
+        "/privacy",
+        "/terms",
+        "/disclaimer",
+        "/contact",
+        "/diagnose",
+        "/blog",
+        "/blog/best-web-hosting-pakistan-2026",
+        "/blog/chatgpt-website-content-seo-safe",
+        "/blog/competitor-outranking-you-on-google",
+        "/blog/contact-form-emails-not-arriving",
+        "/blog/core-web-vitals-guide-2026",
+        "/blog/fast-website-still-losing-sales-cro",
+        "/blog/free-website-speed-check-tools",
+        "/blog/get-first-1000-visitors-without-paid-ads",
+        "/blog/google-ads-not-converting-fix",
+        "/blog/google-ads-vs-facebook-ads-2026",
+        "/blog/google-analytics-not-working-fix",
+        "/blog/google-search-console-setup-beginners",
+        "/blog/high-bounce-rate-causes-and-fixes",
+        "/blog/how-to-move-to-cloudflare-and-cut-hosting-costs",
+        "/blog/images-loading-blurry-wrong-size",
+        "/blog/nuxt-cloudflare-workers-d1-local-vs-production",
+        "/blog/shopify-vs-woocommerce-2026",
+        "/blog/ssl-certificate-errors-fix",
+        "/blog/technical-seo-checklist-2026",
+        "/blog/traffic-not-converting-landing-page-fixes",
+        "/blog/website-bounce-rate-kam-kaise-karein",
+        "/blog/website-broken-on-mobile-fix",
+        "/blog/website-down-what-to-do",
+        "/blog/website-maintenance-checklist",
+        "/blog/website-security-hardening-guide",
+        "/blog/why-is-my-website-not-showing-on-google",
+        "/blog/why-page-speed-matters-for-revenue",
+        "/blog/wordpress-slow-website-fix-guide",
+        "/blog/wordpress-vs-webflow-2026",
+      ],
     },
     routeRules: {
       "/_nuxt/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },

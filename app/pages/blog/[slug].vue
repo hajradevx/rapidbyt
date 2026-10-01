@@ -22,7 +22,7 @@ useSeoMeta({
     : "https://rapidbyt.com/og-image.png",
   ogType: "article",
   articlePublishedTime: post.value.date,
-  articleTag: post.value.tags?.join(", "),
+  articleTag: post.value.tags?.join(","),
 });
 
 useHead({
@@ -32,7 +32,7 @@ useHead({
 
 <template>
   <UPage v-if="post">
-    <UContainer class="py-12">
+    <UContainer class="py-12 max-w-3">
       <!-- Back link -->
       <NuxtLink
         to="/blog"

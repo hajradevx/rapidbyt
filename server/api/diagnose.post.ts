@@ -316,13 +316,13 @@ export default defineEventHandler(async (event) => {
   // ── Run PageSpeed Insights ───────────────────────────────
   const apiBase = "https://www.googleapis.com/pagespeedonline/v5/runPagespeed";
 
-  // 20s timeout — PSI with a valid API key responds well within this window
+  // 8s timeout — keeps us well under Cloudflare Workers CPU budget
   const fetchPsi = async (
     strategy: string,
     useKey: boolean,
   ): Promise<{ data: PageSpeedResult | null; error: string | null }> => {
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 20000);
+    const timer = setTimeout(() => controller.abort(), 8000);
     const keySuffix = useKey && psiKey ? `&key=${psiKey}` : "";
     const psiUrl = `${apiBase}?url=${encodeURIComponent(targetUrl)}&strategy=${strategy}${keySuffix}&category=performance&category=seo&category=accessibility&category=best-practices`;
 
@@ -368,7 +368,10 @@ export default defineEventHandler(async (event) => {
     return fetchPsi(strategy, false);
   };
 
-  const [mobileRes, desktopRes] = await Promise.all([runPsi("mobile"), runPsi("desktop")]);
+  // Run sequentially — concurrent PSI calls double CPU usage on Cloudflare Workers.
+  // fetch() I/O doesn't burn CPU but the surrounding JS processing does.
+  const mobileRes = await runPsi("mobile");
+  const desktopRes = await runPsi("desktop");
 
   const mobileData = mobileRes.data;
   const desktopData = desktopRes.data;
