@@ -122,7 +122,7 @@ window.gtag('consent', 'default', {
   },
 
   // ── Nitro / Cloudflare ──────────────────────────────────
-  compatibilityDate: "2026-02-25",
+  compatibilityDate: "2026-10-01",
   nitro: {
     // cloudflare_module preset only for production build — dev uses default
     // node preset so Node.js APIs (crypto, etc.) work without polyfills.
