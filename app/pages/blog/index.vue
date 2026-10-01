@@ -125,7 +125,7 @@ function formatDate(d: string) {
       />
     </div>
 
-    <UContainer class="pt-10 pb-20 max-w-7xl">
+    <UContainer class="pt-10 pb-20">
       <!-- ── Page Header ──────────────────────────────────────────────────── -->
       <div class="mb-10 fade-up">
         <div
