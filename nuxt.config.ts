@@ -144,6 +144,9 @@ window.gtag('consent', 'default', {
     // ── Explicitly tell Nitro to crawl + generate these at build time ──────
     prerender: {
       crawlLinks: true,
+      // Ignore auth session errors during prerender — session password
+      // is only needed at runtime, not during static HTML generation
+      failOnError: false,
       routes: [
         "/",
         "/about",
@@ -175,7 +178,7 @@ window.gtag('consent', 'default', {
         "/blog/ssl-certificate-errors-fix",
         "/blog/technical-seo-checklist-2026",
         "/blog/traffic-not-converting-landing-page-fixes",
-        "/blog/website-bounce-rate-kam-kaise-karein",
+        "/blog/website-bounce-rate-fixes-2026",
         "/blog/website-broken-on-mobile-fix",
         "/blog/website-down-what-to-do",
         "/blog/website-maintenance-checklist",
@@ -224,7 +227,7 @@ window.gtag('consent', 'default', {
       "/blog/ssl-certificate-errors-fix": { prerender: true },
       "/blog/technical-seo-checklist-2026": { prerender: true },
       "/blog/traffic-not-converting-landing-page-fixes": { prerender: true },
-      "/blog/website-bounce-rate-kam-kaise-karein": { prerender: true },
+      "/blog/website-bounce-rate-fixes-2026": { prerender: true },
       "/blog/website-broken-on-mobile-fix": { prerender: true },
       "/blog/website-down-what-to-do": { prerender: true },
       "/blog/website-maintenance-checklist": { prerender: true },
