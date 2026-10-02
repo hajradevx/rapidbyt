@@ -8,7 +8,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "rm -rf .nuxt && nuxt prepare",
+    "postinstall": "node -e \"import('fs').then(fs=>fs.rmSync('.nuxt',{recursive:true,force:true})).catch(()=>{})\" && nuxt prepare",
     "db:generate": "nuxt db generate",
     "db:migrate": "wrangler d1 migrations apply DB",
     "db:migrate-remote": "wrangler d1 migrations apply DB --remote",
