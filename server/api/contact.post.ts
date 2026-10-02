@@ -167,7 +167,8 @@ export default defineEventHandler(async (event) => {
   } else {
     const resend = new Resend(resendApiKey);
 
-    const [notifyResult, autoReplyResult] = await Promise.allSettled([
+    // Fire emails in background — do NOT await before responding
+    Promise.allSettled([
       resend.emails.send({
         from: FROM_ADDRESS,
         to: [NOTIFY_EMAIL],
@@ -181,17 +182,16 @@ export default defineEventHandler(async (event) => {
         subject: `We've received your audit request — RapidByt`,
         html: autoReplyHtml,
       }),
-    ]);
+    ]).then(([notifyResult, autoReplyResult]) => {
+      if (notifyResult.status === "rejected") {
+        console.error("Notification email failed:", notifyResult.reason);
+      }
+      if (autoReplyResult.status === "rejected") {
+        console.error("Auto-reply email failed:", autoReplyResult.reason);
+      }
+    });
 
-    if (notifyResult.status === "rejected") {
-      console.error("Notification email failed:", notifyResult.reason);
-      throw createError({
-        statusCode: 500,
-        message: "Failed to send notification. Please try again or contact us directly.",
-      });
-    }
-
-    autoReplySent = autoReplyResult.status === "fulfilled";
+    autoReplySent = true;
   }
 
   return {

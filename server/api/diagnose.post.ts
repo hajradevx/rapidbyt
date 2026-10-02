@@ -1,8 +1,6 @@
 import { Resend } from "resend";
 import { createError as createH3Error } from "h3";
 
-declare module "resend";
-
 const createError = createH3Error;
 
 const FROM_ADDRESS = "RapidByt Diagnostics <noreply@rapidbyt.com>";

@@ -1,27 +1,28 @@
+import { fileURLToPath } from "node:url";
 export default defineNuxtConfig({
-  modules: ['@nuxt/eslint', '@nuxt/ui', '@nuxthub/core', '@nuxt/image', 'nuxt-auth-utils'],
+  modules: ["@nuxt/eslint", "@nuxt/ui", "@nuxthub/core", "@nuxt/image", "nuxt-auth-utils"],
 
   // ── Devtools ─────────────────────────────────────────────
-  devtools: { enabled: process.env.NODE_ENV !== 'production' },
+  devtools: { enabled: process.env.NODE_ENV !== "production" },
 
   // ── App head ─────────────────────────────────────────────
   app: {
     head: {
-      htmlAttrs: { lang: 'en' },
+      htmlAttrs: { lang: "en" },
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
-        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
-        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
-        { rel: 'manifest', href: '/site.webmanifest' },
-        { rel: 'dns-prefetch', href: 'https://api.dicebear.com' },
-        { rel: 'canonical', href: 'https://rapidbyt.com/' },
+        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+        { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16x16.png" },
+        { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32x32.png" },
+        { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+        { rel: "manifest", href: "/site.webmanifest" },
+        { rel: "dns-prefetch", href: "https://api.dicebear.com" },
+        { rel: "canonical", href: "https://rapidbyt.com/" },
       ],
       meta: [
-        { name: 'theme-color', content: '#0ea5e9' },
+        { name: "theme-color", content: "#0ea5e9" },
         {
-          name: 'google-site-verification',
-          content: 'CitYK6ba8DPFHnzomMsJTibY_n1fw-teUUu20Cdrf-k',
+          name: "google-site-verification",
+          content: "CitYK6ba8DPFHnzomMsJTibY_n1fw-teUUu20Cdrf-k",
         },
       ],
       script: [
@@ -40,18 +41,18 @@ window.gtag('consent', 'default', {
         },
         {
           async: true,
-          src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4495410434290445',
-          crossorigin: 'anonymous',
+          src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4495410434290445",
+          crossorigin: "anonymous",
         },
       ],
     },
-    pageTransition: { name: 'page', mode: 'out-in' },
+    pageTransition: { name: "page", mode: "out-in" },
   },
 
-  css: ['~/assets/css/main.css'],
+  css: ["~/assets/css/main.css"],
 
   router: {
-    options: { scrollBehaviorType: 'smooth' },
+    options: { scrollBehaviorType: "smooth" },
   },
 
   // ── Nuxt UI ─────────────────────────────────────────────
@@ -61,10 +62,10 @@ window.gtag('consent', 'default', {
 
   // ── Runtime config ──────────────────────────────────────
   runtimeConfig: {
-    resendApiKey: process.env.NUXT_RESEND_API_KEY || '',
-    pagespeedApiKey: process.env.NUXT_PAGESPEED_API_KEY || '',
+    resendApiKey: process.env.NUXT_RESEND_API_KEY || "",
+    pagespeedApiKey: process.env.NUXT_PAGESPEED_API_KEY || "",
     session: {
-      password: process.env.NUXT_SESSION_PASSWORD || 'prerender-build-time-placeholder-32chars!!',
+      password: process.env.NUXT_SESSION_PASSWORD || "prerender-build-time-placeholder-32chars!!",
     },
   },
 
@@ -74,7 +75,7 @@ window.gtag('consent', 'default', {
     writeEarlyHints: true,
     defaults: {
       nuxtLink: {
-        trailingSlash: 'remove',
+        trailingSlash: "remove",
         prefetch: true,
         prefetchOn: { visibility: true },
       },
@@ -86,54 +87,54 @@ window.gtag('consent', 'default', {
   },
 
   // ── Nitro / Cloudflare ──────────────────────────────────
-  compatibilityDate: '2026-10-01',
+  compatibilityDate: "2026-10-01",
   nitro: {
-    preset: process.env.NODE_ENV === 'production' ? 'cloudflare_module' : undefined,
+    preset: process.env.NODE_ENV === "production" ? "cloudflare_module" : undefined,
     cloudflare: { deployConfig: true, nodeCompat: true },
     compressPublicAssets: { gzip: true, brotli: true },
     minify: true,
     alias: {
-      '@react-email/render': fileURLToPath(
-        new URL('./server/stubs/react-email-render.ts', import.meta.url),
+      "@react-email/render": fileURLToPath(
+        new URL("./server/stubs/react-email-render.ts", import.meta.url),
       ),
     },
 
     prerender: {
       crawlLinks: false,
       routes: [
-        '/',
-        '/about',
-        '/services',
-        '/products',
-        '/privacy',
-        '/terms',
-        '/disclaimer',
-        '/contact',
-        '/diagnose',
-        '/sitemap.xml',
+        "/",
+        "/about",
+        "/services",
+        "/products",
+        "/privacy",
+        "/terms",
+        "/disclaimer",
+        "/contact",
+        "/diagnose",
+        "/sitemap.xml",
       ],
     },
 
     routeRules: {
-      '/_nuxt/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
-      '/fonts/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
-      '/img/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
-      '/': { prerender: true },
-      '/about': { prerender: true },
-      '/services': { prerender: true },
-      '/products': { prerender: true },
-      '/privacy': { prerender: true },
-      '/terms': { prerender: true },
-      '/disclaimer': { prerender: true },
-      '/contact': { prerender: true },
-      '/diagnose': { prerender: true },
-      '/sitemap.xml': { prerender: true },
-      '/api/**': { headers: { 'cache-control': 'no-store' } },
+      "/_nuxt/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
+      "/fonts/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
+      "/img/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
+      "/": { prerender: true },
+      "/about": { prerender: true },
+      "/services": { prerender: true },
+      "/products": { prerender: true },
+      "/privacy": { prerender: true },
+      "/terms": { prerender: true },
+      "/disclaimer": { prerender: true },
+      "/contact": { prerender: true },
+      "/diagnose": { prerender: true },
+      "/sitemap.xml": { prerender: true },
+      "/api/**": { headers: { "cache-control": "no-store" } },
     },
   },
 
   // ── NuxtHub ─────────────────────────────────────────────
-  hub: { db: 'sqlite' },
+  hub: { db: "sqlite" },
 
   // ── Vite ────────────────────────────────────────────────
   vite: {
@@ -142,14 +143,14 @@ window.gtag('consent', 'default', {
       rollupOptions: {
         output: {
           manualChunks: (id: string) => {
-            if (id.includes('node_modules/vue') || id.includes('node_modules/vue-router')) {
-              return 'vue-vendor'
+            if (id.includes("node_modules/vue") || id.includes("node_modules/vue-router")) {
+              return "vue-vendor";
             }
           },
         },
       },
     },
-    optimizeDeps: { include: ['vue', 'vue-router'] },
+    optimizeDeps: { include: ["vue", "vue-router"] },
     server: { ws: false, hmr: false },
   },
 
@@ -158,8 +159,8 @@ window.gtag('consent', 'default', {
 
   // ── Image ───────────────────────────────────────────────
   image: {
-    format: ['webp', 'avif'],
+    format: ["webp", "avif"],
     quality: 80,
     screens: { xs: 320, sm: 640, md: 768, lg: 1024, xl: 1280, xxl: 1536 },
   },
-})
+});

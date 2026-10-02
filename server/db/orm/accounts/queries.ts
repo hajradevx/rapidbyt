@@ -1,22 +1,3 @@
-export const get = async (where: Partial<Account>) => {
-  try {
-    let query = db.select().from(schema.accounts);
-
-    // Dynamically add where conditions
-    for (const [key, value] of Object.entries(where)) {
-      query = query.where(sql`${sql.identifier(key)} = ${value}`);
-    }
-
-    const account = await query.limit(1).get();
-    return account || null;
-  } catch {
-    throw createError({
-      status: 500,
-      statusText: "Failed to find account",
-    });
-  }
-};
-
 /**
  * Find account by ID
  */

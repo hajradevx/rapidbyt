@@ -42,7 +42,7 @@
     "typescript": "^5.9.3",
     "vite": "npm:@voidzero-dev/vite-plus-core@0.2.3",
     "vite-plus": "0.2.3",
-    "wrangler": "^4.71.0"
+    "wrangler": "^4.147.0"
   },
   "packageManager": "pnpm@10.12.4",
   "pnpm": {

@@ -167,69 +167,6 @@ export const updateProfile = async (
 };
 
 /**
- * Update account avatar
- */
-export const updateAvatar = async (id: string, _file: File) => {
-  const existingAccount = await db.query.accounts.findFirst({
-    where: eq(schema.accounts.id, id),
-  });
-
-  if (!existingAccount) {
-    throw createError({ status: 404, statusText: "Account not found" });
-  }
-
-  //   let avatarPath = existingAccount.avatar
-  //   if (file && file.size > 0) {
-  //     ensureBlob(file, { maxSize: '2MB', types: ['image'] })
-  //     const { blob } = await import('@nuxthub/blob')
-  //     const blobResult = await blob.put(`account-avatar/${file.name}`, file, { addRandomSuffix: true })
-  //     avatarPath = blobResult.pathname
-
-  //     if (existingAccount.avatar && existingAccount.avatar !== avatarPath) {
-  //       await blob.del(existingAccount.avatar.replace(/^\/+/, ''))
-  //     }
-  //   }
-
-  //   const updatedAccount = await db.update(schema.accounts)
-  //     .set({ avatar: avatarPath })
-  //     .where(eq(schema.accounts.id, id))
-  //     .returning().get()
-
-  //   return updatedAccount
-};
-
-/**
- * Delete account avatar
- */
-export const deleteAvatar = async (id: string) => {
-  const account = await db.query.accounts.findFirst({
-    where: eq(schema.accounts.id, id),
-  });
-
-  if (!account) {
-    throw createError({ status: 404, statusText: "Account not found" });
-  }
-
-  // const avatarPath = account.avatar
-  // const result = await db.update(schema.accounts)
-  //   .set({ avatar: null })
-  //   .where(eq(schema.accounts.id, id))
-  //   .returning()
-
-  // if (avatarPath) {
-  //   const { blob } = await import('@nuxthub/blob')
-  //   try {
-  //     await blob.delete(avatarPath)
-  //   }
-  //   catch {
-  //     // Ignore blob deletion errors
-  //   }
-  // }
-
-  // return result
-};
-
-/**
  * Set password reset token for account
  */
 export const setResetToken = async (id: string, token: string, expiresAt: Date) => {

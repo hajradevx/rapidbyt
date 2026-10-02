@@ -41,7 +41,8 @@ export default eventHandler(async (event) => {
     const resend = new Resend(resendApiKey);
     const resetUrl = `${getRequestURL(event).origin}/reset-password?token=${token}`;
 
-    await resend.emails
+    // Fire email in background — don't block response if email fails
+    resend.emails
       .send({
         from: FROM_ADDRESS,
         to: [account.email],
