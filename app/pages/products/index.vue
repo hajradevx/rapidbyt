@@ -122,8 +122,8 @@ useHead({
             Core Web Vitals, and more — with actionable fix notes for each item.
           </p>
           <UButton
-            label="Read the Guide"
-            to="/blog/technical-seo-checklist-2026"
+            label="Get Free Audit"
+            to="/contact"
             color="primary"
             variant="soft"
             trailing-icon="i-lucide-arrow-right"
