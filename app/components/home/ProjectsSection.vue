@@ -90,183 +90,142 @@ const projects = [
 </script>
 
 <template>
-  <section id="projects" class="py-24 bg-zinc-50 dark:bg-zinc-900/40">
+  <section id="projects" class="py-20 bg-zinc-50 dark:bg-zinc-900/40">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Header -->
-      <div class="text-center mb-16 fade-up">
-        <div
-          class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 dark:bg-sky-900/30 text-sky-600 dark:text-sky-400 text-xs font-semibold uppercase tracking-wider mb-4"
+      <div class="text-center mb-12 fade-up">
+        <span
+          class="inline-flex px-3 py-1 mb-4 rounded-full bg-sky-50 dark:bg-sky-900/30 text-sky-600 dark:text-sky-400 text-xs font-semibold uppercase tracking-wider"
         >
           Our Work
-        </div>
-        <h2
-          class="text-3xl sm:text-4xl font-black tracking-tight mb-4 text-zinc-900 dark:text-white"
-        >
+        </span>
+
+        <h2 class="text-3xl sm:text-4xl font-black text-zinc-900 dark:text-white mb-4">
           Projects we've built<br class="hidden sm:block" />
           from the ground up
         </h2>
-        <p class="text-muted max-w-xl mx-auto">
+
+        <p class="text-sm sm:text-base text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto">
           Real products. Real code. From e-commerce stores to social platforms — each project
           engineered for performance and growth.
         </p>
       </div>
 
-      <!-- Project Cards Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <article
           v-for="(project, i) in projects"
           :key="project.title"
-          class="fade-up group relative rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden card-hover"
+          class="group flex flex-col overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:-translate-y-1 hover:shadow-xl transition-all duration-300"
           :style="`transition-delay:${i * 60}ms`"
         >
-          <!-- Color band / mock thumbnail -->
           <div
-            :class="[
-              'aspect-square w-full flex items-center justify-center relative overflow-hidden',
-              project.bg,
-            ]"
+            :class="['relative h-44 flex items-center justify-center overflow-hidden', project.bg]"
           >
-            <!-- Status badge -->
             <span
               v-if="project.status"
               :class="[
-                'absolute top-3 right-3 z-10 text-xs font-bold px-2 py-0.5 rounded-full',
+                'absolute top-3 right-3 z-10 px-2.5 py-1 rounded-full text-[10px] font-bold',
                 project.statusClass,
               ]"
             >
               {{ project.status }}
             </span>
 
-            <!-- Project screenshot (if provided) -->
-
             <img
               v-if="project.image"
               :src="project.image"
               :alt="project.title"
-              class="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              class="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
               loading="lazy"
-              width="400"
-              height="176"
             />
 
-            <!-- Overlay + icon (always shown, dimmed when image exists) -->
             <div
               :class="[
-                'relative z-10 w-16 h-16 rounded-md flex items-center justify-center shadow-lg transition-opacity duration-300',
+                'relative z-10 w-12 h-12 rounded-xl flex items-center justify-center shadow-lg',
                 project.iconBg,
                 project.image ? 'opacity-0 group-hover:opacity-100' : '',
               ]"
             >
-              <UIcon :name="project.icon" :class="['w-8 h-8', project.iconColor]" />
+              <UIcon :name="project.icon" :class="['w-6 h-6', project.iconColor]" />
             </div>
           </div>
 
-          <!-- Body -->
-          <div class="p-6">
-            <!-- Tags -->
+          <div class="flex flex-col flex-1 p-5">
             <div class="flex flex-wrap gap-1.5 mb-3">
               <span
                 v-for="tag in project.tags"
                 :key="tag"
-                class="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400"
+                class="px-2 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-[9px] font-semibold text-zinc-500"
               >
                 {{ tag }}
               </span>
             </div>
 
-            <h3 class="font-bold text-lg text-zinc-900 dark:text-white mb-2">
+            <h3 class="font-bold text-lg text-zinc-900 dark:text-white mb-1.5">
               {{ project.title }}
             </h3>
-            <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4">
+
+            <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 line-clamp-2 mb-4">
               {{ project.desc }}
             </p>
 
-            <!-- Feature highlights -->
-            <ul class="space-y-1.5 mb-5">
+            <ul v-if="project.features?.length" class="grid grid-cols-2 gap-1.5 mb-4">
               <li
                 v-for="feat in project.features"
                 :key="feat"
-                class="flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-400"
+                class="flex gap-1.5 text-[11px] text-zinc-600 dark:text-zinc-400"
               >
-                <UIcon name="i-heroicons-check-circle" class="w-4 h-4 text-sky-500 shrink-0" />
-                {{ feat }}
+                <UIcon name="i-heroicons-check-circle" class="w-3.5 h-3.5 text-sky-500 shrink-0" />
+                <span class="line-clamp-1">{{ feat }}</span>
               </li>
             </ul>
 
-            <!-- Admin Credentials (demo info) -->
             <div
               v-if="project.adminCredentials"
-              class="mb-4 rounded-xl border border-amber-200 dark:border-amber-800/50 bg-amber-50 dark:bg-amber-900/20 px-3 py-2.5"
+              class="mb-4 p-2.5 rounded-lg bg-amber-50 dark:bg-amber-900/20 text-[10px]"
             >
-              <p
-                class="text-[10px] font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400 mb-1.5 flex items-center gap-1"
-              >
-                <UIcon name="i-lucide-key-round" class="w-3 h-3" />
-                Admin Login
-              </p>
-              <div class="space-y-1">
-                <div class="flex items-center gap-1.5">
-                  <span class="text-[10px] text-zinc-400 dark:text-zinc-500 w-14 shrink-0"
-                    >Email</span
-                  >
-                  <code
-                    class="text-[10px] font-mono text-zinc-700 dark:text-zinc-300 bg-white dark:bg-zinc-800 px-1.5 py-0.5 rounded select-all"
-                    >{{ project.adminCredentials.email }}</code
-                  >
-                </div>
-                <div class="flex items-center gap-1.5">
-                  <span class="text-[10px] text-zinc-400 dark:text-zinc-500 w-14 shrink-0"
-                    >Password</span
-                  >
-                  <code
-                    class="text-[10px] font-mono text-zinc-700 dark:text-zinc-300 bg-white dark:bg-zinc-800 px-1.5 py-0.5 rounded select-all"
-                    >{{ project.adminCredentials.password }}</code
-                  >
-                </div>
-              </div>
+              <p class="font-bold text-amber-600 dark:text-amber-400 mb-1">🔑 Demo Admin</p>
+              <p>Email: {{ project.adminCredentials.email }}</p>
+              <p>Password: {{ project.adminCredentials.password }}</p>
             </div>
 
-            <!-- CTA -->
-            <div class="flex items-center gap-3">
+            <div class="flex gap-2 mt-auto pt-2">
               <UButton
                 v-if="project.demo"
                 :to="project.demo"
                 target="_blank"
                 label="Live Demo"
-                variant="soft"
                 color="primary"
+                variant="soft"
                 size="sm"
                 trailing-icon="i-lucide-arrow-up-right"
               />
+
               <UButton
                 v-if="project.repo"
                 :to="project.repo"
                 label="Source"
-                variant="ghost"
                 color="neutral"
+                variant="ghost"
                 size="sm"
                 leading-icon="i-lucide-github"
               />
-              <span
-                v-if="!project.demo && !project.repo"
-                class="text-xs text-zinc-400 dark:text-zinc-600 italic"
-              >
+
+              <span v-if="!project.demo && !project.repo" class="text-xs text-zinc-400 italic">
                 Coming soon
               </span>
             </div>
           </div>
-        </div>
+        </article>
       </div>
 
-      <!-- Bottom CTA -->
-      <div class="text-center mt-14 fade-up">
-        <p class="text-zinc-500 dark:text-zinc-400 mb-4 text-sm">
+      <div class="text-center mt-12">
+        <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-3">
           Want us to build something like this for you?
         </p>
+
         <UButton
           to="/contact"
           label="Start a Project"
-          size="lg"
           color="primary"
           trailing-icon="i-lucide-arrow-right"
         />
