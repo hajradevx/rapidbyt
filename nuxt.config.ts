@@ -92,7 +92,9 @@ window.gtag('consent', 'default', {
     cloudflare: { deployConfig: true, nodeCompat: true },
     compressPublicAssets: { gzip: true, brotli: true },
     minify: true,
-
+    alias: {
+      "@react-email/render": "./server/stubs/react-email-render.ts",
+    },
     prerender: {
       crawlLinks: false,
       routes: [
