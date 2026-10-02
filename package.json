@@ -8,7 +8,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
+    "postinstall": "rm -rf .nuxt && nuxt prepare",
     "db:generate": "nuxt db generate",
     "db:migrate": "wrangler d1 migrations apply DB",
     "db:migrate-remote": "wrangler d1 migrations apply DB --remote",
@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@iconify-json/lucide": "^1.2.96",
+    "@types/node": "^26.6.4",
     "drizzle-kit": "^0.31.9",
     "eslint": "^10.0.3",
     "typescript": "^5.9.3",
@@ -49,6 +50,14 @@
     },
     "ignoredBuiltDependencies": [
       "workerd"
+    ],
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "better-sqlite3",
+      "esbuild",
+      "sharp",
+      "unrs-resolver",
+      "vue-demi"
     ]
   }
 }
