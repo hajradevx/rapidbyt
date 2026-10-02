@@ -1,5 +1,4 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { fileURLToPath } from "node:url";
 
 export default defineNuxtConfig({
   modules: ["@nuxt/eslint", "@nuxt/ui", "@nuxthub/core", "@nuxt/image", "nuxt-auth-utils"],
@@ -96,9 +95,7 @@ window.gtag('consent', 'default', {
     compressPublicAssets: { gzip: true, brotli: true },
     minify: true,
     alias: {
-      "@react-email/render": fileURLToPath(
-        new URL("./server/stubs/react-email-render.ts", import.meta.url),
-      ),
+      "@react-email/render": "./server/stubs/react-email-render.ts",
     },
 
     prerender: {
