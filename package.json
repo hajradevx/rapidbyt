@@ -48,6 +48,9 @@
   "pnpm": {
     "overrides": {
       "vite": "npm:@voidzero-dev/vite-plus-core@0.2.3"
-    }
+    },
+    "ignoredBuiltDependencies": [
+      "workerd"
+    ]
   }
 }
