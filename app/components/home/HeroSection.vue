@@ -23,7 +23,7 @@
       >
         Your website is<br class="hidden sm:block" />
         <span class="gradient-text">losing you money.</span><br class="hidden sm:block" />
-        We fix that.
+        We fix that...
       </h1>
       <p
         class="max-w-2xl mx-auto text-lg sm:text-xl text-zinc-500 dark:text-zinc-400 leading-relaxed mb-10"

@@ -52,10 +52,6 @@ export default defineNuxtConfig({
           rel: "dns-prefetch",
           href: "https://api.dicebear.com",
         },
-        {
-          rel: "canonical",
-          href: "https://rapidbyt.com/",
-        },
       ],
 
       meta: [
@@ -102,6 +98,12 @@ window.gtag('consent', 'default', {
     options: {
       scrollBehaviorType: "smooth",
     },
+  },
+
+  // ── Site URL (required for og:image / canonical absolute URLs) ──
+  site: {
+    url: "https://rapidbyt.com",
+    name: "RapidByt",
   },
 
   // ── Content (blog) ──────────────────────────────────────
@@ -344,5 +346,10 @@ window.gtag('consent', 'default', {
       xl: 1280,
       xxl: 1536,
     },
+  },
+
+  seo: {
+    // charset is set by a dependency we don't control — suppress the duplicate check
+    validateAppHead: false,
   },
 });

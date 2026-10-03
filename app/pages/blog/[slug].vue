@@ -20,7 +20,6 @@ useSeoMeta({
   ogImage: post.value.image
     ? `https://rapidbyt.com${post.value.image}`
     : "https://rapidbyt.com/og-image.png",
-  ogType: "article",
   articlePublishedTime: post.value.date,
   articleTag: post.value.tags?.join(", "),
 });
