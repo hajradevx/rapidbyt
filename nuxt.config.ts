@@ -1,5 +1,13 @@
 export default defineNuxtConfig({
-  modules: ["@nuxt/eslint", "@nuxt/ui", "@nuxthub/core", "@nuxt/image", "nuxt-auth-utils"],
+  modules: [
+    "@nuxt/eslint",
+    "@nuxt/ui",
+    "@nuxthub/core",
+    "@nuxt/image",
+    "nuxt-auth-utils",
+    "@nuxt/content",
+    "@nuxtjs/seo",
+  ],
 
   // ── Devtools ─────────────────────────────────────────────
   devtools: {
@@ -95,11 +103,25 @@ window.gtag('consent', 'default', {
       scrollBehaviorType: "smooth",
     },
   },
+
+  // ── Content (blog) ──────────────────────────────────────
+  content: {
+    build: {
+      markdown: {
+        highlight: {
+          theme: { default: "github-light", dark: "github-dark" },
+          langs: ["js", "ts", "vue", "html", "css", "bash", "json"],
+        },
+      },
+    },
+  },
   ui: {
+    content: true,
     experimental: {
       componentDetection: true,
     },
   },
+
   runtimeConfig: {
     resendApiKey: process.env.NUXT_RESEND_API_KEY || "",
     pagespeedApiKey: process.env.NUXT_PAGESPEED_API_KEY || "",
@@ -135,7 +157,7 @@ window.gtag('consent', 'default', {
     preset: process.env.NODE_ENV === "production" ? "cloudflare_module" : undefined,
 
     cloudflare: {
-      deployConfig: true,
+      deployConfig: false,
       nodeCompat: true,
     },
 
@@ -163,6 +185,35 @@ window.gtag('consent', 'default', {
         "/disclaimer",
         "/contact",
         "/diagnose",
+        "/blog",
+        "/blog/best-web-hosting-pakistan-2026",
+        "/blog/chatgpt-website-content-seo-safe",
+        "/blog/competitor-outranking-you-on-google",
+        "/blog/contact-form-emails-not-arriving",
+        "/blog/core-web-vitals-guide-2026",
+        "/blog/fast-website-still-losing-sales-cro",
+        "/blog/free-website-speed-check-tools",
+        "/blog/get-first-1000-visitors-without-paid-ads",
+        "/blog/google-ads-not-converting-fix",
+        "/blog/google-ads-vs-facebook-ads-2026",
+        "/blog/google-analytics-not-working-fix",
+        "/blog/google-search-console-setup-beginners",
+        "/blog/high-bounce-rate-causes-and-fixes",
+        "/blog/how-to-move-to-cloudflare-and-cut-hosting-costs",
+        "/blog/images-loading-blurry-wrong-size",
+        "/blog/nuxt-cloudflare-workers-d1-local-vs-production",
+        "/blog/shopify-vs-woocommerce-2026",
+        "/blog/ssl-certificate-errors-fix",
+        "/blog/technical-seo-checklist-2026",
+        "/blog/traffic-not-converting-landing-page-fixes",
+        "/blog/website-broken-on-mobile-fix",
+        "/blog/website-down-what-to-do",
+        "/blog/website-maintenance-checklist",
+        "/blog/website-security-hardening-guide",
+        "/blog/why-is-my-website-not-showing-on-google",
+        "/blog/why-page-speed-matters-for-revenue",
+        "/blog/wordpress-slow-website-fix-guide",
+        "/blog/wordpress-vs-webflow-2026",
         "/sitemap.xml",
       ],
     },
@@ -219,6 +270,14 @@ window.gtag('consent', 'default', {
       },
 
       "/diagnose": {
+        prerender: true,
+      },
+
+      "/blog": {
+        prerender: true,
+      },
+
+      "/blog/**": {
         prerender: true,
       },
 
