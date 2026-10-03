@@ -398,8 +398,8 @@ export default defineEventHandler(async (event) => {
 
     throw createError({
       statusCode: 422,
-      message: `Could not analyse "${targetUrl}". Make sure the URL is publicly accessible and try again.`,
-    });
+      message: `Could not analyse "${targetUrl}". The URL may be blocking external crawlers, or Google PageSpeed could not reach it. Try with a different URL or contact us directly.`,
+    })
   }
 
   // Primary "data" used for scores/audits: prefer mobile, fall back to desktop.
@@ -615,7 +615,7 @@ export default defineEventHandler(async (event) => {
   // ── Fire emails in the background — do NOT await before responding ──
   // Skipped locally when NUXT_RESEND_API_KEY is not set.
   if (resend) {
-    Promise.allSettled([
+    const [customerEmail, internalEmail] = await Promise.allSettled([
       resend.emails.send({
         from: FROM_ADDRESS,
         to: [trimmedEmail],
@@ -629,14 +629,21 @@ export default defineEventHandler(async (event) => {
         html: internalHtml,
         replyTo: trimmedEmail,
       }),
-    ]).then(([customerEmail, internalEmail]) => {
-      if (customerEmail.status === "rejected") {
-        console.error("Customer diagnostic email failed:", customerEmail.reason);
-      }
-      if (internalEmail.status === "rejected") {
-        console.error("Internal diagnostic email failed:", internalEmail.reason);
-      }
-    });
+    ])
+
+    if (customerEmail.status === 'rejected') {
+      console.error('[diagnose] Customer email failed:', JSON.stringify(customerEmail.reason))
+    }
+    else {
+      console.info('[diagnose] Customer email sent:', customerEmail.value?.data?.id)
+    }
+
+    if (internalEmail.status === 'rejected') {
+      console.error('[diagnose] Internal email failed:', JSON.stringify(internalEmail.reason))
+    }
+    else {
+      console.info('[diagnose] Internal email sent:', internalEmail.value?.data?.id)
+    }
   } else {
     console.warn("[diagnose] Email service not configured (NUXT_RESEND_API_KEY missing).");
     console.info("[diagnose] Diagnosis completed for:", {
