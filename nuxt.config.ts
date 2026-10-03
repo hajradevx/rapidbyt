@@ -89,12 +89,13 @@ window.gtag('consent', 'default', {
   compatibilityDate: '2026-10-01',
   nitro: {
     preset: process.env.NODE_ENV === 'production' ? 'cloudflare_module' : undefined,
-    cloudflare: { deployConfig: true, nodeCompat: true },
+    cloudflare: { deployConfig: false, nodeCompat: true },,onfigPath: false },
     compressPublicAssets: { gzip: true, brotli: true },
     minify: true,
     alias: {
       '@react-email/render': './server/stubs/react-email-render.ts',
     },
+
     prerender: {
       crawlLinks: false,
       routes: [
