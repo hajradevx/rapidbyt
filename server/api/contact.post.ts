@@ -1,76 +1,76 @@
-import { Resend } from 'resend'
+import { Resend } from "resend";
 
 // ── HTML escaping — applied to ALL user-supplied inputs before HTML interpolation ──
 const HTML_ESCAPES: Record<string, string> = {
-  '&': '&amp;',
-  '<': '&lt;',
-  '>': '&gt;',
-  '"': '&quot;',
-  '\'': '&#39;',
-}
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#39;",
+};
 function escapeHtml(input: string): string {
-  return String(input).replace(/[&<>"']/g, c => HTML_ESCAPES[c] ?? c)
+  return String(input).replace(/[&<>"']/g, (c) => HTML_ESCAPES[c] ?? c);
 }
 
-const WHATSAPP_NUMBER = '923168636339'
-const NOTIFY_EMAIL = 'info.rapidbyt@gmail.com'
-const FROM_ADDRESS = 'RapidByt <noreply@rapidbyt.com>'
+const WHATSAPP_NUMBER = "923168636339";
+const NOTIFY_EMAIL = "info.rapidbyt@gmail.com";
+const FROM_ADDRESS = "RapidByt <noreply@rapidbyt.com>";
 
 const serviceLabels: Record<string, string> = {
-  speed: 'Speed Optimisation',
-  seo: 'SEO & Core Web Vitals',
-  dev: 'Web App Development',
-  cloud: 'Cloud & Infrastructure',
-  security: 'Security & Monitoring',
-  cro: 'Analytics & CRO',
-  unsure: 'Not sure yet',
-}
+  speed: "Speed Optimisation",
+  seo: "SEO & Core Web Vitals",
+  dev: "Web App Development",
+  cloud: "Cloud & Infrastructure",
+  security: "Security & Monitoring",
+  cro: "Analytics & CRO",
+  unsure: "Not sure yet",
+};
 
-export default defineEventHandler(async event => {
-  const body = await readBody(event)
-  const { name, email, website, service, message } = body
+export default defineEventHandler(async (event) => {
+  const body = await readBody(event);
+  const { name, email, website, service, message } = body;
 
   // ── Validation ──────────────────────────────────────────
   if (!name?.trim() || !email?.trim() || !website?.trim()) {
-    throw createError({ statusCode: 400, message: 'Name, email, and website are required.' })
+    throw createError({ statusCode: 400, message: "Name, email, and website are required." });
   }
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
-    throw createError({ statusCode: 400, message: 'Please enter a valid email address.' })
+    throw createError({ statusCode: 400, message: "Please enter a valid email address." });
   }
 
   // Escape all user inputs before any HTML interpolation
-  const safeName = escapeHtml(name.trim())
-  const safeEmail = escapeHtml(email.trim())
-  const safeWebsite = escapeHtml(website.trim())
-  const safeServiceRaw = service ?? ''
-  const safeMessage = message ? escapeHtml(message.trim()) : null
+  const safeName = escapeHtml(name.trim());
+  const safeEmail = escapeHtml(email.trim());
+  const safeWebsite = escapeHtml(website.trim());
+  const safeServiceRaw = service ?? "";
+  const safeMessage = message ? escapeHtml(message.trim()) : null;
 
-  const config = useRuntimeConfig()
-  const resendApiKey = config.resendApiKey
-  const emailEnabled = !!resendApiKey
+  const config = useRuntimeConfig();
+  const resendApiKey = config.resendApiKey;
+  const emailEnabled = !!resendApiKey;
 
   const serviceLabel = escapeHtml(
-    serviceLabels[safeServiceRaw] || safeServiceRaw || 'Not specified',
-  )
-  const submittedAt = new Date().toLocaleString('en-PK', {
-    timeZone: 'Asia/Karachi',
-    dateStyle: 'full',
-    timeStyle: 'short',
-  })
+    serviceLabels[safeServiceRaw] || safeServiceRaw || "Not specified",
+  );
+  const submittedAt = new Date().toLocaleString("en-PK", {
+    timeZone: "Asia/Karachi",
+    dateStyle: "full",
+    timeStyle: "short",
+  });
 
   // ── WhatsApp message text ────────────────────────────────
   const waText = encodeURIComponent(
-    `🚀 *New RapidByt Lead*\n\n`
-    + `👤 *Name:* ${name.trim()}\n`
-    + `📧 *Email:* ${email.trim()}\n`
-    + `🌐 *Website:* ${website.trim()}\n`
-    + `🛠️ *Service:* ${serviceLabel}\n`
-    + `💬 *Message:* ${message?.trim() || 'No message provided'}\n\n`
-    + `📅 ${submittedAt}`,
-  )
-  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${waText}`
+    `🚀 *New RapidByt Lead*\n\n` +
+      `👤 *Name:* ${name.trim()}\n` +
+      `📧 *Email:* ${email.trim()}\n` +
+      `🌐 *Website:* ${website.trim()}\n` +
+      `🛠️ *Service:* ${serviceLabel}\n` +
+      `💬 *Message:* ${message?.trim() || "No message provided"}\n\n` +
+      `📅 ${submittedAt}`,
+  );
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${waText}`;
 
   // ── Notification email to RapidByt ──────────────────────
   const notifyHtml = `
@@ -114,7 +114,7 @@ export default defineEventHandler(async event => {
         RapidByt · Automated notification · Do not reply to this email
       </p>
     </div>
-  `
+  `;
 
   // ── Auto-reply email to the lead ─────────────────────────
   const autoReplyHtml = `
@@ -150,26 +150,24 @@ export default defineEventHandler(async event => {
         <p style="font-size:12px;color:#94a3b8">© ${new Date().getFullYear()} RapidByt Solutions · <a href="mailto:${NOTIFY_EMAIL}" style="color:#0ea5e9">${NOTIFY_EMAIL}</a></p>
       </div>
     </div>
-  `
+  `;
 
   // ── Send emails ──────────────────────────────────────────
-  let autoReplySent = false
+  let autoReplySent = false;
 
   if (!emailEnabled) {
-    console.warn('[contact] Email service not configured (NUXT_RESEND_API_KEY missing).')
-    console.info('[contact] Lead received:', {
+    console.warn("[contact] Email service not configured (NUXT_RESEND_API_KEY missing).");
+    console.info("[contact] Lead received:", {
       name: name.trim(),
       email: email.trim(),
       website: website.trim(),
       service: serviceLabel,
       message: message?.trim(),
-    })
-  }
-  else {
-    const resend = new Resend(resendApiKey)
+    });
+  } else {
+    const resend = new Resend(resendApiKey);
 
-    // Fire emails in background — do NOT await before responding
-    Promise.allSettled([
+    const [notifyResult, autoReplyResult] = await Promise.allSettled([
       resend.emails.send({
         from: FROM_ADDRESS,
         to: [NOTIFY_EMAIL],
@@ -183,16 +181,21 @@ export default defineEventHandler(async event => {
         subject: `We've received your audit request — RapidByt`,
         html: autoReplyHtml,
       }),
-    ]).then(([notifyResult, autoReplyResult]) => {
-      if (notifyResult.status === 'rejected') {
-        console.error('Notification email failed:', notifyResult.reason)
-      }
-      if (autoReplyResult.status === 'rejected') {
-        console.error('Auto-reply email failed:', autoReplyResult.reason)
-      }
-    })
+    ]);
 
-    autoReplySent = true
+    if (notifyResult.status === "rejected") {
+      console.error("[contact] Notification email failed:", JSON.stringify(notifyResult.reason));
+    } else {
+      console.info("[contact] Notification email sent:", notifyResult.value?.data?.id);
+    }
+
+    if (autoReplyResult.status === "rejected") {
+      console.error("[contact] Auto-reply email failed:", JSON.stringify(autoReplyResult.reason));
+    } else {
+      console.info("[contact] Auto-reply email sent:", autoReplyResult.value?.data?.id);
+    }
+
+    autoReplySent = notifyResult.status === "fulfilled";
   }
 
   return {
@@ -200,5 +203,5 @@ export default defineEventHandler(async event => {
     whatsappUrl,
     autoReplySent,
     emailEnabled,
-  }
-})
+  };
+});
