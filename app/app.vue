@@ -1,7 +1,6 @@
 <script setup lang="ts">
-// Global head tags set once at app level
+// Global head tags set once at app level — lang is set here, viewport is handled by Nuxt
 useHead({
-  meta: [{ name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" }],
   htmlAttrs: { lang: "en" },
 });
 </script>
