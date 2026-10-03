@@ -89,25 +89,17 @@ window.gtag('consent', 'default', {
       mode: "out-in",
     },
   },
-
-  // ── CSS ─────────────────────────────────────────────────
   css: ["~/assets/css/main.css"],
-
-  // ── Router ───────────────────────────────────────────────
   router: {
     options: {
       scrollBehaviorType: "smooth",
     },
   },
-
-  // ── Nuxt UI ──────────────────────────────────────────────
   ui: {
     experimental: {
       componentDetection: true,
     },
   },
-
-  // ── Runtime config ──────────────────────────────────────
   runtimeConfig: {
     resendApiKey: process.env.NUXT_RESEND_API_KEY || "",
     pagespeedApiKey: process.env.NUXT_PAGESPEED_API_KEY || "",
@@ -116,8 +108,6 @@ window.gtag('consent', 'default', {
       password: process.env.NUXT_SESSION_PASSWORD || "prerender-build-time-placeholder-32chars!!",
     },
   },
-
-  // ── Experimental ────────────────────────────────────────
   experimental: {
     typedPages: true,
     writeEarlyHints: true,
