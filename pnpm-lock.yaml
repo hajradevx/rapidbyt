@@ -26,9 +26,6 @@ importers:
       '@nuxthub/core':
         specifier: ^0.10.7
         version: 0.10.8(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(db0@0.3.4(@libsql/client@0.17.4)(better-sqlite3@13.0.3)(drizzle-orm@0.45.2(@libsql/client@0.17.4)(better-sqlite3@13.0.3)))(ioredis@5.11.1)(magicast@0.5.3)(typescript@5.9.3)
-      better-sqlite3:
-        specifier: ^13.0.3
-        version: 13.0.3
       drizzle-orm:
         specifier: ^0.45.1
         version: 0.45.2(@libsql/client@0.17.4)(better-sqlite3@13.0.3)
@@ -11918,6 +11915,7 @@ snapshots:
   better-sqlite3@13.0.3:
     dependencies:
       node-addon-api: 8.9.2
+    optional: true
 
   bindings@1.5.0:
     dependencies:
@@ -14352,7 +14350,8 @@ snapshots:
 
   node-addon-api@7.1.1: {}
 
-  node-addon-api@8.9.2: {}
+  node-addon-api@8.9.2:
+    optional: true
 
   node-emoji@2.2.0:
     dependencies:
