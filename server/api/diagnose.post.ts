@@ -320,7 +320,7 @@ export default defineEventHandler(async (event) => {
     useKey: boolean,
   ): Promise<{ data: PageSpeedResult | null; error: string | null }> => {
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 8000);
+    const timer = setTimeout(() => controller.abort(), 12000);
     const keySuffix = useKey && psiKey ? `&key=${psiKey}` : "";
     const psiUrl = `${apiBase}?url=${encodeURIComponent(targetUrl)}&strategy=${strategy}${keySuffix}&category=performance&category=seo&category=accessibility&category=best-practices`;
 
@@ -354,17 +354,15 @@ export default defineEventHandler(async (event) => {
   };
 
   const runPsi = async (strategy: string) => {
-    const withKey = await fetchPsi(strategy, true);
-    if (withKey.data) return withKey;
-
-    const shouldRetryWithoutKey =
-      !!psiKey && !!withKey.error && /api key|quota exceeded/i.test(withKey.error);
-
-    if (!shouldRetryWithoutKey) return withKey;
-
-    console.warn(`PSI ${strategy}: retrying without API key`);
-    return fetchPsi(strategy, false);
-  };
+    // Try with API key first (higher quota)
+    if (psiKey) {
+      const withKey = await fetchPsi(strategy, true)
+      if (withKey.data) return withKey
+      console.warn(`PSI ${strategy}: key attempt failed (${withKey.error}), retrying without key`)
+    }
+    // Fallback: no key (free tier — 25 req/100s limit, enough for one-off uses)
+    return fetchPsi(strategy, false)
+  }
 
   // Run sequentially — concurrent PSI calls double CPU usage on Cloudflare Workers.
   // fetch() I/O doesn't burn CPU but the surrounding JS processing does.
