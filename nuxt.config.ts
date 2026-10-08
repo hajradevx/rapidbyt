@@ -68,8 +68,9 @@ export default defineNuxtConfig({
       script: [
         // Google Consent Mode v2 — defaults set BEFORE GTM/AdSense loads
         {
-          innerHTML: `
-window.dataLayer = window.dataLayer || [];
+          key: "consent-mode",
+          tagPriority: "critical",
+          innerHTML: `window.dataLayer = window.dataLayer || [];
 window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
 window.gtag('consent', 'default', {
   ad_storage: 'denied',
@@ -82,6 +83,8 @@ window.gtag('consent', 'default', {
 
         // Google Tag Manager — must load after Consent Mode defaults
         {
+          key: "gtm",
+          tagPriority: "critical",
           innerHTML: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
