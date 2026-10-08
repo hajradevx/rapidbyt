@@ -4,6 +4,10 @@ import * as z from "zod";
 
 definePageMeta({ layout: false });
 
+useHead({
+  meta: [{ name: "robots", content: "noindex, nofollow" }],
+});
+
 const toast = useToast();
 const router = useRouter();
 const loading = ref(false);

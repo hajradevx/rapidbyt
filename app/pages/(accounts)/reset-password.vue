@@ -8,6 +8,12 @@ const route = useRoute();
 
 definePageMeta({ layout: false });
 
+useHead({
+  meta: [{ name: "robots", content: "noindex, nofollow" }],
+});
+
+definePageMeta({ layout: false });
+
 const loading = ref(false);
 const token = route.query.token as string;
 
