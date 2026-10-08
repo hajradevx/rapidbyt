@@ -6,7 +6,14 @@ import { schemas } from "#shared/utils/schemas";
 definePageMeta({
   layout: false,
 });
-const toast = useToast();
+
+useHead({
+  meta: [{ name: "robots", content: "noindex, nofollow" }],
+});
+
+useHead({
+  meta: [{ name: "robots", content: "noindex, nofollow" }],
+});
 const loading = ref(false);
 
 const fields = ref<AuthFormField[]>([

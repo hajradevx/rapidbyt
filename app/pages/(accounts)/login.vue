@@ -6,6 +6,10 @@ definePageMeta({
   layout: false,
 });
 
+useHead({
+  meta: [{ name: "robots", content: "noindex, nofollow" }],
+});
+
 const { fetch: refreshSession } = useUserSession();
 
 const toast = useToast();

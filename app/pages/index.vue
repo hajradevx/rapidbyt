@@ -13,7 +13,7 @@ useSeoMeta({
     "website speed optimization, web performance, Core Web Vitals, SEO optimization, page speed, slow website fix, web development Pakistan",
 });
 useHead({
-  link: [{ rel: "canonical", href: "https://rapidbyt.com/" }],
+  link: [{ rel: "canonical", href: "https://rapidbyt.com" }],
   script: [
     {
       type: "application/ld+json",
