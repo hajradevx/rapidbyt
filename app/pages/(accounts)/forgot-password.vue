@@ -4,9 +4,6 @@ import * as z from "zod";
 
 definePageMeta({
   layout: false,
-  head: {
-    meta: [{ name: "robots", content: "noindex, nofollow" }],
-  },
 });
 
 const toast = useToast();

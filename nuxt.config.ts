@@ -251,6 +251,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         },
       },
 
+      // Auth pages — noindex via X-Robots-Tag header
+      "/login": { headers: { "x-robots-tag": "noindex, nofollow" } },
+      "/register": { headers: { "x-robots-tag": "noindex, nofollow" } },
+      "/forgot-password": { headers: { "x-robots-tag": "noindex, nofollow" } },
+      "/reset-password": { headers: { "x-robots-tag": "noindex, nofollow" } },
+
       "/": {
         prerender: true,
       },

@@ -8,9 +8,6 @@ const route = useRoute();
 
 definePageMeta({
   layout: false,
-  head: {
-    meta: [{ name: "robots", content: "noindex, nofollow" }],
-  },
 });
 
 const loading = ref(false);
