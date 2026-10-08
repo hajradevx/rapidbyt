@@ -9,6 +9,15 @@ useHead({
 </script>
 
 <template>
+  <!-- Google Tag Manager (noscript) — immediately after opening <body> tag -->
+  <noscript>
+    <iframe
+      src="https://www.googletagmanager.com/ns.html?id=GTM-PXC3GX82"
+      height="0"
+      width="0"
+      style="display: none; visibility: hidden"
+    />
+  </noscript>
   <AppHeader />
   <UMain>
     <NuxtPage />
