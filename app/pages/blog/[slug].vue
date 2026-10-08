@@ -110,31 +110,9 @@ function formatDate(d: string) {
         <ContentRenderer :value="post" />
       </div>
 
-      <!-- CTA -->
-      <div
-        class="mt-16 rounded-2xl border border-sky-200 dark:border-sky-800 bg-sky-50 dark:bg-sky-900/20 p-7 text-center"
-      >
-        <p class="font-black text-zinc-900 dark:text-white mb-1">
-          Want us to fix this for your site?
-        </p>
-        <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-5">
-          Free audit — we'll diagnose exactly what's slowing you down.
-        </p>
-        <div class="flex items-center justify-center gap-3 flex-wrap">
-          <UButton
-            label="Get Free Audit"
-            to="/contact"
-            color="primary"
-            trailing-icon="i-lucide-arrow-right"
-          />
-          <UButton
-            label="Instant Diagnosis"
-            to="/diagnose"
-            variant="outline"
-            color="primary"
-            leading-icon="i-lucide-scan-search"
-          />
-        </div>
+      <!-- Interactive Diagnose Widget -->
+      <div class="mt-16">
+        <BlogDiagnoseWidget />
       </div>
     </UContainer>
   </UPage>
