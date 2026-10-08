@@ -2,10 +2,11 @@
 import type { AuthFormField, FormSubmitEvent } from "@nuxt/ui";
 import * as z from "zod";
 
-definePageMeta({ layout: false });
-
-useHead({
-  meta: [{ name: "robots", content: "noindex, nofollow" }],
+definePageMeta({
+  layout: false,
+  head: {
+    meta: [{ name: "robots", content: "noindex, nofollow" }],
+  },
 });
 
 const toast = useToast();
