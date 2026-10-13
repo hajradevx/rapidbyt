@@ -186,6 +186,24 @@ const pages = [
     priority: "0.8",
     changefreq: "monthly",
   },
+  {
+    loc: "/blog/wix-vs-wordpress-which-is-better",
+    lastmod: "2026-10-10",
+    priority: "0.8",
+    changefreq: "monthly",
+  },
+  {
+    loc: "/blog/google-my-business-seo-guide",
+    lastmod: "2026-10-11",
+    priority: "0.8",
+    changefreq: "monthly",
+  },
+  {
+    loc: "/blog/website-not-loading-on-mobile-data",
+    lastmod: "2026-10-12",
+    priority: "0.8",
+    changefreq: "monthly",
+  },
 ];
 
 export default defineEventHandler((event) => {
