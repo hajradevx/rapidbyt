@@ -39,7 +39,7 @@ function formatDate(d: string) {
 
 <template>
   <UPage v-if="post">
-    <UContainer class="py-12 max-w-3xl">
+    <UContainer class="py-12">
       <!-- Back -->
       <NuxtLink
         to="/blog"
@@ -50,7 +50,7 @@ function formatDate(d: string) {
       </NuxtLink>
 
       <!-- Hero image -->
-      <div
+      <!-- <div
         v-if="post.image"
         class="mb-10 rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800"
       >
@@ -62,7 +62,7 @@ function formatDate(d: string) {
           class="w-full object-cover"
           loading="eager"
         />
-      </div>
+      </div> -->
 
       <!-- Meta -->
       <div class="mb-10">
