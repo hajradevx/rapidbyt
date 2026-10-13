@@ -9,7 +9,7 @@ tags: ["Core Web Vitals", "LCP", "CLS", "INP", "SEO", "Google ranking"]
 image: "/blog/core-web-vitals-guide-2026.jpg"
 ---
 
-Google's Core Web Vitals have been a ranking factor since 2021. In March 2024, INP replaced FID as the third metric — a significant change that caught a lot of developers off guard. And in 2026, the competition keeps intensifying as more sites optimize, meaning if you haven't addressed your vitals, you're actively falling behind sites that have.
+Google's Core Web Vitals have been a ranking factor since 2021. In March 2024, INP replaced FID as the third metric — a significant change that caught a lot of developers off guard. And in 2026, the competition keeps intensifying as more sites optimize, meaning if you haven't addressed your vitals, you're actively falling behind sites that have. Poor Core Web Vitals don't just hurt your rankings — they directly [impact your revenue](/blog/why-page-speed-matters-for-revenue) through lost conversions.
 
 The frustrating thing about Core Web Vitals is that most guides give vague advice like "optimize your images" and "reduce JavaScript." That's technically correct but not very useful if you're staring at a score of 34 and don't know where to start.
 
@@ -33,7 +33,7 @@ This is why it's worth checking your scores in Google Search Console, not just r
 
 LCP measures the time from when a user starts loading a page to when the largest visible content element finishes rendering. That element is usually a hero image, a large heading, or a video poster frame.
 
-A good LCP is under 2.5 seconds. Anything above 4 seconds is considered poor and will drag your rankings down.
+A good LCP is under 2.5 seconds. Anything above 4 seconds is considered poor and will drag your rankings down. And as we covered in our [page speed and revenue guide](/blog/why-page-speed-matters-for-revenue), every second of delay costs real conversions.
 
 ### Why LCP Is Often Worse Than You Think
 
@@ -260,7 +260,7 @@ Audit your scripts ruthlessly. Ask: is this directly contributing to revenue? If
 
 ### Quick Lab Test
 
-Use [PageSpeed Insights](https://pagespeed.web.dev) for a fast Lighthouse-based result. Or use our [free diagnosis tool](/diagnose) — it runs the same tests and emails you the results with a prioritized fix list.
+Use [PageSpeed Insights](https://pagespeed.web.dev) for a fast Lighthouse-based result, or check our roundup of [free website speed check tools](/blog/free-website-speed-check-tools). Or use our [free diagnosis tool](/diagnose) — it runs the same tests and emails you the results with a prioritized fix list. For a broader view of your site's ranking health, see the [free website speed check tools](/blog/free-website-speed-check-tools) that work alongside PageSpeed Insights.
 
 ### Real User Data (Most Accurate)
 
@@ -282,13 +282,13 @@ This gives you real measurements from your actual users on their real devices an
 
 ### Google Search Console
 
-The Core Web Vitals report in Search Console shows field data grouped by "Good," "Needs Improvement," and "Poor" — and breaks it down by page. This is the data Google actually uses for ranking. Check it monthly.
+The Core Web Vitals report in Search Console shows field data grouped by "Good," "Needs Improvement," and "Poor" — and breaks it down by page. This is the data Google actually uses for ranking. Check it monthly. For a complete picture of everything affecting your rankings, the [technical SEO checklist](/blog/technical-seo-checklist-2026) covers all the signals Google evaluates beyond just Core Web Vitals.
 
 ---
 
 ## The Order to Fix Them
 
-If you're starting from scratch, prioritize in this order:
+If you're starting from scratch, prioritize in this order. For a broader view of all technical fixes beyond just vitals, see our [technical SEO checklist](/blog/technical-seo-checklist-2026).
 
 1. **LCP first** — it's the most impactful for rankings and has the most actionable fixes
 2. **CLS second** — image dimensions and font loading are quick wins

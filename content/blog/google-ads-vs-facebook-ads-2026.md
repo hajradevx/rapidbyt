@@ -202,7 +202,7 @@ Now you can test both:
 1. **Broad match keywords** — "shoes" instead of "buy running shoes Karachi" — you'll burn through budget on irrelevant clicks
 2. **No negative keywords** — add words that should NOT trigger your ad
 3. **Sending traffic to homepage** — always send to a specific landing page
-4. **Stopping too early** — Google Ads needs 2-4 weeks to optimise
+4. **Stopping too early** — Google Ads needs 2-4 weeks to optimise. If you're getting clicks but no conversions, read the [Google Ads not converting guide](/blog/google-ads-not-converting-fix) before pausing your campaigns.
 
 ### With Facebook Ads:
 
@@ -217,7 +217,7 @@ Now you can test both:
 
 **For most Pakistani businesses starting with paid ads:**
 
-> Start with **Facebook Ads** — lower minimum budget, easier to learn, Pakistani audience is large and engaged. Once you understand conversion tracking and landing pages, add Google Ads for high-intent traffic.
+> Start with **Facebook Ads** — lower minimum budget, easier to learn, Pakistani audience is large and engaged. Once you understand conversion tracking and landing pages, add Google Ads for high-intent traffic. If budget is tight, there are also effective ways to [get organic traffic without paid ads](/blog/get-first-1000-visitors-without-paid-ads).
 
 **Exception:** If you're a local service business (doctor, plumber, lawyer, repair shop), start with **Google Ads** — the intent is immediately there and conversions happen faster.
 
@@ -234,5 +234,7 @@ Before spending on ads, make sure your landing page:
 - Loads in under 2 seconds on mobile
 - Has a clear call-to-action above the fold
 - Doesn't have layout shifts that confuse users
+
+If your [landing page isn't converting](/blog/traffic-not-converting-landing-page-fixes), no amount of ad spend will fix that — start there first.
 
 [Check your site's performance for free](/diagnose) — our diagnosis tool shows exactly what's slowing you down and how it's affecting your conversions.

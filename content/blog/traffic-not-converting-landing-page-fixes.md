@@ -13,7 +13,7 @@ You're spending money on ads. You're posting on social media. WhatsApp broadcast
 
 But the phone isn't ringing. The inquiry form sits empty. Sales are flat.
 
-This is the most demoralising problem in digital marketing — you can see people arriving and you can see them leaving, but you don't know why.
+This is the most demoralising problem in digital marketing — you can see people arriving and you can see them leaving, but you don't know why. A high [bounce rate](/blog/high-bounce-rate-causes-and-fixes) is often the first measurable symptom.
 
 Here are 10 specific, fixable reasons your traffic isn't converting — and exactly how to fix each one.
 
@@ -47,7 +47,7 @@ Every page needs a headline that answers:
 
 ## Fix 2: Your Page Loads Too Slowly for Mobile
 
-If your page takes more than 3 seconds to load on a phone, over half your WhatsApp and social media traffic is leaving before it loads.
+If your page takes more than 3 seconds to load on a phone, over half your WhatsApp and social media traffic is leaving before it loads. A [1-second delay reduces conversions by up to 20%](/blog/why-page-speed-matters-for-revenue) — and on mobile data connections, load times are even worse.
 
 This is especially critical for Pakistani audiences — a significant portion of users are on 4G or shared connections with slower speeds. A 5MB page that takes 8 seconds is invisible to half your potential customers.
 
@@ -228,7 +228,7 @@ Without a reason to act now, visitors think "I'll come back to this later." They
 | Social media       | 0.7%                    | > 1.5% |
 | Email              | 2.6%                    | > 4%   |
 
-If you're below these averages, work through this checklist systematically. Most pages have at least 3–4 of these problems simultaneously.
+If you're below these averages, work through this checklist systematically. Most pages have at least 3–4 of these problems simultaneously. If your site is already fast and polished but still not converting, the issue may go deeper — read about [CRO for fast websites](/blog/fast-website-still-losing-sales-cro) to understand the psychological factors at play.
 
 ---
 

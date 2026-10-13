@@ -33,7 +33,7 @@ Google Ads → Campaigns → look at your Click-Through Rate (CTR) and Conversio
 
 This is the single most common and most expensive mistake in Google Ads.
 
-Your homepage is designed for many types of visitors — returning customers, people learning about you, people looking for specific services. It's not designed to convert a specific ad click into a specific action.
+Your homepage is designed for many types of visitors — returning customers, people learning about you, people looking for specific services. It's not designed to convert a specific ad click into a specific action. For a deep look at what makes [landing pages convert](/blog/traffic-not-converting-landing-page-fixes), that guide covers 10 proven fixes with before/after examples.
 
 Someone searches "emergency website speed fix" and clicks your ad. They land on your homepage with six service options, a video, testimonials, a pricing section, and a nav menu with ten links. They have no idea what to do. They leave.
 
@@ -54,7 +54,7 @@ More than 60% of Google Ads clicks come from mobile devices. If your page takes 
 
 You're paying for those clicks either way.
 
-**How to check:** Run your landing page URL through [our free diagnostic tool](/diagnose). If your mobile PageSpeed score is below 70, slow load speed is costing you conversions.
+**How to check:** Run your landing page URL through [our free diagnostic tool](/diagnose). If your mobile PageSpeed score is below 70, slow load speed is costing you conversions. Slow pages also directly drive up your [bounce rate](/blog/high-bounce-rate-causes-and-fixes) — visitors who never see your content can't convert.
 
 **Fix:** See our [complete page speed guide](/blog/why-page-speed-matters-for-revenue). The fastest wins for ad landing pages:
 
@@ -232,4 +232,4 @@ Most businesses find the problem in steps 1–3. Fix those before touching your 
 
 ---
 
-Need a second pair of eyes on your landing page? [Request a free conversion audit](/contact) — we'll review your ad, landing page, and analytics setup and identify exactly where spend is being lost.
+Need a second pair of eyes on your landing page? [Request a free conversion audit](/contact) — we'll review your ad, landing page, and analytics setup and identify exactly where spend is being lost. Not sure whether Google Ads or Facebook Ads is the right channel for your business? The [Google Ads vs Facebook Ads comparison](/blog/google-ads-vs-facebook-ads-2026) breaks down which platform wins for each business type.

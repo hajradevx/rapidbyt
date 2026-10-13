@@ -91,7 +91,7 @@ Code/examples: Make it practical and specific
 Conclusion: Summarize + link to your service or free tool
 ```
 
-**Internal links:** Every post should link to at least 2 other posts on your site and to a relevant service or tool page. This keeps visitors on your site longer and distributes SEO authority.
+**Internal links:** Every post should link to at least 2 other posts on your site and to a relevant service or tool page. This keeps visitors on your site longer and distributes SEO authority. For a complete checklist of on-site SEO to apply to each post, see our [technical SEO checklist](/blog/technical-seo-checklist-2026).
 
 ---
 
@@ -232,8 +232,8 @@ More traffic is only useful if your site converts visitors into leads, subscribe
 
 **Weeks 1–2: Foundation**
 
-- Submit sitemap to Google Search Console
-- Create Google Business Profile
+- Submit sitemap to [Google Search Console](/blog/google-search-console-setup-beginners) — if you haven't set it up yet, that guide walks through the full setup
+- Create [Google Business Profile](/blog/google-my-business-seo-guide) — free, shows in maps and local search
 - Submit to 10 free directories
 
 **Weeks 3–8: Content engine**

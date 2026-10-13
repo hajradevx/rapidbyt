@@ -11,7 +11,7 @@ image: "/blog/wordpress-slow-fix.jpg"
 
 WordPress powers 43% of the web. It's also responsible for some of the slowest websites on the internet.
 
-The irony: WordPress itself isn't slow. But a typical WordPress installation with 40 plugins, uncompressed images, no caching, and cheap shared hosting becomes a sluggish mess that frustrates visitors and tanks your Google ranking.
+The irony: WordPress itself isn't slow. But a typical WordPress installation with 40 plugins, uncompressed images, no caching, and cheap shared hosting becomes a sluggish mess that frustrates visitors and tanks your Google ranking. Slow load times [directly cost you revenue](/blog/why-page-speed-matters-for-revenue) — every second of delay reduces conversions.
 
 The good news: most WordPress speed problems are fixable in a single afternoon, without touching a single line of code.
 
@@ -30,7 +30,7 @@ Run your site through [our free diagnosis tool](/diagnose) or [PageSpeed Insight
 
 You'll use these numbers to measure progress after each fix.
 
-**Target after following this guide:** PageSpeed score above 85, LCP under 2.5 seconds.
+**Target after following this guide:** PageSpeed score above 85, LCP under 2.5 seconds. To understand what LCP and the other [Core Web Vitals](/blog/core-web-vitals-guide-2026) actually measure and how Google uses them for ranking, that guide has the full breakdown.
 
 ---
 
@@ -116,7 +116,7 @@ Every image, CSS file, and JavaScript file your site loads can be served from Cl
 3. Enable "Auto Minify" for CSS, JS, HTML
 4. Set caching to "Aggressive"
 
-This routes all traffic through Cloudflare's network globally. Pakistan visitors load from a nearby Cloudflare node instead of a faraway server.
+This routes all traffic through Cloudflare's network globally. Pakistan visitors load from a nearby Cloudflare node instead of a faraway server. For a full walkthrough, see the [Cloudflare migration guide](/blog/how-to-move-to-cloudflare-and-cut-hosting-costs).
 
 **Option B: CDN inside WordPress**
 

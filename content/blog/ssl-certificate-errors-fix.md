@@ -35,7 +35,7 @@ An SSL certificate does two things:
 1. **Encrypts** the connection between the visitor's browser and your server
 2. **Verifies** that your website is actually who it claims to be
 
-Without a valid certificate, browsers show security warnings. With one, your URL shows `https://` and a padlock icon — the baseline signal of trustworthiness in 2026.
+Without a valid certificate, browsers show security warnings. With one, your URL shows `https://` and a padlock icon — the baseline signal of trustworthiness in 2026. HTTPS is also a confirmed Google ranking factor — the [technical SEO checklist](/blog/technical-seo-checklist-2026) covers how it fits into your overall SEO setup.
 
 ---
 
@@ -287,6 +287,8 @@ Run through these after any SSL fix:
 - [ ] HSTS header set
 - [ ] Auto-renewal is configured and tested (`certbot renew --dry-run`)
 
+SSL certificate health should also be part of your [monthly website maintenance](/blog/website-maintenance-checklist) — catching an expiring certificate before it does takes 2 minutes and prevents serious trust damage.
+
 **Score yourself:** SSL Labs gives you an A+ if all of the above are correctly configured. Anything below B is visible to technically savvy users and some enterprise security tools.
 
 ---
@@ -300,7 +302,7 @@ If you're on shared hosting with a complicated SSL setup, the fastest fix is oft
 - Serves your site over their CDN (faster loading)
 - Handles the certificate chain correctly
 
-See our [Cloudflare migration guide](/blog/how-to-move-to-cloudflare-and-cut-hosting-costs) for the full setup process.
+See our [Cloudflare migration guide](/blog/how-to-move-to-cloudflare-and-cut-hosting-costs) for the full setup process. For broader website [security hardening](/blog/website-security-hardening-guide) beyond SSL, that guide covers WAF setup, file permissions, and attack prevention.
 
 ---
 

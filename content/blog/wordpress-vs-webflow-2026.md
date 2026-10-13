@@ -156,7 +156,7 @@ Webflow includes:
 - No server configuration required
 - Average PageSpeed score out of the box: 75–90
 
-**Performance verdict:** Webflow is faster by default. A well-optimised WordPress site can match or exceed Webflow — but "well-optimised" requires deliberate effort. An unoptimised WordPress site is significantly slower than Webflow.
+**Performance verdict:** Webflow is faster by default. A well-optimised WordPress site can match or exceed Webflow — but "well-optimised" requires deliberate effort. An unoptimised WordPress site is significantly slower than Webflow. The [WordPress slow website fix guide](/blog/wordpress-slow-website-fix-guide) covers how to close that gap without a developer.
 
 ---
 
@@ -241,10 +241,10 @@ The wider support ecosystem, greater plugin availability, WooCommerce for e-comm
 
 If design quality is the priority, your content volume is manageable, and you want to avoid technical maintenance entirely, Webflow produces results that are difficult to match in WordPress without significant effort.
 
-**One important note:** Never use WordPress.com (the hosted version) — it removes most of WordPress's advantages. Always use WordPress.org (self-hosted).
+**One important note:** Never use WordPress.com (the hosted version) — it removes most of WordPress's advantages. Always use WordPress.org (self-hosted). If you're still deciding between builders, the [Wix vs WordPress comparison](/blog/wix-vs-wordpress-which-is-better) covers the entry-level options in detail.
 
 ---
 
-Whatever platform you choose, slow load times directly reduce conversions. Webflow sites are generally fast by default. WordPress sites almost always need performance work.
+Whatever platform you choose, slow load times directly reduce conversions. Webflow sites are generally fast by default. WordPress sites almost always need performance work. One of the most impactful hosting moves for any platform is [migrating to Cloudflare](/blog/how-to-move-to-cloudflare-and-cut-hosting-costs) — it reduces load times globally and cuts hosting costs.
 
 [Check your current site speed for free](/diagnose) — the report takes 60 seconds and shows exactly what is slowing you down and what to fix first.

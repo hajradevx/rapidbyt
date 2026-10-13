@@ -181,8 +181,7 @@ Real user performance data (not lab data) for mobile and desktop — LCP, CLS, a
 
 Go to Indexing → Pages → Review how many pages are indexed.
 
-If important pages show as "Not indexed", request indexing manually:
-URL Inspection → Enter the URL → Click "Request Indexing"
+If important pages show as "Not indexed", request indexing manually. The [website not showing on Google guide](/blog/why-is-my-website-not-showing-on-google) covers the 7 most common reasons pages don't get indexed and exactly how to fix each one.
 
 ### Action 2: Review Performance Data (After 2–4 Weeks)
 
@@ -231,7 +230,7 @@ If an important page is not being indexed and you do not know why, Search Consol
 4. Improve those pages: better content, faster load time, stronger internal links
 5. Recheck in 3–4 weeks — many will move up to page one
 
-This is one of the most reliable ways to increase organic traffic using content you have already written.
+This is one of the most reliable ways to increase organic traffic using content you have already written. If a [competitor is outranking you](/blog/competitor-outranking-you-on-google) on your most important keywords, Search Console data is your starting point for closing that gap.
 
 ---
 
@@ -263,4 +262,4 @@ Use both. They answer different questions.
 
 ---
 
-Search Console tells you what Google sees. But if your site is slow, Google will rank it lower regardless of how good your content is. [Run a free performance diagnosis](/diagnose) — it checks your Core Web Vitals, speed issues, and technical SEO problems in 60 seconds.
+Search Console tells you what Google sees. But if your site is slow, Google will rank it lower regardless of how good your content is. [Run a free performance diagnosis](/diagnose) — it checks your Core Web Vitals, speed issues, and [technical SEO problems](/blog/technical-seo-checklist-2026) in 60 seconds.

@@ -9,7 +9,7 @@ tags: ["google indexing", "not on google", "SEO", "crawling", "Search Console"]
 image: "/blog/website-not-on-google.jpg"
 ---
 
-You built the site. You launched it. You searched Google for your business name — and nothing. No result. Just your competitor staring back at you.
+You built the site. You launched it. You searched Google for your business name — and nothing. No result. Just your [competitor](/blog/competitor-outranking-you-on-google) staring back at you.
 
 This is one of the most common frustrations we hear from new website owners. The good news: it's almost always fixable. Here are the 7 most common reasons your website isn't showing on Google, with a step-by-step fix for each.
 
@@ -136,7 +136,7 @@ Google's Googlebot has a "crawl budget" — a limit on how many pages it will cr
 
 ## Reason 7: Technical Errors Blocking Crawling
 
-404 errors, redirect loops, or a broken SSL certificate can all prevent Google from properly indexing your site.
+404 errors, redirect loops, or a broken SSL certificate can all prevent Google from properly indexing your site. A [full technical SEO checklist](/blog/technical-seo-checklist-2026) will catch all of these issues systematically.
 
 **Check it in Google Search Console:**
 

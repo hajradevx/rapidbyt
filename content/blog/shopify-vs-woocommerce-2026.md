@@ -63,7 +63,7 @@ Most comparisons show monthly prices. Here's what you actually pay over 3 years:
 | Developer help (if needed) | $0-500               |
 | **Total**                  | **$138 – $1,657**    |
 
-**Cost verdict:** WooCommerce is significantly cheaper over 3 years, especially for Pakistani sellers paying Shopify's transaction fees.
+**Cost verdict:** WooCommerce is significantly cheaper over 3 years, especially for Pakistani sellers paying Shopify's transaction fees. But cheaper hosting means you'll need to put more work into getting [conversions from your traffic](/blog/traffic-not-converting-landing-page-fixes) through a well-optimized store experience.
 
 ---
 
@@ -174,6 +174,7 @@ This is critical for Pakistani sellers:
 - Requires hosting upgrades as you grow
 - Needs developer help at enterprise scale
 - Full flexibility — can optimise for any scale
+- You are responsible for [security hardening](/blog/website-security-hardening-guide) — WooCommerce stores are a common attack target
 
 **Scaling verdict:** Shopify is easier to scale. WooCommerce scales well but requires more active management.
 
@@ -235,4 +236,4 @@ For **international sellers or non-technical founders:**
 
 ---
 
-Whatever platform you choose, site speed directly impacts your conversion rate. A 1-second delay costs ecommerce stores an average of 7% in conversions. [Run our free diagnosis tool](/diagnose) to see exactly how your store scores on Core Web Vitals and what to fix first.
+Whatever platform you choose, site speed directly impacts your conversion rate. A 1-second delay costs ecommerce stores an average of 7% in conversions. If you're still deciding between platforms more broadly, the [Wix vs WordPress comparison](/blog/wix-vs-wordpress-which-is-better) covers how WordPress-based WooCommerce stacks up against hosted builders. [Run our free diagnosis tool](/diagnose) to see exactly how your store scores on Core Web Vitals and what to fix first.
