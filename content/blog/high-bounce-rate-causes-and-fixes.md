@@ -11,7 +11,7 @@ image: "/blog/bounce-rate-fixes.jpg"
 
 Your Google Analytics shows 70–80% bounce rate. You're getting traffic but people leave immediately. You've tweaked headlines, changed button colors — nothing moves the needle.
 
-Here's the uncomfortable truth: **bounce rate problems are usually technical, not creative.** Design can't save a page that loads in 8 seconds.
+Here's the uncomfortable truth: **bounce rate problems are usually technical, not creative.** Design can't save a page that loads in 8 seconds. In fact, a [slow page directly costs you revenue](/blog/why-page-speed-matters-for-revenue) long before visitors ever read your content.
 
 Let's go through the real causes in order of impact.
 
@@ -64,7 +64,7 @@ This is called "message mismatch." Someone clicks a Google ad for "affordable SE
 
 ## Cause 3: The Page is Hard to Read on Mobile
 
-More than 60% of web traffic is mobile. If your page requires pinching and zooming, has text too small to read, or buttons too small to tap — users will leave.
+More than 60% of web traffic is mobile. If your page requires pinching and zooming, has text too small to read, or buttons too small to tap — users will leave. Sites that [fail to load on mobile data](/blog/website-not-loading-on-mobile-data) lose these visitors before they even see the content.
 
 **How to check:** Open your site on your phone right now. Can you read it comfortably without zooming? Can you tap buttons without accidentally hitting the wrong one?
 
@@ -92,7 +92,7 @@ a {
 
 ## Cause 4: No Clear Next Step (Missing CTA)
 
-A visitor lands on your page, reads it, and thinks "OK... now what?" If you don't tell them what to do next, they'll leave. Humans need explicit instructions.
+A visitor lands on your page, reads it, and thinks "OK... now what?" If you don't tell them what to do next, they'll leave. Humans need explicit instructions. When visitors bounce without converting, it compounds into a [landing page conversion problem](/blog/traffic-not-converting-landing-page-fixes) that goes beyond just speed.
 
 **The fix:**
 

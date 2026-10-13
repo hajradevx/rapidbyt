@@ -35,7 +35,7 @@ Let's go through the specific causes and their fixes.
 
 ## Cause 1: Oversized Images
 
-This is the number one cause, by a wide margin. We audit sites constantly and routinely find hero images over 2MB, product images over 500KB, and blog thumbnails that are huge.
+This is the number one cause, by a wide margin. We audit sites constantly and routinely find hero images over 2MB, product images over 500KB, and blog thumbnails that are huge. If images are also appearing blurry or the wrong size, our guide on [fixing blurry and wrong-size images](/blog/images-loading-blurry-wrong-size) covers that specific problem.
 
 Images on a page designed for a 1920px desktop monitor don't need to be served at full resolution to a 375px mobile screen. But without proper configuration, that's exactly what happens — the browser downloads a massive image and then scales it down to fit.
 
@@ -90,7 +90,7 @@ If your page has JavaScript files loading in the `<head>` without `defer` or `as
 
 **How to find the problem:**
 
-Run your URL through Google PageSpeed Insights. Look for "Eliminate render-blocking resources" in the opportunities section. It will list the specific scripts causing the problem.
+Run your URL through Google PageSpeed Insights. Look for "Eliminate render-blocking resources" in the opportunities section. Also check our [Core Web Vitals guide](/blog/core-web-vitals-guide-2026) — render-blocking JS is a major cause of poor INP scores.
 
 **How to fix it:**
 
@@ -142,7 +142,7 @@ If your website is hosted on a single server — say, in the US or Europe — an
 
 A CDN stores copies of your site's files at servers around the world. A visitor loads assets from the nearest server rather than your origin. For a global audience, this can cut load times by 40-60%.
 
-Cloudflare is the most accessible option — the free plan is genuinely powerful and takes about 20 minutes to set up. It puts your content on a global edge network and provides automatic HTTPS, DDoS protection, and caching as well.
+Cloudflare is the most accessible option — the free plan is genuinely powerful and takes about 20 minutes to set up. It puts your content on a global edge network and provides automatic HTTPS, DDoS protection, and caching. See our [step-by-step Cloudflare migration guide](/blog/how-to-move-to-cloudflare-and-cut-hosting-costs) to get it set up.
 
 ## Cause 6: Too Much JavaScript
 

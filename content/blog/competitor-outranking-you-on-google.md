@@ -17,7 +17,7 @@ tags:
 image: "/blog/competetor.jpg"
 ---
 
-You search for your main service keyword. Your competitor is at position 1. You're on page 3. They have a worse product. Your service is better. It makes no sense.
+Content alone won't rank if the technical foundation is broken. Before trying to outrank anyone, run a [technical SEO checklist](/blog/technical-seo-checklist-2026) — crawlability issues, missing structured data, or failing Core Web Vitals can all prevent your pages from competing at full strength.
 
 Here's the thing: Google doesn't rank the best product. It ranks the page that best demonstrates expertise, authority, and relevance for a specific search. Your competitor figured that out. You haven't — yet.
 
@@ -225,7 +225,7 @@ This isn't unfixable — but it does mean you can't outrank an established site 
 
 - Complete on-page SEO for your top 5 target pages
 - Fix any speed issues (get mobile score above 85)
-- Set up Google Search Console and verify all pages are indexed
+- Set up Google Search Console and verify all pages are [indexed](/blog/why-is-my-website-not-showing-on-google)
 
 **Month 2 — Build content:**
 

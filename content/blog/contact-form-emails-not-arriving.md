@@ -50,6 +50,8 @@ This is the most common cause. Your form is working — the emails are being sen
 - Missing SPF, DKIM, and DMARC DNS records
 - Subject line contains spam trigger words
 
+Spam filtering is also closely tied to how well you've implemented [website security measures](/blog/website-security-hardening-guide) — a compromised or poorly configured server gets blacklisted faster.
+
 **Fix: Check your server's reputation**
 
 Go to [mxtoolbox.com/blacklists](https://mxtoolbox.com/blacklists) → enter your domain or server IP → check if it's blacklisted.
@@ -123,7 +125,7 @@ await resend.emails.send({
 
 ## Cause 4: Missing or Incorrect DNS Records (SPF, DKIM, DMARC)
 
-Even with a good email service, emails will land in spam if your domain doesn't have proper email authentication records. These records tell receiving email servers that your emails are legitimate.
+Even with a good email service, emails will land in spam if your domain doesn't have proper email authentication records. These records tell receiving email servers that your emails are legitimate. A misconfigured or missing [SSL certificate](/blog/ssl-certificate-errors-fix) can also trigger spam filters on some mail systems — make sure your domain is serving HTTPS correctly alongside these DNS records.
 
 **Check your records:** Go to [mxtoolbox.com](https://mxtoolbox.com) → enter your domain → check SPF, DKIM, DMARC.
 
@@ -246,7 +248,7 @@ Now even if email delivery fails, the submission is in your database and you can
 
 Even with perfect email setup, we always recommend adding a WhatsApp link as a parallel conversion channel. If email fails for any reason, visitors still have a direct way to reach you.
 
-A floating WhatsApp button with a pre-filled message takes 30 minutes to add and captures leads that email misses. See our [lead generation guide](/blog/traffic-not-converting-landing-page-fixes) for implementation.
+A floating WhatsApp button with a pre-filled message takes 30 minutes to add and captures leads that email misses. See our [lead generation guide](/blog/traffic-not-converting-landing-page-fixes) for implementation. Testing your contact form monthly should also be part of your [website maintenance checklist](/blog/website-maintenance-checklist) — it's one of the quickest issues to miss and one of the most damaging.
 
 ---
 

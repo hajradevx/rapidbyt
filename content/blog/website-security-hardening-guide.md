@@ -68,7 +68,7 @@ grep -r "base64_decode\|eval(" /var/www/html --include="*.php"
 
 ### Step 4: Restore from a Clean Backup
 
-This is why backups exist. Restore to a version from before the hack. If you don't have a backup — note this for Step 5 of your prevention plan.
+This is why backups exist. Restore to a version from before the hack. If you don't have a backup — note this for Step 5 of your prevention plan. If the attack caused your site to go offline completely, follow the steps in the [website down guide](/blog/website-down-what-to-do) to get back online quickly.
 
 ### Step 5: Identify the Entry Point
 
@@ -95,7 +95,7 @@ wp plugin update --all
 wp theme update --all
 ```
 
-Enable automatic updates for minor security releases.
+Enable automatic updates for minor security releases. Keeping everything updated is also a core part of your [monthly website maintenance](/blog/website-maintenance-checklist) routine.
 
 ### 2. Use Strong, Unique Passwords + 2FA
 
@@ -221,7 +221,7 @@ Get notified the moment something changes on your site.
 
 ### 12. Use HTTPS Everywhere + HSTS
 
-If you're still on HTTP in 2026, Google actively penalises you and browsers show scary warning screens.
+If you're still on HTTP in 2026, Google actively penalises you and browsers show scary warning screens. If you're seeing [SSL certificate errors](/blog/ssl-certificate-errors-fix) after switching, that guide covers every error type and how to fix it.
 
 Get a free SSL certificate from [Let's Encrypt](https://letsencrypt.org) or via Cloudflare. Then force all traffic to HTTPS:
 

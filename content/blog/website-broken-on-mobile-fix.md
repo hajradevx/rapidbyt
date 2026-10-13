@@ -9,7 +9,7 @@ tags: ["mobile responsive", "mobile layout", "CSS", "viewport", "mobile UX", "re
 image: "/blog/website-broken-mobile.jpg"
 ---
 
-More than 60% of web traffic is mobile. If your site looks great on your laptop and broken on a phone, you're effectively turning away the majority of your visitors.
+More than 60% of web traffic is mobile. If your site looks great on your laptop and broken on a phone, you're effectively turning away the majority of your visitors. If the site also [fails to load on mobile data connections](/blog/website-not-loading-on-mobile-data), that's a page weight problem on top of the layout issues covered here.
 
 The frustrating part: you often don't know. You built and tested the site on a desktop, clients report it on mobile, and by then you've lost countless visitors without a trace in your analytics.
 
@@ -243,6 +243,8 @@ img {
 }
 ```
 
+If images are also loading blurry or at the wrong resolution, the [images loading blurry guide](/blog/images-loading-blurry-wrong-size) covers srcset, WebP conversion, and proper dimension handling.
+
 **Problem: Hero image too tall on mobile, makes the page feel unusable**
 
 ```css
@@ -390,7 +392,7 @@ Embedded YouTube or Vimeo iframes have a fixed `width` and `height` in their def
 
 ## Fix 10: Popups Blocking the Entire Screen on Mobile
 
-Google penalises "intrusive interstitials" — popups that cover the main content on mobile. This hurts your ranking AND causes immediate bounces.
+Google penalises "intrusive interstitials" — popups that cover the main content on mobile. This hurts your ranking AND causes immediate bounces. Mobile layout issues like this also contribute to a poor [CLS (Cumulative Layout Shift)](/blog/core-web-vitals-guide-2026) score, which is one of Google's three Core Web Vitals ranking signals.
 
 **Rules:**
 

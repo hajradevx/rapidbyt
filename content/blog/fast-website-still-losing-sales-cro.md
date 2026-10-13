@@ -13,7 +13,7 @@ You ran the speed tests. PageSpeed score: 94. You hired a designer. The site loo
 
 But the inquiry form is empty. The buy button goes unclicked.
 
-When speed and design aren't the problem, the problem is almost always psychological. Visitors are making subconscious decisions not to act — and they won't tell you why. Here are the real reasons and how to address each one.
+When speed and design aren't the problem, the problem is almost always psychological. Visitors are making subconscious decisions not to act — and they won't tell you why. If you haven't already solved the speed side, check [why a fast website still matters for revenue](/blog/why-page-speed-matters-for-revenue) first. Here are the real conversion reasons and how to address each one.
 
 ---
 
@@ -208,7 +208,7 @@ Once you know your actual conversion rate from each traffic source, you can make
 
 ## The CRO Priority Order
 
-Work through these in order. Most fast, pretty sites with low conversions fail on 1–3:
+Work through these in order. Most fast, pretty sites with low conversions fail on 1–3. If your [bounce rate is also high](/blog/high-bounce-rate-causes-and-fixes), fix that in parallel — they often share root causes:
 
 1. **Trust signals** — social proof, specific numbers, real people
 2. **Offer clarity** — pricing or process transparency
@@ -223,4 +223,4 @@ Work through these in order. Most fast, pretty sites with low conversions fail o
 
 If you've addressed all of the above and conversions are still lower than expected, the next step is user testing — watching real visitors navigate your site through tools like Hotjar or Microsoft Clarity (both have free tiers). What you observe in a 5-minute session recording will surprise you.
 
-Want a conversion audit on your specific page? [Request one here](/contact) — we'll review your page against all 8 of these factors and send you a prioritised list of fixes within 24 hours.
+Want a conversion audit on your specific page? [Request one here](/contact) — we'll review your page against all 8 of these factors and send you a prioritised list of fixes within 24 hours. And if you're also struggling with [traffic that isn't converting on your landing pages](/blog/traffic-not-converting-landing-page-fixes), that guide covers the tactical fixes.

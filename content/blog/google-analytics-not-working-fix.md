@@ -271,7 +271,7 @@ Add all external services that redirect back to your site:
 
 ---
 
-## The One Report to Check Every Week
+**The one report to check every week:**
 
 If you're overwhelmed by GA4's complexity, start with one report:
 
@@ -281,10 +281,10 @@ This tells you:
 
 - How many users came from each channel (organic, direct, social, email)
 - Which channels convert best
-- Whether your SEO and content work is growing organic traffic month over month
+- Whether your SEO and content work is growing organic traffic month over month. The [technical SEO checklist](/blog/technical-seo-checklist-2026) covers what to fix on the SEO side if organic traffic is flat or declining.
 
 Everything else is secondary until you understand your traffic sources.
 
 ---
 
-Want a GA4 audit to verify your tracking is accurate? [Get in touch](/contact) — bad analytics data leads to bad marketing decisions, and fixing the tracking is usually a 2–3 hour job.
+Want a GA4 audit to verify your tracking is accurate? [Get in touch](/contact) — bad analytics data leads to bad marketing decisions, and fixing the tracking is usually a 2–3 hour job. Once your analytics is working, pair it with [Google Search Console](/blog/google-search-console-setup-beginners) to get the full picture of how visitors find and use your site.

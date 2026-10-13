@@ -17,7 +17,7 @@ tags:
 image: "/blog/free-speed-check-tools.jpg"
 ---
 
-Your website feels slow — but what exactly is the problem? And how do you confirm that a fix actually improved things?
+Your website feels slow — but what exactly is the problem? And how do you confirm that a fix actually improved things? Speed problems [directly affect your revenue](/blog/why-page-speed-matters-for-revenue) — a 1-second delay can reduce conversions by up to 20%.
 
 These 5 free tools give you the full picture, without spending anything.
 
@@ -36,7 +36,7 @@ This is Google's own tool — the score it produces is directly related to how G
 ### What It Shows
 
 - **Performance score:** 0–100 (90+ is good, 50–89 needs work, below 50 is poor)
-- **Core Web Vitals:** LCP, CLS, INP — Google's three main user experience signals
+- **Core Web Vitals:** LCP, CLS, INP — Google's three main user experience signals (for a deep dive into what these mean and how to fix them, see the [Core Web Vitals guide](/blog/core-web-vitals-guide-2026))
 - **Field data:** Real user experience over the last 28 days
 - **Lab data:** Controlled test environment results
 - **Opportunities:** Specific fixes with estimated improvement for each
@@ -213,7 +213,7 @@ Speed scores vary between runs. Test the same URL 3–5 times and take the avera
 
 ### Prioritise Mobile
 
-Google uses mobile-first indexing — your mobile score is more important than your desktop score. Fix mobile performance first.
+Google uses mobile-first indexing — your mobile score is more important than your desktop score. Fix mobile performance first. If your site struggles to load on mobile data connections specifically, the [mobile data loading guide](/blog/website-not-loading-on-mobile-data) explains exactly why that happens and what to fix.
 
 ---
 

@@ -39,7 +39,7 @@ A website going down for 4 hours, or getting hacked, or losing its Google rankin
 
 ### Check Uptime Monitor
 
-If you have UptimeRobot or similar set up, verify there were no downtime incidents this week. If there were, investigate why.
+If you have UptimeRobot or similar set up, verify there were no downtime incidents this week. If there were, investigate why. Our guide on [what to do when your website goes down](/blog/website-down-what-to-do) covers the immediate response steps.
 
 If you don't have uptime monitoring set up yet — do this today before anything else:
 

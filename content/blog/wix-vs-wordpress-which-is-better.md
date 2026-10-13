@@ -59,7 +59,7 @@ But WordPress with Yoast SEO or Rank Math still has meaningful advantages:
 - Better handling of large sites with complex taxonomies
 - Faster page speeds (more on this below)
 
-The biggest real-world SEO difference isn't in the settings panel — it's in **page speed**. Wix sites typically score 50–70 on Google's PageSpeed Insights mobile test. A well-optimized WordPress site can consistently hit 90+. Since page speed is a ranking factor and affects Core Web Vitals, this is a meaningful advantage for WordPress in competitive niches.
+The biggest real-world SEO difference isn't in the settings panel — it's in **page speed**. Wix sites typically score 50–70 on Google's PageSpeed Insights mobile test. A well-optimized WordPress site can consistently hit 90+. Since page speed is a ranking factor and affects [Core Web Vitals](/blog/core-web-vitals-guide-2026), this is a meaningful advantage for WordPress in competitive niches.
 
 We've worked with businesses that switched from Wix to WordPress specifically because their Wix site couldn't pass Core Web Vitals no matter what they tried. The platform generates too much render-blocking JavaScript that you can't control.
 
@@ -85,7 +85,7 @@ WordPress with WooCommerce is the most powerful e-commerce setup available outsi
 
 But WooCommerce is complex. It requires maintenance, updates, and often a developer for anything beyond basic configuration.
 
-For small stores: Wix is easier and good enough. For larger or more complex stores: WooCommerce wins clearly.
+For small stores: Wix is easier and good enough. For larger or more complex stores: WooCommerce wins clearly. See our detailed [Shopify vs WooCommerce comparison](/blog/shopify-vs-woocommerce-2026) for a full breakdown.
 
 **Winner: Depends on store size — Wix for small, WooCommerce/WordPress for larger**
 
@@ -150,7 +150,7 @@ Here's the honest summary:
 
 Most of the clients who come to us with performance problems are either on poorly maintained WordPress setups (too many plugins, cheap hosting, no caching) or on Wix struggling to pass Core Web Vitals for competitive keywords.
 
-The WordPress clients are easier to help — there are clear levers to pull: better hosting, image optimization, plugin audit, caching. We've taken WordPress sites from PageSpeed scores of 38 to 94.
+The WordPress clients are easier to help — there are clear levers to pull: better hosting, image optimization, plugin audit, caching. We've taken WordPress sites from PageSpeed scores of 38 to 94. If you're on WordPress and struggling with speed, our [WordPress slow website fix guide](/blog/wordpress-slow-website-fix-guide) covers every common cause.
 
 The Wix clients are harder. There's less we can do within the platform's constraints. Sometimes the right answer is to migrate.
 

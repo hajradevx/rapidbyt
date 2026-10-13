@@ -52,7 +52,7 @@ Most hosting providers publish real-time status. Google your provider + "status 
 
 If they're showing an incident, your hands are largely tied — wait for them to fix it, but communicate with your users (see below).
 
-If they show all-green, the problem is on your site/configuration.
+If they show all-green, the problem is on your site/configuration. If downtime issues are recurring, it may be time to evaluate your host — the [best web hosting guide for Pakistan](/blog/best-web-hosting-pakistan-2026) compares uptime reliability across the most popular options.
 
 ---
 
@@ -207,7 +207,7 @@ git push
 
 **If a WordPress update broke it:**
 
-cPanel → File Manager → rename `wp-content/plugins` to `wp-content/plugins-disabled` → refresh site. If it works, a plugin caused the crash. Rename it back, then deactivate plugins one by one.
+cPanel → File Manager → rename `wp-content/plugins` to `wp-content/plugins-disabled` → refresh site. If it works, a plugin caused the crash. Rename it back, then deactivate plugins one by one. If the downtime was caused by a security breach or attack, follow the [website security hardening guide](/blog/website-security-hardening-guide) after restoring — attacks often repeat if the entry point isn't closed.
 
 ---
 
@@ -241,7 +241,7 @@ Once you're back online, spend 20 minutes on a post-mortem:
 
 ## Prevention: Set Up Monitoring Before It Happens Again
 
-If a client told you your site was down before you knew about it, you have no monitoring. Fix this today — it's free.
+If a client told you your site was down before you knew about it, you have no monitoring. Fix this today — it's free. Monitoring is also a core part of your [monthly website maintenance](/blog/website-maintenance-checklist) routine — the checklist covers everything you should be checking regularly to prevent downtime before it happens.
 
 **UptimeRobot (free for up to 50 monitors):**
 

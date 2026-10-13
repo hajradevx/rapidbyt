@@ -9,7 +9,7 @@ tags: ["technical SEO", "SEO checklist", "structured data", "crawlability", "ran
 image: "/blog/technical-seo-checklist.jpg"
 ---
 
-Content alone won't rank if the technical foundation is broken. This is a mistake we see constantly — businesses investing heavily in blog posts and link building while their site is leaking crawl budget, blocking Googlebot, or failing Core Web Vitals.
+Content alone won't rank if the technical foundation is broken. This is a mistake we see constantly — businesses investing heavily in blog posts and link building while their site is leaking crawl budget, blocking Googlebot, or failing Core Web Vitals. If you're wondering [why your website isn't showing on Google](/blog/why-is-my-website-not-showing-on-google), many of the answers are in this checklist.
 
 Before you invest another hour in content marketing, work through this checklist. Most of these fixes take under 30 minutes each, and some will have a noticeable impact on rankings within weeks.
 
@@ -53,7 +53,7 @@ Your sitemap should include all canonical, indexable URLs. Leave out paginated p
 </urlset>
 ```
 
-After submitting, check Search Console's Coverage report to see how many pages Google has indexed vs. how many it knows about.
+After submitting, check Search Console's Coverage report to see how many pages Google has [indexed](/blog/why-is-my-website-not-showing-on-google) vs. how many it knows about.
 
 ### 3. Ensure All Important Pages Return HTTP 200
 
@@ -220,15 +220,11 @@ If you sell products, Product schema can display star ratings, price, and availa
 
 ## Section 4: Performance (Core Web Vitals)
 
-Since 2021, Google uses Core Web Vitals as a ranking signal. A slow site actively hurts your rankings — not just your user experience.
+Since 2021, Google uses [Core Web Vitals](/blog/core-web-vitals-guide-2026) as a ranking signal. A slow site actively hurts your rankings — not just your user experience.
 
 ### 16. Pass All Three Core Web Vitals
 
-The three signals to target:
-
-- **LCP (Largest Contentful Paint):** Under 2.5 seconds — how fast the main content appears
-- **CLS (Cumulative Layout Shift):** Under 0.1 — how much the page jumps around while loading
-- **INP (Interaction to Next Paint):** Under 200ms — how fast the page responds to clicks
+The three signals to target: LCP < 2.5s, CLS < 0.1, INP < 200ms. See our [complete Core Web Vitals fix guide](/blog/core-web-vitals-guide-2026) for detailed instructions on each.
 
 Check your real-world scores in Google Search Console under Core Web Vitals. The field data there is what Google actually uses for rankings — not just lab test results.
 
@@ -273,7 +269,7 @@ Cache-Control: public, s-maxage=60, stale-while-revalidate=3600
 
 ## Section 5: Internal Linking
 
-Internal links are how Google discovers pages and understands the relationship between them. A well-structured internal link strategy amplifies the SEO value of your entire site.
+Internal links are how Google discovers pages and understands the relationship between them. A well-structured internal link strategy amplifies the SEO value of your entire site — and it's one of the most reliable ways to close the gap when [competitors are outranking you](/blog/competitor-outranking-you-on-google) on key terms.
 
 ### 21. Every Important Page Reachable Within 3 Clicks
 
@@ -385,4 +381,4 @@ Trying to fix all 30 issues at once is overwhelming. Here's a practical priority
 
 Instead of manually checking each of these items yourself, use our [free diagnosis tool](/diagnose). It automatically scans your site for performance issues, SEO problems, and accessibility failures — and delivers a prioritized report to your inbox in about 10 seconds.
 
-For a complete audit with full recommendations tailored to your specific site, [get in touch with our team](/contact). We audit dozens of sites every month and know exactly where to look.
+For a complete audit with full recommendations tailored to your specific site, [get in touch with our team](/contact). If a [competitor is outranking you on Google](/blog/competitor-outranking-you-on-google), a technical audit is usually the first place to look. We audit dozens of sites every month and know exactly where to look.

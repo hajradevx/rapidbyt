@@ -30,7 +30,7 @@ This is the most common — and most confusing — problem when deploying Nuxt t
 
 ## Why Local Works But Production Doesn't
 
-These two environments are fundamentally different runtimes:
+These two environments are fundamentally different runtimes. If you're new to Cloudflare and wondering whether it's the right hosting choice, the [Cloudflare migration guide](/blog/how-to-move-to-cloudflare-and-cut-hosting-costs) covers the full picture — including when Cloudflare Pages is the better option over Workers for simpler sites.
 
 |            | `nuxt dev` (Local)                       | `wrangler deploy` (Production)      |
 | ---------- | ---------------------------------------- | ----------------------------------- |
@@ -464,4 +464,4 @@ export default defineNuxtConfig({
 
 ---
 
-If you're hitting a production issue on Nuxt + Cloudflare Workers that isn't covered here, [get in touch](/contact) — we build and deploy on this exact stack and can diagnose most issues from a `wrangler tail` log.
+If you're hitting a production issue on Nuxt + Cloudflare Workers that isn't covered here, [get in touch](/contact) — we build and deploy on this exact stack and can diagnose most issues from a `wrangler tail` log. For teams evaluating whether to use Nuxt or a more traditional CMS, the [WordPress vs Webflow comparison](/blog/wordpress-vs-webflow-2026) explains the tradeoffs between modern frameworks and established platforms.

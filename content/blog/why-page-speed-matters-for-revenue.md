@@ -9,7 +9,7 @@ tags: ["page speed", "conversion rate", "Core Web Vitals", "revenue"]
 image: "/blog/why-page-speed-matters-for-revenue.jpg"
 ---
 
-If your website takes more than 3 seconds to load, you've already lost **53% of mobile visitors** before they even see your homepage. That's not an opinion — it's a Google statistic pulled from over 11 million mobile landing pages analyzed in 2023.
+If your website takes more than 3 seconds to load, you've already lost **53% of [mobile visitors](/blog/website-not-loading-on-mobile-data)** before they even see your homepage. That's not an opinion — it's a Google statistic pulled from over 11 million mobile landing pages analyzed in 2023.
 
 And honestly? Most website owners have no idea this is happening to them. They're pouring money into ads, tweaking copy, running promotions — but the real leak is in their load time.
 
@@ -28,13 +28,13 @@ We've seen this firsthand working with clients. One e-commerce store selling clo
 
 ## It's Not Just About Conversions — It's About Rankings Too
 
-Google officially confirmed in 2021 that Core Web Vitals are a ranking factor. That means your page speed doesn't just affect how many visitors convert — it affects how many visitors find you in the first place.
+Google officially confirmed in 2021 that [Core Web Vitals](/blog/core-web-vitals-guide-2026) are a ranking factor. That means your page speed doesn't just affect how many visitors convert — it affects how many visitors find you in the first place.
 
 Think about that for a second. A slow site loses you traffic from Google, and then loses you conversions from the traffic that does arrive. It's a double hit.
 
 ## What Google Actually Measures
 
-Google's Core Web Vitals are three specific signals that directly affect your search ranking. They're measured on real user data — not just lab tests.
+Google's [Core Web Vitals](/blog/core-web-vitals-guide-2026) are three specific signals that directly affect your search ranking. They're measured on real user data — not just lab tests.
 
 ### LCP — Largest Contentful Paint
 
@@ -127,7 +127,7 @@ This is an advanced optimization but it has a dramatic effect on perceived load 
 
 The fastest way to see where you stand is to use our [free instant diagnosis tool](/diagnose). Enter your URL and within about 10 seconds you'll get:
 
-- Your PageSpeed Insights score (mobile and desktop)
+- Your [free website speed check](/blog/free-website-speed-check-tools) score (mobile and desktop)
 - Core Web Vitals breakdown (LCP, CLS, INP)
 - A list of the specific issues found
 - Prioritized recommendations for what to fix first
@@ -140,7 +140,7 @@ You can also run a quick check at [pagespeed.web.dev](https://pagespeed.web.dev)
 
 After auditing hundreds of websites, the same issues come up again and again:
 
-**Unoptimized hero images.** Almost every site has this. A beautiful 4K banner image that looks great on a design mockup but kills mobile load time.
+**Unoptimized hero images.** Almost every site has this. A beautiful 4K banner image that looks great on a design mockup but kills [mobile load time](/blog/website-not-loading-on-mobile-data).
 
 **Too many third-party scripts.** Live chat, retargeting pixels, heat map tools, A/B testing frameworks — each one adds HTTP requests and JavaScript execution time. Five third-party scripts can easily add 2 seconds to your load time.
 
@@ -150,7 +150,7 @@ After auditing hundreds of websites, the same issues come up again and again:
 
 ## The Bottom Line
 
-Speed is not just a technical metric you hand off to a developer. It is a direct revenue lever. Every second of delay is a measurable percentage of customers who leave before converting.
+Speed is not just a technical metric you hand off to a developer. It is a direct revenue lever. Every second of delay is a measurable percentage of customers who leave before converting. If you're also struggling with [why your site isn't showing on Google](/blog/why-is-my-website-not-showing-on-google), that's a separate but equally important problem to fix.
 
 The good news is that most sites can make significant improvements without a full rebuild. A focused audit followed by a few targeted fixes — image optimization, caching, script cleanup — can often cut load time in half within a week.
 

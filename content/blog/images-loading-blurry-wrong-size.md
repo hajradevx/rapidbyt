@@ -18,7 +18,7 @@ The causes of image quality problems are almost always technical, not creative. 
 
 ## Why Images Look Blurry: The Core Concept
 
-Images look blurry when the displayed size is larger than the actual image resolution.
+Images look blurry when the displayed size is larger than the actual image resolution. Beyond the visual problem, oversized or poorly optimized images are also the #1 cause of slow websites — as we cover in our [page speed and revenue guide](/blog/why-page-speed-matters-for-revenue).
 
 If you have an image that's 400×300 pixels and you display it at 800×600 pixels, the browser stretches it — and it looks blurry.
 
@@ -261,7 +261,7 @@ Chrome DevTools → Network tab → filter by "Img" → reload the page → see 
 
 ## Fix 7: Hero Image as LCP Element Loading Too Late
 
-If your hero image is also your Largest Contentful Paint element (the main visible thing above the fold), it needs to load as fast as possible — before anything else.
+If your hero image is also your Largest Contentful Paint element (the main visible thing above the fold), it needs to load as fast as possible — before anything else. Poor LCP directly affects your Google rankings — see our [Core Web Vitals guide](/blog/core-web-vitals-guide-2026) for the full fix process.
 
 ```html
 <!-- Tell the browser to prioritize loading this image -->
