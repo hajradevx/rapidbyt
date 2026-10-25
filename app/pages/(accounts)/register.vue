@@ -10,10 +10,6 @@ definePageMeta({
 useHead({
   meta: [{ name: "robots", content: "noindex, nofollow" }],
 });
-
-useHead({
-  meta: [{ name: "robots", content: "noindex, nofollow" }],
-});
 const loading = ref(false);
 
 const fields = ref<AuthFormField[]>([
@@ -77,9 +73,12 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
 
         <template #footer>
           By creating an account, you agree to our
-          <ULink to="#" class="text-primary font-medium">Terms of Service</ULink>
+          <ULink to="/terms" class="text-primary font-medium" rel="nofollow"
+            >Terms of Service</ULink
+          >
           and
-          <ULink to="#" class="text-primary font-medium">Privacy Policy</ULink>.
+          <ULink to="/privacy" class="text-primary font-medium" rel="nofollow">Privacy Policy</ULink
+          >.
         </template>
       </UAuthForm>
     </UPageCard>
