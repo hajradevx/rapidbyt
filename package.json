@@ -19,7 +19,6 @@
     "@libsql/client": "^0.18.0",
     "@nuxt/content": "3.16.1",
     "@nuxt/eslint": "^1.17.0",
-    "@nuxt/fonts": "^1.1.0",
     "@nuxt/image": "^2.2.0",
     "@nuxt/ui": "^4.12.0",
     "@nuxthub/core": "^0.10.11",

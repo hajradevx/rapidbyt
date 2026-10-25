@@ -30,7 +30,6 @@ useHead({
           control. We do not guarantee that you will achieve the same or similar results.
         </p>
       </section>
-
       <section>
         <h2>2. Professional Advice Disclaimer</h2>
         <p>

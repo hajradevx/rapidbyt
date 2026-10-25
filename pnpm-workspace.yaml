@@ -1,10 +1,12 @@
 overrides:
   vite@*: "catalog:"
-  "@nuxt/fonts": "1.1.0"
 allowBuilds:
   "@parcel/watcher": true
   esbuild: true
   vue-demi: true
+  better-sqlite3: true
+  sharp: true
+  workerd: true
 catalog:
   vite: npm:@voidzero-dev/vite-plus-core@1.4.0
   vite-plus: 1.4.0
@@ -20,14 +22,11 @@ minimumReleaseAgeExclude:
   - mdast-util-find-and-replace@3.0.4
   - unist-util-visit-parents@6.1.0
   - unist-util-visit@5.2.0
-onlyBuiltDependencies:
-  - better-sqlite3
-  - esbuild
-  - sharp
-  - workerd
 skills:
   dirs:
     - .claude/skills
 permissions:
   "@nuxtjs/seo":
     skills: true
+  unrs-resolver:
+    build: true
