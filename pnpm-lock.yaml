@@ -202,9 +202,6 @@ importers:
       '@nuxtjs/seo':
         specifier: 6.0.1
         version: 6.0.1(ee7a33498e7a61a61cc4f0673d6deeb1)
-      better-sqlite3:
-        specifier: ^13.0.3
-        version: 13.0.3
       drizzle-orm:
         specifier: ^0.45.4
         version: 0.45.4(@libsql/client@0.18.0)(better-sqlite3@13.0.3)
@@ -12932,6 +12929,7 @@ snapshots:
   better-sqlite3@13.0.3:
     dependencies:
       node-addon-api: 8.9.2
+    optional: true
 
   bindings@1.5.0:
     dependencies:
@@ -15333,7 +15331,8 @@ snapshots:
       - vite
       - webpack
 
-  node-addon-api@8.9.2: {}
+  node-addon-api@8.9.2:
+    optional: true
 
   node-emoji@2.2.0:
     dependencies:
