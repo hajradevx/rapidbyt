@@ -1,6 +1,6 @@
 {
-  "name": "nuxt-app",
-  "version": "0.0.1",
+  "name": "rapidbyt",
+  "version": "0.0.2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -19,18 +19,20 @@
     "@libsql/client": "^0.18.0",
     "@nuxt/content": "3.16.1",
     "@nuxt/eslint": "^1.17.0",
+    "@nuxt/fonts": "^1.1.0",
     "@nuxt/image": "^2.2.0",
     "@nuxt/ui": "^4.12.0",
     "@nuxthub/core": "^0.10.11",
     "@nuxtjs/seo": "6.0.1",
+    "better-sqlite3": "^13.0.3",
     "drizzle-orm": "^0.45.4",
     "drizzle-zod": "^0.8.3",
     "nuxt": "^4.6.2",
     "nuxt-auth-utils": "0.5.29",
     "resend": "^6.34.1",
     "uuid": "^14.0.3",
-    "vue": "latest",
-    "vue-router": "latest",
+    "vue": "^3.6.0-rc.13",
+    "vue-router": "^5.4.0",
     "zod": "^4.6.7"
   },
   "devDependencies": {
