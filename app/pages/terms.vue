@@ -13,7 +13,7 @@ useHead({
 
 <template>
   <UPage>
-    <UContainer class="py-16 max-w-3xl">
+    <UContainer class="py-16">
       <!-- Header -->
       <div class="mb-10">
         <div class="flex items-center gap-3 mb-4">
