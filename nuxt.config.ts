@@ -105,7 +105,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       mode: "out-in",
     },
   },
+
   css: ["~/assets/css/main.css"],
+
   router: {
     options: {
       scrollBehaviorType: "smooth",
@@ -119,6 +121,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   },
 
   // ── Content (blog) ──────────────────────────────────────
+  // NOTE: only ONE `content` key is allowed. A duplicate key silently
+  // overrides the first one (the D1 + highlight settings were being lost).
   content: {
     database: {
       type: "d1",
@@ -132,7 +136,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         },
       },
     },
+    // Uses Node's built-in node:sqlite instead of better-sqlite3 at build time.
+    // Remove this block if your @nuxt/content version doesn't support it.
+    experimental: {
+      nativeSqlite: true,
+    },
   },
+
   ui: {
     content: true,
     experimental: {
@@ -148,6 +158,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       password: process.env.NUXT_SESSION_PASSWORD || "prerender-build-time-placeholder-32chars!!",
     },
   },
+
+  // ── Nuxt experimental (Nuxt-only options go here) ───────
   experimental: {
     typedPages: true,
     writeEarlyHints: true,
@@ -269,41 +281,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "/privacy": { prerender: true, headers: { "x-robots-tag": "noindex, follow" } },
       "/disclaimer": { prerender: true, headers: { "x-robots-tag": "noindex, follow" } },
 
-      "/": {
-        prerender: true,
-      },
-
-      "/about": {
-        prerender: true,
-      },
-
-      "/services": {
-        prerender: true,
-      },
-
-      "/products": {
-        prerender: true,
-      },
-
-      "/contact": {
-        prerender: true,
-      },
-
-      "/diagnose": {
-        prerender: true,
-      },
-
-      "/blog": {
-        prerender: true,
-      },
-
-      "/blog/**": {
-        prerender: true,
-      },
-
-      "/sitemap.xml": {
-        prerender: true,
-      },
+      "/": { prerender: true },
+      "/about": { prerender: true },
+      "/services": { prerender: true },
+      "/products": { prerender: true },
+      "/contact": { prerender: true },
+      "/diagnose": { prerender: true },
+      "/blog": { prerender: true },
+      "/blog/**": { prerender: true },
+      "/sitemap.xml": { prerender: true },
 
       "/api/**": {
         headers: {
