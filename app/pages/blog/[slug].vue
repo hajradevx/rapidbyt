@@ -24,7 +24,6 @@ const categoryNavigation = computed<ContentNavigationItem[]>(() => {
   return relatedPosts.value.map((p) => ({
     title: p.title,
     path: p.path,
-    // mark active item so UContentNavigation can highlight it
     active: p.path === `/blog/${slug}`,
   }));
 });
@@ -61,43 +60,58 @@ function formatDate(d: string) {
   <UPage v-if="post">
     <!-- ── LEFT: same-category article navigation ─────────── -->
     <template #left>
-      <div class="pt-4">
-        <!-- Category label -->
-        <div class="flex items-center gap-2 px-1 mb-3">
-          <UIcon name="i-lucide-layers" class="w-3.5 h-3.5 text-sky-500 shrink-0" />
-          <span
-            class="text-xs font-black uppercase tracking-widest text-zinc-400 dark:text-zinc-500"
+      <UPageAside class="pl-4 pr-3 lg:pl-6">
+        <div class="py-6">
+          <!-- Category header -->
+          <div
+            class="flex items-center gap-3 p-3 mb-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60"
           >
-            {{ post.category }}
-          </span>
-          <UBadge
-            :label="String(relatedPosts?.length ?? 0)"
-            variant="soft"
+            <div
+              class="size-9 shrink-0 rounded-lg bg-primary/10 text-primary flex items-center justify-center"
+            >
+              <UIcon name="i-lucide-layers" class="size-4.5" />
+            </div>
+
+            <div class="min-w-0 flex-1">
+              <p class="text-xs text-zinc-400 dark:text-zinc-500">Category</p>
+              <p class="text-sm font-black text-zinc-900 dark:text-white truncate">
+                {{ post.category }}
+              </p>
+            </div>
+
+            <UBadge
+              :label="String(relatedPosts?.length ?? 0)"
+              variant="soft"
+              color="primary"
+              size="sm"
+            />
+          </div>
+
+          <!-- Navigation list -->
+          <UContentNavigation
+            :navigation="categoryNavigation"
+            highlight
             color="primary"
+            :collapsible="false"
+            :ui="{
+              link: 'items-start py-2',
+              linkTitle: 'whitespace-normal line-clamp-2 leading-snug',
+            }"
+          />
+
+          <USeparator class="my-5" />
+
+          <UButton
+            to="/blog"
+            variant="soft"
+            color="neutral"
             size="sm"
+            block
+            leading-icon="i-lucide-layout-grid"
+            label="All articles"
           />
         </div>
-
-        <!-- Navigation list -->
-        <UContentNavigation
-          :navigation="categoryNavigation"
-          highlight
-          color="primary"
-          :collapsible="false"
-        />
-
-        <USeparator class="my-4" />
-
-        <UButton
-          to="/blog"
-          variant="ghost"
-          color="neutral"
-          size="xs"
-          leading-icon="i-lucide-layout-grid"
-          label="All articles"
-          class="w-full justify-start text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200"
-        />
-      </div>
+      </UPageAside>
     </template>
 
     <!-- ── CENTER: article content ────────────────────────── -->
@@ -189,14 +203,16 @@ function formatDate(d: string) {
 
     <!-- ── RIGHT: table of contents ──────────────────────── -->
     <template #right>
-      <div class="pt-4">
-        <UContentToc
-          :links="post.body?.toc?.links"
-          highlight
-          color="primary"
-          title="On this page"
-        />
-      </div>
+      <UPageAside class="pl-3 pr-4 lg:pr-6">
+        <div class="py-6">
+          <UContentToc
+            :links="post.body?.toc?.links"
+            highlight
+            color="primary"
+            title="On this page"
+          />
+        </div>
+      </UPageAside>
     </template>
   </UPage>
 </template>
