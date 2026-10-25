@@ -20,6 +20,9 @@ allowBuilds:
   unrs-resolver: true
   vue-demi: true
   workerd: true
+skills:
+  dirs:
+    - .claude/skills
 permissions:
   "@nuxtjs/seo":
     skills: true
