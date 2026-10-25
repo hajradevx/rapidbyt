@@ -120,6 +120,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   // ── Content (blog) ──────────────────────────────────────
   content: {
+    database: {
+      type: "d1",
+      bindingName: "DB",
+    },
     build: {
       markdown: {
         highlight: {
