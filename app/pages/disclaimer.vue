@@ -14,7 +14,7 @@ useHead({
 </script>
 
 <template>
-  <UContainer class="py-16 max-w-3xl">
+  <UContainer class="py-16">
     <h1 class="text-3xl font-black mb-2">Disclaimer</h1>
     <p class="text-muted text-sm mb-10">Last updated: September 2026</p>
 

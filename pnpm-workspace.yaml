@@ -1,0 +1,26 @@
+ignoredBuiltDependencies:
+  - workerd
+onlyBuiltDependencies:
+  - "@parcel/watcher"
+  - better-sqlite3
+  - esbuild
+  - sharp
+  - unrs-resolver
+  - vue-demi
+overrides:
+  vite@*: "catalog:"
+catalog:
+  vite: npm:@voidzero-dev/vite-plus-core@1.4.0
+  vite-plus: 1.4.0
+peerDependencyRules:
+  allowAny:
+    - vite
+  allowedVersions:
+    vite: "*"
+minimumReleaseAgeExclude:
+  - "@napi-rs/wasm-runtime@1.2.6"
+  - "@nuxt/icon@2.6.1"
+  - hast-util-to-text@4.0.3
+  - mdast-util-find-and-replace@3.0.4
+  - unist-util-visit-parents@6.1.0
+  - unist-util-visit@5.2.0
