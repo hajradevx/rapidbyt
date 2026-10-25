@@ -254,7 +254,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       "/img/**": {
         headers: {
-          "cache-control": "public, max-age=31536000, immutable",
+          "cache-control": "public, max-age=2592000",
         },
       },
 
