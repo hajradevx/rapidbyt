@@ -21,6 +21,11 @@ allowBuilds:
   unrs-resolver: true
   vue-demi: true
   workerd: true
+onlyBuiltDependencies:
+  - better-sqlite3
+  - esbuild
+  - sharp
+  - workerd
 skills:
   dirs:
     - .claude/skills
