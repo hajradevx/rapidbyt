@@ -13,9 +13,6 @@ const pages = [
   { loc: "/about", lastmod: "2026-09-01", priority: "0.7", changefreq: "monthly" },
   { loc: "/contact", lastmod: "2026-09-01", priority: "0.7", changefreq: "monthly" },
   { loc: "/products", lastmod: "2026-09-01", priority: "0.7", changefreq: "weekly" },
-  { loc: "/privacy", lastmod: "2026-09-01", priority: "0.3", changefreq: "yearly" },
-  { loc: "/terms", lastmod: "2026-09-01", priority: "0.3", changefreq: "yearly" },
-  { loc: "/disclaimer", lastmod: "2026-09-01", priority: "0.3", changefreq: "yearly" },
 
   // Blog posts — lastmod = date: field from content/blog/<slug>.md frontmatter
   {

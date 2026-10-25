@@ -72,10 +72,10 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
       >
         <template #description>
           New to the collective?
-          <ULink to="/register" class="text-primary font-medium">Join now</ULink>.
+          <ULink to="/register" class="text-primary font-medium" rel="nofollow">Join now</ULink>.
         </template>
         <template #password-hint>
-          <ULink to="/forgot-password" class="text-primary font-medium" tabindex="-1"
+          <ULink to="/forgot-password" class="text-primary font-medium" tabindex="-1" rel="nofollow"
             >Forgot password?</ULink
           >
         </template>

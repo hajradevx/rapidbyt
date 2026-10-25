@@ -260,6 +260,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "/forgot-password": { headers: { "x-robots-tag": "noindex, nofollow" } },
       "/reset-password": { headers: { "x-robots-tag": "noindex, nofollow" } },
 
+      // Legal pages — noindex, no search value, avoid crawl budget waste
+      "/terms": { prerender: true, headers: { "x-robots-tag": "noindex, follow" } },
+      "/privacy": { prerender: true, headers: { "x-robots-tag": "noindex, follow" } },
+      "/disclaimer": { prerender: true, headers: { "x-robots-tag": "noindex, follow" } },
+
       "/": {
         prerender: true,
       },
@@ -273,18 +278,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       },
 
       "/products": {
-        prerender: true,
-      },
-
-      "/privacy": {
-        prerender: true,
-      },
-
-      "/terms": {
-        prerender: true,
-      },
-
-      "/disclaimer": {
         prerender: true,
       },
 
