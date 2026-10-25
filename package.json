@@ -17,19 +17,19 @@
     "prepare": "vp config"
   },
   "dependencies": {
-    "@libsql/client": "^0.17.0",
+    "@libsql/client": "^0.18.0",
     "@nuxt/content": "3.16.1",
     "@nuxt/eslint": "^1.15.2",
     "@nuxt/image": "^2.0.0",
     "@nuxt/ui": "^4.5.1",
     "@nuxthub/core": "^0.10.7",
-    "@nuxtjs/seo": "5.3.16",
+    "@nuxtjs/seo": "6.0.1",
     "drizzle-orm": "^0.45.1",
     "drizzle-zod": "^0.8.3",
-    "nuxt": "^4.3.1",
+    "nuxt": "^4.6.2",
     "nuxt-auth-utils": "0.5.29",
     "resend": "^6.17.2",
-    "uuid": "^13.0.0",
+    "uuid": "^14.0.3",
     "vue": "latest",
     "vue-router": "latest",
     "zod": "^4.3.6"
@@ -39,7 +39,7 @@
     "@types/node": "^26.6.4",
     "drizzle-kit": "^0.31.9",
     "eslint": "^10.0.3",
-    "typescript": "^5.9.3",
+    "typescript": "^7.0.2",
     "vite": "npm:@voidzero-dev/vite-plus-core@0.2.3",
     "vite-plus": "0.2.3",
     "wrangler": "^4.147.0"
