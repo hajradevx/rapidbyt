@@ -6,7 +6,7 @@ readTime: 10
 category: "Performance"
 author: "RapidByt Team"
 tags: ["WordPress slow", "WordPress speed", "caching", "WooCommerce", "page speed", "plugins"]
-image: "/blog/wordpress-slow-fix.jpg"
+image: "/blog/wordpress-slow-fix.svg"
 ---
 
 WordPress powers 43% of the web. It's also responsible for some of the slowest websites on the internet.

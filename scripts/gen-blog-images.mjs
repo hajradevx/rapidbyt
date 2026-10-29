@@ -1,201 +1,293 @@
-import sharp from "sharp";
-import { mkdir } from "fs/promises";
-import { existsSync } from "fs";
+/**
+ * Generates SVG cover images for every blog post and saves them to
+ * public/blog/<filename>.svg  (referenced as /blog/<filename>.jpg in
+ * frontmatter — we'll update the extension below to .svg so Nuxt Image
+ * can serve them directly).
+ *
+ * Run once:  node scripts/gen-blog-images.mjs
+ */
 
-const OUT = "public/blog";
-await mkdir(OUT, { recursive: true });
+import { writeFileSync, mkdirSync } from "node:fs";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 
-// Category → gradient colors (top-left, bottom-right)
-const categoryColors = {
-  Performance: { from: "#0ea5e9", to: "#2563eb" }, // sky → blue
-  SEO: { from: "#8b5cf6", to: "#6d28d9" }, // violet
-  Security: { from: "#ef4444", to: "#b91c1c" }, // red
-  Marketing: { from: "#f59e0b", to: "#d97706" }, // amber
-  Tools: { from: "#10b981", to: "#047857" }, // emerald
-  Business: { from: "#6366f1", to: "#4338ca" }, // indigo
-  Technical: { from: "#0ea5e9", to: "#0369a1" }, // sky
-  Default: { from: "#64748b", to: "#334155" }, // slate
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const OUT_DIR = join(__dirname, "../public/blog");
+
+mkdirSync(OUT_DIR, { recursive: true });
+
+// Category → gradient colors (from, to) + icon path
+const CAT = {
+  Performance: {
+    from: "#0ea5e9",
+    to: "#6366f1",
+    icon: `<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linejoin="round"/>`,
+  },
+  SEO: {
+    from: "#10b981",
+    to: "#0ea5e9",
+    icon: `<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>`,
+  },
+  Development: {
+    from: "#6366f1",
+    to: "#8b5cf6",
+    icon: `<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>`,
+  },
+  Security: {
+    from: "#f43f5e",
+    to: "#e11d48",
+    icon: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>`,
+  },
+  Business: {
+    from: "#f59e0b",
+    to: "#f97316",
+    icon: `<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>`,
+  },
+  Platform: {
+    from: "#8b5cf6",
+    to: "#6366f1",
+    icon: `<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>`,
+  },
 };
+
+const DEFAULT_CAT = {
+  from: "#64748b",
+  to: "#475569",
+  icon: `<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>`,
+};
+
+// Wrap text to lines of maxChars
+function wrapText(text, maxChars = 28) {
+  const words = text.split(" ");
+  const lines = [];
+  let current = "";
+  for (const word of words) {
+    if ((current + " " + word).trim().length <= maxChars) {
+      current = (current + " " + word).trim();
+    } else {
+      if (current) lines.push(current);
+      current = word;
+    }
+  }
+  if (current) lines.push(current);
+  return lines.slice(0, 4); // max 4 lines
+}
 
 const posts = [
   {
-    file: "web-hosting-pakistan-2026.jpg",
-    title: "Best Web Hosting\nPakistan 2026",
-    category: "Business",
-  },
-  { file: "chatgpt-seo-safe.jpg", title: "ChatGPT Content:\nSEO Safe?", category: "SEO" },
-  { file: "competetor.jpg", title: "Competitor Outranking\nYou on Google", category: "SEO" },
-  {
-    file: "contact-form-not-working.jpg",
-    title: "Contact Form Emails\nNot Arriving",
-    category: "Technical",
-  },
-  {
-    file: "fast-site-no-conversions.jpg",
-    title: "Fast Site, Still\nLosing Sales?",
-    category: "Marketing",
-  },
-  {
-    file: "free-speed-check-tools.jpg",
-    title: "Free Website Speed\nCheck Tools",
-    category: "Tools",
-  },
-  {
-    file: "first-1000-visitors.jpg",
-    title: "First 1000 Visitors\nWithout Paid Ads",
-    category: "Marketing",
-  },
-  {
-    file: "google-ads-not-converting.jpg",
-    title: "Google Ads\nNot Converting",
-    category: "Marketing",
-  },
-  {
-    file: "google-ads-vs-facebook-ads.jpg",
-    title: "Google Ads vs\nFacebook Ads 2026",
-    category: "Marketing",
-  },
-  {
-    file: "google-analytics-not-working.jpg",
-    title: "Google Analytics\nNot Working Fix",
-    category: "Technical",
-  },
-  {
-    file: "search-console-setup.jpg",
-    title: "Google Search Console\nSetup Guide",
-    category: "SEO",
-  },
-  {
-    file: "bounce-rate-fixes.jpg",
-    title: "High Bounce Rate:\nCauses & Fixes",
-    category: "Performance",
-  },
-  {
-    file: "cloudflare-migration.jpg",
-    title: "Move to Cloudflare\n& Cut Costs",
-    category: "Technical",
-  },
-  {
-    file: "images-blurry-fix.jpg",
-    title: "Images Loading\nBlurry? Fix It",
-    category: "Performance",
-  },
-  {
-    file: "nuxt-cloudflare-d1-debug.jpg",
-    title: "Nuxt + Cloudflare\nD1 Debug Guide",
-    category: "Technical",
-  },
-  {
-    file: "shopify-vs-woocommerce.jpg",
-    title: "Shopify vs\nWooCommerce 2026",
+    file: "web-hosting-pakistan-2026",
+    title: "Best Web Hosting in Pakistan 2026",
     category: "Business",
   },
   {
-    file: "ssl-certificate-errors.jpg",
-    title: "SSL Certificate\nErrors: Fix Guide",
-    category: "Security",
+    file: "chatgpt-seo-safe",
+    title: "Using ChatGPT for Website Content — SEO Safe?",
+    category: "SEO",
   },
-  { file: "technical-seo-checklist.jpg", title: "Technical SEO\nChecklist 2026", category: "SEO" },
+  { file: "competetor", title: "Why Your Competitor Ranks Higher on Google", category: "SEO" },
   {
-    file: "traffic-no-conversions.jpg",
-    title: "Traffic Not\nConverting? Fix It",
-    category: "Marketing",
-  },
-  {
-    file: "website-broken-mobile.jpg",
-    title: "Website Broken\non Mobile: Fix",
-    category: "Performance",
-  },
-  { file: "website-down.jpg", title: "Website Down?\nWhat To Do Now", category: "Technical" },
-  {
-    file: "website-security.jpg",
-    title: "Website Security\nHardening Guide",
-    category: "Security",
+    file: "contact-form-not-working",
+    title: "Contact Form Not Arriving? How to Fix It",
+    category: "Business",
   },
   {
-    file: "website-not-on-google.jpg",
-    title: "Why Is My Site Not\nShowing on Google",
+    file: "core-web-vitals-guide-2026",
+    title: "Core Web Vitals 2026: The Complete Fix Guide",
     category: "SEO",
   },
   {
-    file: "wordpress-slow-fix.jpg",
-    title: "WordPress Slow?\nComplete Fix Guide",
+    file: "fast-site-no-conversions",
+    title: "Fast Website But No Sales? Here's Why",
+    category: "Business",
+  },
+  {
+    file: "free-speed-check-tools",
+    title: "5 Best Free Tools to Check Website Speed",
     category: "Performance",
   },
-  { file: "wordpress-vs-webflow.jpg", title: "WordPress vs\nWebflow 2026", category: "Business" },
+  {
+    file: "first-1000-visitors",
+    title: "Get Your First 1,000 Visitors Without Paid Ads",
+    category: "Business",
+  },
+  {
+    file: "google-ads-not-converting",
+    title: "Google Ads Getting Zero Sales? Here's Why",
+    category: "Business",
+  },
+  {
+    file: "google-ads-vs-facebook-ads",
+    title: "Google Ads vs Facebook Ads 2026",
+    category: "Business",
+  },
+  {
+    file: "google-analytics-not-working",
+    title: "Google Analytics Showing No Data — Fix Guide",
+    category: "Business",
+  },
+  {
+    file: "google-my-business-seo",
+    title: "Google My Business SEO: Rank Higher Locally",
+    category: "SEO",
+  },
+  { file: "search-console-setup", title: "How to Set Up Google Search Console", category: "SEO" },
+  {
+    file: "bounce-rate-fixes",
+    title: "Why Your Bounce Rate Is High (And How to Fix It)",
+    category: "Performance",
+  },
+  {
+    file: "cloudflare-migration",
+    title: "Move to Cloudflare and Cut Hosting Costs by 60%",
+    category: "Development",
+  },
+  {
+    file: "images-blurry-fix",
+    title: "Why Images Look Blurry on Your Website",
+    category: "Performance",
+  },
+  {
+    file: "nuxt-cloudflare-d1-debug",
+    title: "Nuxt + Cloudflare Workers: APIs Break in Production",
+    category: "Development",
+  },
+  {
+    file: "shopify-vs-woocommerce",
+    title: "Shopify vs WooCommerce 2026 — Which to Choose?",
+    category: "Business",
+  },
+  {
+    file: "ssl-certificate-errors",
+    title: 'SSL Certificate Errors: Fix "Not Secure" Warning',
+    category: "Security",
+  },
+  {
+    file: "technical-seo-checklist",
+    title: "Technical SEO Checklist 2026: 30 Fixes",
+    category: "SEO",
+  },
+  {
+    file: "traffic-no-conversions",
+    title: "Getting Traffic But No Sales? 10 Fixes",
+    category: "Business",
+  },
+  {
+    file: "website-broken-mobile",
+    title: "Website Broken on Mobile — How to Fix It",
+    category: "Performance",
+  },
+  { file: "website-down", title: "Your Website Is Down — What to Do Now", category: "Security" },
+  {
+    file: "website-maintenance-checklist",
+    title: "Monthly Website Maintenance Checklist",
+    category: "Security",
+  },
+  {
+    file: "website-not-loading-mobile-data",
+    title: "Website Not Loading on Mobile Data? Fix It",
+    category: "Performance",
+  },
+  {
+    file: "website-security",
+    title: "My Website Got Hacked — What to Do Now",
+    category: "Security",
+  },
+  {
+    file: "website-not-on-google",
+    title: "Why Your Website Isn't Showing on Google",
+    category: "SEO",
+  },
+  {
+    file: "why-page-speed-matters-for-revenue",
+    title: "Why Page Speed Directly Impacts Revenue",
+    category: "Performance",
+  },
+  {
+    file: "wix-vs-wordpress",
+    title: "Wix vs WordPress: Which to Use in 2026?",
+    category: "Platform",
+  },
+  {
+    file: "wordpress-slow-fix",
+    title: "WordPress Site Slow? The Complete Fix Guide",
+    category: "Performance",
+  },
+  {
+    file: "wordpress-vs-webflow",
+    title: "WordPress vs Webflow 2026 — Which to Choose?",
+    category: "Development",
+  },
 ];
 
-// Escape XML special characters
-function esc(str) {
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
+// Noise/texture pattern IDs are unique per file
+let count = 0;
+for (const post of posts) {
+  const cat = CAT[post.category] ?? DEFAULT_CAT;
+  const lines = wrapText(post.title, 26);
+  const lineHeight = 34;
+  const textStartY = 148 - ((lines.length - 1) * lineHeight) / 2;
+  const id = `g${count++}`;
 
-// Build SVG with gradient background + RapidByt branding + title text
-function makeSvg(title, category) {
-  const colors = categoryColors[category] || categoryColors.Default;
-  const lines = title.split("\n").map(esc);
-  const y1 = lines.length === 1 ? 290 : 268;
-  const y2 = 318;
+  const textLines = lines
+    .map(
+      (line, i) =>
+        `<text x="200" y="${textStartY + i * lineHeight}" text-anchor="middle" fill="white" font-family="system-ui,-apple-system,sans-serif" font-size="22" font-weight="700" letter-spacing="-0.3">${line.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")}</text>`,
+    )
+    .join("\n  ");
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
+  const catLabel = post.category.toUpperCase();
+
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:${colors.from};stop-opacity:1"/>
-      <stop offset="100%" style="stop-color:${colors.to};stop-opacity:1"/>
+    <linearGradient id="${id}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${cat.from}"/>
+      <stop offset="100%" stop-color="${cat.to}"/>
     </linearGradient>
-    <linearGradient id="overlay" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#000000;stop-opacity:0"/>
-      <stop offset="100%" style="stop-color:#000000;stop-opacity:0.35"/>
-    </linearGradient>
+    <filter id="n${id}">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feBlend in="SourceGraphic" mode="overlay" result="blend"/>
+      <feComposite in="blend" in2="SourceGraphic" operator="in"/>
+    </filter>
   </defs>
 
   <!-- Background gradient -->
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect width="1200" height="630" fill="url(#overlay)"/>
+  <rect width="800" height="420" fill="url(#${id})"/>
+
+  <!-- Noise overlay for texture -->
+  <rect width="800" height="420" fill="white" opacity="0.03" filter="url(#n${id})"/>
 
   <!-- Decorative circles -->
-  <circle cx="980" cy="100" r="280" fill="white" fill-opacity="0.05"/>
-  <circle cx="1100" cy="520" r="160" fill="white" fill-opacity="0.05"/>
-  <circle cx="120" cy="500" r="200" fill="white" fill-opacity="0.04"/>
+  <circle cx="680" cy="-40" r="200" fill="white" opacity="0.06"/>
+  <circle cx="720" cy="460" r="160" fill="white" opacity="0.04"/>
+  <circle cx="-40" cy="200" r="140" fill="white" opacity="0.05"/>
 
   <!-- Grid dots pattern -->
-  <pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-    <circle cx="2" cy="2" r="1.5" fill="white" fill-opacity="0.12"/>
+  <pattern id="p${id}" width="40" height="40" patternUnits="userSpaceOnUse">
+    <circle cx="1" cy="1" r="1" fill="white" opacity="0.15"/>
   </pattern>
-  <rect width="1200" height="630" fill="url(#dots)"/>
+  <rect width="800" height="420" fill="url(#p${id})"/>
 
   <!-- Category badge -->
-  <rect x="60" y="60" width="${category.length * 12 + 40}" height="36" rx="18" fill="white" fill-opacity="0.2"/>
-  <text x="${60 + (category.length * 12 + 40) / 2}" y="83" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="600" fill="white" text-anchor="middle" letter-spacing="1">${esc(category).toUpperCase()}</text>
+  <rect x="24" y="24" width="${catLabel.length * 9 + 28}" height="28" rx="14" fill="white" opacity="0.2"/>
+  <text x="38" y="42" fill="white" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="800" letter-spacing="1.5" opacity="0.9">${catLabel}</text>
 
-  <!-- Main title line 1 -->
-  <text x="60" y="${y1}" font-family="system-ui,-apple-system,sans-serif" font-size="68" font-weight="800" fill="white" letter-spacing="-1">${lines[0]}</text>
-  ${lines[1] ? `<text x="60" y="${y2}" font-family="system-ui,-apple-system,sans-serif" font-size="68" font-weight="800" fill="white" fill-opacity="0.92" letter-spacing="-1">${lines[1]}</text>` : ""}
+  <!-- Icon (centered, large, subtle) -->
+  <g transform="translate(368, 60)" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.25">
+    <svg width="64" height="64" viewBox="0 0 24 24">${cat.icon}</svg>
+  </g>
 
-  <!-- Branding -->
-  <text x="60" y="580" font-family="system-ui,-apple-system,sans-serif" font-size="22" font-weight="700" fill="white" fill-opacity="0.85">RapidByt.com</text>
-  <text x="1140" y="580" font-family="system-ui,-apple-system,sans-serif" font-size="18" fill="white" fill-opacity="0.6" text-anchor="end">Web Performance</text>
+  <!-- Title text -->
+  ${textLines}
+
+  <!-- Bottom brand bar -->
+  <rect x="0" y="384" width="800" height="36" fill="black" opacity="0.25"/>
+  <text x="24" y="407" fill="white" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="700" opacity="0.8">rapidbyt.com</text>
+  <text x="776" y="407" text-anchor="end" fill="white" font-family="system-ui,-apple-system,sans-serif" font-size="12" opacity="0.6">Web Performance &amp; SEO</text>
 </svg>`;
+
+  writeFileSync(join(OUT_DIR, `${post.file}.svg`), svg, "utf8");
+  console.log(`✓ ${post.file}.svg`);
 }
 
-let created = 0;
-let skipped = 0;
-
-for (const post of posts) {
-  const outPath = `${OUT}/${post.file}`;
-  if (existsSync(outPath)) {
-    console.log(`  skip  ${post.file}`);
-    skipped++;
-    continue;
-  }
-  const svg = makeSvg(post.title, post.category);
-  await sharp(Buffer.from(svg)).jpeg({ quality: 88, mozjpeg: true }).toFile(outPath);
-  console.log(`  ✔  ${post.file}`);
-  created++;
-}
-
-console.log(`\nDone — ${created} created, ${skipped} skipped`);
+console.log(`\nGenerated ${posts.length} SVG cover images in public/blog/`);

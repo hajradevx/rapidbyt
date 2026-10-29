@@ -14,7 +14,7 @@ tags:
     "CMS comparison",
     "no-code website",
   ]
-image: "/blog/wordpress-vs-webflow.jpg"
+image: "/blog/wordpress-vs-webflow.svg"
 ---
 
 WordPress and Webflow both produce professional websites. But they are so fundamentally different that choosing the wrong one wastes significant time and money.

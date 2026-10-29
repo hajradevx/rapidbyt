@@ -14,7 +14,7 @@ tags:
     "AI generated content",
     "SEO 2026",
   ]
-image: "/blog/chatgpt-seo-safe.jpg"
+image: "/blog/chatgpt-seo-safe.svg"
 ---
 
 Every other website owner is asking the same question: "Can I use ChatGPT to write my blog posts without getting penalised by Google?"

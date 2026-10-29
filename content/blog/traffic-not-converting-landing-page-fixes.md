@@ -6,7 +6,7 @@ readTime: 8
 category: "Business"
 author: "RapidByt Team"
 tags: ["conversion rate", "landing page", "CRO", "sales", "WhatsApp marketing", "lead generation"]
-image: "/blog/traffic-no-conversions.jpg"
+image: "/blog/traffic-no-conversions.svg"
 ---
 
 You're spending money on ads. You're posting on social media. WhatsApp broadcasts going out. Traffic is coming in.

@@ -14,7 +14,7 @@ tags:
     "SSL",
     "WordPress maintenance",
   ]
-image: "/blog/website-maintenance-checklist.jpg"
+image: "/blog/website-maintenance-checklist.svg"
 ---
 
 Most businesses treat their website like a brochure — print it, distribute it, never touch it again.

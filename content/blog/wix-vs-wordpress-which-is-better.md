@@ -6,7 +6,7 @@ readTime: 11
 category: "Platform"
 author: "RapidByt Team"
 tags: ["Wix", "WordPress", "website builder", "CMS comparison", "SEO"]
-image: "/blog/wix-vs-wordpress.jpg"
+image: "/blog/wix-vs-wordpress.svg"
 ---
 
 Every week someone asks us this question. They're starting a new website — maybe a local business, a portfolio, an online store — and they've heard of both Wix and WordPress, and they just want someone to tell them which one to pick.

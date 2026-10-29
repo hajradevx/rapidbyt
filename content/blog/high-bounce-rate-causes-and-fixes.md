@@ -6,7 +6,7 @@ readTime: 7
 category: "Performance"
 author: "RapidByt Team"
 tags: ["bounce rate", "conversion rate", "user experience", "page speed", "CRO"]
-image: "/blog/bounce-rate-fixes.jpg"
+image: "/blog/bounce-rate-fixes.svg"
 ---
 
 Your Google Analytics shows 70–80% bounce rate. You're getting traffic but people leave immediately. You've tweaked headlines, changed button colors — nothing moves the needle.

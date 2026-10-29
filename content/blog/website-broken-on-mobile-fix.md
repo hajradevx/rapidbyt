@@ -6,7 +6,7 @@ readTime: 8
 category: "Performance"
 author: "RapidByt Team"
 tags: ["mobile responsive", "mobile layout", "CSS", "viewport", "mobile UX", "responsive design"]
-image: "/blog/website-broken-mobile.jpg"
+image: "/blog/website-broken-mobile.svg"
 ---
 
 More than 60% of web traffic is mobile. If your site looks great on your laptop and broken on a phone, you're effectively turning away the majority of your visitors. If the site also [fails to load on mobile data connections](/blog/website-not-loading-on-mobile-data), that's a page weight problem on top of the layout issues covered here.

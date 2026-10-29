@@ -6,7 +6,7 @@ readTime: 9
 category: "Business"
 author: "RapidByt Team"
 tags: ["CRO", "conversion rate", "UX", "trust", "pricing", "checkout", "sales psychology"]
-image: "/blog/fast-site-no-conversions.jpg"
+image: "/blog/fast-site-no-conversions.svg"
 ---
 
 You ran the speed tests. PageSpeed score: 94. You hired a designer. The site looks professional. You're getting organic traffic. Sessions are up.

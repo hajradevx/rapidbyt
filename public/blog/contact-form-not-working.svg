@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+    <filter id="ng3">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feBlend in="SourceGraphic" mode="overlay" result="blend"/>
+      <feComposite in="blend" in2="SourceGraphic" operator="in"/>
+    </filter>
+  </defs>
+
+  <!-- Background gradient -->
+  <rect width="800" height="420" fill="url(#g3)"/>
+
+  <!-- Noise overlay for texture -->
+  <rect width="800" height="420" fill="white" opacity="0.03" filter="url(#ng3)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="680" cy="-40" r="200" fill="white" opacity="0.06"/>
+  <circle cx="720" cy="460" r="160" fill="white" opacity="0.04"/>
+  <circle cx="-40" cy="200" r="140" fill="white" opacity="0.05"/>
+
+  <!-- Grid dots pattern -->
+  <pattern id="pg3" width="40" height="40" patternUnits="userSpaceOnUse">
+    <circle cx="1" cy="1" r="1" fill="white" opacity="0.15"/>
+  </pattern>
+  <rect width="800" height="420" fill="url(#pg3)"/>
+
+  <!-- Category badge -->
+  <rect x="24" y="24" width="100" height="28" rx="14" fill="white" opacity="0.2"/>
+  <text x="38" y="42" fill="white" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="800" letter-spacing="1.5" opacity="0.9">BUSINESS</text>
+
+  <!-- Icon (centered, large, subtle) -->
+  <g transform="translate(368, 60)" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.25">
+    <svg width="64" height="64" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+  </g>
+
+  <!-- Title text -->
+  <text x="200" y="131" text-anchor="middle" fill="white" font-family="system-ui,-apple-system,sans-serif" font-size="22" font-weight="700" letter-spacing="-0.3">Contact Form Not Arriving?</text>
+  <text x="200" y="165" text-anchor="middle" fill="white" font-family="system-ui,-apple-system,sans-serif" font-size="22" font-weight="700" letter-spacing="-0.3">How to Fix It</text>
+
+  <!-- Bottom brand bar -->
+  <rect x="0" y="384" width="800" height="36" fill="black" opacity="0.25"/>
+  <text x="24" y="407" fill="white" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="700" opacity="0.8">rapidbyt.com</text>
+  <text x="776" y="407" text-anchor="end" fill="white" font-family="system-ui,-apple-system,sans-serif" font-size="12" opacity="0.6">Web Performance &amp; SEO</text>
+</svg>

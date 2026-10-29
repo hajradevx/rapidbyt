@@ -6,7 +6,7 @@ readTime: 8
 category: "SEO"
 author: "RapidByt Team"
 tags: ["google indexing", "not on google", "SEO", "crawling", "Search Console"]
-image: "/blog/website-not-on-google.jpg"
+image: "/blog/website-not-on-google.svg"
 ---
 
 You built the site. You launched it. You searched Google for your business name — and nothing. No result. Just your [competitor](/blog/competitor-outranking-you-on-google) staring back at you.

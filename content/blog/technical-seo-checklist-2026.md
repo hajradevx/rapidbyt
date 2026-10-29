@@ -6,7 +6,7 @@ readTime: 14
 category: "SEO"
 author: "RapidByt Team"
 tags: ["technical SEO", "SEO checklist", "structured data", "crawlability", "rankings"]
-image: "/blog/technical-seo-checklist.jpg"
+image: "/blog/technical-seo-checklist.svg"
 ---
 
 Content alone won't rank if the technical foundation is broken. This is a mistake we see constantly — businesses investing heavily in blog posts and link building while their site is leaking crawl budget, blocking Googlebot, or failing Core Web Vitals. If you're wondering [why your website isn't showing on Google](/blog/why-is-my-website-not-showing-on-google), many of the answers are in this checklist.

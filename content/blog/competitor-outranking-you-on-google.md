@@ -14,7 +14,7 @@ tags:
     "content strategy",
     "keyword research",
   ]
-image: "/blog/competetor.jpg"
+image: "/blog/competetor.svg"
 ---
 
 Content alone won't rank if the technical foundation is broken. Before trying to outrank anyone, run a [technical SEO checklist](/blog/technical-seo-checklist-2026) — crawlability issues, missing structured data, or failing Core Web Vitals can all prevent your pages from competing at full strength.

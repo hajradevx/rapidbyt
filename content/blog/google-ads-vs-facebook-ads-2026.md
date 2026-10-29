@@ -14,7 +14,7 @@ tags:
     "digital marketing Pakistan",
     "ROI ads",
   ]
-image: "/blog/google-ads-vs-facebook-ads.jpg"
+image: "/blog/google-ads-vs-facebook-ads.svg"
 ---
 
 "Should I run Google Ads or Facebook Ads?" is one of the most common questions from business owners trying paid advertising for the first time.

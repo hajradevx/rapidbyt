@@ -6,7 +6,7 @@ readTime: 7
 category: "Security"
 author: "RapidByt Team"
 tags: ["website down", "downtime", "hosting", "uptime monitoring", "server error", "502", "503"]
-image: "/blog/website-down.jpg"
+image: "/blog/website-down.svg"
 ---
 
 Your site is down. A client just texted you. Your phone is ringing. You're staring at a blank screen or an error page.

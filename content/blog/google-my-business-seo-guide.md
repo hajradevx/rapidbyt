@@ -6,7 +6,7 @@ readTime: 12
 category: "SEO"
 author: "RapidByt Team"
 tags: ["Google My Business", "local SEO", "Google Maps", "GMB optimization", "local search"]
-image: "/blog/google-my-business-seo.jpg"
+image: "/blog/google-my-business-seo.svg"
 ---
 
 If you run a local business — a restaurant, a clinic, a law firm, a repair shop, literally anything with a physical location or a service area — your Google Business Profile is probably your single most valuable piece of online real estate.
