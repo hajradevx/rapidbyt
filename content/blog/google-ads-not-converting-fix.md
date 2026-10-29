@@ -6,7 +6,7 @@ readTime: 9
 category: "Business"
 author: "RapidByt Team"
 tags: ["Google Ads", "PPC", "conversion rate", "landing page", "paid traffic", "ROI"]
-image: "/blog/google-ads-not-converting.jpg"
+image: "/blog/google-ads-not-converting.svg"
 ---
 
 You set up Google Ads. You're getting clicks. The budget is burning. But nobody is buying, calling, or filling out the form.

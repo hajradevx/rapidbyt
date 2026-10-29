@@ -230,15 +230,28 @@ function formatDate(d: string) {
               class="group block rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden card-hover mb-6"
             >
               <div
-                class="relative w-full h-52 sm:h-64 bg-gradient-to-br from-sky-900/60 to-indigo-900/60 flex items-center justify-center overflow-hidden"
+                class="relative w-full h-52 sm:h-64 overflow-hidden bg-zinc-100 dark:bg-zinc-800"
               >
+                <!-- Cover image — full colour, slight zoom on hover -->
                 <NuxtImg
                   v-if="featuredPost.image"
                   :src="featuredPost.image"
                   :alt="featuredPost.title"
-                  class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-50 transition-opacity"
+                  width="800"
+                  height="420"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <UIcon name="i-lucide-file-text" class="w-16 h-16 text-white/20 relative z-10" />
+                <!-- Fallback when no image -->
+                <div
+                  v-else
+                  class="w-full h-full bg-gradient-to-br from-sky-900/60 to-indigo-900/60 flex items-center justify-center"
+                >
+                  <UIcon name="i-lucide-file-text" class="w-16 h-16 text-white/20" />
+                </div>
+                <!-- Badges overlay — thin scrim behind them for legibility -->
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"
+                />
                 <span
                   v-if="featuredPost.category"
                   :class="[
@@ -301,17 +314,30 @@ function formatDate(d: string) {
                 class="group rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden card-hover flex flex-col"
               >
                 <div
-                  class="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900"
+                  class="relative aspect-video w-full overflow-hidden bg-zinc-100 dark:bg-zinc-800"
                 >
+                  <!-- Cover image — full colour, scale on hover -->
                   <NuxtImg
                     v-if="post.image"
                     :src="post.image"
                     :alt="post.title"
-                    class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-all duration-500"
+                    width="400"
+                    height="210"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <UIcon
-                    name="i-lucide-file-text"
-                    class="absolute inset-0 m-auto w-9 h-9 text-zinc-300 dark:text-zinc-600"
+                  <!-- Fallback -->
+                  <div
+                    v-else
+                    class="w-full h-full flex items-center justify-center bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900"
+                  >
+                    <UIcon
+                      name="i-lucide-file-text"
+                      class="w-9 h-9 text-zinc-300 dark:text-zinc-600"
+                    />
+                  </div>
+                  <!-- Bottom scrim + category badge -->
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none"
                   />
                   <span
                     v-if="post.category"

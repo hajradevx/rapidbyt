@@ -6,7 +6,7 @@ readTime: 11
 category: "Development"
 author: "RapidByt Team"
 tags: ["Cloudflare", "hosting", "website speed", "CDN", "reduce hosting costs", "migration"]
-image: "/blog/cloudflare-migration.jpg"
+image: "/blog/cloudflare-migration.svg"
 ---
 
 You're paying $30–100/month for shared hosting. Your site still loads slowly. The server goes down randomly. Support tickets take 24 hours to get a reply. If you're evaluating hosting options, the [best web hosting guide for Pakistan](/blog/best-web-hosting-pakistan-2026) compares the most common choices available to Pakistani users.

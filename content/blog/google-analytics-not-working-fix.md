@@ -7,7 +7,7 @@ category: "Business"
 author: "RapidByt Team"
 tags:
   ["Google Analytics", "GA4", "analytics not working", "tracking", "conversions", "data accuracy"]
-image: "/blog/google-analytics-not-working.jpg"
+image: "/blog/google-analytics-not-working.svg"
 ---
 
 You set up Google Analytics. The dashboard shows numbers — but something looks off. Zero visitors when you know people are visiting. Traffic that mysteriously doubles. Conversions that never fire. Referral data that says "(not set)" for everything.

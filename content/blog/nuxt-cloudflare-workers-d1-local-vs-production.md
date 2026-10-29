@@ -6,7 +6,7 @@ readTime: 14
 category: "Development"
 author: "RapidByt Team"
 tags: ["Nuxt", "Cloudflare Workers", "D1 database", "wrangler", "NuxtHub", "deployment", "bindings"]
-image: "/blog/nuxt-cloudflare-d1-debug.jpg"
+image: "/blog/nuxt-cloudflare-d1-debug.svg"
 ---
 
 Everything works on `nuxt dev`. You run `wrangler deploy` and production immediately breaks:

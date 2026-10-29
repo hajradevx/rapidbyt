@@ -172,6 +172,21 @@ function formatDate(d: string) {
         </div>
       </div>
 
+      <!-- Hero cover image -->
+      <div
+        v-if="post.image"
+        class="w-full rounded-2xl overflow-hidden mb-10 border border-zinc-200 dark:border-zinc-800 aspect-[800/420]"
+      >
+        <NuxtImg
+          :src="post.image"
+          :alt="post.title"
+          width="800"
+          height="420"
+          class="w-full h-full object-cover"
+          priority
+        />
+      </div>
+
       <!-- Article body -->
       <div
         class="prose prose-zinc dark:prose-invert max-w-none prose-headings:font-black prose-a:text-sky-600 dark:prose-a:text-sky-400 prose-a:no-underline hover:prose-a:underline prose-code:text-sky-600 dark:prose-code:text-sky-400"

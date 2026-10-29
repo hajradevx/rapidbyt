@@ -6,7 +6,7 @@ readTime: 13
 category: "SEO"
 author: "RapidByt Team"
 tags: ["Core Web Vitals", "LCP", "CLS", "INP", "SEO", "Google ranking"]
-image: "/blog/core-web-vitals-guide-2026.jpg"
+image: "/blog/core-web-vitals-guide-2026.svg"
 ---
 
 Google's Core Web Vitals have been a ranking factor since 2021. In March 2024, INP replaced FID as the third metric — a significant change that caught a lot of developers off guard. And in 2026, the competition keeps intensifying as more sites optimize, meaning if you haven't addressed your vitals, you're actively falling behind sites that have. Poor Core Web Vitals don't just hurt your rankings — they directly [impact your revenue](/blog/why-page-speed-matters-for-revenue) through lost conversions.

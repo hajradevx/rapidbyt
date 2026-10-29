@@ -14,7 +14,7 @@ tags:
     "SEO tools free",
     "Google ranking",
   ]
-image: "/blog/search-console-setup.jpg"
+image: "/blog/search-console-setup.svg"
 ---
 
 If you have a website and have not set up Google Search Console, you are operating without the most important free SEO tool available to you.

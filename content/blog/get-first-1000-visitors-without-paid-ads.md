@@ -14,7 +14,7 @@ tags:
     "no ads",
     "grow website traffic",
   ]
-image: "/blog/first-1000-visitors.jpg"
+image: "/blog/first-1000-visitors.svg"
 ---
 
 Most traffic advice assumes you already have an audience. Guest post for your followers. Share with your community. Leverage your email list.

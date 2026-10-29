@@ -7,7 +7,7 @@ category: "Performance"
 author: "RapidByt Team"
 tags:
   ["images", "blurry images", "responsive images", "WebP", "srcset", "image optimization", "retina"]
-image: "/blog/images-blurry-fix.jpg"
+image: "/blog/images-blurry-fix.svg"
 ---
 
 Blurry images signal one thing to visitors: this website is unprofessional. It doesn't matter how good your copy is or how strong your offer is — if your hero image looks like it was taken with a 2008 camera, first impressions are damaged.

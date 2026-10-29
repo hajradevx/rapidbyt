@@ -14,7 +14,7 @@ tags:
     "certificate expired",
     "security",
   ]
-image: "/blog/ssl-certificate-errors.jpg"
+image: "/blog/ssl-certificate-errors.svg"
 ---
 
 Your visitor types in your URL. Instead of your website, Chrome shows:

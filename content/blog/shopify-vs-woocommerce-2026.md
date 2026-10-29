@@ -14,7 +14,7 @@ tags:
     "online store Pakistan",
     "ecommerce SEO",
   ]
-image: "/blog/shopify-vs-woocommerce.jpg"
+image: "/blog/shopify-vs-woocommerce.svg"
 ---
 
 Every week someone asks: "Should I use Shopify or WooCommerce for my online store?"

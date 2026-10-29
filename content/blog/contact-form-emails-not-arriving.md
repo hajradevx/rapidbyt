@@ -6,7 +6,7 @@ readTime: 7
 category: "Business"
 author: "RapidByt Team"
 tags: ["contact form", "email deliverability", "SMTP", "spam filter", "form not working", "leads"]
-image: "/blog/contact-form-not-working.jpg"
+image: "/blog/contact-form-not-working.svg"
 ---
 
 Someone filled out your contact form. They're waiting for a reply. You never got the notification.

@@ -6,7 +6,7 @@ readTime: 9
 category: "Security"
 author: "RapidByt Team"
 tags: ["website hacked", "security", "malware", "WordPress security", "SSL", "firewall"]
-image: "/blog/website-security.jpg"
+image: "/blog/website-security.svg"
 ---
 
 You wake up to an email from a client: "Your website is showing weird content." Or Google Search Console says your site is distributing malware. Or your homepage has been replaced with a defacement page.

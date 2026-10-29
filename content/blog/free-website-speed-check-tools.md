@@ -14,7 +14,7 @@ tags:
     "Core Web Vitals",
     "website performance check",
   ]
-image: "/blog/free-speed-check-tools.jpg"
+image: "/blog/free-speed-check-tools.svg"
 ---
 
 Your website feels slow — but what exactly is the problem? And how do you confirm that a fix actually improved things? Speed problems [directly affect your revenue](/blog/why-page-speed-matters-for-revenue) — a 1-second delay can reduce conversions by up to 20%.

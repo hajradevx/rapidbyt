@@ -6,7 +6,7 @@ readTime: 10
 category: "Performance"
 author: "RapidByt Team"
 tags: ["mobile performance", "page speed", "mobile data", "website loading", "Core Web Vitals"]
-image: "/blog/website-not-loading-mobile-data.jpg"
+image: "/blog/website-not-loading-mobile-data.svg"
 ---
 
 You've tested your website. It loads fine on your laptop. It loads fine at home on Wi-Fi. But on mobile data — 4G, LTE, even 5G — it's sluggish, or worse, it times out or shows a blank page for several seconds before anything appears.
