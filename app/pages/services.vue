@@ -21,6 +21,12 @@ useSeoMeta({
   ogDescription:
     "Speed optimization, SEO fixes, web development & cloud hosting. Average 58-point PageSpeed improvement. Free audit included.",
   ogImage: "https://rapidbyt.com/og-image.png",
+  ogImageAlt: "Web Performance & Speed Optimization Services — RapidByt",
+  twitterCard: "summary_large_image",
+  twitterTitle: "Web Performance Services — Speed, SEO, Dev & Cloud | RapidByt",
+  twitterDescription:
+    "Speed optimization, SEO fixes, web development & cloud hosting. Average 58-point PageSpeed improvement. Free audit included.",
+  twitterImage: "https://rapidbyt.com/og-image.png",
   keywords:
     "website speed optimization service, Core Web Vitals fix, SEO optimization service, web app development, Cloudflare hosting, website performance agency",
 });

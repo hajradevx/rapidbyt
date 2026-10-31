@@ -356,13 +356,13 @@ export default defineEventHandler(async (event) => {
   const runPsi = async (strategy: string) => {
     // Try with API key first (higher quota)
     if (psiKey) {
-      const withKey = await fetchPsi(strategy, true)
-      if (withKey.data) return withKey
-      console.warn(`PSI ${strategy}: key attempt failed (${withKey.error}), retrying without key`)
+      const withKey = await fetchPsi(strategy, true);
+      if (withKey.data) return withKey;
+      console.warn(`PSI ${strategy}: key attempt failed (${withKey.error}), retrying without key`);
     }
     // Fallback: no key (free tier — 25 req/100s limit, enough for one-off uses)
-    return fetchPsi(strategy, false)
-  }
+    return fetchPsi(strategy, false);
+  };
 
   // Run sequentially — concurrent PSI calls double CPU usage on Cloudflare Workers.
   // fetch() I/O doesn't burn CPU but the surrounding JS processing does.
@@ -397,7 +397,7 @@ export default defineEventHandler(async (event) => {
     throw createError({
       statusCode: 422,
       message: `Could not analyse "${targetUrl}". The URL may be blocking external crawlers, or Google PageSpeed could not reach it. Try with a different URL or contact us directly.`,
-    })
+    });
   }
 
   // Primary "data" used for scores/audits: prefer mobile, fall back to desktop.
@@ -627,20 +627,18 @@ export default defineEventHandler(async (event) => {
         html: internalHtml,
         replyTo: trimmedEmail,
       }),
-    ])
+    ]);
 
-    if (customerEmail.status === 'rejected') {
-      console.error('[diagnose] Customer email failed:', JSON.stringify(customerEmail.reason))
-    }
-    else {
-      console.info('[diagnose] Customer email sent:', customerEmail.value?.data?.id)
+    if (customerEmail.status === "rejected") {
+      console.error("[diagnose] Customer email failed:", JSON.stringify(customerEmail.reason));
+    } else {
+      console.info("[diagnose] Customer email sent:", customerEmail.value?.data?.id);
     }
 
-    if (internalEmail.status === 'rejected') {
-      console.error('[diagnose] Internal email failed:', JSON.stringify(internalEmail.reason))
-    }
-    else {
-      console.info('[diagnose] Internal email sent:', internalEmail.value?.data?.id)
+    if (internalEmail.status === "rejected") {
+      console.error("[diagnose] Internal email failed:", JSON.stringify(internalEmail.reason));
+    } else {
+      console.info("[diagnose] Internal email sent:", internalEmail.value?.data?.id);
     }
   } else {
     console.warn("[diagnose] Email service not configured (NUXT_RESEND_API_KEY missing).");

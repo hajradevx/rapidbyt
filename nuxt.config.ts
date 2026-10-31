@@ -181,7 +181,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   },
 
   // ── Nitro / Cloudflare ──────────────────────────────────
-  compatibilityDate: "2026-10-01",
+  compatibilityDate: "2026-10-31",
 
   nitro: {
     preset: process.env.NODE_ENV === "production" ? "cloudflare_module" : undefined,

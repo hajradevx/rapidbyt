@@ -2,7 +2,7 @@
 title: "Your Website Is Down — What to Do in the Next 60 Minutes"
 description: "Every minute your site is down costs you money and SEO. This is the exact checklist to diagnose the cause, communicate with users, and get back online as fast as possible."
 date: 2026-11-01
-readTime: 7
+readTime: 14
 category: "Security"
 author: "RapidByt Team"
 tags: ["website down", "downtime", "hosting", "uptime monitoring", "server error", "502", "503"]
@@ -11,253 +11,443 @@ image: "/blog/website-down.svg"
 
 Your site is down. A client just texted you. Your phone is ringing. You're staring at a blank screen or an error page.
 
-The next 60 minutes matter. Here is exactly what to do.
+The next 60 minutes matter. Every minute of downtime costs you visitors, potential leads, and SEO signals. Here is exactly what to do — in order.
 
 ---
 
 ## Minute 0–5: Confirm It's Actually Down
 
-First, make sure it's not just your browser or your network.
+Before panicking, verify it's not just your browser, your ISP, or a local network issue.
 
-**Check from multiple sources:**
+**Check from multiple sources simultaneously:**
 
-1. [downforeveryoneorjustme.com](https://downforeveryoneorjustme.com) — paste your URL
-2. [isitdownrightnow.com](https://isitdownrightnow.com) — checks from multiple locations
-3. Ask someone in a different location to check (WhatsApp a colleague)
+1. [downforeveryoneorjustme.com](https://downforeveryoneorjustme.com) — paste your URL, one-click check
+2. [isitdownrightnow.com](https://isitdownrightnow.com) — checks from multiple geographic locations
+3. [uptrends.com/tools/uptime](https://www.uptrends.com/tools/uptime) — tests from 6 locations worldwide
+4. Ask someone in a different city to check (WhatsApp a colleague or family member)
+5. Try loading your site on mobile data instead of WiFi — rules out your local network
 
-**Check the exact error message:**
+If multiple sources confirm it's down: proceed. If only you can't reach it: check your router, your DNS settings, or whether your IP was blocked.
 
-| Error                     | What It Means                                       |
-| ------------------------- | --------------------------------------------------- |
-| `502 Bad Gateway`         | Your web server is up but the app behind it crashed |
-| `503 Service Unavailable` | Server is overloaded or in maintenance mode         |
-| `504 Gateway Timeout`     | App is too slow to respond — possible traffic spike |
-| `ERR_CONNECTION_REFUSED`  | Server is completely unreachable — hosting problem  |
-| `ERR_NAME_NOT_RESOLVED`   | DNS is failing — domain or DNS issue                |
-| Blank white page          | PHP/app crash — check error logs immediately        |
+**Read the exact error message — it tells you where to look:**
 
-Write down the exact error. It tells you where to look.
+| Error Code                | What It Means                                             | Where to Look                                        |
+| ------------------------- | --------------------------------------------------------- | ---------------------------------------------------- |
+| `502 Bad Gateway`         | Web server (Nginx/Apache) is up but app behind it crashed | Application logs, PHP error logs                     |
+| `503 Service Unavailable` | Server is overloaded or in planned maintenance            | Server resources (CPU/RAM/disk), hosting status page |
+| `504 Gateway Timeout`     | App is too slow to respond                                | Database performance, slow API calls                 |
+| `ERR_CONNECTION_REFUSED`  | Server completely unreachable                             | Hosting status page, server firewall                 |
+| `ERR_NAME_NOT_RESOLVED`   | DNS lookup failing                                        | Domain registrar, DNS records                        |
+| `ERR_SSL_PROTOCOL_ERROR`  | SSL/TLS handshake failure                                 | SSL certificate status, Cloudflare SSL settings      |
+| Blank white page          | PHP/application crash                                     | PHP error logs immediately                           |
+| `403 Forbidden`           | Permissions issue or IP blocked                           | File permissions, .htaccess, Cloudflare block rules  |
+
+Write down the exact error. This diagnosis step saves you from debugging the wrong thing.
 
 ---
 
-## Minute 5–15: Check Hosting Status
+## Minute 5–10: Check Hosting Status Pages
 
-**Go to your hosting provider's status page:**
+Before spending time debugging your own code, verify your hosting provider isn't having an outage. This takes 2 minutes and could save you an hour.
 
-Most hosting providers publish real-time status. Google your provider + "status page":
+**Popular hosting status pages:**
 
 - Cloudflare: [cloudflarestatus.com](https://cloudflarestatus.com)
 - DigitalOcean: [status.digitalocean.com](https://status.digitalocean.com)
-- Hostinger, Namecheap, etc. — check their website or Twitter
+- AWS: [health.aws.amazon.com](https://health.aws.amazon.com)
+- Vultr: [status.vultr.com](https://status.vultr.com)
+- Hostinger: Check their Twitter or website footer for status link
+- Local Pakistani hosts: Check their Twitter account — fastest way they announce incidents
 
-If they're showing an incident, your hands are largely tied — wait for them to fix it, but communicate with your users (see below).
+**If they're showing an incident:** Your hands are largely tied. The fix is in their infrastructure, not yours. Use the time to communicate with your users (see communication section below) and monitor for updates.
 
-If they show all-green, the problem is on your site/configuration. If downtime issues are recurring, it may be time to evaluate your host — the [best web hosting guide for Pakistan](/blog/best-web-hosting-pakistan-2026) compares uptime reliability across the most popular options.
+**If they show all-green:** The problem is specific to your site configuration. Continue debugging.
 
 ---
 
-## Minute 5–15: Check DNS If You See ERR_NAME_NOT_RESOLVED
+## Minute 5–15: Investigate ERR_NAME_NOT_RESOLVED (DNS Problem)
 
-If the browser can't find your domain at all, DNS is the issue.
+If the browser says it can't find your domain at all, DNS is failing. This is separate from your hosting.
 
 ```bash
-# Check if DNS resolves
+# Check DNS resolution from your machine
 nslookup yoursite.com
 
-# Check what IP it resolves to
+# More detailed DNS check
 dig yoursite.com
 
-# Compare to what it should be (check your hosting provider's docs)
+# Check what IP the domain resolves to (compare to your server IP)
+dig +short yoursite.com
 ```
 
-Common DNS causes:
+**Common DNS causes:**
 
-- Domain expired (check your domain registrar)
-- DNS records accidentally changed or deleted
-- Nameservers changed (e.g., you moved hosts but old DNS is still propagating)
+**1. Domain expired:**
+Log into your domain registrar (GoDaddy, Namecheap, Hosting.pk, etc.) → check expiry date. An expired domain causes the exact `ERR_NAME_NOT_RESOLVED` error.
 
-**Quick check:** Log into your domain registrar → check the expiry date → check the nameservers are still pointing to the right place.
+Fix: Renew immediately. Most registrars restore within 15–30 minutes of payment. Prevent this in future: renew 2 years in advance and set calendar reminders 60 days before expiry.
+
+**2. DNS records accidentally changed:**
+If someone made DNS changes recently (added Cloudflare, changed hosting, updated records) — check the current DNS records against what they should be.
+
+**3. Nameserver propagation in progress:**
+After changing nameservers, propagation takes 24–48 hours. During this time, some users can reach your site and others can't — depending on which DNS cache they're reading.
+
+Check current propagation status at [dnschecker.org](https://dnschecker.org) — shows how your DNS change has propagated globally.
 
 ---
 
 ## Minute 15–25: Check Server Error Logs
 
-If it's not a hosting outage and DNS is fine, check your server logs. This is where the actual error lives.
+If DNS is fine and the host isn't having an outage, the error is in your server or application. Logs tell you exactly what happened.
 
 **For shared hosting (cPanel):**
-cPanel → Logs → Error log → look at the last 20–30 lines
 
-**For VPS (SSH access):**
+1. Login to cPanel
+2. Go to Logs → Error Log
+3. Read the last 30–50 lines — look for timestamps around when the site went down
+
+**For VPS with SSH access:**
 
 ```bash
-# Nginx error log
+# Nginx error log (most common web server)
 sudo tail -100 /var/log/nginx/error.log
 
 # Apache error log
 sudo tail -100 /var/log/apache2/error.log
 
-# PHP error log
-sudo tail -100 /var/log/php/error.log
+# PHP-FPM error log
+sudo tail -100 /var/log/php8.2-fpm.log
 
-# Application log (Node.js / Nuxt)
-sudo journalctl -u your-app-service -n 100 --no-pager
+# Application logs (Node.js/PM2)
+pm2 logs --lines 100
+
+# Systemd service logs (for custom services)
+sudo journalctl -u your-service-name -n 100 --no-pager
+
+# Combined log — all errors in last hour
+sudo journalctl --since "1 hour ago" -p err
 ```
 
 **For Cloudflare Workers:**
 
 ```bash
+# Tail live logs from your Worker
 wrangler tail
-# Then refresh the broken URL in your browser
+
+# Then open your broken URL in a browser — errors appear in real time
 ```
 
-**What to look for:**
+**What to look for in logs:**
 
-- Out of memory errors
-- Permission denied errors
-- Database connection failures
-- Disk space full
-- App process crashed
+```bash
+# Disk space full — very common
+CRITICAL: No space left on device
+
+# Memory exhausted
+PHP Fatal error: Allowed memory size of X bytes exhausted
+
+# Database connection failed
+SQLSTATE[HY000] [2002] Connection refused
+
+# Permission denied (file permissions problem)
+PHP Warning: include(): Failed opening '/var/www/html/config.php' (Permission denied)
+
+# Application crash
+[error] 502 Bad Gateway
+[crit] 13: Permission denied while connecting to upstream
+```
 
 ---
 
-## Minute 15–25: Check If You Ran Out of Resources
+## Minute 15–25: Check Server Resources
 
-**Disk space full** is a surprisingly common cause of sudden downtime:
+**Disk space full** is a common, easily-missed cause of sudden downtime:
 
 ```bash
-# Check disk usage
+# Check overall disk usage
 df -h
 
 # If root partition is at 100%, find what's eating space
-du -sh /var/log/*  # Often log files
-du -sh /tmp/*
-du -sh /home/*/public_html/*
+du -sh /var/log/* 2>/dev/null | sort -h  # Often bloated logs
+du -sh /tmp/*                              # Temporary files
+du -sh /home/*                             # Home directories
+
+# Quick wins to free space
+sudo find /var/log -type f -name "*.log" -size +100M  # Find huge log files
+sudo journalctl --disk-usage                           # Check journal size
+sudo journalctl --vacuum-size=100M                     # Limit journal to 100MB
 ```
 
-**Fix:** Delete old log files, clear /tmp, or upgrade your storage plan.
-
-**Out of memory:**
+**Memory exhausted:**
 
 ```bash
-# Check memory usage
+# Current memory usage
 free -h
 
-# Check what's consuming memory
-top
-# or
+# What's consuming memory
 ps aux --sort=-%mem | head -20
-```
 
-**Fix:** Restart the memory-hungry process, or upgrade your plan if you're consistently near the limit.
+# Kill a specific process that's consuming too much (replace PID)
+kill -9 [PID]
+```
 
 **Too many database connections:**
 
 ```bash
-# MySQL — check max connections
+# MySQL — check connection count
+mysql -u root -p -e "SHOW STATUS LIKE 'Threads_connected';"
 mysql -u root -p -e "SHOW STATUS LIKE 'max_used_connections';"
 mysql -u root -p -e "SHOW VARIABLES LIKE 'max_connections';"
+
+# If connections are maxed out, restart MySQL
+sudo systemctl restart mysql
 ```
 
 ---
 
-## Minute 25–40: Restart Services
+## Minute 25–35: Restart Services
 
-If logs show a crashed process:
+If logs show a crashed process, restart it:
 
 ```bash
-# Restart Nginx
+# Restart web server
 sudo systemctl restart nginx
-
-# Restart Apache
+# or
 sudo systemctl restart apache2
 
-# Restart MySQL
+# Restart database
 sudo systemctl restart mysql
+sudo systemctl restart postgresql
 
-# Restart your Node.js app (PM2)
+# Restart PHP-FPM (if using PHP)
+sudo systemctl restart php8.2-fpm
+
+# Restart all Node.js apps (PM2)
 pm2 restart all
+pm2 save
 
-# Restart PHP-FPM
-sudo systemctl restart php8.1-fpm
+# Check what restarted successfully
+sudo systemctl status nginx
+sudo systemctl status mysql
+pm2 status
 ```
 
-After restarting, immediately check if the site is back up and monitor logs for repeated crashes.
+After restarting, immediately:
+
+1. Check if the site is back up
+2. Monitor logs for the error recurring
+
+If the service crashes again within minutes — something is repeatedly triggering it (an application error, a resource exhaustion loop, a script running continuously). The restart buys you time to diagnose the root cause.
 
 ---
 
-## Minute 25–40: Check for Recent Changes
+## Minute 25–40: Check What Changed Recently
 
-Think about what changed in the last 24 hours:
+The most common cause of sudden downtime is a recent change. Work backwards:
 
-- Did you or someone on your team deploy new code?
-- Did you update a plugin, theme, or dependency?
-- Did you modify a config file?
-- Did a scheduled task or cron job run?
-- Did traffic suddenly spike (check Google Analytics or Cloudflare analytics)?
+**Questions to answer:**
 
-**If a deployment broke the site:**
+- Did you or a team member deploy new code in the last 24 hours?
+- Was a plugin, theme, or package updated?
+- Did a scheduled task or cron job run recently?
+- Did traffic suddenly spike? (Check Cloudflare analytics or Google Analytics)
+- Was a server configuration file modified?
+- Did an SSL certificate expire?
+
+**If a code deployment broke the site:**
 
 ```bash
-# Roll back to the previous version
-git revert HEAD
+# Roll back to previous version with git
+git log --oneline -10  # See recent commits
+git revert HEAD        # Revert the last commit
 git push
 
-# Or restore from the last working backup
+# Or restore from deployment snapshot if using a deploy tool
 ```
 
-**If a WordPress update broke it:**
+**If a WordPress plugin update broke the site:**
 
-cPanel → File Manager → rename `wp-content/plugins` to `wp-content/plugins-disabled` → refresh site. If it works, a plugin caused the crash. Rename it back, then deactivate plugins one by one. If the downtime was caused by a security breach or attack, follow the [website security hardening guide](/blog/website-security-hardening-guide) after restoring — attacks often repeat if the entry point isn't closed.
+1. Login to cPanel → File Manager
+2. Rename `wp-content/plugins` to `wp-content/plugins-disabled`
+3. Reload your site — if it works, a plugin caused the crash
+4. Rename back, then deactivate plugins one by one until the problem plugin is identified
+
+**If SSL certificate expired:**
+
+```bash
+# Check certificate expiry
+echo | openssl s_client -connect yoursite.com:443 2>/dev/null | openssl x509 -noout -enddate
+
+# Force Let's Encrypt renewal
+sudo certbot renew --force-renewal
+
+# Verify renewal
+sudo certbot certificates
+```
+
+See the [SSL errors fix guide](/blog/ssl-certificate-errors-fix) for specific certificate error types.
+
+---
+
+## Minute 35–50: Restore from Backup (If Available)
+
+If you can't identify or fix the root cause quickly, and you have recent backups — restore first, investigate second. A 4-hour outage while debugging is worse than a 1-hour rollback.
+
+**Restore options by platform:**
+
+**cPanel hosting:**
+
+- Go to cPanel → Backup Restore
+- Select the most recent backup from before the incident
+- Restore files and database separately
+
+**Managed WordPress hosting (Kinsta, WP Engine, SiteGround):**
+
+- Your hosting dashboard has 1-click backup restore
+- Select a backup from before the outage
+
+**VPS with UpdraftPlus backup:**
+
+- WordPress admin → UpdraftPlus → Restore from backup
+
+**VPS with manual backups:**
+
+```bash
+# Restore files
+rsync -avz /backup/website/ /var/www/html/
+
+# Restore database
+mysql -u root -p database_name < /backup/database_backup.sql
+```
+
+**Cloudflare Pages/Workers:**
+Revert to a previous deployment in the Cloudflare dashboard:
+Workers & Pages → your project → Deployments → find a working deployment → "Rollback to this deployment"
+
+**If you have no backups:** This is the moment you commit to implementing backups immediately after recovery. See the [website maintenance checklist](/blog/website-maintenance-checklist) for the backup setup instructions.
 
 ---
 
 ## Minute 40–60: Communicate With Users
 
-While you're fixing the issue (or waiting for hosting support), update your users. Silence is worse than transparency.
+While you're fixing the issue — or waiting for hosting support to fix it — communicate with your users. Silence is worse than transparency. People assume the worst when businesses go dark.
 
-**Minimum communication:**
+**Minimum acceptable communication:**
 
-1. **Status page or social media post:** "We're aware of an issue affecting [site]. Our team is working on a fix. ETA: [time]." — Even if you don't have an ETA, say you're working on it.
+**1. Social media post (if you have any following):**
 
-2. **For business sites with email list:** A quick email to recent customers: "We're experiencing a technical issue. Your data is safe. We expect to be back online by [time]. We apologize for the inconvenience."
+> "We're aware of a technical issue affecting [site]. Our team is working on a fix. We'll update when it's resolved. Thank you for your patience."
 
-3. **For e-commerce:** Specifically notify anyone with active orders that their order is safe and will be processed normally.
+Post this within 30 minutes of confirming the outage.
 
-Even if you fix it in 20 minutes, the people who saw it down are now worried. A 2-sentence communication rebuilds trust instantly.
+**2. WhatsApp status or group update** (for Pakistani businesses where WhatsApp is primary):
+
+> "Our website is temporarily down. We're fixing it now. For urgent inquiries, WhatsApp us directly at [number]."
+
+**3. Email to recent customers or subscribers** (for longer outages):
+Only for outages over 2 hours. Keep it brief: the site is down, you're working on it, their data is safe.
+
+**For e-commerce businesses specifically:**
+
+- Tell customers their orders are safe and will be processed normally
+- Provide an alternative ordering method (WhatsApp, phone) if possible
+- Give an honest estimated restoration time if you have one
+
+Even if you fix the issue in 20 minutes, the customers who saw the error are now concerned. A single proactive message rebuilds that trust instantly.
 
 ---
 
-## After the Fix: Post-Mortem
+## After Recovery: The Post-Mortem
 
-Once you're back online, spend 20 minutes on a post-mortem:
+Once you're back online, spend 20 minutes on a post-mortem before the details fade:
 
-1. What caused the downtime?
-2. How long were you down?
-3. How did you find out? (Client email? That's bad — you should know before clients do)
-4. How do you prevent this specific issue from happening again?
-5. What monitoring can you add to catch this faster next time?
+**Document these 5 things:**
+
+1. **What caused the downtime?** (Be specific — "disk full due to unrotated PHP error logs" is more useful than "server issue")
+
+2. **How long were you down?** (Check UptimeRobot's incident report or Cloudflare analytics)
+
+3. **How did you find out?** If a client emailed you before you knew — that's a monitoring gap to fix.
+
+4. **What was the fix?** Document the exact steps.
+
+5. **What prevents recurrence?** Log rotation, disk monitoring, automated backup verification, etc.
+
+Keep this somewhere you'll actually reference. Future you (or your team) will thank you.
 
 ---
 
-## Prevention: Set Up Monitoring Before It Happens Again
+## Prevention: Set Up Monitoring Right Now
 
-If a client told you your site was down before you knew about it, you have no monitoring. Fix this today — it's free. Monitoring is also a core part of your [monthly website maintenance](/blog/website-maintenance-checklist) routine — the checklist covers everything you should be checking regularly to prevent downtime before it happens.
+If a client emailed you about your downtime before you knew about it — you have no monitoring. This takes 10 minutes to fix and costs nothing.
 
-**UptimeRobot (free for up to 50 monitors):**
+### UptimeRobot (Free for up to 50 monitors)
 
 1. Sign up at [uptimerobot.com](https://uptimerobot.com)
-2. Add your site URL as an HTTP monitor
-3. Set check interval to 5 minutes
-4. Add alert contacts — email, SMS, or a webhook to Slack/WhatsApp
+2. Add your site as an **HTTP(S)** monitor
+3. Set check interval: **5 minutes**
+4. Add alert contacts: your email + WhatsApp (via webhook to a WhatsApp business API if needed)
+5. Add your SSL certificate as a separate **SSL Certificate monitor** — alerts 30 days before expiry
 
-When your site goes down, you get a notification within 5 minutes. When it comes back up, you get another notification.
+**What you should monitor:**
 
-**Also monitor:**
+- Your homepage (`https://yoursite.com`)
+- Your most important API endpoint (if applicable)
+- Your SSL certificate expiry
+- Any critical service pages (checkout, contact form page)
 
-- SSL certificate expiry (UptimeRobot does this too)
-- Domain expiry (set a reminder 60 days before expiry)
-- Key API endpoints (not just the homepage)
+When your site goes down, you get a notification within 5 minutes. When it comes back up, you get another one with the downtime duration.
+
+### Cloudflare Health Checks (If On Cloudflare)
+
+Cloudflare → Traffic → Health Checks → Create health check. Cloudflare tests your origin server independently of their edge cache — you see origin failures even when the cached version is serving visitors.
+
+### Status Page (Optional but Professional)
+
+For businesses where uptime trust matters — set up a public status page:
+
+- [Statuspage.io](https://statuspage.io) — professional, free tier available
+- [Freshstatus](https://freshstatus.io) — free for small sites
+
+A status page lets customers check your service status themselves instead of emailing you — and it demonstrates transparency that builds trust.
 
 ---
 
-If your site is down right now and you can't diagnose it, [contact us via WhatsApp](/contact) for urgent support. We can usually identify the cause within 30 minutes from logs alone.
+## The 60-Minute Recovery Timeline Summary
+
+| Time           | Action                                              |
+| -------------- | --------------------------------------------------- |
+| 0–5 min        | Confirm it's down (multiple tools), read error code |
+| 5–10 min       | Check hosting status page                           |
+| 5–15 min       | If DNS error: check domain expiry + DNS records     |
+| 15–25 min      | Read server error logs                              |
+| 15–25 min      | Check disk space, memory, database connections      |
+| 25–35 min      | Restart failed services                             |
+| 25–40 min      | Check what changed recently, consider rollback      |
+| 35–50 min      | Restore from backup if needed                       |
+| 40–60 min      | Communicate with users                              |
+| After recovery | Post-mortem + set up monitoring                     |
+
+---
+
+## Frequently Asked Questions
+
+**My site is down and I have no SSH access or technical knowledge — what do I do?**
+Contact your hosting provider's support immediately. Open a ticket AND try their live chat simultaneously. Be specific: share the exact error message, when it started, and any recent changes. Most managed hosting providers have emergency support for downtime.
+
+**How long can I be down before it affects my Google ranking?**
+A few hours of downtime has minimal SEO impact. Google crawls your site periodically — if it's back up when Googlebot visits, no penalty. Extended downtime (days) can cause ranking drops. Frequent short outages are a pattern Google may notice over time in its crawl data.
+
+**My site comes back up but keeps going down every few hours — what is it?**
+This is typically a resource issue — memory leaks, database connection limits, or CPU exhaustion from runaway processes. Log your resource usage over time (`top`, `free -h`, `df -h`) to identify what fills up before each crash.
+
+**Should I tell clients my site was down?**
+For brief outages (under 1 hour): only if they noticed. For extended outages (2+ hours) or outages that affected their orders/data: yes, proactively.
+
+**I just found out I have no backups — what do I do?**
+Set up backups today, before anything else. See the [website maintenance checklist](/blog/website-maintenance-checklist) for the specific tools and setup process.
+
+---
+
+If your site is down right now and you can't identify the cause from this guide, [contact us via WhatsApp or the contact form](/contact) for urgent support. We can usually identify the cause within 30 minutes from server logs alone.

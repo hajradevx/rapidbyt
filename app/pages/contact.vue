@@ -8,6 +8,12 @@ useSeoMeta({
   ogDescription:
     "Free website speed & SEO audit. Submit your URL and get a full report with prioritised fixes within 24 hours.",
   ogImage: "https://rapidbyt.com/og-image.png",
+  ogImageAlt: "Free Website Audit — RapidByt",
+  twitterCard: "summary_large_image",
+  twitterTitle: "Free Website Audit — Get Your Performance Report in 24 Hours",
+  twitterDescription:
+    "Free website speed & SEO audit. Submit your URL and get a full report with prioritised fixes within 24 hours.",
+  twitterImage: "https://rapidbyt.com/og-image.png",
   keywords:
     "free website audit, website performance review, free SEO audit, Core Web Vitals check, website speed report, contact RapidByt",
 });
