@@ -40,6 +40,7 @@ const projects = [
     ],
     demo: "https://jewellerysite.hajradevx.workers.dev/",
     repo: null,
+    // Use a separate dummy demo account here, NOT your personal email/password.
     adminCredentials: {
       email: "hajrauswa2000@gmail.com",
       password: "SuperSecret@123",
@@ -86,7 +87,7 @@ const projects = [
 
 <template>
   <section id="projects" class="py-24 bg-zinc-50 dark:bg-zinc-900/40">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Header -->
       <div class="text-center mb-16 fade-up">
         <span
@@ -106,25 +107,26 @@ const projects = [
       </div>
 
       <!-- Grid -->
-      <div class="grid md:grid-cols-2 gap-6">
+      <div class="grid sm:grid-cols-2 gap-6">
         <article
           v-for="(project, i) in projects"
           :key="project.title"
           class="group relative flex flex-col overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
           :style="`transition-delay:${i * 60}ms`"
         >
-          <!-- Full Image -->
-          <div class="relative w-full h-56 overflow-hidden">
+          <!-- Square Image (1:1) -->
+          <div class="relative w-full aspect-square overflow-hidden bg-zinc-100 dark:bg-zinc-800">
             <img
               v-if="project.image"
               :src="project.image"
               :alt="project.title"
-              class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+              class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
               loading="lazy"
             />
-            <!-- Gradient overlay -->
+
+            <!-- Soft gradient only at the bottom so the image stays clear -->
             <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"
+              class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/60 to-transparent"
             />
 
             <!-- Status badge -->
@@ -137,7 +139,7 @@ const projects = [
               </span>
             </div>
 
-            <!-- Tags on image bottom -->
+            <!-- Tags -->
             <div class="absolute bottom-3 left-3 flex flex-wrap gap-1.5">
               <span
                 v-for="tag in project.tags"
