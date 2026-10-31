@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import storeImg from "~/assets/imgs/store.webp";
+import storeImg from "~/assets/imgs/store3.webp";
 import bookImg from "~/assets/imgs/book.webp";
 import sImg from "~/assets/imgs/s1.webp";
 import snowsImg from "~/assets/imgs/snows.png";
