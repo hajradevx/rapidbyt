@@ -9,9 +9,39 @@ useSeoMeta({
   ogDescription:
     "Actionable articles on page speed, Core Web Vitals, technical SEO, and growing your business online.",
   ogImage: "https://rapidbyt.com/og-image.png",
+  ogImageAlt: "RapidByt Blog — Web Performance & SEO Guides",
+  twitterCard: "summary_large_image",
+  twitterTitle: "RapidByt Blog — Web Performance & SEO Guides",
+  twitterDescription:
+    "Actionable articles on page speed, Core Web Vitals, technical SEO, and growing your business online.",
+  twitterImage: "https://rapidbyt.com/og-image.png",
+  keywords:
+    "web performance blog, SEO guides, Core Web Vitals tips, website speed articles, technical SEO",
 });
 useHead({
   link: [{ rel: "canonical", href: "https://rapidbyt.com/blog" }],
+  script: [
+    {
+      type: "application/ld+json",
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        name: "RapidByt Blog",
+        url: "https://rapidbyt.com/blog",
+        description:
+          "Practical guides on website speed, Core Web Vitals, technical SEO, and growing your business online.",
+        publisher: {
+          "@type": "Organization",
+          name: "RapidByt",
+          logo: {
+            "@type": "ImageObject",
+            url: "https://rapidbyt.com/img/logo.png",
+          },
+        },
+        inLanguage: "en",
+      }),
+    },
+  ],
 });
 
 const { data: posts } = await useAsyncData("blog-posts", () =>

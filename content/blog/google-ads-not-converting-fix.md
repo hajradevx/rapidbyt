@@ -2,7 +2,7 @@
 title: "Spending Money on Google Ads But Getting Zero Sales? Here's Why"
 description: "Google Ads draining your budget with no results is almost never the ad's fault. This guide covers the 9 real reasons paid traffic doesn't convert — and how to fix each one."
 date: 2026-10-18
-readTime: 9
+readTime: 17
 category: "Business"
 author: "RapidByt Team"
 tags: ["Google Ads", "PPC", "conversion rate", "landing page", "paid traffic", "ROI"]
@@ -218,6 +218,215 @@ If you're significantly below these, work through the 9 reasons above before inc
 
 ---
 
+## Quality Score Optimization Guide
+
+Quality Score is Google's 1–10 rating of how relevant your ad, keyword, and landing page are to each other. It directly affects how much you pay per click — a Quality Score of 8 can mean paying 40–60% less per click than a score of 4 for the same position.
+
+Quality Score has three components:
+
+| Component               | Weight | How to Improve                                                               |
+| ----------------------- | ------ | ---------------------------------------------------------------------------- |
+| Expected CTR            | ~35%   | Write stronger ad copy with clear benefits; test different headlines         |
+| Ad Relevance            | ~35%   | Match your keyword tightly to your ad copy — use the keyword in the headline |
+| Landing Page Experience | ~30%   | Fast load speed, relevant content, clear CTA                                 |
+
+**Step-by-step Quality Score improvement:**
+
+**Step 1: Check current Quality Scores**
+Go to Google Ads → Keywords → add the Quality Score column. Any keyword scoring below 6 needs attention.
+
+**Step 2: Improve Expected CTR**
+
+- Add your keyword to headline 1 of your ad
+- Include specific numbers or benefits ("Save 40%", "Free audit", "Results in 24 hours")
+- Test at least 3 ad variations per ad group and pause the worst performer monthly
+
+**Step 3: Improve Ad Relevance**
+
+- Create tightly themed ad groups — one topic per group, not 20 keywords per group
+- If a keyword is about "website speed," every ad in that group should mention "website speed"
+- Use Dynamic Keyword Insertion sparingly (it can hurt relevance if overused)
+
+**Step 4: Improve Landing Page Experience**
+
+- Match landing page headline to the ad's main keyword
+- Ensure page loads in under 3 seconds on mobile
+- Remove navigation — dedicated landing pages for ads convert better
+- Google evaluates original content, transparency, and ease of navigation
+
+A Quality Score improvement from 4 to 8 typically reduces CPC by 30–50% and improves ad position simultaneously.
+
+---
+
+## Google Ads Conversion Tracking Setup Tutorial
+
+Setting up conversion tracking correctly is the foundation of every optimization decision. Here's the complete setup for form submissions and phone calls.
+
+### Setting Up Form Submission Tracking
+
+**Method 1: Thank-You Page (most reliable)**
+
+1. Create a dedicated thank-you page (e.g., `/thank-you`) that visitors land on only after submitting a form
+2. In Google Ads: Tools → Conversions → + New Conversion
+3. Select "Website" → choose "Form submission" → name it "Form Submission"
+4. Set value (optional) and click "Create and continue"
+5. Copy the tag code and add it to your thank-you page only (not every page)
+6. Test: submit your own form and check Google Ads Conversions — it should show "Recorded" within 24 hours
+
+**Method 2: Google Tag Manager (recommended for non-developers)**
+
+1. Install Google Tag Manager on your site
+2. In GTM, create a Trigger: Trigger Type → Form Submission → apply to all forms (or specific form ID)
+3. Create a Tag: Tag Type → Google Ads Conversion Tracking → paste your Conversion ID and Label
+4. Connect tag to trigger → Publish
+5. Use GTM Preview mode to verify the tag fires on form submit
+
+### Setting Up Phone Call Tracking
+
+1. In Google Ads: Tools → Conversions → + New Conversion
+2. Select "Phone calls" → "Calls to a phone number on your website"
+3. Set minimum call duration (60 seconds recommended — filters out accidental clicks)
+4. Google provides a forwarding number — add this to your site in place of your real number
+5. Add the call tracking code snippet (provided by Google) to your site's `<head>`
+
+For Pakistani businesses: calls from Google Ads will forward through Google's number to your local number. This works with Jazz, Telenor, and Zong numbers.
+
+---
+
+## Smart Bidding Strategies Comparison
+
+Smart bidding uses machine learning to optimize bids for each auction. Choosing the right strategy depends on your campaign stage and goals.
+
+| Strategy                  | When to Use                         | Requirement                           | Best For                                 |
+| ------------------------- | ----------------------------------- | ------------------------------------- | ---------------------------------------- |
+| Manual CPC                | New campaigns, limited data         | None                                  | Full control while gathering data        |
+| Enhanced CPC              | After 20+ conversions/month         | Some conversion data                  | Starting to automate                     |
+| Target CPA                | After 30–50 conversions/month       | Stable conversion tracking            | Service businesses with clear lead value |
+| Target ROAS               | After 50+ conversions/month         | Revenue tracking configured           | E-commerce with product values           |
+| Maximize Conversions      | Limited budget, established account | Conversion tracking                   | Spending all budget efficiently          |
+| Maximize Conversion Value | Revenue-focused                     | Revenue values in conversion tracking | E-commerce                               |
+
+**Recommended progression for new advertisers:**
+
+1. **Start with Manual CPC** for the first 2–4 weeks — gather real click and conversion data
+2. **Switch to Enhanced CPC** once you have 20+ conversions — Google starts optimizing slightly
+3. **Move to Target CPA** once you have 50+ conversions and a clear CPL target
+4. Never switch strategies during a high-traffic period — it triggers a learning phase that temporarily disrupts performance
+
+---
+
+## Pakistan-Specific Google Ads Best Practices
+
+### Language Targeting
+
+Pakistan has both Urdu and English speakers. For most service businesses:
+
+- Run **English ads** for professional services (B2B, tech, premium services)
+- Run **Urdu ads** for mass market consumer products and local services
+- Test both and compare CTR and conversion rate — results vary by industry
+
+In Google Ads → Campaign → Languages: select "English" and "Urdu" separately to enable both language segments.
+
+### Location Targeting for Pakistani Cities
+
+Instead of targeting "Pakistan" broadly, target specific cities to improve relevance and reduce wasted spend:
+
+1. Google Ads → Campaign → Locations → Enter specific city names
+2. Add: Karachi, Lahore, Islamabad, Rawalpindi, Faisalabad, Multan (based on your service area)
+3. Set bid adjustments by city based on conversion rate — Islamabad and Lahore typically convert at higher rates for professional services
+4. Use location exclusions to exclude areas outside your service zone
+
+**Bid adjustment recommendations for Pakistani cities (professional services):**
+
+| City         | Suggested Bid Adjustment |
+| ------------ | ------------------------ |
+| Islamabad    | +15%                     |
+| Lahore       | +10%                     |
+| Karachi      | +5%                      |
+| Other cities | 0% (baseline)            |
+| Rural areas  | -20%                     |
+
+### Device Targeting
+
+Mobile penetration in Pakistan is high, but B2B conversions typically happen on desktop. Check your conversion data by device and apply bid adjustments accordingly. Reduce mobile bids for B2B; keep or increase mobile for consumer products.
+
+---
+
+## Ad Extensions Complete Setup Guide
+
+Ad extensions add extra information to your ads and increase click-through rate without additional cost per click. Google gives preference to ads with more relevant extensions.
+
+### Sitelink Extensions
+
+Add links to specific pages below your main ad.
+
+1. Google Ads → Assets (formerly Extensions) → + Sitelink
+2. Add 4–8 sitelinks: "Free Audit", "Case Studies", "Pricing", "Contact Us"
+3. Include descriptions for each (2 lines of 35 characters each)
+4. Link each sitelink to a relevant page — not all to the homepage
+
+### Callout Extensions
+
+Short, non-clickable phrases highlighting benefits.
+
+1. Google Ads → Assets → + Callout
+2. Examples: "Free Initial Consultation", "Results in 24 Hours", "No Long-Term Contract", "Pakistani Rupee Pricing"
+3. Add 6–10 callouts — Google rotates the best ones
+
+### Call Extensions
+
+Adds your phone number to the ad.
+
+1. Google Ads → Assets → + Call
+2. Enter your Pakistani mobile or landline number
+3. Set schedule to show only during business hours
+4. Enable call reporting to track call conversions
+
+### Structured Snippet Extensions
+
+Highlight specific services or products.
+
+1. Google Ads → Assets → + Structured Snippet
+2. Select header type (Services, Products, Courses, etc.)
+3. Add 3–10 values for the selected header
+
+A fully extended ad can take up 2–3x the screen space of a basic ad, dramatically increasing visibility and CTR.
+
+---
+
+## Remarketing List Creation Tutorial
+
+Remarketing shows ads to people who have already visited your site — they're warmer and convert at 2–5x the rate of cold traffic.
+
+### Step 1: Create Remarketing Lists
+
+1. Google Ads → Tools → Audience Manager → + Audience List
+2. Select "Website visitors"
+3. Create these core lists:
+   - **All visitors** (last 30 days)
+   - **Landing page visitors** (visited specific landing page)
+   - **Form starters** (visited form page but didn't complete — requires event tracking)
+   - **Converters** (completed a form — to EXCLUDE from prospecting campaigns)
+
+### Step 2: Apply Lists to Campaigns
+
+1. In your Search campaign: Audiences → + Audiences
+2. Add your remarketing lists as **Observation** (shows ads to everyone but adjusts bids for the list)
+3. Set bid adjustment: +30–50% for previous visitors — they're more likely to convert
+
+### Step 3: Create a Dedicated Remarketing Display Campaign
+
+1. Create a new Display campaign
+2. Select "Website traffic" as the campaign goal
+3. Under Audiences → "How they have interacted with your business"
+4. Select your remarketing lists
+5. Create 3–5 display ad sizes (300×250, 728×90, 160×600 are most common)
+6. Set a separate, lower budget than your search campaign — remarketing is efficient
+
+Remarketing typically achieves 3–5x better conversion rates than prospecting campaigns because the visitor already knows you.
+
+---
+
 ## The Audit Process: Fix in Order of Impact
 
 1. **Check where traffic lands** — homepage or dedicated page?
@@ -233,3 +442,31 @@ Most businesses find the problem in steps 1–3. Fix those before touching your 
 ---
 
 Need a second pair of eyes on your landing page? [Request a free conversion audit](/contact) — we'll review your ad, landing page, and analytics setup and identify exactly where spend is being lost. Not sure whether Google Ads or Facebook Ads is the right channel for your business? The [Google Ads vs Facebook Ads comparison](/blog/google-ads-vs-facebook-ads-2026) breaks down which platform wins for each business type.
+
+---
+
+## Frequently Asked Questions
+
+**How much should I spend on Google Ads in Pakistan to see results?**
+
+A meaningful test requires at least PKR 15,000–25,000/month (roughly $50–90 USD). Below this, you don't get enough clicks to identify patterns. Budget translates directly to data — with too little spend, you can't tell if poor conversion is the keyword, the ad, or the landing page. Start with PKR 20,000/month for 30 days, audit everything, then scale what works.
+
+**Why is my Google Ads Quality Score low?**
+
+Low Quality Score (below 5) usually means there's a mismatch between your keyword, your ad copy, and your landing page. The fix is structural: create tightly themed ad groups where the keyword, ad headline, and landing page headline all match closely. A keyword about "website speed" should have an ad mentioning "website speed" and a landing page about "website speed" — not a generic homepage.
+
+**Should I use broad match keywords in Pakistan-targeted campaigns?**
+
+Not in the early stages. Broad match generates irrelevant traffic, which is especially wasteful when working with limited budgets. Start with exact match and phrase match. Only add broad match with Smart Bidding after you have 50+ conversions and clear conversion data — at that point, Google's algorithm has enough data to use broad match intelligently.
+
+**How long does it take for Google Ads to start converting?**
+
+If everything is set up correctly (good landing page, relevant keywords, proper tracking), you should see conversions within the first 2 weeks. If you have zero conversions after 300+ clicks, the problem is almost certainly the landing page, not the ads. Use that as your diagnostic signal.
+
+**Can I run Google Ads in Urdu?**
+
+Yes. Create a separate ad group or campaign with Urdu ad copy targeting the Urdu language setting. Google's ad auction works the same regardless of language. Urdu ads often have less competition in Pakistan, which can mean lower CPCs. Test Urdu vs. English side by side and measure CTR and conversion rate.
+
+**What is a good cost-per-lead (CPL) for Google Ads in Pakistan?**
+
+It varies significantly by industry. A rough benchmark: professional services (legal, medical, digital marketing) — PKR 500–2,000 per lead; e-commerce — PKR 200–800 per sale; local services (repair, construction) — PKR 300–1,000 per lead. If your CPL is much higher, work through the 9 reasons in this guide before increasing budget.

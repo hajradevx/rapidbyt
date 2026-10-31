@@ -7,6 +7,14 @@ useSeoMeta({
   ogDescription:
     "Free website diagnosis tool, performance audits, SEO checklists, and speed optimization services from RapidByt.",
   ogImage: "https://rapidbyt.com/og-image.png",
+  ogImageAlt: "Products & Tools — RapidByt",
+  twitterCard: "summary_large_image",
+  twitterTitle: "Products & Tools — RapidByt",
+  twitterDescription:
+    "Free website diagnosis tool, performance audits, SEO checklists, and speed optimization services from RapidByt.",
+  twitterImage: "https://rapidbyt.com/og-image.png",
+  keywords:
+    "website tools, free website audit tool, SEO checklist, web performance tools, RapidByt products",
 });
 useHead({
   link: [{ rel: "canonical", href: "https://rapidbyt.com/products" }],

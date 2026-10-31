@@ -7,7 +7,7 @@ useSeoMeta({
   ogTitle: "RapidByt – Web Performance & Speed Optimization Services",
   ogDescription:
     "Free website speed test + expert fixes. We improve Core Web Vitals, SEO rankings & page load times. Most sites see results in 7 days.",
-  ogImage: "/og-image.png",
+  ogImage: "https://rapidbyt.com/og-image.png",
   twitterCard: "summary_large_image",
   keywords:
     "website speed optimization, web performance, Core Web Vitals, SEO optimization, page speed, slow website fix, web development Pakistan",

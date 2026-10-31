@@ -7,8 +7,12 @@ useSeoMeta({
   ogTitle: "Free Website Speed Test — Check Your PageSpeed Score Instantly",
   ogDescription:
     "Scan your website for speed, SEO, and performance issues in 10 seconds. Free report with actionable fixes delivered to your inbox.",
-  ogImage: "/og-image.png",
+  ogImage: "https://rapidbyt.com/og-image.png",
   twitterCard: "summary_large_image",
+  twitterTitle: "Free Website Speed Test — Check Your PageSpeed Score Instantly",
+  twitterDescription:
+    "Scan your website for speed, SEO, and performance issues in 10 seconds. Free report with actionable fixes delivered to your inbox.",
+  twitterImage: "https://rapidbyt.com/og-image.png",
   keywords:
     "free website speed test, PageSpeed score checker, Core Web Vitals test, website performance audit, SEO checker free, slow website diagnosis",
 });

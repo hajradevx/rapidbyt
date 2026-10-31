@@ -30,21 +30,65 @@ const categoryNavigation = computed<ContentNavigationItem[]>(() => {
 
 // ── SEO ──────────────────────────────────────────────────
 const canonicalUrl = `https://rapidbyt.com/blog/${slug}`;
+const ogImage = post.value.image
+  ? `https://rapidbyt.com${post.value.image}`
+  : "https://rapidbyt.com/og-image.png";
 
 useSeoMeta({
   title: `${post.value.title} | RapidByt`,
   description: post.value.description,
   ogTitle: post.value.title,
   ogDescription: post.value.description,
-  ogImage: post.value.image
-    ? `https://rapidbyt.com${post.value.image}`
-    : "https://rapidbyt.com/og-image.png",
+  ogType: "article",
+  ogImage,
+  ogImageAlt: post.value.title,
+  twitterCard: "summary_large_image",
+  twitterTitle: post.value.title,
+  twitterDescription: post.value.description,
+  twitterImage: ogImage,
   articlePublishedTime: post.value.date,
+  articleAuthor: post.value.author ?? "RapidByt Team",
   articleTag: post.value.tags?.join(", "),
+  articleSection: post.value.category,
 });
 
 useHead({
   link: [{ rel: "canonical", href: canonicalUrl }],
+  script: [
+    {
+      type: "application/ld+json",
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: post.value.title,
+        description: post.value.description,
+        image: ogImage,
+        datePublished: post.value.date,
+        dateModified: post.value.date,
+        author: {
+          "@type": "Person",
+          name: post.value.author ?? "RapidByt Team",
+          url: "https://rapidbyt.com/about",
+        },
+        publisher: {
+          "@type": "Organization",
+          name: "RapidByt",
+          logo: {
+            "@type": "ImageObject",
+            url: "https://rapidbyt.com/img/logo.png",
+          },
+        },
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": canonicalUrl,
+        },
+        url: canonicalUrl,
+        keywords: post.value.tags?.join(", "),
+        articleSection: post.value.category,
+        inLanguage: "en",
+      }),
+    },
+  ],
 });
 
 function formatDate(d: string) {

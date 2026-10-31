@@ -8,9 +8,48 @@ useSeoMeta({
   ogDescription:
     "We diagnose digital bottlenecks and engineer solutions that make your business faster, smarter, and more profitable.",
   ogImage: "https://rapidbyt.com/og-image.png",
+  ogImageAlt: "About RapidByt — Web Performance & SEO Agency",
+  twitterCard: "summary_large_image",
+  twitterTitle: "About RapidByt — Web Performance & SEO Agency",
+  twitterDescription:
+    "We diagnose digital bottlenecks and engineer solutions that make your business faster, smarter, and more profitable.",
+  twitterImage: "https://rapidbyt.com/og-image.png",
+  keywords:
+    "about RapidByt, web performance agency, SEO agency Pakistan, website optimization company",
 });
 useHead({
   link: [{ rel: "canonical", href: "https://rapidbyt.com/about" }],
+  script: [
+    {
+      type: "application/ld+json",
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        name: "About RapidByt",
+        url: "https://rapidbyt.com/about",
+        description:
+          "RapidByt is a web performance and SEO agency helping businesses build faster, higher-ranking, and more profitable websites.",
+        mainEntity: {
+          "@type": "Organization",
+          name: "RapidByt",
+          url: "https://rapidbyt.com",
+          logo: "https://rapidbyt.com/img/logo.png",
+          description: "Web performance optimization, SEO, and software development agency.",
+          contactPoint: {
+            "@type": "ContactPoint",
+            telephone: "+92-316-863-6339",
+            contactType: "customer service",
+            availableLanguage: ["English", "Urdu"],
+          },
+          sameAs: [
+            "https://twitter.com/rapidbyt",
+            "https://linkedin.com/company/rapidbyt",
+            "https://github.com/rapidbyt",
+          ],
+        },
+      }),
+    },
+  ],
 });
 </script>
 
