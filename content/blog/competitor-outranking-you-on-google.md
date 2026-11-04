@@ -1,6 +1,6 @@
 ---
 title: "Why Your Competitor Ranks Higher on Google (And How to Beat Them)"
-description: "A competitor with a worse product outranks you. It's frustrating — but it's fixable. This guide breaks down exactly why they rank higher and gives you a systematic plan to overtake them."
+description: "A competitor with a worse product outranks you — but it's fixable. This guide breaks down exactly why they rank higher and how to overtake them."
 date: 2026-10-25
 readTime: 18
 category: "SEO"

@@ -118,6 +118,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   site: {
     url: "https://rapidbyt.com",
     name: "RapidByt",
+    description:
+      "Web performance optimization, SEO, and software development agency. We fix slow websites and improve Google rankings.",
   },
 
   // ── Content (blog) ──────────────────────────────────────

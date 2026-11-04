@@ -1,6 +1,6 @@
 ---
 title: "Paying Too Much for Hosting? Move to Cloudflare and Cut Costs by 60%"
-description: "A step-by-step guide to migrating your website to Cloudflare Pages or Workers — free hosting, global CDN, automatic HTTPS, and a faster site. No DevOps experience needed."
+description: "Step-by-step guide to migrating your website to Cloudflare Pages or Workers — free hosting, global CDN, automatic HTTPS, and a faster site."
 date: 2026-10-08
 readTime: 16
 category: "Development"

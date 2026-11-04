@@ -68,7 +68,7 @@ useHead({
         description: post.value.description,
         image: ogImage,
         datePublished: post.value.date,
-        dateModified: post.value.date,
+        dateModified: post.value.updatedAt ?? post.value.date,
         author: {
           "@type": "Person",
           name: post.value.author ?? "RapidByt Team",
@@ -90,6 +90,37 @@ useHead({
         keywords: post.value.tags?.join(", "),
         articleSection: post.value.category,
         inLanguage: "en",
+        wordCount: post.value.body?.children
+          ? JSON.stringify(post.value.body).split(/\s+/).length
+          : undefined,
+      }),
+    },
+    {
+      // BreadcrumbList: Home > Blog > Article — improves SERP appearance
+      type: "application/ld+json",
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://rapidbyt.com",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Blog",
+            item: "https://rapidbyt.com/blog",
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: post.value.title,
+            item: canonicalUrl,
+          },
+        ],
       }),
     },
   ],

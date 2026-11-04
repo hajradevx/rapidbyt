@@ -1,6 +1,6 @@
 ---
 title: "Contact Form Submissions Not Arriving? Here's How to Fix It"
-description: "Form submissions disappearing into the void is one of the most common and most damaging website problems. Every missed form is a lost lead. Here's the complete diagnostic and fix guide."
+description: "Contact form submissions disappearing is one of the most damaging website problems. Every missed form is a lost lead. Complete diagnostic and fix guide."
 date: 2026-10-22
 readTime: 16
 category: "Business"

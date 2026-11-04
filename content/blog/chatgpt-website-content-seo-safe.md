@@ -1,6 +1,6 @@
 ---
 title: "Using ChatGPT to Write Website Content — Is It SEO Safe in 2026?"
-description: "Does Google penalise AI-generated content? Is using ChatGPT to write blog posts safe for SEO? The complete honest answer with Google's official stance and real test results."
+description: "Does Google penalise AI-generated content? We cover ChatGPT's impact on SEO with Google's official stance and real test results."
 date: 2026-10-04
 readTime: 16
 category: "SEO"

@@ -1,6 +1,6 @@
 ---
 title: "Google Ads vs Facebook Ads 2026 — Where Should You Actually Spend Your Money?"
-description: "Google Ads or Facebook Ads — which gives better ROI for your business? We break down when each platform wins, real costs, and how to decide based on your business type and goals."
+description: "Google Ads or Facebook Ads — which gives better ROI? We break down when each platform wins, real costs, and how to decide based on your business."
 date: 2026-10-03
 readTime: 16
 category: "Business"
