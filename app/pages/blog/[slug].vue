@@ -30,9 +30,13 @@ const categoryNavigation = computed<ContentNavigationItem[]>(() => {
 
 // ── SEO ──────────────────────────────────────────────────
 const canonicalUrl = `https://rapidbyt.com/blog/${slug}`;
-const ogImage = post.value.image
-  ? `https://rapidbyt.com${post.value.image}`
-  : "https://rapidbyt.com/og-image.png";
+
+// SVG images are not supported by social platforms (Facebook, Twitter/X, LinkedIn, WhatsApp).
+// Fall back to the generic og-image.png when the post image is an SVG.
+const postImage = post.value.image;
+const isSvg = postImage?.toLowerCase().endsWith(".svg");
+const ogImage =
+  postImage && !isSvg ? `https://rapidbyt.com${postImage}` : "https://rapidbyt.com/og-image.png";
 
 useSeoMeta({
   title: `${post.value.title} | RapidByt`,
