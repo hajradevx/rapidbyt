@@ -1,6 +1,6 @@
 ---
 title: "Google Analytics Showing No Data or Wrong Numbers — Complete Fix Guide"
-description: "GA4 showing zero users, inflated traffic from bots, missing conversions, or data that doesn't match reality. Here's how to diagnose and fix every common Google Analytics problem."
+description: "GA4 showing zero users, inflated bot traffic, or missing conversions? Diagnose and fix every common Google Analytics problem with this guide."
 date: 2026-11-03
 readTime: 16
 category: "Business"

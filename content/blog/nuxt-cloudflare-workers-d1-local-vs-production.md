@@ -1,6 +1,6 @@
 ---
 title: "Nuxt + Cloudflare Workers: APIs Work Locally But Break in Production — Complete Fix Guide"
-description: "Your Nuxt app runs perfectly with nuxt dev but APIs fail after wrangler deploy. This guide covers D1 bindings, environment variables, Node.js compatibility, and wrangler debugging — based on a real production setup."
+description: "Nuxt app works on dev but APIs break after wrangler deploy? Covers D1 bindings, env variables, Node.js compat, and wrangler debugging for production."
 date: 2026-10-15
 readTime: 14
 category: "Development"

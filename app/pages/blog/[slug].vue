@@ -30,9 +30,13 @@ const categoryNavigation = computed<ContentNavigationItem[]>(() => {
 
 // ── SEO ──────────────────────────────────────────────────
 const canonicalUrl = `https://rapidbyt.com/blog/${slug}`;
-const ogImage = post.value.image
-  ? `https://rapidbyt.com${post.value.image}`
-  : "https://rapidbyt.com/og-image.png";
+
+// SVG images are not supported by social platforms (Facebook, Twitter/X, LinkedIn, WhatsApp).
+// Fall back to the generic og-image.png when the post image is an SVG.
+const postImage = post.value.image;
+const isSvg = postImage?.toLowerCase().endsWith(".svg");
+const ogImage =
+  postImage && !isSvg ? `https://rapidbyt.com${postImage}` : "https://rapidbyt.com/og-image.png";
 
 useSeoMeta({
   title: `${post.value.title} | RapidByt`,
@@ -64,7 +68,7 @@ useHead({
         description: post.value.description,
         image: ogImage,
         datePublished: post.value.date,
-        dateModified: post.value.date,
+        dateModified: post.value.updatedAt ?? post.value.date,
         author: {
           "@type": "Person",
           name: post.value.author ?? "RapidByt Team",
@@ -86,6 +90,37 @@ useHead({
         keywords: post.value.tags?.join(", "),
         articleSection: post.value.category,
         inLanguage: "en",
+        wordCount: post.value.body?.children
+          ? JSON.stringify(post.value.body).split(/\s+/).length
+          : undefined,
+      }),
+    },
+    {
+      // BreadcrumbList: Home > Blog > Article — improves SERP appearance
+      type: "application/ld+json",
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://rapidbyt.com",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Blog",
+            item: "https://rapidbyt.com/blog",
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: post.value.title,
+            item: canonicalUrl,
+          },
+        ],
       }),
     },
   ],

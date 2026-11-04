@@ -1,6 +1,6 @@
 ---
 title: "The Monthly Website Maintenance Checklist (Most Businesses Skip 80% of This)"
-description: "A website isn't a one-time project. Without regular maintenance, security degrades, performance drops, and small issues become expensive emergencies. Here's the complete monthly, quarterly, and annual maintenance checklist."
+description: "Without regular maintenance security degrades and small issues become expensive emergencies. Complete monthly, quarterly, and annual maintenance checklist."
 date: 2026-11-12
 readTime: 15
 category: "Security"

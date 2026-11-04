@@ -1,6 +1,6 @@
 ---
 title: "WordPress Site Running Slow? Here's the Complete Fix Guide (No Developer Needed)"
-description: "Your WordPress site is slow and you don't know why. This step-by-step guide covers caching, image optimization, plugin bloat, hosting, and database cleanup — with free tools for each fix."
+description: "WordPress site slow and you don't know why? Step-by-step guide covering caching, image optimization, plugin bloat, hosting, and database cleanup."
 date: 2026-10-12
 readTime: 18
 category: "Performance"

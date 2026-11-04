@@ -16,6 +16,7 @@ useHead({
   link: [{ rel: "canonical", href: "https://rapidbyt.com" }],
   script: [
     {
+      // Organization schema — establishes brand identity for Google Knowledge Graph
       type: "application/ld+json",
       innerHTML: JSON.stringify({
         "@context": "https://schema.org",
@@ -41,6 +42,26 @@ useHead({
           price: "0",
           priceCurrency: "USD",
           url: "https://rapidbyt.com/diagnose",
+        },
+      }),
+    },
+    {
+      // WebSite schema — enables Sitelinks Search Box in Google results
+      type: "application/ld+json",
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "RapidByt",
+        url: "https://rapidbyt.com",
+        description:
+          "Web performance optimization, SEO, and software development agency based in Pakistan.",
+        potentialAction: {
+          "@type": "SearchAction",
+          target: {
+            "@type": "EntryPoint",
+            urlTemplate: "https://rapidbyt.com/diagnose?url={search_term_string}",
+          },
+          "query-input": "required name=search_term_string",
         },
       }),
     },

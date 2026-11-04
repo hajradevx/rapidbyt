@@ -9,6 +9,7 @@ export default defineContentConfig({
         title: z.string(),
         description: z.string(),
         date: z.string(),
+        updatedAt: z.string().optional(), // for dateModified in JSON-LD — separate from datePublished
         readTime: z.number(),
         category: z.string(),
         author: z.string().optional(),
