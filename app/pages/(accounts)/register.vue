@@ -33,8 +33,6 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
       icon: "i-lucide-check-circle",
       color: "primary",
     });
-
-    navigateTo("/login");
   } catch (error: unknown) {
     const err = error as { data?: { statusText?: string }; message?: string };
     const message =
@@ -48,6 +46,7 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
     });
   } finally {
     loading.value = false;
+    await navigateTo("/login");
   }
 }
 </script>
