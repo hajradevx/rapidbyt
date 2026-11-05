@@ -104,6 +104,38 @@ useHead({
           />
         </div>
 
+        <!-- CWV History Tool -->
+        <div
+          class="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-7 flex flex-col"
+        >
+          <div class="flex items-center gap-3 mb-4">
+            <div
+              class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center shrink-0"
+            >
+              <UIcon
+                name="i-lucide-activity"
+                class="w-6 h-6 text-emerald-600 dark:text-emerald-400"
+              />
+            </div>
+            <div>
+              <h2 class="font-black text-zinc-900 dark:text-white">CWV History Checker</h2>
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400"
+                >Free · Real User Data</span
+              >
+            </div>
+          </div>
+          <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed flex-1 mb-6">
+            See 40 weeks of LCP, CLS, INP, FCP & TTFB trends for any site using Google's Chrome UX
+            Report — real user data, not lab scores.
+          </p>
+          <UButton
+            label="Check Vitals History"
+            to="/tools/cwv-history"
+            color="primary"
+            trailing-icon="i-lucide-arrow-right"
+          />
+        </div>
+
         <!-- Full Performance Audit -->
         <div
           class="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-7 flex flex-col"

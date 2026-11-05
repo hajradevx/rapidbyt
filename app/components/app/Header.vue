@@ -60,6 +60,12 @@ const navItems = computed<NavigationMenuItem[]>(() => [
         to: "/tools/meta-checker",
       },
       {
+        label: "CWV History",
+        description: "40 weeks of real user vitals data",
+        icon: "i-lucide-activity",
+        to: "/tools/cwv-history",
+      },
+      {
         label: "All Products",
         description: "Browse all free & premium tools",
         icon: "i-lucide-layout-grid",

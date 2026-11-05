@@ -250,6 +250,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         "/blog/google-my-business-seo-guide",
         "/blog/website-not-loading-on-mobile-data",
         "/tools/meta-checker",
+        "/tools/cwv-history",
         "/sitemap.xml",
       ],
     },
@@ -293,6 +294,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "/blog": { prerender: true },
       "/blog/**": { prerender: true },
       "/tools/meta-checker": { prerender: true },
+      "/tools/cwv-history": { prerender: true },
       "/sitemap.xml": { prerender: true },
 
       "/api/**": {

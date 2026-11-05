@@ -39,6 +39,12 @@ const pages = [
     priority: "0.8",
     changefreq: "monthly",
   },
+  {
+    loc: "/tools/cwv-history",
+    lastmod: "2026-11-04T00:00:00+00:00",
+    priority: "0.8",
+    changefreq: "monthly",
+  },
 
   // ── Blog posts (cornerstone content → 0.9, standard → 0.8) ─────────────────
   {
