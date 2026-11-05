@@ -249,6 +249,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         "/blog/wix-vs-wordpress-which-is-better",
         "/blog/google-my-business-seo-guide",
         "/blog/website-not-loading-on-mobile-data",
+        "/tools/meta-checker",
         "/sitemap.xml",
       ],
     },
@@ -291,6 +292,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "/diagnose": { prerender: true },
       "/blog": { prerender: true },
       "/blog/**": { prerender: true },
+      "/tools/meta-checker": { prerender: true },
       "/sitemap.xml": { prerender: true },
 
       "/api/**": {
