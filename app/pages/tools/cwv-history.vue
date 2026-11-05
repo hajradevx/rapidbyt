@@ -119,13 +119,27 @@ async function check() {
     result.value = data;
     activeMetric.value = "lcp";
   } catch (err: unknown) {
+    const httpStatus =
+      err && typeof err === "object" && "status" in err
+        ? (err as { status?: number }).status
+        : null;
     const msg =
       err && typeof err === "object" && "data" in err
         ? (err as { data?: { message?: string } }).data?.message
         : err instanceof Error
           ? err.message
           : "Something went wrong.";
-    error.value = msg ?? "Something went wrong.";
+
+    if (httpStatus === 503 || httpStatus === 403) {
+      error.value =
+        "API key required. Add NUXT_PAGESPEED_API_KEY to your .env file. " +
+        "Get a free key at developers.google.com/speed/docs/insights/v5/get-started";
+    } else if (httpStatus === 404) {
+      error.value =
+        "No data found for this site. It may not have enough Chrome user traffic in Google's CrUX dataset yet.";
+    } else {
+      error.value = msg ?? "Something went wrong.";
+    }
   } finally {
     loading.value = false;
   }

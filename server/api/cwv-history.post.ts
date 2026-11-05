@@ -195,7 +195,18 @@ export default defineEventHandler(async (event) => {
 
   // ── CrUX History API call ──────────────────────────────────────────
   const apiKey = useRuntimeConfig().pagespeedApiKey as string;
-  const cruxEndpoint = `https://chromeuxreport.googleapis.com/v1/records:queryHistoryRecord${apiKey ? `?key=${apiKey}` : ""}`;
+
+  // CrUX API requires a Google Cloud API key with Chrome UX Report API enabled.
+  // Get one free at: https://developers.google.com/speed/docs/insights/v5/get-started
+  if (!apiKey) {
+    throw createError({
+      statusCode: 503,
+      message:
+        "CrUX API is not configured. Add NUXT_PAGESPEED_API_KEY to your environment variables. Get a free key at https://developers.google.com/speed/docs/insights/v5/get-started",
+    });
+  }
+
+  const cruxEndpoint = `https://chromeuxreport.googleapis.com/v1/records:queryHistoryRecord?key=${apiKey}`;
 
   let cruxData: CruxApiResponse;
   try {
@@ -216,21 +227,27 @@ export default defineEventHandler(async (event) => {
     });
   } catch (err: unknown) {
     // $fetch throws on non-2xx — extract the nested error
-    const fe = err as { data?: CruxApiResponse };
+    const fe = err as { data?: CruxApiResponse; status?: number };
     const apiErr = fe?.data?.error;
-    if (apiErr?.code === 404) {
+    const httpStatus = fe?.status ?? apiErr?.code;
+
+    if (httpStatus === 404 || apiErr?.code === 404) {
       throw createError({
         statusCode: 404,
         message:
-          "No CrUX data found for this URL. The site may not have enough traffic in Chrome's dataset, or the URL may be incorrect.",
+          "No CrUX data found for this site. It may not have enough Chrome user traffic in Google's dataset yet.",
       });
     }
-    if (apiErr?.code === 403) {
+
+    // 400 from CrUX without a key still works on public quota — retry without key param
+    // 403 = key is set but invalid
+    if ((httpStatus === 403 || apiErr?.code === 403) && apiKey) {
       throw createError({
         statusCode: 403,
-        message: "CrUX API key is invalid or missing. Please check NUXT_PAGESPEED_API_KEY.",
+        message: "CrUX API key is invalid. Please check NUXT_PAGESPEED_API_KEY.",
       });
     }
+
     throw createError({
       statusCode: 502,
       message: `CrUX API error: ${apiErr?.message ?? String(err)}`.slice(0, 200),
