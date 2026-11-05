@@ -83,6 +83,33 @@ useHead({
         >
           <div class="flex items-center gap-3 mb-4">
             <div
+              class="w-12 h-12 rounded-xl bg-violet-100 dark:bg-violet-900/40 flex items-center justify-center shrink-0"
+            >
+              <UIcon name="i-lucide-tag" class="w-6 h-6 text-violet-600 dark:text-violet-400" />
+            </div>
+            <div>
+              <h2 class="font-black text-zinc-900 dark:text-white">Meta Tag Checker</h2>
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">Free</span>
+            </div>
+          </div>
+          <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed flex-1 mb-6">
+            Check any URL's Open Graph preview, Twitter Card, title, description, canonical, and 14
+            other SEO signals — with an instant A–F grade.
+          </p>
+          <UButton
+            label="Check Meta Tags"
+            to="/tools/meta-checker"
+            color="primary"
+            trailing-icon="i-lucide-arrow-right"
+          />
+        </div>
+
+        <!-- Full Performance Audit -->
+        <div
+          class="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-7 flex flex-col"
+        >
+          <div class="flex items-center gap-3 mb-4">
+            <div
               class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center shrink-0"
             >
               <UIcon name="i-lucide-zap" class="w-6 h-6 text-indigo-600 dark:text-indigo-400" />

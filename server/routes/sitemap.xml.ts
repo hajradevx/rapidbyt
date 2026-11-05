@@ -33,6 +33,12 @@ const pages = [
   { loc: "/blog", lastmod: "2026-11-04T00:00:00+00:00", priority: "0.8", changefreq: "weekly" },
   { loc: "/about", lastmod: "2026-11-01T00:00:00+00:00", priority: "0.7", changefreq: "monthly" },
   { loc: "/contact", lastmod: "2026-11-01T00:00:00+00:00", priority: "0.7", changefreq: "monthly" },
+  {
+    loc: "/tools/meta-checker",
+    lastmod: "2026-11-04T00:00:00+00:00",
+    priority: "0.8",
+    changefreq: "monthly",
+  },
 
   // ── Blog posts (cornerstone content → 0.9, standard → 0.8) ─────────────────
   {

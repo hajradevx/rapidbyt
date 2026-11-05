@@ -45,8 +45,27 @@ const navItems = computed<NavigationMenuItem[]>(() => [
   },
   {
     label: "Products",
-    to: "/products",
-    active: route.path.startsWith("/products"),
+    icon: "i-lucide-package",
+    children: [
+      {
+        label: "Website Diagnosis",
+        description: "PageSpeed score & Core Web Vitals",
+        icon: "i-lucide-scan-search",
+        to: "/diagnose",
+      },
+      {
+        label: "Meta Tag Checker",
+        description: "OG preview, Twitter Card & SEO score",
+        icon: "i-lucide-tag",
+        to: "/tools/meta-checker",
+      },
+      {
+        label: "All Products",
+        description: "Browse all free & premium tools",
+        icon: "i-lucide-layout-grid",
+        to: "/products",
+      },
+    ],
   },
   {
     label: "Blog",
