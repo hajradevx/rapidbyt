@@ -220,6 +220,10 @@ function formatDate(d: string) {
             <UIcon name="i-lucide-clock" class="w-3.5 h-3.5" />
             {{ post.readTime }} min read
           </span>
+          <span class="flex items-center gap-1.5">
+            <UIcon name="i-lucide-user" class="w-3.5 h-3.5" />
+            {{ post.author ?? "RapidByt Team" }}
+          </span>
         </div>
 
         <h1
@@ -289,6 +293,35 @@ function formatDate(d: string) {
             :title="post.title"
             :description="post.description"
           />
+        </div>
+
+        <!-- Author bio — EEAT signal for Google -->
+        <div
+          class="flex items-start gap-4 p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 mb-8"
+        >
+          <div
+            class="w-12 h-12 rounded-full bg-sky-100 dark:bg-sky-900/40 flex items-center justify-center shrink-0"
+          >
+            <UIcon name="i-lucide-users" class="w-6 h-6 text-sky-600 dark:text-sky-400" />
+          </div>
+          <div>
+            <p class="font-black text-zinc-900 dark:text-white text-sm mb-0.5">
+              {{ post.author ?? "RapidByt Team" }}
+            </p>
+            <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+              Web performance engineers, technical SEO specialists, and full-stack developers with
+              10+ years of combined experience diagnosing and fixing website performance across
+              WordPress, Nuxt, Next.js, and Cloudflare. Content is written from direct client work
+              and real audits.
+            </p>
+            <NuxtLink
+              to="/about"
+              class="inline-flex items-center gap-1 text-xs text-sky-600 dark:text-sky-400 hover:underline mt-1.5"
+            >
+              About the team
+              <UIcon name="i-lucide-arrow-right" class="w-3 h-3" />
+            </NuxtLink>
+          </div>
         </div>
 
         <BlogDiagnoseWidget />

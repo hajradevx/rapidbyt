@@ -1,7 +1,8 @@
----
+﻿---
 title: "Website Not Loading on Mobile Data? Here's Why and How to Fix It"
 description: "Your site loads fine on Wi-Fi but fails on mobile data? This is a page weight problem, not a connection problem. Here's exactly how to diagnose and fix it."
 date: 2026-10-12
+updatedAt: "2026-11-08"
 readTime: 10
 category: "Performance"
 author: "RapidByt Team"

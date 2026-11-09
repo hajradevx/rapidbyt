@@ -154,6 +154,150 @@ useHead({
         </div>
       </div>
 
+      <!-- Expertise -->
+      <div class="mb-10">
+        <h2 class="text-2xl font-black text-zinc-900 dark:text-white mb-6 text-center">
+          What We're Known For
+        </h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div
+            class="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 flex gap-4"
+          >
+            <div
+              class="w-10 h-10 rounded-xl bg-sky-100 dark:bg-sky-900/40 flex items-center justify-center shrink-0"
+            >
+              <UIcon name="i-lucide-gauge" class="w-5 h-5 text-sky-600 dark:text-sky-400" />
+            </div>
+            <div>
+              <h3 class="font-black text-zinc-900 dark:text-white mb-1">Core Web Vitals Fixes</h3>
+              <p class="text-sm text-zinc-500 dark:text-zinc-400">
+                Average improvement of 58 points on PageSpeed Insights. We diagnose LCP, CLS, and
+                INP and fix the root causes — not symptoms.
+              </p>
+            </div>
+          </div>
+          <div
+            class="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 flex gap-4"
+          >
+            <div
+              class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center shrink-0"
+            >
+              <UIcon
+                name="i-lucide-trending-up"
+                class="w-5 h-5 text-emerald-600 dark:text-emerald-400"
+              />
+            </div>
+            <div>
+              <h3 class="font-black text-zinc-900 dark:text-white mb-1">Technical SEO Audits</h3>
+              <p class="text-sm text-zinc-500 dark:text-zinc-400">
+                Structured data, crawlability, canonical issues, schema markup — the technical
+                foundation that determines whether your content ranks.
+              </p>
+            </div>
+          </div>
+          <div
+            class="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 flex gap-4"
+          >
+            <div
+              class="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center shrink-0"
+            >
+              <UIcon name="i-lucide-cloud" class="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+            </div>
+            <div>
+              <h3 class="font-black text-zinc-900 dark:text-white mb-1">
+                Edge-Native Architecture
+              </h3>
+              <p class="text-sm text-zinc-500 dark:text-zinc-400">
+                Cloudflare Workers, D1, and R2 deployments that eliminate cold starts and bring your
+                site 20–50ms from every visitor on earth.
+              </p>
+            </div>
+          </div>
+          <div
+            class="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 flex gap-4"
+          >
+            <div
+              class="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-900/40 flex items-center justify-center shrink-0"
+            >
+              <UIcon
+                name="i-lucide-shield-check"
+                class="w-5 h-5 text-rose-600 dark:text-rose-400"
+              />
+            </div>
+            <div>
+              <h3 class="font-black text-zinc-900 dark:text-white mb-1">Security & Uptime</h3>
+              <p class="text-sm text-zinc-500 dark:text-zinc-400">
+                24/7 monitoring, SSL management, WAF configuration, and vulnerability scanning —
+                99.98% average managed uptime.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team -->
+      <div
+        class="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-8 sm:p-10 mb-10"
+      >
+        <h2 class="text-2xl font-black text-zinc-900 dark:text-white mb-6">The RapidByt Team</h2>
+        <div class="grid sm:grid-cols-3 gap-6">
+          <div class="text-center">
+            <div
+              class="w-16 h-16 rounded-full bg-sky-100 dark:bg-sky-900/40 flex items-center justify-center mx-auto mb-3"
+            >
+              <UIcon name="i-lucide-code-2" class="w-7 h-7 text-sky-600 dark:text-sky-400" />
+            </div>
+            <h3 class="font-black text-zinc-900 dark:text-white text-sm mb-1">
+              Web Performance Engineers
+            </h3>
+            <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+              Specialists in Core Web Vitals, Lighthouse auditing, and Cloudflare edge optimization.
+              Combined 12+ years diagnosing performance bottlenecks across WordPress, Nuxt, and
+              Next.js.
+            </p>
+          </div>
+          <div class="text-center">
+            <div
+              class="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center mx-auto mb-3"
+            >
+              <UIcon
+                name="i-lucide-search"
+                class="w-7 h-7 text-emerald-600 dark:text-emerald-400"
+              />
+            </div>
+            <h3 class="font-black text-zinc-900 dark:text-white text-sm mb-1">
+              Technical SEO Specialists
+            </h3>
+            <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+              Deep expertise in structured data, schema markup, crawlability audits, and Core Web
+              Vitals as ranking signals. 8+ years in technical SEO for Pakistani and international
+              markets.
+            </p>
+          </div>
+          <div class="text-center">
+            <div
+              class="w-16 h-16 rounded-full bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center mx-auto mb-3"
+            >
+              <UIcon name="i-lucide-layers" class="w-7 h-7 text-indigo-600 dark:text-indigo-400" />
+            </div>
+            <h3 class="font-black text-zinc-900 dark:text-white text-sm mb-1">
+              Full-Stack Developers
+            </h3>
+            <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+              Nuxt 4, Vue 3, Cloudflare Workers, and D1 specialists. We build edge-native
+              applications that are fast by default — not optimized as an afterthought.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-6 border-t border-zinc-100 dark:border-zinc-800">
+          <p class="text-sm text-zinc-500 dark:text-zinc-400 text-center leading-relaxed">
+            All content on the RapidByt blog is written and reviewed by our technical team — based
+            on real client work, real audits, and measurable outcomes across hundreds of sites.
+          </p>
+        </div>
+      </div>
+
       <!-- Contact CTA -->
       <div class="text-center">
         <p class="text-zinc-500 dark:text-zinc-400 mb-4">Want to work with us or just say hello?</p>

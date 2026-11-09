@@ -1,7 +1,8 @@
----
+﻿---
 title: "WordPress Site Running Slow? Here's the Complete Fix Guide (No Developer Needed)"
 description: "WordPress site slow and you don't know why? Step-by-step guide covering caching, image optimization, plugin bloat, hosting, and database cleanup."
 date: 2026-10-12
+updatedAt: "2026-11-08"
 readTime: 18
 category: "Performance"
 author: "RapidByt Team"
