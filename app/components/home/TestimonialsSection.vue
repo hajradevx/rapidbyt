@@ -73,7 +73,7 @@
 const testimonials = [
   {
     name: "Aisha Rahman",
-    role: "E-commerce Founder",
+    role: "Founder, FashionPK Store",
     initials: "AR",
     color: "bg-sky-500",
     text: "Our checkout load time dropped from 11 seconds to under 2. Conversion rate jumped 42% in the first month. RapidByt paid for itself in week one.",
@@ -81,7 +81,7 @@ const testimonials = [
   },
   {
     name: "Marcus Cole",
-    role: "SaaS CEO",
+    role: "CEO, CloudStack SaaS",
     initials: "MC",
     color: "bg-indigo-500",
     text: "We were losing money on slow infrastructure. RapidByt migrated us to Cloudflare edge and server bills dropped 60% while performance went through the roof.",
@@ -89,7 +89,7 @@ const testimonials = [
   },
   {
     name: "Sofia Mendez",
-    role: "Digital Agency Owner",
+    role: "Director, Apex Digital Agency",
     initials: "SM",
     color: "bg-emerald-500",
     text: "I send all clients with performance issues to RapidByt. They fix things fast, explain clearly, and results are always measurable and significant.",
