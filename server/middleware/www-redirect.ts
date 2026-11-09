@@ -40,7 +40,12 @@ const STATIC_EXTENSIONS = new Set([
 
 export default defineEventHandler((event) => {
   const host = getHeader(event, "host") ?? "";
-  const proto = getHeader(event, "x-forwarded-proto") ?? "https";
+  // x-forwarded-proto can be a comma-separated list (e.g. "https,http") behind
+  // multi-hop proxies — always take the FIRST (leftmost) value which is the
+  // original client-facing protocol. "https,http" means the outer connection was
+  // https; "http" means it was http.
+  const protoHeader = getHeader(event, "x-forwarded-proto") ?? "https";
+  const proto = (protoHeader.split(",")[0] ?? "https").trim();
   const hostname = host.split(":")[0] ?? "";
 
   const isWww = hostname.startsWith("www.");
