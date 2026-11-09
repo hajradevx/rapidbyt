@@ -1,7 +1,8 @@
----
+﻿---
 title: "Why Images Look Blurry or Wrong Size on Your Website (And How to Fix It)"
 description: "Blurry images, stretched photos, wrong sizes on mobile — these visual problems destroy credibility. Every cause and fix covered."
 date: 2026-11-06
+updatedAt: "2026-11-08"
 readTime: 15
 category: "Performance"
 author: "RapidByt Team"

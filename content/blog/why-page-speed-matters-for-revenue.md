@@ -1,7 +1,8 @@
----
+﻿---
 title: "Why Page Speed Directly Impacts Your Revenue (With Numbers)"
 description: "A 1-second delay in page load time costs e-commerce sites 7% in conversions. Here's the data — and what you can do about it today."
 date: 2026-08-10
+updatedAt: "2026-11-08"
 readTime: 14
 category: "Performance"
 author: "RapidByt Team"
