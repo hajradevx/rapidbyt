@@ -46,7 +46,11 @@ useHead({
       }),
     },
     {
-      // WebSite schema — enables Sitelinks Search Box in Google results
+      // WebSite schema — brand identity signal for Google Knowledge Graph.
+      // NOTE: potentialAction/SearchAction removed — Google deprecated the Sitelinks
+      // Search Box feature in 2025 and was crawling the urlTemplate literal
+      // "https://rapidbyt.com/diagnose?url={search_term_string}" as a real URL,
+      // causing it to appear in GSC as "Alternate page with proper canonical tag".
       type: "application/ld+json",
       innerHTML: JSON.stringify({
         "@context": "https://schema.org",
@@ -55,14 +59,6 @@ useHead({
         url: "https://rapidbyt.com",
         description:
           "Web performance optimization, SEO, and software development agency based in Pakistan.",
-        potentialAction: {
-          "@type": "SearchAction",
-          target: {
-            "@type": "EntryPoint",
-            urlTemplate: "https://rapidbyt.com/diagnose?url={search_term_string}",
-          },
-          "query-input": "required name=search_term_string",
-        },
       }),
     },
   ],
