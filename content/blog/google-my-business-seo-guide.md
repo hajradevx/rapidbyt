@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Google My Business SEO: How to Rank Higher in Local Search in 2026"
 description: "A complete guide to optimizing your Google Business Profile for local SEO. Get more calls, more directions, and more customers from Google Maps."
 date: "2026-10-11"

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Using ChatGPT to Write Website Content — Is It SEO Safe in 2026?"
 description: "Does Google penalise AI-generated content? We cover ChatGPT's impact on SEO with Google's official stance and real test results."
 date: "2026-10-04"
