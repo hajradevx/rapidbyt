@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Why Your Bounce Rate is So High (And How to Fix It)"
 description: "A high bounce rate means visitors are leaving without taking action. Here are the 8 real causes — most businesses only fix one and miss the rest."
 date: "2026-09-25"

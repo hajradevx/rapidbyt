@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Website Looks Fine on Desktop But Broken on Mobile — How to Fix It"
 description: "Overlapping text, broken buttons, overflowing images — mobile layout bugs cost you more visitors than you think. Find and fix every common mobile issue."
 date: "2026-10-20"

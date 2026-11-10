@@ -1,4 +1,4 @@
-﻿---
+---
 title: "SSL Certificate Errors: Why Visitors See 'Your Connection Is Not Private' — And How to Fix It"
 description: "The red 'Connection Not Private' warning drives away every visitor. Every SSL error type, what causes it, and exact steps to fix each one."
 date: "2026-10-28"

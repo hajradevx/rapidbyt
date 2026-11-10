@@ -1,4 +1,4 @@
-﻿---
+---
 title: "5 Best Free Tools to Check Your Website Speed in 2026"
 description: "Check your website speed for free — these 5 tools show load time, Core Web Vitals, exactly what is slow, and how to fix it. No signup required for most."
 date: "2026-10-05"

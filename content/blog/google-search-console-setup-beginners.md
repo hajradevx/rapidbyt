@@ -1,4 +1,4 @@
-﻿---
+---
 title: "How to Set Up Google Search Console — Complete Beginner's Guide (2026)"
 description: "Google Search Console from scratch — how to set it up, verify your site, submit a sitemap, and use it to improve your Google rankings."
 date: "2026-10-07"

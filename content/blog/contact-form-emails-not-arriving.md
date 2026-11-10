@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Contact Form Submissions Not Arriving? Here's How to Fix It"
 description: "Contact form submissions disappearing is one of the most damaging website problems. Every missed form is a lost lead. Complete diagnostic and fix guide."
 date: "2026-10-22"

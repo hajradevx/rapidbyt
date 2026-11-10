@@ -1,4 +1,4 @@
-﻿---
+---
 title: "The Monthly Website Maintenance Checklist (Most Businesses Skip 80% of This)"
 description: "Without regular maintenance security degrades and small issues become expensive emergencies. Complete monthly, quarterly, and annual maintenance checklist."
 date: "2026-11-12"

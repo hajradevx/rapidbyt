@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Getting Traffic But No Sales? 10 Landing Page Fixes That Actually Work"
 description: "Thousands of visitors, zero conversions. The problem is rarely your product — it's your page. Here are 10 proven fixes with before/after examples."
 date: "2026-10-02"
