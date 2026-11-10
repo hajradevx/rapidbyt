@@ -1,7 +1,7 @@
 ﻿---
 title: "Why Is My Website Not Showing on Google? (7 Reasons + Fixes)"
 description: "Built a website but it's invisible on Google? Here are the 7 most common reasons your site isn't indexed — and exactly how to fix each one today."
-date: 2026-09-20
+date: "2026-09-20"
 updatedAt: "2026-11-08"
 readTime: 14
 category: "SEO"

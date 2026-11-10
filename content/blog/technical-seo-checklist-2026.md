@@ -1,7 +1,7 @@
 ﻿---
 title: "The 2026 Technical SEO Checklist: 30 Fixes That Actually Move Rankings"
 description: "A comprehensive, actionable technical SEO checklist. Check crawlability, structured data, Core Web Vitals, and more — with code snippets for each fix."
-date: 2026-09-15
+date: "2026-09-15"
 updatedAt: "2026-11-08"
 readTime: 14
 category: "SEO"

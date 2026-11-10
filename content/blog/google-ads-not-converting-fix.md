@@ -1,7 +1,7 @@
 ﻿---
 title: "Spending Money on Google Ads But Getting Zero Sales? Here's Why"
 description: "Google Ads draining your budget with no results is rarely the ad's fault. The 9 real reasons paid traffic doesn't convert — and exactly how to fix each."
-date: 2026-10-18
+date: "2026-10-18"
 updatedAt: "2026-11-08"
 readTime: 17
 category: "Business"

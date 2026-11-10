@@ -1,7 +1,7 @@
 ﻿---
 title: "Your Website Is Fast and Looks Great — So Why Aren't People Buying?"
 description: "Your site is fast and looks great — but conversions are flat. Here are the 8 psychological and UX reasons fast, polished sites still fail to convert."
-date: 2026-11-10
+date: "2026-11-10"
 updatedAt: "2026-11-08"
 readTime: 16
 category: "Business"

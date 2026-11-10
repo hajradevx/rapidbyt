@@ -194,19 +194,17 @@ export default defineEventHandler(async (event) => {
   const granularity = mode === "origin" ? "origin" : "url";
 
   // ── CrUX History API call ──────────────────────────────────────────
-  const apiKey = useRuntimeConfig().pagespeedApiKey as string;
+  const apiKey = (useRuntimeConfig().pagespeedApiKey as string | undefined) ?? "";
 
-  // CrUX API requires a Google Cloud API key with Chrome UX Report API enabled.
-  // Get one free at: https://developers.google.com/speed/docs/insights/v5/get-started
-  if (!apiKey) {
+  if (!apiKey || apiKey.trim() === "") {
     throw createError({
       statusCode: 503,
       message:
-        "CrUX API is not configured. Add NUXT_PAGESPEED_API_KEY to your environment variables. Get a free key at https://developers.google.com/speed/docs/insights/v5/get-started",
+        "CrUX API key is not configured. Add NUXT_PAGESPEED_API_KEY to your environment. Free key: developers.google.com/speed/docs/insights/v5/get-started",
     });
   }
 
-  const cruxEndpoint = `https://chromeuxreport.googleapis.com/v1/records:queryHistoryRecord?key=${apiKey}`;
+  const cruxEndpoint = `https://chromeuxreport.googleapis.com/v1/records:queryHistoryRecord?key=${apiKey.trim()}`;
 
   let cruxData: CruxApiResponse;
   try {
