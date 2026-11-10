@@ -1,7 +1,7 @@
 ﻿---
 title: "How to Get Your First 1,000 Website Visitors Without Paying for Ads"
 description: "No ad budget, no following, no connections. The realistic step-by-step playbook to get your first 1,000 monthly visitors through SEO and content."
-date: 2026-11-08
+date: "2026-11-08"
 updatedAt: "2026-11-08"
 readTime: 16
 category: "Business"

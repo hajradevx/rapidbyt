@@ -1,7 +1,7 @@
 ﻿---
 title: "Core Web Vitals in 2026: The Complete Fix Guide"
 description: "LCP, CLS, INP — what they mean, how to measure them, and exactly how to fix each one. A practical guide with real code examples."
-date: 2026-09-01
+date: "2026-09-01"
 updatedAt: "2026-11-08"
 readTime: 13
 category: "SEO"

@@ -1,7 +1,7 @@
 ﻿---
 title: "My Website Got Hacked — What to Do Now (And How to Prevent It)"
 description: "Your website was hacked or defaced. Here's the step-by-step recovery process, plus 12 security hardening measures to prevent it happening again."
-date: 2026-09-28
+date: "2026-09-28"
 updatedAt: "2026-11-08"
 readTime: 17
 category: "Security"
@@ -34,7 +34,7 @@ If your site is actively serving malware, spam links, or phishing content — yo
 Replace your index.php or index.html temporarily:
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <title>Maintenance in Progress</title>

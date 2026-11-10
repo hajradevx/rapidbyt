@@ -1,4 +1,4 @@
-import { defineCollection, defineContentConfig, z } from "@nuxt/content";
+﻿import { defineCollection, defineContentConfig, z } from "@nuxt/content";
 
 export default defineContentConfig({
   collections: {
@@ -8,8 +8,8 @@ export default defineContentConfig({
       schema: z.object({
         title: z.string(),
         description: z.string(),
-        date: z.string(),
-        updatedAt: z.string().optional(), // for dateModified in JSON-LD — separate from datePublished
+        date: z.coerce.string(),
+        updatedAt: z.string().optional(),
         readTime: z.number(),
         category: z.string(),
         author: z.string().optional(),

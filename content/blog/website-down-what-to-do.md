@@ -1,7 +1,7 @@
 ﻿---
 title: "Your Website Is Down — What to Do in the Next 60 Minutes"
 description: "Every minute your site is down costs you money and SEO. The exact checklist to diagnose the cause and get back online as fast as possible."
-date: 2026-11-01
+date: "2026-11-01"
 updatedAt: "2026-11-08"
 readTime: 14
 category: "Security"
