@@ -166,10 +166,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     typedPages: true,
     writeEarlyHints: true,
 
-    // Disable skew protection — it generates /__skew and /__skew/asset URLs
-    // that Google crawls and reports as "Blocked due to 4xx" in Search Console.
-    appManifest: false,
-
     defaults: {
       nuxtLink: {
         trailingSlash: "remove",
